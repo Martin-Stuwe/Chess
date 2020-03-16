@@ -2,19 +2,34 @@ image: maven:3.6.3-jdk-13
 
 cache:
   paths:
-    - .m2/
+    - .m2/repository
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
 
 test:
   tags:
     - docker
   script:
     - mvn test
+
+pmd:
+  tags:
+    - docker
+  script:
     - mvn site -DgenerateReports=false
     - mvn jxr:jxr
     - mvn pmd:pmd
     - mvn pmd:cpd
-    - mvn compile javafx:jlink
   artifacts:
     paths:
     - target/site
+
+deploy:
+  tags:
+    - docker
+  script:
+    - mvn compile javafx:jlink
+  artifacts:
+    paths:
     - target/schach.zip
