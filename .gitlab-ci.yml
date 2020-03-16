@@ -1,0 +1,20 @@
+image: maven:3.6.3-jdk-13
+
+cache:
+  paths:
+    - .m2/
+
+test:
+  tags:
+    - docker
+  script:
+    - mvn test
+    - mvn site -DgenerateReports=false
+    - mvn jxr:jxr
+    - mvn pmd:pmd
+    - mvn pmd:cpd
+    - mvn compile javafx:jlink
+  artifacts:
+    paths:
+    - target/site
+    - target/schach.zip
