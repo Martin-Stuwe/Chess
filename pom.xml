@@ -58,11 +58,6 @@
                     <mainClass>schach.GuiMain</mainClass>
                 </configuration>
             </plugin>
-        </plugins>
-    </build>
-
-    <reporting>
-        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
@@ -72,12 +67,13 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.13.0</version>
-                <!-- <configuration>
+                <configuration>
                     <rulesets>
-                        <ruleset>...</ruleset>
+                    <ruleset>/rulesets/java/maven-pmd-plugin-default.xml</ruleset>
+                    <ruleset>pmd/rulesets/rules.xml</ruleset>
                     </rulesets>
-                </configuration> -->
+                </configuration> 
             </plugin>
         </plugins>
-    </reporting>
+    </build>
 </project>
