@@ -21,6 +21,8 @@ pmd:
     - mvn jxr:jxr
     - mvn pmd:pmd
     - mvn pmd:cpd
+    - mvn surefire-report:report-only
+    - mvn jacoco:report
   artifacts:
     paths:
     - target/site
