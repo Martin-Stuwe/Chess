@@ -11,18 +11,24 @@ test:
   tags:
     - docker
   script:
+    - mvn clean
+    - mvn site -DgenerateReports=false
     - mvn test
+    - mvn surefire-report:report-only
+    - mvn jacoco:report
+  artifacts:
+    paths:
+      - target/site
 
 pmd:
   tags:
     - docker
   script:
+    - mvn clean
     - mvn site -DgenerateReports=false
     - mvn jxr:jxr
     - mvn pmd:pmd
     - mvn pmd:cpd
-    - mvn surefire-report:report-only
-    - mvn jacoco:report
   artifacts:
     paths:
     - target/site
@@ -31,7 +37,7 @@ deploy:
   tags:
     - docker
   script:
-    - mvn compile javafx:jlink
+    - mvn clean compile javafx:jlink
   artifacts:
     paths:
     - target/schach.zip
