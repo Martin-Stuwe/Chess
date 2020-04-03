@@ -64,8 +64,7 @@
                 <version>3.13.0</version>
                 <configuration>
                     <rulesets>
-                        <ruleset>/rulesets/java/maven-pmd-plugin-default.xml</ruleset>
-                        <ruleset>pmd/rulesets/rules.xml</ruleset>
+                        <ruleset>https://projects.isp.uni-luebeck.de/template/ruleset/-/raw/master/rules.xml</ruleset>
                     </rulesets>
                 </configuration> 
             </plugin>
