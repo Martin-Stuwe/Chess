@@ -1,0 +1,43 @@
+image: maven:3.6.3-jdk-11
+
+cache:
+  paths:
+    - .m2/repository
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+test:
+  tags:
+    - docker
+  script:
+    - mvn clean
+    - mvn site -DgenerateReports=false
+    - mvn test
+    - mvn surefire-report:report-only
+    - mvn jacoco:report
+  artifacts:
+    paths:
+      - target/site
+
+pmd:
+  tags:
+    - docker
+  script:
+    - mvn clean
+    - mvn site -DgenerateReports=false
+    - mvn jxr:jxr
+    - mvn pmd:pmd
+    - mvn pmd:cpd
+  artifacts:
+    paths:
+    - target/site
+
+deploy:
+  tags:
+    - docker
+  script:
+    - mvn clean compile javafx:jlink
+  artifacts:
+    paths:
+    - target/schach.zip
