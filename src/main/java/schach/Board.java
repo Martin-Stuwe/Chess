@@ -18,6 +18,15 @@ public class Board {
 				+ " "+"abcdefgh";//Change to use the array needed
 	} 
 	
+	public String getField(int pos1, int pos2) {
+		return Positionen[pos1][pos2];
+	}
+	
+	
+	public void setField(int pos1, int pos2, String setTo) {
+		Positionen[pos1][pos2] = setTo;
+	}
+	
 	
 	
 	
