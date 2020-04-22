@@ -5,7 +5,8 @@ public class Main {
         System.out.println("Hello World");
         Console input = new Console();
         input.open();
-        Board test1 = new Board();
-        test1.anzeigen();
+        Board board = new Board();
+        board.initializeBoard();
+        System.out.println(board.Feld);
     }
 }
