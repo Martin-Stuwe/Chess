@@ -4,11 +4,14 @@ import java.util.Scanner;
 
 public class Console {
 	
-	Scanner input;
+
+	
+	String input;
 		
 		public void open() {
 		    Scanner userInput = new Scanner(System.in);
-		    this.input = userInput;
+		      this.input = userInput.nextLine();
+		      userInput.close();
 		}
 		
 
