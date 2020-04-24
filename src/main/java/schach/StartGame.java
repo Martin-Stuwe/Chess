@@ -27,18 +27,18 @@ public class StartGame {
 	
 	//choose Mode cases for different modes
 	public static void chooseMode() { 
-		System.out.println("Choose one of the modes /n 1) Versus Human /n Enter 1 for the PlayerVsPlayer Mode");
+		System.out.println("Choose one of the modes \n 1) Versus Human \n Enter 1 for the PlayerVsPlayer Mode");
 		Console ChosenMode = new Console();
 		ChosenMode.open();
 		switch (ChosenMode.input) {
 			case "1":  
 				PlayerVsPlayer();
-				return;
+				return; //return needs to be deleted later
 				
 			default: 
 				System.out.println("Wrong input");
 				chooseMode();
-				return;
+				return; //return needs to be deleted later
 			}
 		
 	}
