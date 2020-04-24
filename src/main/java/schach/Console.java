@@ -11,7 +11,6 @@ public class Console {
 		public void open() {
 		    Scanner userInput = new Scanner(System.in);
 		      this.input = userInput.nextLine();
-		      userInput.close();
 		}
 		
 
