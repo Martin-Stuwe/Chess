@@ -11,5 +11,10 @@ public class Figures {
 		this.Pos1 = Pos1;
 		this.Pos2 = Pos2;
 	}
-	
+	public String getPos1() {
+		return Pos1; 
+	}
+	public int getPos2() {
+		return Pos2; 
+	}
 }
