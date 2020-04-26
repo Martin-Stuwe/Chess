@@ -20,8 +20,8 @@ public class StartGame {
 		player2color.open();
 		Player Player2 = new Player(player2name.input, player2color.input);
 		Board board = new Board();
-		board.initializeBoard();
 		board.setStart();
+		board.initializeBoard();
 		System.out.println(board.Feld);
 	}
 	

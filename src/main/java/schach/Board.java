@@ -7,7 +7,7 @@ public class Board {
 	String[][] Positionen= new String[8][8]; //Array to store each field later change to figure or field object
 		
 	public void initializeBoard() { //Method to init the console based board
-		setStart();
+		
 		Feld = "8"+ Positionen[0][0] + Positionen[0][1] + Positionen[0][2] + Positionen[0][3] +Positionen[0][4] + Positionen[0][5] + Positionen[0][6] + Positionen[0][7] + "\n"
 				+ "7"+ Positionen[1][0] + Positionen[1][1] + Positionen[1][2] + Positionen[1][3] +Positionen[1][4] + Positionen[1][5] + Positionen[1][6] + Positionen[1][7]+"\n"
 				+ "6"+ Positionen[2][0] + Positionen[2][1] + Positionen[2][2] + Positionen[2][3] +Positionen[2][4] + Positionen[2][5] + Positionen[2][6] + Positionen[2][7]+"\n"
