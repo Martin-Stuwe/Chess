@@ -24,11 +24,10 @@ public class StartGame {
 		player2color.open();
 		Player Player2 = new Player(player2name.input, player2color.input);
 		Board board = new Board();
-		board.setStart();
 		board.initializeBoard();
+		board.setStart();
 		System.out.println(board.Feld);
 	}
-	
 	//choose Mode cases for different modes
 	public static void chooseMode() { 
 		System.out.println("Choose one of the modes \n 1) Versus Human \n Enter 1 for the PlayerVsPlayer Mode");
