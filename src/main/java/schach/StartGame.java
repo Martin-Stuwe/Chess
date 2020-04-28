@@ -23,10 +23,12 @@ public class StartGame {
 		player2color.open();
 		System.out.println(player2name.input+" chose "+player2color.input);
 		Player Player2 = new Player(player2name.input, player2color.input);
-		Board board = new Board();
-		board.initializeBoard();
-		board.setStart();
-		System.out.println(board.Feld);
+		Board board2 = new Board();
+		board2.initializeBoard();
+		board2.setStart();
+		board2.initializeBoard();
+		System.out.println(board2.Feld);
+		
 	}
 	//choose Mode cases for different modes
 	public static void chooseMode() { 

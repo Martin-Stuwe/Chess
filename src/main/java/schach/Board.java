@@ -8,7 +8,7 @@ public class Board {
 		
 	public void initializeBoard() { //Method to init the console based board
 		
-		Feld = "8"+ Positionen[0][0] + Positionen[0][1] + Positionen[0][2] + Positionen[0][3] +Positionen[0][4] + Positionen[0][5] + Positionen[0][6] + Positionen[0][7] + "\n"
+		this.Feld = "8"+ Positionen[0][0] + Positionen[0][1] + Positionen[0][2] + Positionen[0][3] +Positionen[0][4] + Positionen[0][5] + Positionen[0][6] + Positionen[0][7] + "\n"
 				+ "7"+ Positionen[1][0] + Positionen[1][1] + Positionen[1][2] + Positionen[1][3] +Positionen[1][4] + Positionen[1][5] + Positionen[1][6] + Positionen[1][7]+"\n"
 				+ "6"+ Positionen[2][0] + Positionen[2][1] + Positionen[2][2] + Positionen[2][3] +Positionen[2][4] + Positionen[2][5] + Positionen[2][6] + Positionen[2][7]+"\n"
 				+ "5"+ Positionen[3][0] + Positionen[3][1] + Positionen[3][2] + Positionen[3][3] +Positionen[3][4] + Positionen[3][5] + Positionen[3][6] + Positionen[3][7]+"\n" 
@@ -48,12 +48,12 @@ public class Board {
 	
 	
 	public String getField(int pos1, int pos2) {
-		return Positionen[pos1][pos2];
+		return this.Positionen[pos1][pos2];
 	}
 	
 	
 	public void setField(int pos1, int pos2, String setTo) {
-		Positionen[pos1][pos2] = setTo;
+		this.Positionen[pos1][pos2] = setTo;
 	}
 	
 	
