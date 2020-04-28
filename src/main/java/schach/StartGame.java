@@ -20,8 +20,8 @@ public class StartGame {
 		System.out.println("Hello "+player2name.input);
 		System.out.println("Enter a color for Player 2 : white / black");
 		Console player2color = new Console();
-		System.out.println(player2name.input+" chose "+player2color.input);
 		player2color.open();
+		System.out.println(player2name.input+" chose "+player2color.input);
 		Player Player2 = new Player(player2name.input, player2color.input);
 		Board board = new Board();
 		board.initializeBoard();
