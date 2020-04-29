@@ -1,6 +1,5 @@
 package schach;
 
-
 public class StartGame {
 		
 	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode
