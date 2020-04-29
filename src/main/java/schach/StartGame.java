@@ -13,7 +13,7 @@ public class StartGame {
 		Console player1color = new Console();
 		player1color.open();
 		while (!player1color.input.equals ("white") && !player1color.input.equals("black")) {
-			System.out.println("You have to enter white or black cunt");
+			System.out.println("You have to enter white or black");
 			player1color.open();
 		}
 		System.out.println(player1name.input+" chose "+player1color.input);
@@ -26,10 +26,15 @@ public class StartGame {
 		Console player2color = new Console();
 		player2color.open();
 		while (!player2color.input.equals ("white") && !player2color.input.equals("black")) {
-			System.out.println("You have to enter white or black cunt");
+			System.out.println("You have to enter white or black");
 			player2color.open();
 		}
-		System.out.println(player2name.input+" chose "+player2color.input);
+		while (player2color.input.equals(player1color.input)) {
+			System.out.println(player1name.input+" already chose this color");
+			System.out.println("Enter a color for Player 2 : white / black");
+			player2color.open();
+		}
+		System.out.println(player2name.input+" is "+player2color.input);
 		Player Player2 = new Player(player2name.input, player2color.input);
 		Board board2 = new Board();
 		board2.initializeBoard();
