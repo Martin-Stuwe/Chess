@@ -1,5 +1,6 @@
-package schach;
+package game;
 
+import schach.Console;
 
 public class StartGame {
 		

@@ -1,4 +1,4 @@
-package schach;
+package game;
 
 public class Figures {
 	int Pos1; 

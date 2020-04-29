@@ -1,6 +1,6 @@
 package figures;
 
-import schach.Figures;
+import game.Figures;
 
 public class Bishop extends Figures {
 
