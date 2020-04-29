@@ -1,5 +1,6 @@
 package schach;
 
+
 public class StartGame {
 		
 	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode
@@ -16,7 +17,7 @@ public class StartGame {
 			player1color.open();
 		}
 		System.out.println(player1name.input+" chose "+player1color.input);
-		Player Player1 = new Player(player1name.input, player1color.input);
+		Player Player1 = new Player(player1name.input, player1color.input); 
 		System.out.println("Enter name of Player2");
 		Console player2name = new Console();
 		player2name.open();
