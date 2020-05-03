@@ -4,7 +4,7 @@ public class Figures {
 	int Pos1; 
 	int Pos2;
 	String boardVisual; //Zeichen/Grafik hier
-	
+	String color;
 	
 	
 	public void setPos(int Pos1, int Pos2) { 
