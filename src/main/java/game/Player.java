@@ -10,5 +10,12 @@ public class Player {
 		this.name= name;
 		this.color=color;
 	}
-
+	
+	public String getColor() {
+		return color;
+	}
+	
+	public String getName() {
+		return name;
+	}
 }
