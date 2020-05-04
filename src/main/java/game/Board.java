@@ -1,10 +1,28 @@
 package game;
+import figures.*;
 
 public class Board {
 	
 	String Feld; //store for the actual board
 	
-	String[][] Positionen= new String[8][8]; //Array to store each field later change to figure or field object
+	Figures[][] Positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
+	
+	Rook Rook1b = new Rook();
+	Rook Rook2b = new Rook();
+	Rook Rook1w = new Rook();
+	Rook Rook2w = new Rook();
+	Knight Knight1b = new Knight();
+	Knight Knight2b = new Knight();
+	Knight Knight1w = new Knight();
+	Knight Knight2w = new Knight();
+	Bishop Bishop1b = new Bishop();
+	Bishop Bishop2b = new Bishop();
+	Bishop Bishop1w = new Bishop();
+	Bishop Bishop2w = new Bishop();
+	Queen Queen1b = new Queen();
+	Queen Queen1w = new Queen();
+	King King1b	= new King();
+	King King1w = new King();
 		
 	public void initializeBoard() { //Method to init the console based board. Also acts as updater
 		
@@ -20,39 +38,37 @@ public class Board {
 	} 
 	
 	public void setStart() {
-		setField(0,0,"r");
-		setField(0,1, "n");
-		setField(0,2, "b");
-		setField(0,3, "q");
-		setField(0,4, "k");
-		setField(0,5, "b");
-		setField(0,6, "n");
-		setField(0,7, "r");
-		setField(7,0,"R");
-		setField(7,1, "N");
-		setField(7,2, "B");
-		setField(7,3, "Q");
-		setField(7,4, "K");
-		setField(7,5, "B");
-		setField(7,6, "N");
-		setField(7,7, "R");
+		setField(0,0, Rook1b);
+		setField(0,1, Knight1b);
+		setField(0,2, Bishop1b);
+		setField(0,3, Queen1b);
+		setField(0,4, King1b);
+		setField(0,5, Bishop2b);
+		setField(0,6, Knight2b);
+		setField(0,7, Rook2b);
+		setField(7,0, Rook1w);
+		setField(7,1, Knight1w);
+		setField(7,2, Bishop1w);
+		setField(7,3, Queen1w);
+		setField(7,4, King1w);
+		setField(7,5, Bishop2w);
+		setField(7,6, Knight2w);
+		setField(7,7, Rook2w);
 		for (int i = 0;i<8; i++) {
-			setField(1,i,"p");
-			setField(2,i,"");
-			setField(3,i,"");
-			setField(4,i,"");
-			setField(5,i,"");
-			setField(6,i,"P");
+			Pawn Pawnb = new Pawn();
+			Pawn Pawnw = new Pawn();
+			setField(1,i, Pawnb);
+			setField(6,i, Pawnw);
 		}
 	}
 	
 	
-	public String getField(int pos1, int pos2) {
+	public Figures getField(int pos1, int pos2) {
 		return this.Positionen[pos1][pos2];
 	}
 	
 	
-	public void setField(int pos1, int pos2, String setTo) {
+	public void setField(int pos1, int pos2, Figures setTo) {
 		this.Positionen[pos1][pos2] = setTo;
 	}
 	
