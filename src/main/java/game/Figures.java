@@ -17,4 +17,8 @@ public class Figures {
 	public int getPos2() {
 		return Pos2; 
 	}
+	public String getBoardVisual() {
+		
+			return boardVisual;
+		}
 }
