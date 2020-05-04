@@ -74,7 +74,10 @@ public class Board {
 	}
 	
 	
-	
+	public void move(int pos1from, int pos2from, int pos1to, int pos2to) {
+	Positionen[pos1to][pos2to] = Positionen[pos1from][pos2from];
+	Positionen[pos1from][pos2from] = null;
+	}
 	
 	
 
