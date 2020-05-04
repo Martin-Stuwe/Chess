@@ -37,6 +37,7 @@ public class Board {
 				+ " "+"abcdefgh";
 	} 
 	
+	
 	public void setStart() {
 		setField(0,0, Rook1b);
 		setField(0,1, Knight1b);

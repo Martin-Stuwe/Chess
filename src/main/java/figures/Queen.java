@@ -6,5 +6,6 @@ public class Queen extends Figures {
 	
 	public Queen() {
 		
+		
 	}
 }

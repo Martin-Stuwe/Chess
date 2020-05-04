@@ -6,5 +6,6 @@ public class Knight extends Figures {
 	
 	public Knight() {
 		
+		
 	}
 }

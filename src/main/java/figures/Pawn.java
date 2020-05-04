@@ -7,6 +7,7 @@ public class Pawn extends Figures {
 	
 	public Pawn() {
 		
+		
 	}
 	
 }

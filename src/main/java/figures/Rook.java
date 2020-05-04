@@ -6,6 +6,7 @@ public class Rook extends Figures {
 	
 	public Rook() {
 		
+		
 	}
 	
 }

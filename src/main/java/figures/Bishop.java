@@ -6,5 +6,6 @@ public class Bishop extends Figures {
 
 	public Bishop() {
 		
+		
 	}
 }
