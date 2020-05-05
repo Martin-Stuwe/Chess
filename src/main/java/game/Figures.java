@@ -101,4 +101,8 @@ public class Figures {
 	board.initializeBoard(); 
 	}
 	
+	
+	
+	
+	
 }
