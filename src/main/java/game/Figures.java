@@ -53,7 +53,7 @@ public class Figures {
 			pos1from =5;
 			break;
 		case 'g':
-			pos1from =7;
+			pos1from =6;
 			break;
 		case 'h':
 			pos1from =7;
@@ -61,12 +61,40 @@ public class Figures {
 		default:
 			throw new IllegalArgumentException("Invalid input");
 		}
+		switch (pos1to) {
+		case 'a':
+			pos1to =0;
+			break;
+		case 'b':
+			pos1to =1;
+			break;
+		case 'c':
+			pos1to =2;
+			break;
+		case 'd':
+			pos1to =3;
+			break;
+		case 'e':
+			pos1to =4;
+			break;
+		case 'f':
+			pos1to =5;
+			break;
+		case 'g':
+			pos1to =6;
+			break;
+		case 'h':
+			pos1to =7;
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid input");
+		}
 	ValueRange range = java.time.temporal.ValueRange.of(0, 7);
-	if (!range.isValidIntValue(pos2from)) {
+	if (!range.isValidIntValue(pos2from)&&!range.isValidIntValue(pos2to)) {
 		throw new IllegalArgumentException("Invalid integer range");
 	}
 	pos2from = -1*(pos2from-8);
-	
+	pos2to = -1*(pos2to-8);
 	board.Positionen[pos1to][pos2to] = board.Positionen[pos1from][pos2from];
 	board.Positionen[pos1from][pos2from] = null;
 	
