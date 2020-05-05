@@ -32,6 +32,7 @@ public class Figures {
 		}
 	
 	public boolean validMove(int x, int y) {
+		
 		return false;
 	}
 	
