@@ -74,7 +74,37 @@ public class Board {
 	}
 	
 	
-	public void move(int pos1from, int pos2from, int pos1to, int pos2to) {
+	public void move(char pos1from, int pos2from, char pos1to, int pos2to) {
+		switch (pos1from) {
+		case 'a':
+			pos1from =0;
+			break;
+		case 'b':
+			pos1from =1;
+			break;
+		case 'c':
+			pos1from =2;
+			break;
+		case 'd':
+			pos1from =3;
+			break;
+		case 'e':
+			pos1from =4;
+			break;
+		case 'f':
+			pos1from =5;
+			break;
+		case 'g':
+			pos1from =7;
+			break;
+		case 'h':
+			pos1from =7;
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid input");
+		}
+	pos2from = -1*(pos2from-8);
+	
 	Positionen[pos1to][pos2to] = Positionen[pos1from][pos2from];
 	Positionen[pos1from][pos2from] = null;
 	}
