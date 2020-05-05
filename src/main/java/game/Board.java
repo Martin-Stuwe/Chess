@@ -107,6 +107,8 @@ public class Board {
 	
 	Positionen[pos1to][pos2to] = Positionen[pos1from][pos2from];
 	Positionen[pos1from][pos2from] = null;
+	
+	initializeBoard();
 	}
 	
 	
