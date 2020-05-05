@@ -41,6 +41,13 @@ public class StartGame {
 		board2.setStart();
 		board2.initializeBoard();
 		System.out.println(board2.Feld);
+		System.out.println("White choose a Position with a Figure to move");
+		System.out.println(-1*5);
+		Console player1FirstMove = new Console();
+		player1FirstMove.open();
+		String x=board2.WantMove(board2, player1FirstMove.input.charAt(0),Character.getNumericValue(player1FirstMove.input.charAt(1)));
+		System.out.println(x); //System print to find error
+		
 		
 	}
 	//choose Mode cases for different modes

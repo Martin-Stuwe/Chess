@@ -1,4 +1,6 @@
 package game;
+import java.time.temporal.ValueRange;
+
 import figures.*;
 
 public class Board {
@@ -88,5 +90,41 @@ public class Board {
 	public void setField(int pos1, int pos2, Figures setTo) {
 		this.Positionen[pos1][pos2] = setTo;
 	}
-	
+	public String WantMove(Board board, char pos1from, int pos2from) { //UserInput umwandeln für gewählte Figur.
+		int pos1new;
+		switch (pos1from) {
+		case 'a':
+			pos1new =0;
+			break;
+		case 'b':
+			pos1new =1;
+			break;
+		case 'c':
+			pos1new =2;
+			break;
+		case 'd':
+			pos1new =3;
+			break;
+		case 'e':
+			pos1new =4;
+			break;
+		case 'f':
+			pos1new =5;
+			break;
+		case 'g':
+			pos1new =6;
+			break;
+		case 'h':
+			pos1new =7;
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid input");
+		}
+	pos2from = -1*(pos2from-8);
+	if (pos2from < 0 || pos2from >7) {
+		throw new IllegalArgumentException("Invalid integer range cccc");
+	}
+	return pos1from+Integer.toString(pos2from);
+
+	}
 }
