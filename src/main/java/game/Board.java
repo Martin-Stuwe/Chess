@@ -6,6 +6,7 @@ public class Board {
 	String Feld; //store for the actual board
 	
 	Figures[][] Positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
+	String[][] PositionenS = new String[8][8];
 	
 	Rook Rook1b = new Rook(0,0,"b");
 	Rook Rook2b = new Rook(0,7,"b");
@@ -26,17 +27,30 @@ public class Board {
 		
 	public void initializeBoard() { //Method to init the console based board. Also acts as updater
 		
-		this.Feld = "8"+ Positionen[0][0].getBoardVisual() + Positionen[0][1].getBoardVisual() + Positionen[0][2].getBoardVisual() + Positionen[0][3].getBoardVisual() +Positionen[0][4].getBoardVisual() + Positionen[0][5].getBoardVisual() + Positionen[0][6].getBoardVisual() + Positionen[0][7].getBoardVisual() + "\n"
-				+ "7"+ Positionen[1][0].getBoardVisual() + Positionen[1][1].getBoardVisual() + Positionen[1][2].getBoardVisual() + Positionen[1][3].getBoardVisual() +Positionen[1][4].getBoardVisual() + Positionen[1][5].getBoardVisual() + Positionen[1][6].getBoardVisual() + Positionen[1][7].getBoardVisual()+"\n"
-				+ "6"+ Positionen[2][0] + Positionen[2][1] + Positionen[2][2] + Positionen[2][3] +Positionen[2][4] + Positionen[2][5] + Positionen[2][6] + Positionen[2][7]+"\n"
-				+ "5"+ Positionen[3][0] + Positionen[3][1] + Positionen[3][2] + Positionen[3][3] +Positionen[3][4] + Positionen[3][5] + Positionen[3][6] + Positionen[3][7]+"\n" 
-				+ "4"+ Positionen[4][0] + Positionen[4][1] + Positionen[4][2] + Positionen[4][3] +Positionen[4][4] + Positionen[4][5] + Positionen[4][6] + Positionen[4][7] +"\n"
-				+ "3"+ Positionen[5][0] + Positionen[5][1] + Positionen[5][2] + Positionen[5][3] +Positionen[5][4] + Positionen[5][5] + Positionen[5][6] + Positionen[5][7] +"\n"
-				+ "2"+ Positionen[6][0].getBoardVisual() + Positionen[6][1].getBoardVisual() + Positionen[6][2].getBoardVisual() + Positionen[6][3].getBoardVisual() +Positionen[6][4].getBoardVisual() + Positionen[6][5].getBoardVisual() + Positionen[6][6].getBoardVisual() + Positionen[6][7].getBoardVisual() +"\n"
-				+ "1"+ Positionen[7][0].getBoardVisual() + Positionen[7][1].getBoardVisual() + Positionen[7][2].getBoardVisual() + Positionen[7][3].getBoardVisual() +Positionen[7][4].getBoardVisual() + Positionen[7][5].getBoardVisual() + Positionen[7][6].getBoardVisual() + Positionen[7][7].getBoardVisual() +"\n"
+		for(int i =0; i<8;i++) {
+			for(int y =0; y<8;y++) {
+				
+				if(Positionen[i][y] == null) {
+					PositionenS[i][y] = "";
+				}
+				
+				else {
+					PositionenS[i][y] = Positionen[i][y].getBoardVisual();
+				}
+			}
+			
+		}
+		
+		this.Feld = "8"+ PositionenS[0][0] + PositionenS[0][1] + PositionenS[0][2] + PositionenS[0][3] +PositionenS[0][4] + PositionenS[0][5] + PositionenS[0][6] + PositionenS[0][7] + "\n"
+				+ "7"+ PositionenS[1][0] + PositionenS[1][1] + PositionenS[1][2] + PositionenS[1][3] +PositionenS[1][4] + PositionenS[1][5] + PositionenS[1][6] + PositionenS[1][7] +"\n"
+				+ "6"+ PositionenS[2][0] + PositionenS[2][1] + PositionenS[2][2] + PositionenS[2][3] +PositionenS[2][4] + PositionenS[2][5] + PositionenS[2][6] + PositionenS[2][7]+"\n"
+				+ "5"+ PositionenS[3][0] + PositionenS[3][1] + PositionenS[3][2] + PositionenS[3][3] +PositionenS[3][4] + PositionenS[3][5] + PositionenS[3][6] + PositionenS[3][7]+"\n" 
+				+ "4"+ PositionenS[4][0] + PositionenS[4][1] + PositionenS[4][2] + PositionenS[4][3] +PositionenS[4][4] + PositionenS[4][5] + PositionenS[4][6] + PositionenS[4][7] +"\n"
+				+ "3"+ PositionenS[5][0] + PositionenS[5][1] + PositionenS[5][2] + PositionenS[5][3] +PositionenS[5][4] + PositionenS[5][5] + PositionenS[5][6] + PositionenS[5][7] +"\n"
+				+ "2"+ PositionenS[6][0] + PositionenS[6][1] + PositionenS[6][2] + PositionenS[6][3] +PositionenS[6][4] + PositionenS[6][5] + PositionenS[6][6] + PositionenS[6][7] +"\n"
+				+ "1"+ PositionenS[7][0] + PositionenS[7][1] + PositionenS[7][2] + PositionenS[7][3] +PositionenS[7][4] + PositionenS[7][5] + PositionenS[7][6] + PositionenS[7][7] +"\n"
 				+ " "+"abcdefgh";
 	} 
-	
 	
 	public void setStart() {
 		setField(0,0, Rook1b);
