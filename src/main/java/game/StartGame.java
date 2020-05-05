@@ -45,7 +45,7 @@ public class StartGame {
 		System.out.println(-1*5);
 		Console player1FirstMove = new Console();
 		player1FirstMove.open();
-		String x=board2.WantMove(board2, player1FirstMove.input.charAt(0),Character.getNumericValue(player1FirstMove.input.charAt(1)));
+		String x=board2.ConvertMoveInput(board2, player1FirstMove.input.charAt(0),Character.getNumericValue(player1FirstMove.input.charAt(1)));
 		System.out.println(x); //System print to find error
 		
 		

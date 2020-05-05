@@ -90,7 +90,7 @@ public class Board {
 	public void setField(int pos1, int pos2, Figures setTo) {
 		this.Positionen[pos1][pos2] = setTo;
 	}
-	public String WantMove(Board board, char pos1from, int pos2from) { //UserInput umwandeln für gewählte Figur.
+	public String ConvertMoveInput(Board board, char pos1from, int pos2from) { //UserInput umwandeln für gewählte Figur.
 		int pos1new;
 		switch (pos1from) {
 		case 'a':
@@ -120,11 +120,11 @@ public class Board {
 		default:
 			throw new IllegalArgumentException("Invalid input");
 		}
-	pos2from = -1*(pos2from-8);
-	if (pos2from < 0 || pos2from >7) {
+	int pos2new = -1*(pos2from-8);
+	if (pos2new < 0 || pos2new >7) {
 		throw new IllegalArgumentException("Invalid integer range cccc");
 	}
-	return pos1from+Integer.toString(pos2from);
+	return pos1new+Integer.toString(pos2new);
 
 	}
 }
