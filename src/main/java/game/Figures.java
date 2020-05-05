@@ -31,6 +31,10 @@ public class Figures {
 			return boardVisual;
 		}
 	
+	public boolean validMove(int x, int y) {
+		return false;
+	}
+	
 	
 	public void move(Board board, char pos1from, int pos2from, char pos1to, int pos2to) { //Reactions in jeder Figurenunterklasse
 		switch (pos1from) {

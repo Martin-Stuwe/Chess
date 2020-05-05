@@ -38,6 +38,9 @@ public class King extends Figures {
 		else if(this.pos2 != y-1 || this.pos2 != y || this.pos2 != y+1) {
 			return false;
 		}
+		else if(this.pos1 == x && this.pos2 ==y) {
+			return false;
+		}
 		else if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
