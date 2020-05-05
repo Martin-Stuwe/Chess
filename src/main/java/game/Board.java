@@ -120,9 +120,7 @@ public class Board {
 		default:
 			throw new IllegalArgumentException("Invalid input");
 		}
-		System.out.println(pos2from); //System print to find error
 	pos2from = -1*(pos2from-8);
-	System.out.println(pos2from); //System print to find error
 	if (pos2from < 0 || pos2from >7) {
 		throw new IllegalArgumentException("Invalid integer range cccc");
 	}
