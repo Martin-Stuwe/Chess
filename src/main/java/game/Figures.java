@@ -7,7 +7,14 @@ public class Figures {
 	int Pos2;
 	String boardVisual; //Zeichen/Grafik hier
 	String color;
-	
+	int canMoveTop=0;
+	int canMoveTopLeft=0;
+	int canMoveTopRight=0;
+	int canMoveLeft=0;
+	int canMoveRight=0;
+	int canMoveBottomLeft=0;
+	int canMoveBottomRight=0;
+	int canMoveBottom=0;
 	
 	public void setPos(int Pos1, int Pos2) { 
 		this.Pos1 = Pos1;

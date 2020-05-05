@@ -7,6 +7,7 @@ public class Rook extends Figures {
 	 private int pos1;
 	 private int pos2;
 	 private String color;
+	 private Boolean hasMoved;
 	 
 	public Rook(int pos1, int pos2, String color) {
 		this.pos1 = pos1;
@@ -28,6 +29,9 @@ public class Rook extends Figures {
 		}
 			
 	}
+	
+	
+	
 	
 }
 

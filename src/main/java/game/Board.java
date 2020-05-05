@@ -8,6 +8,8 @@ public class Board {
 	Figures[][] Positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
 	String[][] PositionenS = new String[8][8];
 	
+	//Field object for highlighting prob needed
+	
 	Rook Rook1b = new Rook(0,0,"b");
 	Rook Rook2b = new Rook(0,7,"b");
 	Rook Rook1w = new Rook(7,0,"w");
