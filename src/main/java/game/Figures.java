@@ -1,5 +1,7 @@
 package game;
 
+import java.time.temporal.ValueRange;
+
 public class Figures {
 	int Pos1; 
 	int Pos2;
@@ -52,6 +54,10 @@ public class Figures {
 		default:
 			throw new IllegalArgumentException("Invalid input");
 		}
+	ValueRange range = java.time.temporal.ValueRange.of(0, 7);
+	if (!range.isValidIntValue(pos2from)) {
+		throw new IllegalArgumentException("Invalid integer range");
+	}
 	pos2from = -1*(pos2from-8);
 	
 	board.Positionen[pos1to][pos2to] = board.Positionen[pos1from][pos2from];
