@@ -5,7 +5,7 @@ import java.time.temporal.ValueRange;
 public class Figures {
 	int Pos1; 
 	int Pos2;
-	String boardVisual; //Zeichen/Grafik hier
+	String boardVisual; //Zeichen/Grafik here
 	String color;
 	int canMoveTop=0;
 	int canMoveTopLeft=0;
