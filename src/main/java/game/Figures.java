@@ -40,10 +40,10 @@ public class Figures {
 	public void move(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { //Move takes int values convert before this
 		
 	
-	board.Positionen[pos1to][pos2to] = board.Positionen[pos1from][pos2from];
+	board.Positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
 	board.Positionen[pos1from][pos2from] = null;
 	
-	board.initializeBoard(); 
+	//board.initializeBoard(); 
 	}
 	
 	
