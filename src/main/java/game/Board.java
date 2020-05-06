@@ -43,7 +43,7 @@ public class Board {
 				}
 			}
 			
-		}
+		} //test
 		
 		this.Feld = "8"+ PositionenS[0][0] + PositionenS[1][0] + PositionenS[2][0] + PositionenS[3][0] +PositionenS[4][0] + PositionenS[5][0] + PositionenS[6][0] + PositionenS[7][0] + "\n"
 				+ "7"+ PositionenS[0][1] + PositionenS[1][1] + PositionenS[2][1] + PositionenS[3][1] +PositionenS[4][1] + PositionenS[5][1] + PositionenS[6][1] + PositionenS[7][1] +"\n"

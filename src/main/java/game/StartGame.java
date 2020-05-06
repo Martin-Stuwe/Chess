@@ -37,6 +37,7 @@ public class StartGame {
 		}
 		System.out.println(player2name.input+" is "+player2color.input);
 		Player Player2 = new Player(player2name.input, player2color.input);**/
+		//erst später
 		Board board2 = new Board();
 		board2.setStart();
 		board2.initializeBoard();
