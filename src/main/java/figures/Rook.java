@@ -36,13 +36,13 @@ public class Rook extends Figures {
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
-		else if(this.pos1 == x && this.pos2 == y) {
-			return false;
+		else if(this.pos1 == x && this.pos2 != y) {
+			return true;
 		}
-		else if(this.pos1 != x && this.pos2 != y) {
-			return false;
+		else if(this.pos1 != x && this.pos2 == y) {
+			return true;
 		}
-		else return true;
+		else return false;
 	}
 	
 	
