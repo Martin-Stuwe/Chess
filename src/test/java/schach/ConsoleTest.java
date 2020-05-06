@@ -17,7 +17,7 @@ public class ConsoleTest {
 		int n = in.available();
 		byte[] bytes = new byte[n];
 		in.read(bytes, 0, n);
-		String s = new String(bytes); // Or any encoding.
+		String s = new String(bytes); 
 		assertEquals("Test" , s, "Input Erfolgreich");
 		}
 }

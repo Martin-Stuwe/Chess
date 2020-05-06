@@ -6,7 +6,7 @@ public class StartGame {
 		
 	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode
 	public static void PlayerVsPlayer() {
-		System.out.println("Enter name of Player1");
+	/**	System.out.println("Enter name of Player1");
 		Console player1name = new Console();
 		player1name.open();
 		System.out.println("Hello "+player1name.input);
@@ -36,7 +36,7 @@ public class StartGame {
 			player2color.open();
 		}
 		System.out.println(player2name.input+" is "+player2color.input);
-		Player Player2 = new Player(player2name.input, player2color.input);
+		Player Player2 = new Player(player2name.input, player2color.input);**/
 		Board board2 = new Board();
 		board2.setStart();
 		board2.initializeBoard();
@@ -62,7 +62,7 @@ public class StartGame {
 		System.out.println(To1);
 		System.out.println(To2);
 		
-		board2.Positionen[From1][From2].move(board2, From1, From2, To1, To2);
+		board2.getField(From1, From2).move(board2, From1, From2, To1, To2);
 		board2.initializeBoard();
 		System.out.println(board2.Feld);
 		
