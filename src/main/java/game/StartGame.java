@@ -51,11 +51,18 @@ public class StartGame {
 		String To = board2.ConvertMoveInput(board2, player1FirstMove.input.charAt(3),Character.getNumericValue(player1FirstMove.input.charAt(4)));
 		System.out.println(From); //System print to validate
 		System.out.println(To); //System print to validate
-		int To1=Character.getNumericValue(To.charAt(0)); 
-		int To2=Character.getNumericValue(To.charAt(1));
-		int From1=Character.getNumericValue(From.charAt(0));
-		int From2=Character.getNumericValue(From.charAt(1));
-		board2.getField(From1, From2).move(board2, From1, From2, To1, To2);
+		int From1=Integer.parseInt(Character.toString(From.charAt(0))); 
+		int From2=Integer.parseInt(Character.toString(From.charAt(1))); 
+		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 
+		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
+		
+		//FEHLERSUCHHE
+		System.out.println(From1);
+		System.out.println(From2);
+		System.out.println(To1);
+		System.out.println(To2);
+		
+		board2.Positionen[From1][From2].move(board2, From1, From2, To1, To2);
 		board2.initializeBoard();
 		System.out.println(board2.Feld);
 		
