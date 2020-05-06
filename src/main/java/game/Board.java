@@ -35,7 +35,7 @@ public class Board {
 			for(int y =0; y<8;y++) {
 				
 				if(Positionen[i][y] == null) {
-					PositionenS[i][y] = "_";
+					PositionenS[i][y] = " ";
 				}
 				
 				else {
