@@ -37,7 +37,7 @@ public class Figures {
 	}
 	
 	
-	public void move(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { //Reactions in jeder Figurenunterklasse
+	public void move(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { //Move takes int values convert before this
 		
 	
 	board.Positionen[pos1to][pos2to] = board.Positionen[pos1from][pos2from];
