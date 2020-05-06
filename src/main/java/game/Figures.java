@@ -37,17 +37,8 @@ public class Figures {
 	}
 	
 	
-	public void move(Board board, char pos1from, int pos2from, char pos1to, int pos2to) { //Reactions in jeder Figurenunterklasse
-	
-	String ConvertedFrom=board.ConvertMoveInput(board, pos1from, pos2from);	
-	String ConvertedTo = board.ConvertMoveInput(board, pos1to, pos2to);
-	
-	pos1from = ConvertedFrom.charAt(0);
-	pos2from = ConvertedFrom.charAt(1);
-	
-	pos1to = ConvertedTo.charAt(0);   
-	pos2to = ConvertedTo.charAt(1);
-	
+	public void move(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { //Reactions in jeder Figurenunterklasse
+		
 	
 	board.Positionen[pos1to][pos2to] = board.Positionen[pos1from][pos2from];
 	board.Positionen[pos1from][pos2from] = null;

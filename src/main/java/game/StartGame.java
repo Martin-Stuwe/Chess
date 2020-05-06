@@ -45,8 +45,16 @@ public class StartGame {
 		System.out.println(-1*5);
 		Console player1FirstMove = new Console();
 		player1FirstMove.open();
-		String x=board2.ConvertMoveInput(board2, player1FirstMove.input.charAt(0),Character.getNumericValue(player1FirstMove.input.charAt(1)));
-		System.out.println(x); //System print to find error
+		String From=board2.ConvertMoveInput(board2, player1FirstMove.input.charAt(0),Character.getNumericValue(player1FirstMove.input.charAt(1)));
+		String To = board2.ConvertMoveInput(board2, player1FirstMove.input.charAt(3),Character.getNumericValue(player1FirstMove.input.charAt(4)));
+		System.out.println(From); //System print to validate
+		System.out.println(To); //System print to validate
+		//hier damit moven 
+		int To1=Character.getNumericValue(To.charAt(0));
+		int To2=Character.getNumericValue(To.charAt(1));
+		int From1=Character.getNumericValue(From.charAt(0));
+		int From2=Character.getNumericValue(From.charAt(1));
+		board2.getField(From1, From2).move(board2, From1, From2, To1, To2);
 		
 		
 	}
