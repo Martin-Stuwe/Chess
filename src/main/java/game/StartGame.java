@@ -3,6 +3,33 @@ package game;
 import schach.Console;
 
 public class StartGame {
+	
+	
+	public static void getAndMakeMove(Board board) { //Könnten später Player Objekt übergeben und im PlayerObj Züge Historie speichern
+		while(true) {
+		
+		System.out.println("White choose a Position with a Figure to move");
+		
+		Console player1FirstMove = new Console();
+		player1FirstMove.open();
+		if (player1FirstMove.input.equals("exit")==true){
+			return;	
+		}
+		
+		//Convert+Move part
+		String From=board.ConvertMoveInput(board, player1FirstMove.input.charAt(0),Character.getNumericValue(player1FirstMove.input.charAt(1)));
+		String To = board.ConvertMoveInput(board, player1FirstMove.input.charAt(3),Character.getNumericValue(player1FirstMove.input.charAt(4)));
+
+		int From1=Integer.parseInt(Character.toString(From.charAt(0))); 
+		int From2=Integer.parseInt(Character.toString(From.charAt(1))); 
+		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 
+		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
+		
+		board.getField(From1, From2).move(board, From1, From2, To1, To2);
+		board.initializeBoard();
+		System.out.println(board.Feld);
+		}
+	}
 		
 	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode
 	public static void PlayerVsPlayer() {
@@ -42,8 +69,10 @@ public class StartGame {
 		board2.setStart();
 		board2.initializeBoard();
 		System.out.println(board2.Feld);
-		System.out.println("White choose a Position with a Figure to move");
-		System.out.println(-1*5);
+		
+		
+		/**System.out.println("White choose a Position with a Figure to move");
+		
 		Console player1FirstMove = new Console();
 		player1FirstMove.open();
 		
@@ -55,11 +84,13 @@ public class StartGame {
 		int From2=Integer.parseInt(Character.toString(From.charAt(1))); 
 		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 
 		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
-	
+		
 		board2.getField(From1, From2).move(board2, From1, From2, To1, To2);
 		board2.initializeBoard();
 		System.out.println(board2.Feld);
+		**/
 		
+		getAndMakeMove(board2);
 		
 	}
 	//choose Mode cases for different modes
@@ -83,4 +114,5 @@ public class StartGame {
 		PlayerVsPlayer();
 		return;
 }
+
 }
