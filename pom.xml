@@ -55,7 +55,7 @@
                     <launcher>schach</launcher>
                     <jlinkImageName>schach</jlinkImageName>
                     <jlinkZipName>schach</jlinkZipName>
-                    <mainClass>schach.GuiMain</mainClass>
+                    <mainClass>schach.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
