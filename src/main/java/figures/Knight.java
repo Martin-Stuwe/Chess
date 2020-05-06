@@ -29,5 +29,29 @@ public class Knight extends Figures {
 			
 	}
 	
+	public boolean validMove(int x , int y) {
+		
+		if(x < 0 || x > 7 || y < 0 || y > 7) {
+			return false;
+		}
+		//top left
+		else if(this.pos1 == x-2 && this.pos2 == y-1 || this.pos1 == x-1 && this.pos2 == y-2) {
+			return true;
+		}
+		//bottom left
+		else if(this.pos1 == x+1 && this.pos2 == y-2 || this.pos1 == x+2 && this.pos2 == y-1) {
+			return true;
+		}
+		//top right
+		else if(this.pos1 == x-2 && this.pos2 == y+1 || this.pos1 == x-1 && this.pos2 == y+2) {
+			return true;
+		}
+		//bottom right
+		else if(this.pos1 == x+2 && this.pos2 == y+1 || this.pos1 == x+1 && this.pos2 == y+1) {
+			return true;
+		}
+		
+		else return false;
+	}
 }
 
