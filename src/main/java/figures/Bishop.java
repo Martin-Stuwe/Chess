@@ -30,6 +30,7 @@ public class Bishop extends Figures {
 	}
 	
 	public boolean validMove(int x, int y) {
+		
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
