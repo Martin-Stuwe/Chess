@@ -87,7 +87,7 @@ public class StartGame {
 		
 	}
 	public static void StartGameCommand() {
-		chooseMode();
+		PlayerVsPlayer();
 		return;
 }
 }
