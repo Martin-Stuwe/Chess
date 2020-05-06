@@ -45,15 +45,14 @@ public class Board {
 			
 		} //test
 		
-		this.Feld = "8"+ PositionenS[0][0] + PositionenS[1][0] + PositionenS[2][0] + PositionenS[3][0] +PositionenS[4][0] + PositionenS[5][0] + PositionenS[6][0] + PositionenS[7][0] + "\n"
-				+ "7"+ PositionenS[0][1] + PositionenS[1][1] + PositionenS[2][1] + PositionenS[3][1] +PositionenS[4][1] + PositionenS[5][1] + PositionenS[6][1] + PositionenS[7][1] +"\n"
-				+ "6"+ PositionenS[0][2] + PositionenS[1][2] + PositionenS[2][2] + PositionenS[3][2] +PositionenS[4][2] + PositionenS[5][2] + PositionenS[6][2] + PositionenS[7][2]+"\n"
-				+ "5"+ PositionenS[0][3] + PositionenS[1][3] + PositionenS[2][3] + PositionenS[3][3] +PositionenS[4][3] + PositionenS[5][3] + PositionenS[6][3] + PositionenS[7][3]+"\n" 
-				+ "4"+ PositionenS[0][4] + PositionenS[1][4] + PositionenS[2][4] + PositionenS[3][4] +PositionenS[4][4] + PositionenS[5][4] + PositionenS[6][4] + PositionenS[7][4] +"\n"
-				+ "3"+ PositionenS[0][5] + PositionenS[1][5] + PositionenS[2][5] + PositionenS[3][5] +PositionenS[4][5] + PositionenS[5][5] + PositionenS[6][5] + PositionenS[7][5] +"\n"
-				+ "2"+ PositionenS[0][6] + PositionenS[1][6] + PositionenS[2][6] + PositionenS[3][6] +PositionenS[4][6] + PositionenS[5][6] + PositionenS[6][6] + PositionenS[7][6] +"\n"
-				+ "1"+ PositionenS[0][7] + PositionenS[1][7] + PositionenS[2][7] + PositionenS[3][7] +PositionenS[4][7] + PositionenS[5][7] + PositionenS[6][7] + PositionenS[7][7] +"\n"
-				+ " "+"abcdefgh";
+		this.Feld = "8"+" "+  PositionenS[0][0] +" "+  PositionenS[1][0] +" "+  PositionenS[2][0] +" "+  PositionenS[3][0] +" "+ PositionenS[4][0] +" "+  PositionenS[5][0] +" "+  PositionenS[6][0] +" "+  PositionenS[7][0] + "\n" 
+				  + "7"+" "+  PositionenS[0][1] +" "+  PositionenS[1][1] +" "+  PositionenS[2][1] +" "+  PositionenS[3][1] +" "+ PositionenS[4][1] +" "+  PositionenS[5][1] +" "+  PositionenS[6][1] +" "+  PositionenS[7][1] +"\n" 
+				  + "6"+" "+  PositionenS[0][2] +" "+  PositionenS[1][2] +" "+  PositionenS[2][2] +" "+  PositionenS[3][2] +" "+ PositionenS[4][2] +" "+  PositionenS[5][2] +" "+  PositionenS[6][2] +" "+  PositionenS[7][2]+"\n" 
+				  + "4"+" "+  PositionenS[0][4] +" "+  PositionenS[1][4] +" "+  PositionenS[2][4] +" "+  PositionenS[3][4] +" "+ PositionenS[4][4] +" "+  PositionenS[5][4] +" "+  PositionenS[6][4] +" "+  PositionenS[7][4] +"\n" 
+				  + "3"+" "+  PositionenS[0][5] +" "+  PositionenS[1][5] +" "+  PositionenS[2][5] +" "+  PositionenS[3][5] +" "+ PositionenS[4][5] +" "+  PositionenS[5][5] +" "+  PositionenS[6][5] +" "+  PositionenS[7][5] +"\n"
+				  + "2"+" "+  PositionenS[0][6] +" "+  PositionenS[1][6] +" "+  PositionenS[2][6] +" "+  PositionenS[3][6] +" "+ PositionenS[4][6] +" "+  PositionenS[5][6] +" "+  PositionenS[6][6] +" "+  PositionenS[7][6] +"\n" 
+				  + "1"+" "+  PositionenS[0][7] +" "+  PositionenS[1][7] +" "+  PositionenS[2][7] +" "+  PositionenS[3][7] +" "+ PositionenS[4][7] +" "+  PositionenS[5][7] +" "+  PositionenS[6][7] +" "+  PositionenS[7][7] +"\n"
+				  + " "+" a"+" b"+" c"+ " d"+" e"+" f"+" g"+" h";
 	} 
 	
 	public void setStart() {
