@@ -13,6 +13,7 @@ public class Rook extends Figures {
 		this.pos1 = pos1;
 		this.pos2 = pos2;
 		this.color = color;
+		this.type = 6;
 	}
 	
 	public String getBoardVisual() {

@@ -8,7 +8,7 @@ public class StartGame {
 	public static void getAndMakeMove(Board board) { //Könnten später Player Objekt übergeben und im PlayerObj Züge Historie speichern
 		while(true) {
 		
-		System.out.println("White choose a Position with a Figure to move");
+		System.out.println("White choose a position with a figure you want to move");
 		
 		Console player1FirstMove = new Console();
 		player1FirstMove.open();
@@ -71,7 +71,7 @@ public class StartGame {
 		System.out.println(board2.Feld);
 		
 		
-		/**System.out.println("White choose a Position with a Figure to move");
+		/**System.out.println("White choose a position with a figure to move");
 		
 		Console player1FirstMove = new Console();
 		player1FirstMove.open();
