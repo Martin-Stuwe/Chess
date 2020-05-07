@@ -30,6 +30,10 @@ public class King extends Figures {
 		
 	
 	}
+	public void setPos(int Pos1, int Pos2) { 
+		this.pos1 = Pos1;
+		this.pos2 = Pos2;
+	}
 	// possible move restriction for king
 	public boolean validMove(int x, int y) {
 		

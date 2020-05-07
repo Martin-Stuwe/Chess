@@ -15,7 +15,10 @@ public class Rook extends Figures {
 		this.color = color;
 		this.type = 6;
 	}
-	
+	public void setPos(int Pos1, int Pos2) { 
+		this.pos1 = Pos1;
+		this.pos2 = Pos2;
+	}
 	public String getBoardVisual() {
 		if(this.color =="w") {
 			this.boardVisual = "R";

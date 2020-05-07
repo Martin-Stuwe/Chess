@@ -29,6 +29,10 @@ public class Queen extends Figures {
 		}
 			
 	}
+	public void setPos(int Pos1, int Pos2) { 
+		this.pos1 = Pos1;
+		this.pos2 = Pos2;
+	}
 	// possible move restriction queen
 	public boolean validMove(int x, int y) {
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
