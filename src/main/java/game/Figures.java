@@ -44,7 +44,12 @@ public class Figures {
 	
 	public Boolean move(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { //Move takes int values convert before this
 		
-	
+		if (board.Positionen[pos1from][pos2from] == null) {
+			System.out.println("!Move not allowed");
+			return false;
+			
+		}
+		
 		if (board.Positionen[pos1from][pos2from].validMove(pos1to, pos2to) == false) {
 			System.out.println("!Move not allowed");
 			return false;

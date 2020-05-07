@@ -25,11 +25,19 @@ public class StartGame {
 		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 
 		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
 		
+		if (board.getField(From1, From2)!=null) {
 		board.getField(From1, From2).move(board, From1, From2, To1, To2);
 		board.initializeBoard();
 		System.out.println(board.Feld);
 		}
-	}
+		
+		else if (board.getField(From1,From2)==null) {
+			board.initializeBoard();
+			System.out.println(board.Feld);
+			System.out.println("!invalid Move");
+		}
+	}}
+		
 		
 	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode
 	public static void PlayerVsPlayer() {
