@@ -34,16 +34,16 @@ public class Pawn extends Figures {
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
-		else if(this.color == "w" && this.pos1 == x && this.pos2 == y-1) {
+		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+1) {
 			return true;
 		}
-		else if(this.color == "b" && this.pos1 == x && this.pos2 == y+1) {
+		else if(this.color =="b" && this.pos1 == x && this.pos2 == y-1) {
 			return true;
 		}
-		else if(this.color == "w" && this.pos1 == x && this.pos2 == y-2 && this.pos2 == 6) {
+		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+2 && this.pos2 == 6) {
 			return true;
 		}
-		else if(this.color == "b" && this.pos1 == x && this.pos2 == y+2 && this.pos2 == 1) {
+		else if(this.color =="b" && this.pos1 == x && this.pos2 == y-2 && this.pos2 == 1) {
 			return true;
 		}
 		else return false;
