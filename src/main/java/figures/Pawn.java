@@ -35,15 +35,19 @@ public class Pawn extends Figures {
 			return false;
 		}
 		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+1) {
+			this.setPos(x,y);
 			return true;
 		}
 		else if(this.color =="b" && this.pos1 == x && this.pos2 == y-1) {
+			this.setPos(x,y);
 			return true;
 		}
 		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+2 && this.pos2 == 6) {
+			this.setPos(x,y);
 			return true;
 		}
 		else if(this.color =="b" && this.pos1 == x && this.pos2 == y-2 && this.pos2 == 1) {
+			this.setPos(x,y);
 			return true;
 		}
 		else return false;

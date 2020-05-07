@@ -37,9 +37,11 @@ public class Rook extends Figures {
 			return false;
 		}
 		else if(this.pos1 == x && this.pos2 != y) {
+			this.setPos(x,y);
 			return true;
 		}
 		else if(this.pos1 != x && this.pos2 == y) {
+			this.setPos(x,y);
 			return true;
 		}
 		else return false;
