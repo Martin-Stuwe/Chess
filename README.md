@@ -67,16 +67,16 @@
     
     **game**
     
-    Board.java
+        Board.java
     
     
-    Figures.java
+        Figures.java
     
-    Player.java
+        Player.java
     
-    StartGame.java
+        StartGame.java
     
-    Zug.java
+        Zug.java
     
     
     
