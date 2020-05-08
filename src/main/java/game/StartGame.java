@@ -55,7 +55,7 @@ public class StartGame {
 		}
 	}
 	public static void pawnPromotion(int From1, int From2, int To1, int To2, Board board, Console console) {
-		if(board.Positionen[From1][From2].validMove(board, To1, To2) ==true) {
+		if(console.input.length() ==6) {
 		if(board.getField(To1, To2).getType() == 4 && To2 == 0 && console.input.charAt(5) == 'Q' || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'Q' && To2 == 7) {
 			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, queen);
@@ -75,9 +75,16 @@ public class StartGame {
 		if(board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == ' ' && To2 == 0 || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == ' ' && To2 == 7) {
 			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, queen);
-		}
-		}
 		
+		}
+		}
+		else {
+			if(board.getField(To1, To2).getType() == 4 && To2 == 0|| board.getField(To1, To2).getType() == 4  && To2 == 7) {
+		
+			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
+			board.setField(To1, To2, queen);
+			}
+			}
 	}
 		
 	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode
