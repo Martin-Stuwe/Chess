@@ -58,9 +58,11 @@ public class Figures {
 			System.out.println("!Move not allowed");
 			return false;
 		}
+		if(board.Positionen[pos1to][pos2to]!= null) {
 		if (board.Positionen[pos1from][pos2from].getColor() == board.Positionen[pos1to][pos2to].getColor()) {
 			System.out.println("!Move not allowed");
 			return false;
+		}
 		}
 
 	
