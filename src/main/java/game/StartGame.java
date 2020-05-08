@@ -131,8 +131,8 @@ public class StartGame {
 		board2.setStart();
 		board2.initializeBoard();
 		System.out.println(board2.Feld);
-		board2.getBeaten().add("Test");
-		System.out.println(board2.getBeaten());
+		
+		
 		
 		
 		/*System.out.println("White choose a position with a figure to move");
