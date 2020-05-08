@@ -49,6 +49,8 @@ public class StartGame {
 		
 		if (board.getField(From1, From2)!=null) {
 		board.getField(From1, From2).move(board, From1, From2, To1, To2);
+		Zug zug = new Zug(board.getField(From1, From2),From1,From2,To1,To2);
+		board.movedList.add(zug);
 		pawnPromotion(From1,From2,To1,To2,board,console);
 		board.initializeBoard();
 		System.out.println(board.Feld);

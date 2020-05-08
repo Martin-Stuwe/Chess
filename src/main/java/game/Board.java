@@ -12,6 +12,7 @@ public class Board {
 	Figures[][] Positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
 	String[][] PositionenS = new String[8][8];
 	LinkedList<String> beaten = new LinkedList<String>();
+	LinkedList<Zug> movedList = new LinkedList<Zug>();
 	
 	//Field object for highlighting prob needed
 	int CurrentTurn; // 0=weis  1=schwarz
@@ -38,6 +39,11 @@ public class Board {
 	public LinkedList<String> getBeaten() {
 	
 		return beaten;
+	}
+	
+	public LinkedList<Zug> getPreMoves() {
+		
+		return movedList;
 	}
 	public void setGameLive(boolean gameLive) {
 		
