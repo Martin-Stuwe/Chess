@@ -134,6 +134,7 @@ public class Board {
 		default:
 			pos1new=420;
 			
+			
 		}
 	int pos2new = -1*(pos2from-8);
 	if (pos2new < 0 || pos2new >7) {
