@@ -26,7 +26,15 @@ public class StartGame {
 	public static void convertAndMove(Board board, Console console) {
 		String From=board.ConvertMoveInput(board, console.input.charAt(0),Character.getNumericValue(console.input.charAt(1)));
 		String To = board.ConvertMoveInput(board,console.input.charAt(3),Character.getNumericValue(console.input.charAt(4)));
-
+		
+		if (From =="420" || To =="420") {
+			board.initializeBoard();
+			System.out.println(board.Feld);
+			System.out.println("!invalid Move");
+			return;
+		}
+	
+		
 		int From1=Integer.parseInt(Character.toString(From.charAt(0))); 
 		int From2=Integer.parseInt(Character.toString(From.charAt(1))); 
 		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 

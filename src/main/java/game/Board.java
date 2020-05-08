@@ -118,11 +118,12 @@ public class Board {
 			pos1new =7;
 			break;
 		default:
-			throw new IllegalArgumentException("Invalid input");
+			pos1new=420;
+			
 		}
 	int pos2new = -1*(pos2from-8);
 	if (pos2new < 0 || pos2new >7) {
-		throw new IllegalArgumentException("Invalid integer range cccc");
+		pos1new=420;
 	}
 	return pos1new+Integer.toString(pos2new);
 
