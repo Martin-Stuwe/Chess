@@ -59,12 +59,12 @@ public class King extends Figures {
 		else if(this.pos1 == x && this.pos2 ==y) {
 			return false;
 		}
-		else if(this.pos1 == x-1 || this.pos1 == x || this.pos1 == x+1) {
+		else if(this.pos1 == x-1 || this.pos1 == x+1) {
 			this.setPos(x,y);
 			this.setHasMoved(true);
 			return true;
 		}
-		else if(this.pos2 == y-1 || this.pos2 == y || this.pos2 == y+1) {
+		else if(this.pos2 == y-1 || this.pos2 == y+1) {
 			this.setPos(x,y);
 			this.setHasMoved(true);
 			return true;
