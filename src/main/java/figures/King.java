@@ -51,7 +51,7 @@ public class King extends Figures {
 	}
 	
 	// possible move restriction for king
-	public boolean validMove(Board board, int x, int y) {
+public boolean validMove(Board board, int x, int y) {
 		
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
@@ -60,18 +60,21 @@ public class King extends Figures {
 		else if(this.pos1 == x && this.pos2 ==y) {
 			return false;
 		}
-		else if(this.pos1 == x-1 || this.pos1 == x+1) {
-			
+		else if(this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x) {
+			if(this.pos2 == y-1 || this.pos2 == y+1) {
 			this.setHasMoved(true);
 			return true;
+			}
+			else return false;
 		}
-		else if(this.pos2 == y-1 || this.pos2 == y+1) {
-		
+		else if(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y) {
+			if(this.pos1 == x-1 || this.pos1 == x+1) {
 			this.setHasMoved(true);
 			return true;
+			}
+			else return false;
 		}
 		else return false;
 	}
 	
 }
-
