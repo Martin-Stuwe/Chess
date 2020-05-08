@@ -75,7 +75,8 @@ public class StartGame {
 			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, queen);
 		}
-
+		
+		
 	}
 		
 	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode
