@@ -87,6 +87,24 @@ public class Pawn extends Figures {
 			return true;
 			}
 		}
+		else if(this.color =="b" && this.pos1 == x+1 && this.pos2 == y-1 || this.color =="b" && this.pos1 == x-1 && this.pos2 == y-1) {
+			if(board.getField(x, y).getColor()!="w") {
+				return false;
+			}
+			else{
+				this.setPos(x,y);
+				return true;
+				}
+		}
+		else if(this.color =="w" && this.pos1 == x+1 && this.pos2 == y+1 || this.color =="w" && this.pos1 == x-1 && this.pos2 == y+1) {
+			if(board.getField(x, y).getColor()!="b") {
+				return false;
+			}
+			else{
+				this.setPos(x,y);
+				return true;
+				}
+		}
 		else return false;
 	}
 }
