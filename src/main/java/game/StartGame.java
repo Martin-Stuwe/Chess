@@ -49,7 +49,7 @@ public class StartGame {
 		
 		if (board.getField(From1, From2)!=null) {
 		board.getField(From1, From2).move(board, From1, From2, To1, To2);
-		Zug zug = new Zug(board.getField(To1, To2),From1,From2,To1,To2);
+		Zug zug = new Zug(board.getField(To1, To2),From1,From2,To1,To2);  //creates new move and saves in list
 		board.movedList.add(zug);
 		System.out.println(board.movedList);
 		pawnPromotion(From1,From2,To1,To2,board,console);

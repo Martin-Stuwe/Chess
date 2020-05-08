@@ -9,7 +9,7 @@ public class Zug {
 	int to1;
 	int to2;
 	
-	public Zug(Figures figur, int from1, int from2, int to1, int to2) {
+	public Zug(Figures figur, int from1, int from2, int to1, int to2) {  //Zug Konstruktor
 		this.figur = figur;
 		this.from1=from1;
 		this.from2=from2;
