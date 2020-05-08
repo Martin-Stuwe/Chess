@@ -79,15 +79,18 @@ public class Figures {
 		
 		}
 		if(board.getCurrentTurn()==0) {
+			if(board.Positionen[pos1to][pos2to]!= null) {
 			if(board.Positionen[pos1to][pos2to].getColor() == "b") {
 				board.beaten.add(board.Positionen[pos1to][pos2to].getBoardVisual());
+			}
 			}
 			board.setCurrentTurn(1);
 				}
 		else if(board.getCurrentTurn()==1) {
+			if(board.Positionen[pos1to][pos2to]!= null) {
 			if(board.Positionen[pos1to][pos2to].getColor() == "w") {
 				board.beaten.add(board.Positionen[pos1to][pos2to].getBoardVisual());
-			}
+			}}
 			board.setCurrentTurn(0);
 				}
 	

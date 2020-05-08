@@ -68,6 +68,7 @@ public class Board {
 				  + "2"+" "+  PositionenS[0][6] +" "+  PositionenS[1][6] +" "+  PositionenS[2][6] +" "+  PositionenS[3][6] +" "+ PositionenS[4][6] +" "+  PositionenS[5][6] +" "+  PositionenS[6][6] +" "+  PositionenS[7][6] +"\n" 
 				  + "1"+" "+  PositionenS[0][7] +" "+  PositionenS[1][7] +" "+  PositionenS[2][7] +" "+  PositionenS[3][7] +" "+ PositionenS[4][7] +" "+  PositionenS[5][7] +" "+  PositionenS[6][7] +" "+  PositionenS[7][7] +"\n"
 				  + " "+" a"+" b"+" c"+ " d"+" e"+" f"+" g"+" h";
+		
 	} 
 	
 	public void setStart() {
