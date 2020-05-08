@@ -166,7 +166,7 @@ public class Board {
 		
 	}
 	
-	public void checkCheck() {
+	public boolean checkCheck() {
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
@@ -174,8 +174,9 @@ public class Board {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
 							if(Positionen[k][j]!= null) {
-							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()&& Positionen[k][j]!= King1b) {
+							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()) {
 							System.out.println("Weiß steht im Schach");
+							return true;
 							}
 							}
 							
@@ -189,7 +190,8 @@ public class Board {
 						for(int j =0; j<8;j++) {
 							if(Positionen[k][j]!= null) {
 							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()&& Positionen[k][j]!= King1w) {
-							System.out.println("Schawrz steht im Schach");
+							System.out.println("Schwarz steht im Schach");
+							return true;
 							}
 							}
 							
@@ -200,7 +202,8 @@ public class Board {
 			}
 			
 		} 
-		
+		System.out.println("niemand steht im Schach");
+		return false;
 	}
 	
 
