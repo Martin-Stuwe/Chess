@@ -6,7 +6,7 @@ import figures.*;
 public class Board {
 	
 	String Feld; //store for the actual board
-	
+	private boolean gameLive = true;
 	Figures[][] Positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
 	String[][] PositionenS = new String[8][8];
 	
@@ -28,7 +28,15 @@ public class Board {
 	Queen Queen1w = new Queen(3,7,"w");
 	King King1b	= new King(4,0,"b");
 	King King1w = new King(4,7,"w");
+	
+	public boolean getGameLive() {
+		return gameLive;
+	}
+	
+	public void setGameLive(boolean gameLive) {
 		
+	}
+	
 	public void initializeBoard() { //Method to init the console based board. Also acts as updater
 		
 		for(int i =0; i<8;i++) {
@@ -135,4 +143,13 @@ public class Board {
 	public int getCurrentTurn() {
 		return CurrentTurn;
 	}
+	
+	public void checkGameEnded() {
+		
+	}
+	
+	public void checkCheck() {
+		
+	}
+
 }
