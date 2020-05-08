@@ -40,29 +40,69 @@ public class Bishop extends Figures {
 	}
 	
 	public boolean validMove(Board board, int x, int y) {
-		
+		boolean emptySpaces = true;
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
 		
 		else if(this.pos1 == x-7 && this.pos2 == y-7 || this.pos1 == x-6 && this.pos2 == y-6 || this.pos1 == x-5 && this.pos2 == y-5 || this.pos1 == x-4 && this.pos2 == y-4 || this.pos1 == x-3 && this.pos2 == y-3|| this.pos1 == x-2 && this.pos2 == y-2 || this.pos1 == x-1 && this.pos2 == y-1) {
+			for(int i=this.pos1+1 , k=this.pos2+1;i<x && k<y  ; i++ ,k++) {
+				if(board.getField(i, k) != null) {
+					emptySpaces= false;
+				}
+			}
+			if(emptySpaces ==true) {
 			this.setPos(x,y);
 			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		
 		else if(this.pos1 == x+7 && this.pos2 == y+7 || this.pos1 == x+6 && this.pos2 == y+6 || this.pos1 == x+5 && this.pos2 == y+5 || this.pos1 == x+4 && this.pos2 == y+4 || this.pos1 == x+3 && this.pos2 == y+3|| this.pos1 == x+2 && this.pos2 == y+2 || this.pos1 == x+1 && this.pos2 == y+1) {
+			for(int i=this.pos1-1 , k=this.pos2-1;i>x && k>y  ; i-- ,k--) {
+				if(board.getField(i, k) != null) {
+					emptySpaces= false;
+				}
+			}
+			if(emptySpaces ==true) {
 			this.setPos(x,y);
 			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		
 		else if(this.pos1 == x+7 && this.pos2 == y-7 || this.pos1 == x+6 && this.pos2 == y-6 || this.pos1 == x+5 && this.pos2 == y-5 || this.pos1 == x+4 && this.pos2 == y-4 || this.pos1 == x+3 && this.pos2 == y-3|| this.pos1 == x+2 && this.pos2 == y-2 || this.pos1 == x+1 && this.pos2 == y-1) {
+			for(int i=this.pos1-1 , k=this.pos2+1;i>x && k<y  ; i-- ,k++) {
+				if(board.getField(i, k) != null) {
+					emptySpaces= false;
+				}
+			}
+			if(emptySpaces ==true) {
 			this.setPos(x,y);
 			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		
 		else if(this.pos1 == x-7 && this.pos2 == y+7 || this.pos1 == x-6 && this.pos2 == y+6 || this.pos1 == x-5 && this.pos2 == y+5 || this.pos1 == x-4 && this.pos2 == y+4 || this.pos1 == x-3 && this.pos2 == y+3|| this.pos1 == x-2 && this.pos2 == y+2 || this.pos1 == x-1 && this.pos2 == y+1) {
+			for(int i=this.pos1+1 , k=this.pos2-1;i<x && k>y  ; i++ ,k--) {
+				if(board.getField(i, k) != null) {
+					emptySpaces= false;
+				}
+			}
+			if(emptySpaces ==true) {
 			this.setPos(x,y);
 			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		
 		else return false;
