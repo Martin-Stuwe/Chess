@@ -55,23 +55,23 @@ public class StartGame {
 		}
 	}
 	public static void pawnPromotion(int To1, int To2, Board board, Console console) {
-		if(board.getField(To1, To2).getType() == 4 && To2 == 0 || To2 == 7 && console.input.charAt(5) == 'Q') {
+		if(board.getField(To1, To2).getType() == 4 && To2 == 0 && console.input.charAt(5) == 'Q' || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'Q' && To2 == 7) {
 			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, queen);
 		}
-		if(board.getField(To1, To2).getType() == 4 && To2 == 0 || To2 == 7 && console.input.charAt(5) == 'R') {
+		if(board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'R' && To2 == 0 || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'R' && To2 == 7) {
 			Rook rook = new Rook(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, rook);
 		}
-		if(board.getField(To1, To2).getType() == 4 && To2 == 0 || To2 == 7 && console.input.charAt(5) == 'N') {
+		if(board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'N' && To2 == 0 || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'N' && To2 == 7) {
 			Knight knight = new Knight(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, knight);
 		}
-		if(board.getField(To1, To2).getType() == 4 && To2 == 0 || To2 == 7 && console.input.charAt(5) == 'B') {
+		if(board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'B' && To2 == 0 || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'B' && To2 == 7) {
 			Bishop bishop = new Bishop(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, bishop);
 		}
-		if(board.getField(To1, To2).getType() == 4 && To2 == 0 || To2 == 7 && console.input.charAt(5) == ' ') {
+		if(board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == ' ' && To2 == 0 || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == ' ' && To2 == 7) {
 			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, queen);
 		}
