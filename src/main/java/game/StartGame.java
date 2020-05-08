@@ -8,22 +8,19 @@ public class StartGame {
 	public static void getAndMakeMove(Board board) { //Könnten später Player Objekt übergeben und im PlayerObj Züge Historie speichern
 		while(true) {
 		
+			if(board.getCurrentTurn()==0) {
 		System.out.println("White choose a position with a figure you want to move");
-		
+			}
+			else if(board.getCurrentTurn()==1) {
+				System.out.println("Black choose a position with a figure you want to move");
+					}
 		Console playerMove = new Console();
 		playerMove.open();
 		if (playerMove.input.equals("exit")==true){
 			return;	
 		}
 		convertAndMove(board,playerMove);
-		System.out.println("Black choose a position with a figure you want to move");
-		
-		playerMove.open();
-		if (playerMove.input.equals("exit")==true){
-			return;	
-		}
-		convertAndMove(board,playerMove);
-
+	
 	}
 }
 	public static void convertAndMove(Board board, Console console) {

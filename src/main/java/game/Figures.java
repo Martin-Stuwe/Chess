@@ -65,7 +65,12 @@ public class Figures {
 			return false;
 		}
 		}
-
+		if(board.getCurrentTurn()==0) {
+			board.setCurrentTurn(1);;
+				}
+		else if(board.getCurrentTurn()==1) {
+			board.setCurrentTurn(0);;
+				}
 	
 	board.Positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
 	board.Positionen[pos1from][pos2from] = null;

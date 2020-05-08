@@ -11,7 +11,7 @@ public class Board {
 	String[][] PositionenS = new String[8][8];
 	
 	//Field object for highlighting prob needed
-	
+	int CurrentTurn; // 0=weis  1=schwarz
 	Rook Rook1b = new Rook(0,0,"b");
 	Rook Rook2b = new Rook(7,0,"b");
 	Rook Rook1w = new Rook(0,7,"w");
@@ -126,5 +126,12 @@ public class Board {
 	}
 	return pos1new+Integer.toString(pos2new);
 
+	}
+	public void setCurrentTurn(int x) {
+		CurrentTurn = x;
+	}
+	
+	public int getCurrentTurn() {
+		return CurrentTurn;
 	}
 }
