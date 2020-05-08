@@ -41,36 +41,121 @@ public class Queen extends Figures {
 	
 	// possible move restriction queen
 	public boolean validMove(Board board,int x, int y) {
+		boolean emptySpaces = true;
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
 		 
 		else if(this.pos1 == x-7 && this.pos2 == y-7 || this.pos1 == x-6 && this.pos2 == y-6 || this.pos1 == x-5 && this.pos2 == y-5 || this.pos1 == x-4 && this.pos2 == y-4 || this.pos1 == x-3 && this.pos2 == y-3|| this.pos1 == x-2 && this.pos2 == y-2 || this.pos1 == x-1 && this.pos2 == y-1) {
+			for(int i=this.pos1+1 , k=this.pos2+1;i<x && k<y  ; i++ ,k++) {
+				if(board.getField(i, k) != null) {
+					emptySpaces= false;
+				}
+			}
+			if(emptySpaces ==true) {
 			this.setPos(x,y);
 			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		 
 		else if(this.pos1 == x+7 && this.pos2 == y+7 || this.pos1 == x+6 && this.pos2 == y+6 || this.pos1 == x+5 && this.pos2 == y+5 || this.pos1 == x+4 && this.pos2 == y+4 || this.pos1 == x+3 && this.pos2 == y+3|| this.pos1 == x+2 && this.pos2 == y+2 || this.pos1 == x+1 && this.pos2 == y+1) {
+			for(int i=this.pos1-1 , k=this.pos2-1;i>x && k>y  ; i-- ,k--) {
+				if(board.getField(i, k) != null) {
+					emptySpaces= false;
+				}
+			}
+			if(emptySpaces ==true) {
 			this.setPos(x,y);
 			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		
 		else if(this.pos1 == x+7 && this.pos2 == y-7 || this.pos1 == x+6 && this.pos2 == y-6 || this.pos1 == x+5 && this.pos2 == y-5 || this.pos1 == x+4 && this.pos2 == y-4 || this.pos1 == x+3 && this.pos2 == y-3|| this.pos1 == x+2 && this.pos2 == y-2 || this.pos1 == x+1 && this.pos2 == y-1) {
+			for(int i=this.pos1-1 , k=this.pos2+1;i>x && k<y  ; i-- ,k++) {
+				if(board.getField(i, k) != null) {
+					emptySpaces= false;
+				}
+			}
+			if(emptySpaces ==true) {
 			this.setPos(x,y);
 			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		
 		else if(this.pos1 == x-7 && this.pos2 == y+7 || this.pos1 == x-6 && this.pos2 == y+6 || this.pos1 == x-5 && this.pos2 == y+5 || this.pos1 == x-4 && this.pos2 == y+4 || this.pos1 == x-3 && this.pos2 == y+3|| this.pos1 == x-2 && this.pos2 == y+2 || this.pos1 == x-1 && this.pos2 == y+1) {
+			for(int i=this.pos1+1 , k=this.pos2-1;i<x && k>y  ; i++ ,k--) {
+				if(board.getField(i, k) != null) {
+					emptySpaces= false;
+				}
+			}
+			if(emptySpaces ==true) {
 			this.setPos(x,y);
 			return true;
+			}
+			else {
+				return false;
+			}
 		}
 		else if(this.pos1 == x && this.pos2 != y) {
-			this.setPos(x,y);
-			return true;
+			if(y > this.pos2) {
+				for(int i=this.pos2+1;i<y; i++) {
+					if(board.getField(x, i) != null) {
+						emptySpaces= false;
+					}
+				}
+				
+			}
+		else {
+			for(int i=this.pos2-1;i>y; i--) {
+				if(board.getField(x, i) != null) {
+					emptySpaces= false;
+					}
+				}
+			}
+			
+			if(emptySpaces ==true) {
+				this.setPos(x,y);
+				this.setHasMoved(true);
+				return true;
+				}
+			else {
+				return false;
+			}
 		}
 		else if(this.pos1 != x && this.pos2 == y) {
-			this.setPos(x,y);
-			return true;
+			if(x > this.pos1) {
+				for(int i=this.pos1+1;i<x; i++) {
+					if(board.getField(i, y) != null) {
+						emptySpaces= false;
+					}
+				}
+				
+			}
+			else {
+			for(int i=this.pos1-1;i>x; i--) {
+				if(board.getField(i, y) != null) {
+					emptySpaces= false;
+					}
+				}
+			}
+			
+			if(emptySpaces ==true) {
+				this.setPos(x,y);
+				this.setHasMoved(true);
+				return true;
+				}
+				else {
+					return false;
+				}
 		}
 		else return false;
 	}
