@@ -54,6 +54,18 @@ public class Figures {
 			return false;
 			
 		}
+		if(board.getCurrentTurn()==0) {
+			if(board.Positionen[pos1from][pos2from].getColor() !="w") {
+				System.out.println("!Move not allowed");
+				return false;		
+			}
+				}
+		if(board.getCurrentTurn()==1) {
+			if(board.Positionen[pos1from][pos2from].getColor() !="b") {
+				System.out.println("!Move not allowed");
+				return false;		
+			}
+				}
 		
 		if (board.Positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false) {
 			System.out.println("!Move not allowed");
@@ -64,12 +76,13 @@ public class Figures {
 			System.out.println("!Move not allowed");
 			return false;
 		}
+		
 		}
 		if(board.getCurrentTurn()==0) {
-			board.setCurrentTurn(1);;
+			board.setCurrentTurn(1);
 				}
 		else if(board.getCurrentTurn()==1) {
-			board.setCurrentTurn(0);;
+			board.setCurrentTurn(0);
 				}
 	
 	board.Positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
