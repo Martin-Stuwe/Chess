@@ -45,20 +45,47 @@ public class Pawn extends Figures {
 			return false;
 		}
 		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+1) {
+			
+			if(board.getField(x, this.pos2-1) != null) {
+				return false;
+			}
+			else{
 			this.setPos(x,y);
 			return true;
+			}
 		}
 		else if(this.color =="b" && this.pos1 == x && this.pos2 == y-1) {
+			if(board.getField(x, this.pos2+1) != null) {
+				return false;
+			}
+			else{
 			this.setPos(x,y);
 			return true;
+			}
 		}
 		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+2 && this.pos2 == 6) {
+			if(board.getField(x, this.pos2-1) != null) {
+				return false;
+			}
+			else if(board.getField(x, this.pos2-2) != null) {
+				return false;
+			}
+			else{
 			this.setPos(x,y);
 			return true;
+			}
 		}
 		else if(this.color =="b" && this.pos1 == x && this.pos2 == y-2 && this.pos2 == 1) {
+			if(board.getField(x, this.pos2+1) != null) {
+				return false;
+			}
+			else if(board.getField(x, this.pos2+2) != null) {
+				return false;
+			}
+			else{
 			this.setPos(x,y);
 			return true;
+			}
 		}
 		else return false;
 	}
