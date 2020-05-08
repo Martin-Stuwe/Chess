@@ -10,15 +10,25 @@ public class StartGame {
 		
 		System.out.println("White choose a position with a figure you want to move");
 		
-		Console player1FirstMove = new Console();
-		player1FirstMove.open();
-		if (player1FirstMove.input.equals("exit")==true){
+		Console playerMove = new Console();
+		playerMove.open();
+		if (playerMove.input.equals("exit")==true){
 			return;	
 		}
+		convertAndMove(board,playerMove);
+		System.out.println("Black choose a position with a figure you want to move");
 		
-		//Convert+Move part
-		String From=board.ConvertMoveInput(board, player1FirstMove.input.charAt(0),Character.getNumericValue(player1FirstMove.input.charAt(1)));
-		String To = board.ConvertMoveInput(board, player1FirstMove.input.charAt(3),Character.getNumericValue(player1FirstMove.input.charAt(4)));
+		playerMove.open();
+		if (playerMove.input.equals("exit")==true){
+			return;	
+		}
+		convertAndMove(board,playerMove);
+
+	}
+}
+	public static void convertAndMove(Board board, Console console) {
+		String From=board.ConvertMoveInput(board, console.input.charAt(0),Character.getNumericValue(console.input.charAt(1)));
+		String To = board.ConvertMoveInput(board,console.input.charAt(3),Character.getNumericValue(console.input.charAt(4)));
 
 		int From1=Integer.parseInt(Character.toString(From.charAt(0))); 
 		int From2=Integer.parseInt(Character.toString(From.charAt(1))); 
@@ -36,12 +46,11 @@ public class StartGame {
 			System.out.println(board.Feld);
 			System.out.println("!invalid Move");
 		}
-	}}
-		
+	}
 		
 	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode
 	public static void PlayerVsPlayer() {
-	/**	System.out.println("Enter name of Player1");
+	/*	System.out.println("Enter name of Player1");
 		Console player1name = new Console();
 		player1name.open();
 		System.out.println("Hello "+player1name.input);
@@ -71,7 +80,7 @@ public class StartGame {
 			player2color.open();
 		}
 		System.out.println(player2name.input+" is "+player2color.input);
-		Player Player2 = new Player(player2name.input, player2color.input);**/
+		Player Player2 = new Player(player2name.input, player2color.input);*/
 		//erst später
 		Board board2 = new Board();
 		board2.setStart();
@@ -79,7 +88,7 @@ public class StartGame {
 		System.out.println(board2.Feld);
 		
 		
-		/**System.out.println("White choose a position with a figure to move");
+		/*System.out.println("White choose a position with a figure to move");
 		
 		Console player1FirstMove = new Console();
 		player1FirstMove.open();
@@ -96,7 +105,7 @@ public class StartGame {
 		board2.getField(From1, From2).move(board2, From1, From2, To1, To2);
 		board2.initializeBoard();
 		System.out.println(board2.Feld);
-		**/
+		*/
 		
 		getAndMakeMove(board2);
 		
