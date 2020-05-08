@@ -20,6 +20,12 @@ public class StartGame {
 		if (playerMove.input.equals("exit")==true){
 			return;	
 		}
+		if (playerMove.input.equals("beaten")==true){
+			board.initializeBoard();
+			System.out.println(board.Feld);
+			System.out.println(board.beaten);			
+			getAndMakeMove(board);
+		}
 		convertAndMove(board,playerMove);
 	
 	}
