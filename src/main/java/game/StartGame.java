@@ -43,7 +43,7 @@ public class StartGame {
 		
 		if (board.getField(From1, From2)!=null) {
 		board.getField(From1, From2).move(board, From1, From2, To1, To2);
-		pawnPromotion(To1,To2,board,console);
+		pawnPromotion(From1,From2,To1,To2,board,console);
 		board.initializeBoard();
 		System.out.println(board.Feld);
 		}
@@ -54,7 +54,8 @@ public class StartGame {
 			System.out.println("!invalid Move");
 		}
 	}
-	public static void pawnPromotion(int To1, int To2, Board board, Console console) {
+	public static void pawnPromotion(int From1, int From2, int To1, int To2, Board board, Console console) {
+		if(board.Positionen[From1][From2].validMove(board, To1, To2) ==true) {
 		if(board.getField(To1, To2).getType() == 4 && To2 == 0 && console.input.charAt(5) == 'Q' || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'Q' && To2 == 7) {
 			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, queen);
@@ -75,7 +76,7 @@ public class StartGame {
 			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, queen);
 		}
-		
+		}
 		
 	}
 		
