@@ -12,7 +12,7 @@ public class Board {
 	Figures[][] Positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
 	String[][] PositionenS = new String[8][8];
 	LinkedList<String> beaten = new LinkedList<String>();
-	LinkedList<Zug> movedList = new LinkedList<Zug>();
+	public LinkedList<Zug> movedList = new LinkedList<Zug>();
 	
 	//Field object for highlighting prob needed
 	int CurrentTurn; // 0=weis  1=schwarz
@@ -111,6 +111,10 @@ public class Board {
 	public void setField(int pos1, int pos2, Figures setTo) {
 		this.Positionen[pos1][pos2] = setTo;
 		this.Positionen[pos1][pos2].setPos(pos1, pos2);
+	}
+	
+	public void setNull(int pos1, int pos2) {
+		Positionen[pos1][pos2]=null;
 	}
 	public String ConvertMoveInput(Board board, char pos1from, int pos2from) { //UserInput umwandeln für gewählte Figur.
 		int pos1new;

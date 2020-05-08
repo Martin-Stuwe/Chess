@@ -19,5 +19,26 @@ public class Zug {
 		
 	}
 	
+	public Figures getFigure() {
+		return this.figur;
+	}
+	
+	public int getFrom1() {
+		return this.from1;
+	}
+	
+	public int getFrom2() {
+		return this.from2;
+	}
+	
+	public int getTo1() {
+		return this.to1;
+	}
+	
+	public int getTo2() {
+		return this.to2;
+	}
+	
+	
 //Hier die Spielzüge mit Position etc und erlaubten Zügen?
 }

@@ -38,12 +38,42 @@ public class Pawn extends Figures {
 	public String getColor() {
 		return color;
 	}
+	public int getType() {
+		return type;
+	}
 	
 	public boolean validMove(Board board,int x, int y) {
 
+		
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
-		}
+		}                     
+		else if(this.color=="w"&&pos2==3&&y==2&&x==pos1+1&&board.movedList.getLast().getFigure().getType()==4 &&  //en passau für white
+				board.movedList.getLast().getFigure()==board.getField(pos1+1, pos2) &&    
+				board.movedList.getLast().getTo2()-board.movedList.getLast().getFrom2()  ==2) {
+				board.setNull(board.movedList.getLast().getTo1(),board.movedList.getLast().getTo2());
+				return true; }
+			
+
+		else if(this.color=="w"&&pos2==3&&y==2&&x==pos1-1&&board.movedList.getLast().getFigure().getType()==4 &&  //en passau für white
+				board.movedList.getLast().getFigure()==board.getField(pos1-1, pos2) &&    
+				board.movedList.getLast().getTo2()-board.movedList.getLast().getFrom2()  ==2) {
+				board.setNull(board.movedList.getLast().getTo1(),board.movedList.getLast().getTo2());
+				return true; }
+		
+		else if(this.color=="b"&&pos2==4&&y==5&&x==pos1-1&&board.movedList.getLast().getFigure().getType()==4 &&  //en passau für black
+				board.movedList.getLast().getFigure()==board.getField(pos1-1, pos2) &&    
+				board.movedList.getLast().getTo2()-board.movedList.getLast().getFrom2()  ==-2) {
+				board.setNull(board.movedList.getLast().getTo1(),board.movedList.getLast().getTo2());
+				return true; }
+			
+
+		else if(this.color=="b"&&pos2==4&&y==5&&x==pos1+1&&board.movedList.getLast().getFigure().getType()==4 &&  //en passau für black
+				board.movedList.getLast().getFigure()==board.getField(pos1+1, pos2) &&    
+				board.movedList.getLast().getTo2()-board.movedList.getLast().getFrom2()  ==-2) {
+				board.setNull(board.movedList.getLast().getTo1(),board.movedList.getLast().getTo2());
+				return true; }
+		
 		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+1) {
 			
 			if(board.getField(x, this.pos2-1) != null) {
@@ -71,7 +101,7 @@ public class Pawn extends Figures {
 				return false;
 			}
 			else{
-		
+				
 			return true;
 			}
 		}

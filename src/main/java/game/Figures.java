@@ -84,6 +84,7 @@ public class Figures {
 				board.beaten.add(board.Positionen[pos1to][pos2to].getBoardVisual());
 			}
 			}
+			
 			board.setCurrentTurn(1);
 				}
 		else if(board.getCurrentTurn()==1) {
