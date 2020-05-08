@@ -34,6 +34,10 @@ public class Knight extends Figures {
 		this.pos2 = Pos2;
 	}
 	
+	public String getColor() {
+		return color;
+	}
+	
 	public boolean validMove(int x , int y) {
 		
 		if(x < 0 || x > 7 || y < 0 || y > 7) {

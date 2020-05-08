@@ -33,6 +33,11 @@ public class Queen extends Figures {
 		this.pos1 = Pos1;
 		this.pos2 = Pos2;
 	}
+	
+	public String getColor(){
+		return color;
+	}
+	
 	// possible move restriction queen
 	public boolean validMove(int x, int y) {
 		if(x < 0 || x > 7 || y < 0 || y > 7) {

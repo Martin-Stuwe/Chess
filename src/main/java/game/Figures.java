@@ -36,6 +36,10 @@ public class Figures {
 		return type;
 	}
 	
+	public String getColor() {
+		return color;
+	}
+	
 	public boolean validMove(int x, int y) {
 		
 		return false;
@@ -53,7 +57,10 @@ public class Figures {
 		if (board.Positionen[pos1from][pos2from].validMove(pos1to, pos2to) == false) {
 			System.out.println("!Move not allowed");
 			return false;
-			
+		}
+		if (board.Positionen[pos1from][pos2from].getColor() == board.Positionen[pos1to][pos2to].getColor()) {
+			System.out.println("!Move not allowed");
+			return false;
 		}
 
 	

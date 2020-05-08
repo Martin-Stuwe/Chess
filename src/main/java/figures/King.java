@@ -34,6 +34,11 @@ public class King extends Figures {
 		this.pos1 = Pos1;
 		this.pos2 = Pos2;
 	}
+	
+	public String getColor() {
+		return color;
+	}
+	
 	// possible move restriction for king
 	public boolean validMove(int x, int y) {
 		
