@@ -53,6 +53,7 @@ public class StartGame {
 		board.movedList.add(zug);
 		pawnPromotion(From1,From2,To1,To2,board,console);
 		board.initializeBoard();
+		//board.checkCheck();
 		System.out.println(board.Feld);
 		}
 		
@@ -63,7 +64,7 @@ public class StartGame {
 		}
 	}
 	public static void pawnPromotion(int From1, int From2, int To1, int To2, Board board, Console console) {
-		if(console.input.length() ==6) {
+		if(console.input.length() ==6 && board.getField(To1, To2)!= null) {
 		if(board.getField(To1, To2).getType() == 4 && To2 == 0 && console.input.charAt(5) == 'Q' || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'Q' && To2 == 7) {
 			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, queen);
@@ -87,12 +88,14 @@ public class StartGame {
 		}
 		}
 		else {
-			if(board.getField(To1, To2).getType() == 4 && To2 == 0|| board.getField(To1, To2).getType() == 4  && To2 == 7) {
+			if(board.getField(To1, To2)!= null) {
+			if(board.getField(To1, To2).getType() == 4 && To2 == 0 || board.getField(To1, To2).getType() == 4  && To2 == 7) {
 		
 			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
 			board.setField(To1, To2, queen);
 			}
 			}
+		}
 	}
 		
 	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode

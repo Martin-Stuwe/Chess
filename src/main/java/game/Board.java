@@ -166,7 +166,41 @@ public class Board {
 	}
 	
 	public void checkCheck() {
+		for(int i =0; i<8;i++) {
+			for(int y =0; y<8;y++) {
+				
+				if(Positionen[i][y] == King1w) {
+					for(int k =0; k<8;k++) {
+						for(int j =0; j<8;j++) {
+							if(Positionen[k][j]!= null) {
+							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()&& Positionen[k][j]!= King1b) {
+							System.out.println("Weiß steht im Schach");
+							}
+							}
+							
+						}
+						
+					} 
+				}
+				
+				else if (Positionen[i][y] == King1b ) {
+					for(int k =0; k<8;k++) {
+						for(int j =0; j<8;j++) {
+							if(Positionen[k][j]!= null) {
+							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()&& Positionen[k][j]!= King1w) {
+							System.out.println("Schawrz steht im Schach");
+							}
+							}
+							
+						}
+						
+					} 
+				}
+			}
+			
+		} 
 		
 	}
+	
 
 }
