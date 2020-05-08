@@ -46,22 +46,22 @@ public class Knight extends Figures {
 		}
 		//top left
 		else if(this.pos1 == x-2 && this.pos2 == y-1 || this.pos1 == x-1 && this.pos2 == y-2) {
-			this.setPos(x,y);
+			
 			return true;
 		}
 		//bottom left
 		else if(this.pos1 == x+1 && this.pos2 == y-2 || this.pos1 == x+2 && this.pos2 == y-1) {
-			this.setPos(x,y);
+			
 			return true;
 		}
 		//top right
 		else if(this.pos1 == x-2 && this.pos2 == y+1 || this.pos1 == x-1 && this.pos2 == y+2) {
-			this.setPos(x,y);
+			
 			return true;
 		}
 		//bottom right
 		else if(this.pos1 == x+2 && this.pos2 == y+1 || this.pos1 == x+1 && this.pos2 == y+1) {
-			this.setPos(x,y);
+			
 			return true;
 		}
 		

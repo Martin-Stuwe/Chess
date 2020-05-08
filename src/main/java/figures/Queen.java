@@ -53,7 +53,7 @@ public class Queen extends Figures {
 				}
 			}
 			if(emptySpaces ==true) {
-			this.setPos(x,y);
+			
 			return true;
 			}
 			else {
@@ -68,7 +68,7 @@ public class Queen extends Figures {
 				}
 			}
 			if(emptySpaces ==true) {
-			this.setPos(x,y);
+			
 			return true;
 			}
 			else {
@@ -83,7 +83,7 @@ public class Queen extends Figures {
 				}
 			}
 			if(emptySpaces ==true) {
-			this.setPos(x,y);
+			
 			return true;
 			}
 			else {
@@ -98,7 +98,7 @@ public class Queen extends Figures {
 				}
 			}
 			if(emptySpaces ==true) {
-			this.setPos(x,y);
+			
 			return true;
 			}
 			else {
@@ -123,7 +123,7 @@ public class Queen extends Figures {
 			}
 			
 			if(emptySpaces ==true) {
-				this.setPos(x,y);
+				
 				this.setHasMoved(true);
 				return true;
 				}
@@ -149,7 +149,7 @@ public class Queen extends Figures {
 			}
 			
 			if(emptySpaces ==true) {
-				this.setPos(x,y);
+				
 				this.setHasMoved(true);
 				return true;
 				}

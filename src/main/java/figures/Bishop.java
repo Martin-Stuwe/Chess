@@ -52,7 +52,7 @@ public class Bishop extends Figures {
 				}
 			}
 			if(emptySpaces ==true) {
-			this.setPos(x,y);
+			
 			return true;
 			}
 			else {
@@ -67,7 +67,7 @@ public class Bishop extends Figures {
 				}
 			}
 			if(emptySpaces ==true) {
-			this.setPos(x,y);
+			
 			return true;
 			}
 			else {
@@ -82,7 +82,7 @@ public class Bishop extends Figures {
 				}
 			}
 			if(emptySpaces ==true) {
-			this.setPos(x,y);
+			
 			return true;
 			}
 			else {
@@ -97,7 +97,7 @@ public class Bishop extends Figures {
 				}
 			}
 			if(emptySpaces ==true) {
-			this.setPos(x,y);
+		
 			return true;
 			}
 			else {

@@ -53,7 +53,7 @@ public class StartGame {
 		board.movedList.add(zug);
 		pawnPromotion(From1,From2,To1,To2,board,console);
 		board.initializeBoard();
-		//board.checkCheck();
+		board.checkCheck();
 		System.out.println(board.Feld);
 		}
 		

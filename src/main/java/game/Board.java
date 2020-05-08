@@ -110,6 +110,7 @@ public class Board {
 	
 	public void setField(int pos1, int pos2, Figures setTo) {
 		this.Positionen[pos1][pos2] = setTo;
+		this.Positionen[pos1][pos2].setPos(pos1, pos2);
 	}
 	public String ConvertMoveInput(Board board, char pos1from, int pos2from) { //UserInput umwandeln für gewählte Figur.
 		int pos1new;

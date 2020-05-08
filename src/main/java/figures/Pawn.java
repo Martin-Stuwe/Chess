@@ -50,7 +50,7 @@ public class Pawn extends Figures {
 				return false;
 			}
 			else{
-			this.setPos(x,y);
+		
 			return true;
 			}
 		}
@@ -59,7 +59,7 @@ public class Pawn extends Figures {
 				return false;
 			}
 			else{
-			this.setPos(x,y);
+		
 			return true;
 			}
 		}
@@ -71,7 +71,7 @@ public class Pawn extends Figures {
 				return false;
 			}
 			else{
-			this.setPos(x,y);
+		
 			return true;
 			}
 		}
@@ -83,7 +83,7 @@ public class Pawn extends Figures {
 				return false;
 			}
 			else{
-			this.setPos(x,y);
+		
 			return true;
 			}
 		}
@@ -92,7 +92,7 @@ public class Pawn extends Figures {
 				return false;
 			}
 			else{
-				this.setPos(x,y);
+		
 				return true;
 				}
 		}
@@ -101,7 +101,7 @@ public class Pawn extends Figures {
 				return false;
 			}
 			else{
-				this.setPos(x,y);
+			
 				return true;
 				}
 		}
