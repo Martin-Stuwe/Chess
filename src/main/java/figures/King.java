@@ -68,7 +68,7 @@ public boolean validMove(Board board, int x, int y) {
 			else return false;
 		}
 		else if(this.pos2 == y-1 || this.pos2 == y+1 || this.pos1 == y) {
-			if(this.pos2 == x-1 || this.pos2 == x+1) {
+			if(this.pos1 == x-1 || this.pos1 == x+1) {
 			this.setHasMoved(true);
 			return true;
 			}
