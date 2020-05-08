@@ -8,13 +8,14 @@ public class Rook extends Figures {
 	 private int pos1;
 	 private int pos2;
 	 private String color;
-	 private Boolean hasMoved;
+	 private boolean hasMoved;
 	 
 	public Rook(int pos1, int pos2, String color) {
 		this.pos1 = pos1;
 		this.pos2 = pos2;
 		this.color = color;
 		this.type = 6;
+		this.hasMoved = false;
 	}
 	public void setPos(int Pos1, int Pos2) { 
 		this.pos1 = Pos1;
@@ -34,6 +35,15 @@ public class Rook extends Figures {
 		}
 			
 	}
+	
+	public boolean getHasMoved() {
+		return hasMoved;
+	}
+	
+	public void setHasMoved(boolean hasMoved) {
+		this.hasMoved = hasMoved;
+	}
+
 	
 	public String getColor() {
 		return color;
@@ -65,6 +75,7 @@ public class Rook extends Figures {
 			
 			if(emptySpaces ==true) {
 				this.setPos(x,y);
+				this.setHasMoved(true);
 				return true;
 				}
 			else {
@@ -92,6 +103,7 @@ public class Rook extends Figures {
 			
 			if(emptySpaces ==true) {
 				this.setPos(x,y);
+				this.setHasMoved(true);
 				return true;
 				}
 			
