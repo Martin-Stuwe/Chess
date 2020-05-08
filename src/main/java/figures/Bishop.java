@@ -1,6 +1,7 @@
 package figures;
 
 import game.Figures;
+import game.Board;
 
 public class Bishop extends Figures {
 	 private String boardVisual;
@@ -38,7 +39,7 @@ public class Bishop extends Figures {
 		return color;
 	}
 	
-	public boolean validMove(int x, int y) {
+	public boolean validMove(Board board, int x, int y) {
 		
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;

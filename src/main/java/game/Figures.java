@@ -40,7 +40,7 @@ public class Figures {
 		return color;
 	}
 	
-	public boolean validMove(int x, int y) {
+	public boolean validMove(Board board,int x, int y) {
 		
 		return false;
 	}
@@ -54,7 +54,7 @@ public class Figures {
 			
 		}
 		
-		if (board.Positionen[pos1from][pos2from].validMove(pos1to, pos2to) == false) {
+		if (board.Positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false) {
 			System.out.println("!Move not allowed");
 			return false;
 		}

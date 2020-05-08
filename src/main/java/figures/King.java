@@ -1,5 +1,6 @@
 package figures;
 
+import game.Board;
 import game.Figures;
 
 public class King extends Figures {
@@ -40,7 +41,7 @@ public class King extends Figures {
 	}
 	
 	// possible move restriction for king
-	public boolean validMove(int x, int y) {
+	public boolean validMove(Board board, int x, int y) {
 		
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
