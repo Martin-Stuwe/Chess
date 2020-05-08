@@ -41,17 +41,66 @@ public class Rook extends Figures {
 	
 	// possible move restriction for Rook
 	public boolean validMove(Board board,int x, int y) {
+		boolean emptySpaces = true;
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
 		else if(this.pos1 == x && this.pos2 != y) {
-			this.setPos(x,y);
-			return true;
+			
+			if(y > this.pos2) {
+				for(int i=this.pos2+1;i<y; i++) {
+					if(board.getField(x, i) != null) {
+						emptySpaces= false;
+					}
+				}
+				
+			}
+		else {
+			for(int i=this.pos2-1;i>y; i--) {
+				if(board.getField(x, i) != null) {
+					emptySpaces= false;
+					}
+				}
+			}
+			
+			if(emptySpaces ==true) {
+				this.setPos(x,y);
+				return true;
+				}
+			else {
+				return false;
+			}
+			
 		}
 		else if(this.pos1 != x && this.pos2 == y) {
-			this.setPos(x,y);
-			return true;
+			
+			if(x > this.pos1) {
+				for(int i=this.pos1+1;i<x; i++) {
+					if(board.getField(i, y) != null) {
+						emptySpaces= false;
+					}
+				}
+				
+			}
+			else {
+			for(int i=this.pos1-1;i>x; i--) {
+				if(board.getField(i, y) != null) {
+					emptySpaces= false;
+					}
+				}
+			}
+			
+			if(emptySpaces ==true) {
+				this.setPos(x,y);
+				return true;
+				}
+			
+			else {
+				return false;
+			}
 		}
+		
+		
 		else return false;
 	}
 	
