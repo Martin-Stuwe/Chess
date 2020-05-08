@@ -96,4 +96,6 @@
         
         Main.java
         
+        Mithilfe von StartGame.StartGameCommand(); wird hier das Spiel gestartet.
+        
         
