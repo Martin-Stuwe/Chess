@@ -1,5 +1,7 @@
 package game;
 import java.time.temporal.ValueRange;
+import java.util.LinkedList;
+
 
 import figures.*;
 
@@ -9,6 +11,7 @@ public class Board {
 	private boolean gameLive = true;
 	Figures[][] Positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
 	String[][] PositionenS = new String[8][8];
+	LinkedList<String> beaten = new LinkedList<String>();
 	
 	//Field object for highlighting prob needed
 	int CurrentTurn; // 0=weis  1=schwarz
@@ -32,7 +35,10 @@ public class Board {
 	public boolean getGameLive() {
 		return gameLive;
 	}
+	public LinkedList<String> getBeaten() {
 	
+		return beaten;
+	}
 	public void setGameLive(boolean gameLive) {
 		
 	}
