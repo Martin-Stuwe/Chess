@@ -65,7 +65,7 @@
     
     
     
-    **game**
+**game**
     
         Board.java
     
@@ -80,7 +80,7 @@
     
     
     
-**    schach**
+**schach**
     
         Console.java
         
