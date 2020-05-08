@@ -189,7 +189,7 @@ public class Board {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
 							if(Positionen[k][j]!= null) {
-							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()&& Positionen[k][j]!= King1w) {
+							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()) {
 							System.out.println("Schwarz steht im Schach");
 							return true;
 							}
