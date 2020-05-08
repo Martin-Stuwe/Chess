@@ -8,14 +8,7 @@ public class Figures {
 	protected int type;
 	String boardVisual; //Zeichen/Grafik here
 	String color;
-	int canMoveTop=0;
-	int canMoveTopLeft=0;
-	int canMoveTopRight=0;
-	int canMoveLeft=0;
-	int canMoveRight=0;
-	int canMoveBottomLeft=0;
-	int canMoveBottomRight=0;
-	int canMoveBottom=0;
+	private boolean hasMoved;
 	
 	public void setPos(int Pos1, int Pos2) { 
 		this.pos1 = Pos1;
@@ -38,6 +31,14 @@ public class Figures {
 	
 	public String getColor() {
 		return color;
+	}
+	
+	public boolean getHasMoved() {
+		return hasMoved;
+	}
+	
+	public void setHasMoved(boolean hasMoved) {
+		this.hasMoved = hasMoved;
 	}
 	
 	public boolean validMove(Board board,int x, int y) {
