@@ -34,7 +34,7 @@ public class StartGame {
 		String From=board.ConvertMoveInput(board, console.input.charAt(0),Character.getNumericValue(console.input.charAt(1)));
 		String To = board.ConvertMoveInput(board,console.input.charAt(3),Character.getNumericValue(console.input.charAt(4)));
 		
-		if (From =="420" || To =="420" || console.input.charAt(2)!='-'){
+		if (From =="420" || To =="420" || console.input.charAt(2)!='-' || console.input.length() <5){
 			board.initializeBoard();
 			System.out.println(board.Feld);
 			System.out.println("!invalid Move");
