@@ -53,9 +53,6 @@ public class King extends Figures {
 	// possible move restriction for king
 public boolean validMove(Board board, int x, int y) {
 
-		System.out.println(this.hasMoved);
-		System.out.println(board.getField(7, 7).getHasMoved());
-
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
