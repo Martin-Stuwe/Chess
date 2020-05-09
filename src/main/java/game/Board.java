@@ -1,3 +1,16 @@
+/**
+* Class for the Chess Board
+* @author Martin Stuwe 676421
+* @author Zeyi Sun
+* @author Richard Tank
+* @author Fin Niklas Tiedemann
+* Gruppe 23
+*/
+
+
+
+
+
 package game;
 import java.time.temporal.ValueRange;
 import java.util.ArrayList;

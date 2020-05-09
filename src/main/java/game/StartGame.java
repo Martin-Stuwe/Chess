@@ -1,3 +1,12 @@
+/**
+* Class for the states of the game
+* @author Martin Stuwe 676421
+* @author Zeyi Sun
+* @author Richard Tank
+* @author Fin Niklas Tiedemann
+* Gruppe 23
+*/
+
 package game;
 
 import schach.Console;
@@ -32,7 +41,7 @@ public class StartGame {
 	
 	}
 }
-	public static void convertAndMove(Board board, Console console) {
+	public static void convertAndMove(Board board, Console console) { /**@param board   *//	
 		 if(console.input.length() <5) {
 			 board.initializeBoard();
 				System.out.println(board.Feld);

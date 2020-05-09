@@ -1,3 +1,13 @@
+/**
+* Class for the figure: rook
+* @author Martin Stuwe 676421
+* @author Zeyi Sun
+* @author Richard Tank
+* @author Fin Niklas Tiedemann
+* Gruppe 23
+*/
+
+
 package figures;
 
 import game.Board;
