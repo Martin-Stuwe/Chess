@@ -25,8 +25,8 @@ public class Board {
 	
 	String Feld; //store for the actual board
 	private boolean gameLive = true;
-	Figures[][] Positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
-	String[][] PositionenS = new String[8][8];
+	Figures[][] positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
+	String[][] positionenS = new String[8][8];
 	LinkedList<String> beaten = new LinkedList<String>();
 	public LinkedList<Zug> movedList = new LinkedList<Zug>();
 	public boolean blackCheck;
@@ -73,25 +73,25 @@ public class Board {
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
-				if(Positionen[i][y] == null) {
-					PositionenS[i][y] = " ";
+				if(positionen[i][y] == null) {
+					positionenS[i][y] = " ";
 				}
 				
 				else {
-					PositionenS[i][y] = Positionen[i][y].getBoardVisual();
+					positionenS[i][y] = positionen[i][y].getBoardVisual();
 				}
 			}
 			
 		} //test
 		
-		this.Feld = "8"+" "+  PositionenS[0][0] +" "+  PositionenS[1][0] +" "+  PositionenS[2][0] +" "+  PositionenS[3][0] +" "+ PositionenS[4][0] +" "+  PositionenS[5][0] +" "+  PositionenS[6][0] +" "+  PositionenS[7][0] + "\n" 
-				  + "7"+" "+  PositionenS[0][1] +" "+  PositionenS[1][1] +" "+  PositionenS[2][1] +" "+  PositionenS[3][1] +" "+ PositionenS[4][1] +" "+  PositionenS[5][1] +" "+  PositionenS[6][1] +" "+  PositionenS[7][1] +"\n" 
-				  + "6"+" "+  PositionenS[0][2] +" "+  PositionenS[1][2] +" "+  PositionenS[2][2] +" "+  PositionenS[3][2] +" "+ PositionenS[4][2] +" "+  PositionenS[5][2] +" "+  PositionenS[6][2] +" "+  PositionenS[7][2]+"\n" 
-				  + "5"+" "+  PositionenS[0][3] +" "+  PositionenS[1][3] +" "+  PositionenS[2][3] +" "+  PositionenS[3][3] +" "+ PositionenS[4][3] +" "+  PositionenS[5][3] +" "+  PositionenS[6][3] +" "+  PositionenS[7][3] +"\n"
-				  + "4"+" "+  PositionenS[0][4] +" "+  PositionenS[1][4] +" "+  PositionenS[2][4] +" "+  PositionenS[3][4] +" "+ PositionenS[4][4] +" "+  PositionenS[5][4] +" "+  PositionenS[6][4] +" "+  PositionenS[7][4] +"\n" 
-				  + "3"+" "+  PositionenS[0][5] +" "+  PositionenS[1][5] +" "+  PositionenS[2][5] +" "+  PositionenS[3][5] +" "+ PositionenS[4][5] +" "+  PositionenS[5][5] +" "+  PositionenS[6][5] +" "+  PositionenS[7][5] +"\n"
-				  + "2"+" "+  PositionenS[0][6] +" "+  PositionenS[1][6] +" "+  PositionenS[2][6] +" "+  PositionenS[3][6] +" "+ PositionenS[4][6] +" "+  PositionenS[5][6] +" "+  PositionenS[6][6] +" "+  PositionenS[7][6] +"\n" 
-				  + "1"+" "+  PositionenS[0][7] +" "+  PositionenS[1][7] +" "+  PositionenS[2][7] +" "+  PositionenS[3][7] +" "+ PositionenS[4][7] +" "+  PositionenS[5][7] +" "+  PositionenS[6][7] +" "+  PositionenS[7][7] +"\n"
+		this.Feld = "8"+" "+  positionenS[0][0] +" "+  positionenS[1][0] +" "+  positionenS[2][0] +" "+  positionenS[3][0] +" "+ positionenS[4][0] +" "+  positionenS[5][0] +" "+  positionenS[6][0] +" "+  positionenS[7][0] + "\n" 
+				  + "7"+" "+  positionenS[0][1] +" "+  positionenS[1][1] +" "+  positionenS[2][1] +" "+  positionenS[3][1] +" "+ positionenS[4][1] +" "+  positionenS[5][1] +" "+  positionenS[6][1] +" "+  positionenS[7][1] +"\n" 
+				  + "6"+" "+  positionenS[0][2] +" "+  positionenS[1][2] +" "+  positionenS[2][2] +" "+  positionenS[3][2] +" "+ positionenS[4][2] +" "+  positionenS[5][2] +" "+  positionenS[6][2] +" "+  positionenS[7][2]+"\n" 
+				  + "5"+" "+  positionenS[0][3] +" "+  positionenS[1][3] +" "+  positionenS[2][3] +" "+  positionenS[3][3] +" "+ positionenS[4][3] +" "+  positionenS[5][3] +" "+  positionenS[6][3] +" "+  positionenS[7][3] +"\n"
+				  + "4"+" "+  positionenS[0][4] +" "+  positionenS[1][4] +" "+  positionenS[2][4] +" "+  positionenS[3][4] +" "+ positionenS[4][4] +" "+  positionenS[5][4] +" "+  positionenS[6][4] +" "+  positionenS[7][4] +"\n" 
+				  + "3"+" "+  positionenS[0][5] +" "+  positionenS[1][5] +" "+  positionenS[2][5] +" "+  positionenS[3][5] +" "+ positionenS[4][5] +" "+  positionenS[5][5] +" "+  positionenS[6][5] +" "+  positionenS[7][5] +"\n"
+				  + "2"+" "+  positionenS[0][6] +" "+  positionenS[1][6] +" "+  positionenS[2][6] +" "+  positionenS[3][6] +" "+ positionenS[4][6] +" "+  positionenS[5][6] +" "+  positionenS[6][6] +" "+  positionenS[7][6] +"\n" 
+				  + "1"+" "+  positionenS[0][7] +" "+  positionenS[1][7] +" "+  positionenS[2][7] +" "+  positionenS[3][7] +" "+ positionenS[4][7] +" "+  positionenS[5][7] +" "+  positionenS[6][7] +" "+  positionenS[7][7] +"\n"
 				  + " "+" a"+" b"+" c"+ " d"+" e"+" f"+" g"+" h";
 		
 	} 
@@ -123,17 +123,17 @@ public class Board {
 	
 	
 	public Figures getField(int pos1, int pos2) {
-		return this.Positionen[pos1][pos2];
+		return this.positionen[pos1][pos2];
 	}
 	
 	
 	public void setField(int pos1, int pos2, Figures setTo) {
-		this.Positionen[pos1][pos2] = setTo;
-		this.Positionen[pos1][pos2].setPos(pos1, pos2);
+		this.positionen[pos1][pos2] = setTo;
+		this.positionen[pos1][pos2].setPos(pos1, pos2);
 	}
 	
 	public void setNull(int pos1, int pos2) {
-		Positionen[pos1][pos2]=null;
+		positionen[pos1][pos2]=null;
 	}
 	public String ConvertMoveInput(Board board, char pos1from, int pos2from) { //UserInput umwandeln für gewählte Figur.
 		int pos1new;
@@ -193,11 +193,11 @@ public class Board {
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
-				if(Positionen[i][y] == King1w) {
+				if(positionen[i][y] == King1w) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
-							if(Positionen[k][j]!= null) {
-							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()) {
+							if(positionen[k][j]!= null) {
+							if(positionen[k][j].validMove(this, i, y) == true && positionen[k][j].getColor() != positionen[i][y].getColor()) {
 							
 							whiteCheck = true;
 							return true;
@@ -209,11 +209,11 @@ public class Board {
 					} 
 				}
 				
-				else if (Positionen[i][y] == King1b ) {
+				else if (positionen[i][y] == King1b ) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
-							if(Positionen[k][j]!= null) {
-							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()) {
+							if(positionen[k][j]!= null) {
+							if(positionen[k][j].validMove(this, i, y) == true && positionen[k][j].getColor() != positionen[i][y].getColor()) {
 							
 							blackCheck = true;
 							return true;
@@ -236,8 +236,8 @@ public class Board {
 	public boolean checkField(int x, int y, String color) {
 		for(int k =0; k<8;k++) {
 			for(int j =0; j<8;j++) {
-				if(Positionen[k][j]!= null &&Positionen[k][j].getType() !=2) {
-				if(Positionen[k][j].validMove(this, x, y) == true && Positionen[k][j].getColor() != color) {			
+				if(positionen[k][j]!= null &&positionen[k][j].getType() !=2) {
+				if(positionen[k][j].validMove(this, x, y) == true && positionen[k][j].getColor() != color) {			
 				return true;
 				}
 				}
@@ -251,16 +251,16 @@ public class Board {
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
-				if(Positionen[i][y] == King1w) {
+				if(positionen[i][y] == King1w) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
-							if(Positionen[k][j]!= null) {
-							if(Positionen[k][j].getColor() == Positionen[i][y].getColor()) {
+							if(positionen[k][j]!= null) {
+							if(positionen[k][j].getColor() == positionen[i][y].getColor()) {
 								for(int a =0; a<8;a++) {
 									for(int b =0; b<8;b++) {
-										if(Positionen[k][j]!= null) {
-										if(Positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
-											System.out.println(Positionen[k][j] +"has a valid move");
+										if(positionen[k][j]!= null) {
+										if(positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
+											System.out.println(positionen[k][j] +"has a valid move");
 											return true;
 										}
 										}
@@ -277,16 +277,16 @@ public class Board {
 					} 
 				}
 				
-				else if (Positionen[i][y] == King1b ) {
+				else if (positionen[i][y] == King1b ) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
-							if(Positionen[k][j]!= null) {
-							if(Positionen[k][j].getColor() == Positionen[i][y].getColor()) {
+							if(positionen[k][j]!= null) {
+							if(positionen[k][j].getColor() == positionen[i][y].getColor()) {
 								for(int a =0; a<8;a++) {
 									for(int b =0; b<8;b++) {
-										if(Positionen[k][j]!= null) {
-										if(Positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
-											System.out.println(Positionen[k][j] +"has a valid move");
+										if(positionen[k][j]!= null) {
+										if(positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
+											System.out.println(positionen[k][j] +"has a valid move");
 											return true;
 										}
 										}
@@ -317,8 +317,8 @@ public class Board {
 		ArrayList<String> test = new ArrayList<String>();
 		for(int i = 0; i<8; i++) {
 			for(int y = 0; y<8; y++) {
-				if(Positionen[i][y] != null) {
-					test.add(Positionen[i][y].getBoardVisual());
+				if(positionen[i][y] != null) {
+					test.add(positionen[i][y].getBoardVisual());
 				}
 			}
 		}

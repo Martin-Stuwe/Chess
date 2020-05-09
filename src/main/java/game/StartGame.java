@@ -41,7 +41,7 @@ public class StartGame {
 	
 	}
 }
-	public static void convertAndMove(Board board, Console console) { /**@param board   *//	
+	public static void convertAndMove(Board board, Console console) { 
 		 if(console.input.length() <5) {
 			 board.initializeBoard();
 				System.out.println(board.Feld);

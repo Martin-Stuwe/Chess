@@ -58,70 +58,70 @@ public class Figures {
 	
 	
 	public Boolean move(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { //Move takes int values convert before this
-		Figures RestoreFrom=board.Positionen[pos1from][pos2from];
-		Figures RestoreTo=board.Positionen[pos1to][pos2to];
+		Figures RestoreFrom=board.positionen[pos1from][pos2from];
+		Figures RestoreTo=board.positionen[pos1to][pos2to];
 		
-		if (board.Positionen[pos1from][pos2from] == null) {
+		if (board.positionen[pos1from][pos2from] == null) {
 			System.out.println("!Move not allowed");
 			return false;
 			
 		}
 		if(board.getCurrentTurn()==0) {
-			if(board.Positionen[pos1from][pos2from].getColor() !="w") {
+			if(board.positionen[pos1from][pos2from].getColor() !="w") {
 				System.out.println("!Move not allowed");
 				return false;		
 			}
 				}
 		if(board.getCurrentTurn()==1) {
-			if(board.Positionen[pos1from][pos2from].getColor() !="b") {
+			if(board.positionen[pos1from][pos2from].getColor() !="b") {
 				System.out.println("!Move not allowed");
 				return false;		
 			}
 				}
 		
-		if (board.Positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false) {
+		if (board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false) {
 			System.out.println("!Move not allowed");
 			return false;
 		}
-		if(board.Positionen[pos1to][pos2to]!= null) {
-		if (board.Positionen[pos1from][pos2from].getColor() == board.Positionen[pos1to][pos2to].getColor()) {
+		if(board.positionen[pos1to][pos2to]!= null) {
+		if (board.positionen[pos1from][pos2from].getColor() == board.positionen[pos1to][pos2to].getColor()) {
 			System.out.println("!Move not allowed");
 			return false;
 		}
 		
 		}
 		if(board.getCurrentTurn()==0) {
-			if(board.Positionen[pos1to][pos2to]!= null) {
-			if(board.Positionen[pos1to][pos2to].getColor() == "b") {
-				board.beaten.add(board.Positionen[pos1to][pos2to].getBoardVisual());
+			if(board.positionen[pos1to][pos2to]!= null) {
+			if(board.positionen[pos1to][pos2to].getColor() == "b") {
+				board.beaten.add(board.positionen[pos1to][pos2to].getBoardVisual());
 			}
 			}
 			
 			board.setCurrentTurn(1);
 				}
 		else if(board.getCurrentTurn()==1) {
-			if(board.Positionen[pos1to][pos2to]!= null) {
-			if(board.Positionen[pos1to][pos2to].getColor() == "w") {
-				board.beaten.add(board.Positionen[pos1to][pos2to].getBoardVisual());
+			if(board.positionen[pos1to][pos2to]!= null) {
+			if(board.positionen[pos1to][pos2to].getColor() == "w") {
+				board.beaten.add(board.positionen[pos1to][pos2to].getBoardVisual());
 			}}
 			board.setCurrentTurn(0);
 				}
 	
-	board.Positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
-	board.Positionen[pos1from][pos2from] = null;
-	board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
+	board.positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
+	board.positionen[pos1from][pos2from] = null;
+	board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 	
 				
 		 if(board.checkCheck()== true) {
 			 if(board.blackCheck ==true) {
 				 if(board.getCurrentTurn()==0) {
-			 board.Positionen[pos1to][pos2to] = RestoreTo;
-			 board.Positionen[pos1from][pos2from] = RestoreFrom;
-			 if(board.Positionen[pos1to][pos2to]!= null) {
-				 board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
+			 board.positionen[pos1to][pos2to] = RestoreTo;
+			 board.positionen[pos1from][pos2from] = RestoreFrom;
+			 if(board.positionen[pos1to][pos2to]!= null) {
+				 board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 			 }
-			 if(board.Positionen[pos1from][pos2from]!= null) {
-				 board.Positionen[pos1from][pos2from].setPos(pos1from, pos2from);
+			 if(board.positionen[pos1from][pos2from]!= null) {
+				 board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
 			 }
 			 board.setCurrentTurn(1);
 			}
@@ -134,13 +134,13 @@ public class Figures {
 			 if(board.getCurrentTurn()==1) {
 					
 			 
-				 board.Positionen[pos1to][pos2to] = RestoreTo;
-				 board.Positionen[pos1from][pos2from] = RestoreFrom;
-				 if(board.Positionen[pos1to][pos2to]!= null) {
-					 board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
+				 board.positionen[pos1to][pos2to] = RestoreTo;
+				 board.positionen[pos1from][pos2from] = RestoreFrom;
+				 if(board.positionen[pos1to][pos2to]!= null) {
+					 board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 				 }
-				 if(board.Positionen[pos1from][pos2from]!= null) {
-					 board.Positionen[pos1from][pos2from].setPos(pos1from, pos2from);
+				 if(board.positionen[pos1from][pos2from]!= null) {
+					 board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
 				 }
 				 board.setCurrentTurn(0);
 				}
@@ -150,40 +150,40 @@ public class Figures {
 			 }	 
 	 }
 		 
-		 board.Positionen[pos1to][pos2to].setHasMoved(true);
+		 board.positionen[pos1to][pos2to].setHasMoved(true);
 	return true;
 	//board.initializeBoard(); 
 	}
 	
 	
 	public Boolean hasPossibleMove(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { //Move takes int values convert before this
-		Figures RestoreFrom=board.Positionen[pos1from][pos2from];
-		Figures RestoreTo=board.Positionen[pos1to][pos2to];
+		Figures RestoreFrom=board.positionen[pos1from][pos2from];
+		Figures RestoreTo=board.positionen[pos1to][pos2to];
 		
-		if (board.Positionen[pos1from][pos2from] == null) {
+		if (board.positionen[pos1from][pos2from] == null) {
 			
 			return false;
 			
 		}
 		if(board.getCurrentTurn()==0) {
-			if(board.Positionen[pos1from][pos2from].getColor() !="w") {
+			if(board.positionen[pos1from][pos2from].getColor() !="w") {
 			
 				return false;		
 			}
 				}
 		if(board.getCurrentTurn()==1) {
-			if(board.Positionen[pos1from][pos2from].getColor() !="b") {
+			if(board.positionen[pos1from][pos2from].getColor() !="b") {
 			
 				return false;		
 			}
 				}
 		
-		if (board.Positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false) {
+		if (board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false) {
 		
 			return false;
 		}
-		if(board.Positionen[pos1to][pos2to]!= null) {
-		if (board.Positionen[pos1from][pos2from].getColor() == board.Positionen[pos1to][pos2to].getColor()) {
+		if(board.positionen[pos1to][pos2to]!= null) {
+		if (board.positionen[pos1from][pos2from].getColor() == board.positionen[pos1to][pos2to].getColor()) {
 		
 			return false;
 		}
@@ -191,18 +191,18 @@ public class Figures {
 		}
 		
 	
-	board.Positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
-	board.Positionen[pos1from][pos2from] = null;
-	board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
+	board.positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
+	board.positionen[pos1from][pos2from] = null;
+	board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 	
 			if(board.checkCheck()==true) {
-				board.Positionen[pos1to][pos2to] = RestoreTo;
-				 board.Positionen[pos1from][pos2from] = RestoreFrom;
-				 if(board.Positionen[pos1to][pos2to]!= null) {
-					 board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
+				board.positionen[pos1to][pos2to] = RestoreTo;
+				 board.positionen[pos1from][pos2from] = RestoreFrom;
+				 if(board.positionen[pos1to][pos2to]!= null) {
+					 board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 				 }
-				 if(board.Positionen[pos1from][pos2from]!= null) {
-					 board.Positionen[pos1from][pos2from].setPos(pos1from, pos2from);
+				 if(board.positionen[pos1from][pos2from]!= null) {
+					 board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
 				 }
 				return false;
 			}
@@ -210,13 +210,13 @@ public class Figures {
 		
 	
 	 
-		 board.Positionen[pos1to][pos2to] = RestoreTo;
-		 board.Positionen[pos1from][pos2from] = RestoreFrom;
-		 if(board.Positionen[pos1to][pos2to]!= null) {
-			 board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
+		 board.positionen[pos1to][pos2to] = RestoreTo;
+		 board.positionen[pos1from][pos2from] = RestoreFrom;
+		 if(board.positionen[pos1to][pos2to]!= null) {
+			 board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 		 }
-		 if(board.Positionen[pos1from][pos2from]!= null) {
-			 board.Positionen[pos1from][pos2from].setPos(pos1from, pos2from);
+		 if(board.positionen[pos1from][pos2from]!= null) {
+			 board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
 		 }
 	 
 	
