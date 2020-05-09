@@ -1,5 +1,8 @@
 package game;
 import java.time.temporal.ValueRange;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 
 
@@ -291,5 +294,38 @@ public class Board {
 		 
 		
 		return false;
+	}
+	
+	public boolean checkDraw() {
+		ArrayList<String> draw1 = new ArrayList<String>(Arrays.asList(new String[]{"K", "k", "B"}));
+		ArrayList<String> draw2 = new ArrayList<String>(Arrays.asList(new String[]{"K","k","b"}));
+		ArrayList<String> draw3 = new ArrayList<String>(Arrays.asList(new String[]{"K","k","n"}));
+		ArrayList<String> draw4 = new ArrayList<String>(Arrays.asList(new String[]{"K","k","N"}));
+		ArrayList<String> test = new ArrayList<String>();
+		for(int i = 0; i<8; i++) {
+			for(int y = 0; y<8; y++) {
+				if(Positionen[i][y] != null) {
+					test.add(Positionen[i][y].getBoardVisual());
+				}
+			}
+		}
+		Collections.sort(draw1);
+		Collections.sort(draw2);
+		Collections.sort(draw3);
+		Collections.sort(draw4);
+		Collections.sort(test);
+		if(test.equals(draw1)) {
+			return true;
+		}
+		else if(test.equals(draw2)) {
+			return true;
+		}
+		else if(test.equals(draw3)) {
+			return true;
+		}
+		else if(test.equals(draw4)) {
+			return true;
+		}
+		else return false;
 	}
 }

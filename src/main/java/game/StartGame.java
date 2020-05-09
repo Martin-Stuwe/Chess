@@ -8,7 +8,9 @@ public class StartGame {
 	
 	public static void getAndMakeMove(Board board) { //Könnten später Player Objekt übergeben und im PlayerObj Züge Historie speichern
 		while(true) {
-		
+			if(board.checkDraw() == true) {
+				System.out.println("Draw");
+			}
 			if(board.getCurrentTurn()==0) {
 		System.out.println("White choose a position with a figure you want to move");
 			}
@@ -78,6 +80,7 @@ public class StartGame {
 			else System.out.println("Patt");
 			return;
 		}
+		
 		}
 		
 		
