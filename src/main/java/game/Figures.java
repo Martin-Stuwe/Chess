@@ -96,7 +96,7 @@ public class Figures {
 			}}
 			board.setCurrentTurn(0);
 				}
-	
+	board.Positionen[pos1from][pos2from].hasMoved=true;
 	board.Positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
 	board.Positionen[pos1from][pos2from] = null;
 	board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
