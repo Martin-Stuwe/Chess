@@ -70,6 +70,9 @@ public class StartGame {
 		if(board.blackCheck==true) {
 			System.out.println("Schwarz steht im Schach");
 		}
+		if(board.checkPossibleMoves()==false) {
+			System.out.println("Schachmatt");
+		}
 		}
 		
 		else if (board.getField(From1,From2)==null) {

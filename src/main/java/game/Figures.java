@@ -151,30 +151,30 @@ public class Figures {
 		Figures RestoreTo=board.Positionen[pos1to][pos2to];
 		
 		if (board.Positionen[pos1from][pos2from] == null) {
-			System.out.println("!Move not allowed");
+			
 			return false;
 			
 		}
 		if(board.getCurrentTurn()==0) {
 			if(board.Positionen[pos1from][pos2from].getColor() !="w") {
-				System.out.println("!Move not allowed");
+			
 				return false;		
 			}
 				}
 		if(board.getCurrentTurn()==1) {
 			if(board.Positionen[pos1from][pos2from].getColor() !="b") {
-				System.out.println("!Move not allowed");
+			
 				return false;		
 			}
 				}
 		
 		if (board.Positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false) {
-			System.out.println("!Move not allowed");
+		
 			return false;
 		}
 		if(board.Positionen[pos1to][pos2to]!= null) {
 		if (board.Positionen[pos1from][pos2from].getColor() == board.Positionen[pos1to][pos2to].getColor()) {
-			System.out.println("!Move not allowed");
+		
 			return false;
 		}
 		
@@ -190,14 +190,14 @@ public class Figures {
 			 if(board.blackCheck ==true && board.getCurrentTurn()==1) {
 				 
 			
-			 System.out.println("!Move not allowed");
+			
 			return false;
 		 }
 	 
 		 else if(board.whiteCheck ==true && board.getCurrentTurn()==0) {
 			 
 				
-				 System.out.println("!Move not allowed");
+				 
 				return false;
 			 }	 
 	 }
