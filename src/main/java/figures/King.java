@@ -52,7 +52,10 @@ public class King extends Figures {
 	
 	// possible move restriction for king
 public boolean validMove(Board board, int x, int y) {
-		
+
+		System.out.println(this.hasMoved);
+		System.out.println(board.getField(7, 7).getHasMoved());
+
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
@@ -60,20 +63,29 @@ public boolean validMove(Board board, int x, int y) {
 		else if(this.pos1 == x && this.pos2 ==y) {
 			return false;
 		}
+		else if(this.pos1 == x-2 && this.pos2 == y && this.hasMoved == false && board.getField(7, 7).getHasMoved() == false
+				&& board.getField(6, 7) == null && board.getField(5, 7)== null) {
+			board.setField(6, 7, board.getField(4, 7));
+			this.setPos(6, 7);
+			board.setField(5, 7, board.getField(7, 7));
+			board.getField(5, 7).setPos(5, 7);
+			return true;
+		}
 		else if(this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x) {
 			if(this.pos2 == y-1 || this.pos2 == y+1) {
-			this.setHasMoved(true);
+			
 			return true;
 			}
 			else return false;
 		}
 		else if(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y) {
 			if(this.pos1 == x-1 || this.pos1 == x+1) {
-			this.setHasMoved(true);
+		
 			return true;
 			}
 			else return false;
 		}
+		
 		else return false;
 	}
 	

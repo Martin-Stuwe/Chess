@@ -75,7 +75,7 @@ public class Rook extends Figures {
 			
 			if(emptySpaces ==true) {
 				
-				this.setHasMoved(true);
+				
 				return true;
 				}
 			else {
@@ -103,7 +103,7 @@ public class Rook extends Figures {
 			
 			if(emptySpaces ==true) {
 				
-				this.setHasMoved(true);
+				
 				return true;
 				}
 			
