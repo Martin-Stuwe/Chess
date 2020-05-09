@@ -71,6 +71,7 @@ public boolean validMove(Board board, int x, int y) {
 			}
 			else return false;
 		}
+		
 		// long castling 
 		else if(this.pos1 == x+2 && this.pos2 == y && board.getField(0, y)!= null 
 				&& board.getField(3, y) == null && board.getField(2, y)== null) {
