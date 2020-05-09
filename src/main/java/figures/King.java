@@ -60,12 +60,14 @@ public boolean validMove(Board board, int x, int y) {
 		else if(this.pos1 == x && this.pos2 ==y) {
 			return false;
 		}
-		else if(this.pos1 == x-2 && this.pos2 == y && this.hasMoved == false && board.getField(7, 7).getHasMoved() == false
+		else if(this.pos1 == x-2 && this.pos2 == y &&board.getField(7, 7)!= null 
 				&& board.getField(6, 7) == null && board.getField(5, 7)== null) {
-			
+			if(this.hasMoved == false && board.getField(7, 7).getHasMoved() == false) {
 			board.setField(5, 7, board.getField(7, 7));
 			board.setNull(7, 7);
 			return true;
+			}
+			else return false;
 		}
 		else if(this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x) {
 			if(this.pos2 == y-1 || this.pos2 == y+1) {
