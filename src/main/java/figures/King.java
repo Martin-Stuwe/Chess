@@ -60,11 +60,22 @@ public boolean validMove(Board board, int x, int y) {
 		else if(this.pos1 == x && this.pos2 ==y) {
 			return false;
 		}
-		else if(this.pos1 == x-2 && this.pos2 == y &&board.getField(7, 7)!= null 
-				&& board.getField(6, 7) == null && board.getField(5, 7)== null) {
-			if(this.hasMoved == false && board.getField(7, 7).getHasMoved() == false) {
-			board.setField(5, 7, board.getField(7, 7));
-			board.setNull(7, 7);
+		// short castling 
+		else if(this.pos1 == x-2 && this.pos2 == y &&board.getField(7, y)!= null 
+				&& board.getField(6, y) == null && board.getField(5, y)== null) {
+			if(this.hasMoved == false && board.getField(7, y).getHasMoved() == false) {
+			board.setField(5, y, board.getField(7, y));
+			board.setNull(7, y);
+			return true;
+			}
+			else return false;
+		}
+		// long castling 
+		else if(this.pos1 == x+2 && this.pos2 == y && board.getField(0, y)!= null 
+				&& board.getField(3, y) == null && board.getField(2, y)== null) {
+			if(this.hasMoved == false && board.getField(0, y).getHasMoved() == false) {
+			board.setField(3, y, board.getField(0, y));
+			board.setNull(0, y);
 			return true;
 			}
 			else return false;
