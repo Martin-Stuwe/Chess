@@ -59,7 +59,11 @@ public class Rook extends Figures {
 		return color;
 	}
 	
-	// possible move restriction for Rook
+	/**
+	* Checks if the current move is valid
+	* @param x for the x axis position and y for the y axis position to move to
+	* @return true for valid move false for invalid move
+	*/
 	public boolean validMove(Board board,int x, int y) {
 		boolean emptySpaces = true;
 		if(x < 0 || x > 7 || y < 0 || y > 7) {

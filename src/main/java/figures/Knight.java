@@ -48,6 +48,12 @@ public class Knight extends Figures {
 		return color;
 	}
 	
+	
+	/**
+	* Checks if the current move is valid
+	* @param x for the x axis position and y for the y axis position to move to
+	* @return true for valid move false for invalid move
+	*/
 	public boolean validMove(Board board,int x , int y) {
 		
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
