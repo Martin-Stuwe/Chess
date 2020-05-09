@@ -54,9 +54,11 @@ public class StartGame {
 		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
 		
 		if (board.getField(From1, From2)!=null) {
-		board.getField(From1, From2).move(board, From1, From2, To1, To2);
+		if(board.getField(From1, From2).move(board, From1, From2, To1, To2) ==true) {
 		Zug zug = new Zug(board.getField(To1, To2),From1,From2,To1,To2);  //creates new move and saves in list
 		board.movedList.add(zug);
+		System.out.println("!"+console.input.toString());
+		}
 		System.out.println(board.movedList);
 		pawnPromotion(From1,From2,To1,To2,board,console);
 		board.initializeBoard();
