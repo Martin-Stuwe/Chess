@@ -135,6 +135,13 @@ public class Board {
 	public void setNull(int pos1, int pos2) {
 		positionen[pos1][pos2]=null;
 	}
+	
+	
+	/**
+	* Converts the user input for position to internal conform input
+	* @param board: board object, pos1from: first position character e.g.: A, pos2from: second position integer e.g.: 1 (a1)
+	* @return converted version as String e.g.: 07
+	*/
 	public String ConvertMoveInput(Board board, char pos1from, int pos2from) { //UserInput umwandeln für gewählte Figur.
 		int pos1new;
 		switch (pos1from) {

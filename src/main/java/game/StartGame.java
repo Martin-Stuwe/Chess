@@ -15,6 +15,10 @@ import figures.*;
 public class StartGame {
 	
 	
+	/**
+	* Catches user input and uses convertAndMove to convert and make the move happen
+	* @param board: the actual Board object
+	*/
 	public static void getAndMakeMove(Board board) { //Könnten später Player Objekt übergeben und im PlayerObj Züge Historie speichern
 		while(true) {
 			if(board.checkDraw() == true) {
@@ -41,6 +45,12 @@ public class StartGame {
 	
 	}
 }
+	
+	/**
+	* Checks the user input, uses ConvertMoveInput to convert,
+	* adds the legit move to the previous moves list 
+	* @param board: the actual Board object, console: the Console object
+	*/
 	public static void convertAndMove(Board board, Console console) { 
 		 if(console.input.length() <5) {
 			 board.initializeBoard();
@@ -99,6 +109,12 @@ public class StartGame {
 			System.out.println("!invalid Move");
 		}
 	}
+	
+	
+	/**
+	* promotes the pawn
+	* @param From1, From2, To1, To2, board, console
+	*/
 	public static void pawnPromotion(int From1, int From2, int To1, int To2, Board board, Console console) {
 		if(console.input.length() ==6 && board.getField(To1, To2)!= null) {
 		if(board.getField(To1, To2).getType() == 4 && To2 == 0 && console.input.charAt(5) == 'Q' || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'Q' && To2 == 7) {
@@ -134,7 +150,9 @@ public class StartGame {
 		}
 	}
 		
-	//PlayerVsPlayer Mode. Further Modes have to be placed above the chooseMode
+	/**
+	* Method for PlayerVsPlayer Mode
+	*/
 	public static void PlayerVsPlayer() {
 	/*	System.out.println("Enter name of Player1");
 		Console player1name = new Console();
@@ -174,31 +192,12 @@ public class StartGame {
 		System.out.println(board2.Feld);
 		
 		
-		
-		
-		/*System.out.println("White choose a position with a figure to move");
-		
-		Console player1FirstMove = new Console();
-		player1FirstMove.open();
-		
-		//Convert+Move part
-		String From=board2.ConvertMoveInput(board2, player1FirstMove.input.charAt(0),Character.getNumericValue(player1FirstMove.input.charAt(1)));
-		String To = board2.ConvertMoveInput(board2, player1FirstMove.input.charAt(3),Character.getNumericValue(player1FirstMove.input.charAt(4)));
-
-		int From1=Integer.parseInt(Character.toString(From.charAt(0))); 
-		int From2=Integer.parseInt(Character.toString(From.charAt(1))); 
-		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 
-		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
-		
-		board2.getField(From1, From2).move(board2, From1, From2, To1, To2);
-		board2.initializeBoard();
-		System.out.println(board2.Feld);
-		*/
-		
 		getAndMakeMove(board2);
 		
 	}
-	//choose Mode cases for different modes
+	/**
+	* Method to select a mode
+	*/
 	public static void chooseMode() { 
 		System.out.println("Choose one of the modes \n 1) Versus Human \n Enter 1 for the PlayerVsPlayer Mode");
 		Console ChosenMode = new Console();
@@ -215,6 +214,10 @@ public class StartGame {
 			}
 		
 	}
+	
+	/**
+	* Method to start the game
+	*/
 	public static void StartGameCommand() {
 		PlayerVsPlayer();
 		return;
