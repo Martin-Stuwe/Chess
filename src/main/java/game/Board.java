@@ -13,7 +13,8 @@ public class Board {
 	String[][] PositionenS = new String[8][8];
 	LinkedList<String> beaten = new LinkedList<String>();
 	public LinkedList<Zug> movedList = new LinkedList<Zug>();
-	public boolean lastCheckCheck;
+	public boolean blackCheck;
+	public boolean whiteCheck;
 	
 	//Field object for highlighting prob needed
 	int CurrentTurn; // 0=weis  1=schwarz
@@ -181,7 +182,7 @@ public class Board {
 							if(Positionen[k][j]!= null) {
 							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()) {
 							System.out.println("Weiß steht im Schach");
-							lastCheckCheck = true;
+							whiteCheck = true;
 							return true;
 							}
 							}
@@ -197,7 +198,7 @@ public class Board {
 							if(Positionen[k][j]!= null) {
 							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()) {
 							System.out.println("Schwarz steht im Schach");
-							lastCheckCheck = true;
+							blackCheck = true;
 							return true;
 							}
 							}
@@ -210,7 +211,8 @@ public class Board {
 			
 		} 
 		
-		lastCheckCheck = false;
+		blackCheck = false;
+		whiteCheck = false;
 		return false;
 	}
 	
