@@ -118,6 +118,7 @@ public class Pawn extends Figures {
 			}
 		}
 		else if(this.color =="b" && this.pos1 == x+1 && this.pos2 == y-1 || this.color =="b" && this.pos1 == x-1 && this.pos2 == y-1) {
+			if(board.getField(x, y)!= null){
 			if(board.getField(x, y).getColor()!="w") {
 				return false;
 			}
@@ -125,8 +126,11 @@ public class Pawn extends Figures {
 		
 				return true;
 				}
+			}
+			else return false;
 		}
 		else if(this.color =="w" && this.pos1 == x+1 && this.pos2 == y+1 || this.color =="w" && this.pos1 == x-1 && this.pos2 == y+1) {
+			if(board.getField(x, y)!= null){
 			if(board.getField(x, y).getColor()!="b") {
 				return false;
 			}
@@ -134,6 +138,8 @@ public class Pawn extends Figures {
 			
 				return true;
 				}
+			}
+			else return false;
 		}
 		else return false;
 	}
