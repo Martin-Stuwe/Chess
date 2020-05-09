@@ -75,6 +75,7 @@ public class StartGame {
 		}
 		}
 		
+		
 		else if (board.getField(From1,From2)==null) {
 			board.initializeBoard();
 			System.out.println(board.Feld);
