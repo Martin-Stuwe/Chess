@@ -219,7 +219,7 @@ public class Board {
 	public boolean checkField(int x, int y, String color) {
 		for(int k =0; k<8;k++) {
 			for(int j =0; j<8;j++) {
-				if(Positionen[k][j]!= null) {
+				if(Positionen[k][j]!= null &&Positionen[k][j].getType() !=2) {
 				if(Positionen[k][j].validMove(this, x, y) == true && Positionen[k][j].getColor() != color) {			
 				return true;
 				}

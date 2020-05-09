@@ -64,7 +64,7 @@ public boolean validMove(Board board, int x, int y) {
 		else if(this.pos1 == x-2 && this.pos2 == y &&board.getField(7, y)!= null 
 				&& board.getField(6, y) == null && board.getField(5, y)== null) {
 			if(this.hasMoved == false && board.getField(7, y).getHasMoved() == false
-					&& board.checkField(4, y, this.color) && board.checkField(5, y, this.color) && board.checkField(6, y, this.color)) {
+					&& board.checkField(4, y, this.color)==false && board.checkField(5, y, this.color)==false && board.checkField(6, y, this.color)==false) {
 			board.setField(5, y, board.getField(7, y));
 			board.setNull(7, y);
 			return true;
