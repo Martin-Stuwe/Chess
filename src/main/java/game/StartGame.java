@@ -31,10 +31,16 @@ public class StartGame {
 	}
 }
 	public static void convertAndMove(Board board, Console console) {
+		 if(console.input.length() <5) {
+			 board.initializeBoard();
+				System.out.println(board.Feld);
+				System.out.println("!invalid Move");
+				return;
+		 }
 		String From=board.ConvertMoveInput(board, console.input.charAt(0),Character.getNumericValue(console.input.charAt(1)));
 		String To = board.ConvertMoveInput(board,console.input.charAt(3),Character.getNumericValue(console.input.charAt(4)));
 		
-		if (From =="420" || To =="420" || console.input.charAt(2)!='-' || console.input.length() <5){
+		if (From =="420" || To =="420" || console.input.charAt(2)!='-' ){
 			board.initializeBoard();
 			System.out.println(board.Feld);
 			System.out.println("!invalid Move");
