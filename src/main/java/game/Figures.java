@@ -140,7 +140,7 @@ public class Figures {
 			 }	 
 	 }
 		 
-		 board.Positionen[pos1to][pos2to].hasMoved=true;
+		 board.Positionen[pos1to][pos2to].setHasMoved(true);
 	return true;
 	//board.initializeBoard(); 
 	}
