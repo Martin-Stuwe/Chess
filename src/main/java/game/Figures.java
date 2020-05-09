@@ -178,7 +178,6 @@ public class Figures {
 			return false;
 		}
 		
-		
 		}
 		
 	
@@ -186,22 +185,21 @@ public class Figures {
 	board.Positionen[pos1from][pos2from] = null;
 	board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 	
-				
-		 if(board.checkCheck()== true) {
-			 if(board.blackCheck ==true && board.getCurrentTurn()==1) {
-				 
-			
-			
-			return false;
-		 }
-	 
-		 else if(board.whiteCheck ==true && board.getCurrentTurn()==0) {
-			 
-				
-				 
+			if(board.checkCheck()==true) {
+				board.Positionen[pos1to][pos2to] = RestoreTo;
+				 board.Positionen[pos1from][pos2from] = RestoreFrom;
+				 if(board.Positionen[pos1to][pos2to]!= null) {
+					 board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
+				 }
+				 if(board.Positionen[pos1from][pos2from]!= null) {
+					 board.Positionen[pos1from][pos2from].setPos(pos1from, pos2from);
+				 }
 				return false;
-			 }	 
-	 }
+			}
+			
+		
+	
+	 
 		 board.Positionen[pos1to][pos2to] = RestoreTo;
 		 board.Positionen[pos1from][pos2from] = RestoreFrom;
 		 if(board.Positionen[pos1to][pos2to]!= null) {

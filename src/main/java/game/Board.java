@@ -15,6 +15,7 @@ public class Board {
 	public LinkedList<Zug> movedList = new LinkedList<Zug>();
 	public boolean blackCheck;
 	public boolean whiteCheck;
+	public boolean lastCheck;
 	
 	//Field object for highlighting prob needed
 	int CurrentTurn; // 0=weis  1=schwarz
@@ -239,10 +240,13 @@ public class Board {
 						for(int j =0; j<8;j++) {
 							if(Positionen[k][j]!= null) {
 							if(Positionen[k][j].getColor() == Positionen[i][y].getColor()) {
-								for(int a =0; a<7;a++) {
-									for(int b =0; b<7;b++) {
+								for(int a =0; a<8;a++) {
+									for(int b =0; b<8;b++) {
+										if(Positionen[k][j]!= null) {
 										if(Positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
+											System.out.println(Positionen[k][j] +"has a valid move");
 											return true;
+										}
 										}
 									}
 								}
@@ -264,8 +268,11 @@ public class Board {
 							if(Positionen[k][j].getColor() == Positionen[i][y].getColor()) {
 								for(int a =0; a<8;a++) {
 									for(int b =0; b<8;b++) {
+										if(Positionen[k][j]!= null) {
 										if(Positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
+											System.out.println(Positionen[k][j] +"has a valid move");
 											return true;
+										}
 										}
 									}
 								}
@@ -282,7 +289,7 @@ public class Board {
 			}
 			
 		 
-	
+		
 		return false;
 	}
 }

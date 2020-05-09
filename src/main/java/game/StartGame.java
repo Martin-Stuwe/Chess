@@ -71,7 +71,12 @@ public class StartGame {
 			System.out.println("Schwarz steht im Schach");
 		}
 		if(board.checkPossibleMoves()==false) {
+			if(board.checkCheck()==true) {
 			System.out.println("Schachmatt");
+			return;
+			}
+			else System.out.println("Patt");
+			return;
 		}
 		}
 		
