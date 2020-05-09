@@ -181,7 +181,7 @@ public class Board {
 						for(int j =0; j<8;j++) {
 							if(Positionen[k][j]!= null) {
 							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()) {
-							System.out.println("Weiß steht im Schach");
+							
 							whiteCheck = true;
 							return true;
 							}
@@ -197,7 +197,7 @@ public class Board {
 						for(int j =0; j<8;j++) {
 							if(Positionen[k][j]!= null) {
 							if(Positionen[k][j].validMove(this, i, y) == true && Positionen[k][j].getColor() != Positionen[i][y].getColor()) {
-							System.out.println("Schwarz steht im Schach");
+							
 							blackCheck = true;
 							return true;
 							}

@@ -64,6 +64,12 @@ public class StartGame {
 		board.initializeBoard();
 		board.checkCheck();
 		System.out.println(board.Feld);
+		if(board.whiteCheck==true) {
+			System.out.println("Weiß steht im Schach");
+		}
+		if(board.blackCheck==true) {
+			System.out.println("Schwarz steht im Schach");
+		}
 		}
 		
 		else if (board.getField(From1,From2)==null) {
