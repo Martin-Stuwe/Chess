@@ -25,16 +25,37 @@ public class Board {
 	
 	String Feld; //store for the actual board
 	private boolean gameLive = true;
+	
+	/**
+	* Array for all positions as Figures objects
+	*/
 	Figures[][] positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
+	
+	/**
+	* Array for all board symbols as String
+	*/
 	String[][] positionenS = new String[8][8];
+	
+	/**
+	* List with all previous beaten Figures
+	*/
 	LinkedList<String> beaten = new LinkedList<String>();
+	
+	/**
+	* List with all previous moves
+	*/
 	public LinkedList<Zug> movedList = new LinkedList<Zug>();
+	
 	public boolean blackCheck;
 	public boolean whiteCheck;
 	public boolean lastCheck;
 	
 	//Field object for highlighting prob needed
 	int CurrentTurn; // 0=weis  1=schwarz
+	
+	/**
+	* Initializes all initial Figures objects
+	*/
 	Rook Rook1b = new Rook(0,0,"b");
 	Rook Rook2b = new Rook(7,0,"b");
 	Rook Rook1w = new Rook(0,7,"w");

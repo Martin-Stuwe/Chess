@@ -11,11 +11,21 @@
 package game;
 
 public class Zug {
+	
+	/**
+	* The figure that has been moved
+	*/
 	Figures figur;
 	
+	/**
+	* From where the figure has moved
+	*/
 	int from1;
 	int from2;
 	
+	/**
+	* Where the figure has moved to
+	*/
 	int to1;
 	int to2;
 	

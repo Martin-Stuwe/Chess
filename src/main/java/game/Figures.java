@@ -13,12 +13,37 @@ package game;
 import java.time.temporal.ValueRange;
 
 public class Figures {
-	int pos1; 
+	
+	/**
+	* x position
+	*/
+	int pos1;
+	
+	/**
+	* y position
+	*/
 	int pos2;
+	
+	/**
+	* Figure's type
+	*/
 	protected int type;
+	
+	/**
+	* Figure's board visualization
+	*/
 	String boardVisual; //Zeichen/Grafik here
+	
+	/**
+	* The figure's color
+	*/
 	String color;
+	
+	/**
+	* Has the figure moved recently  Nur für pawn?
+	*/
 	private boolean hasMoved;
+	
 	
 	public void setPos(int Pos1, int Pos2) { 
 		this.pos1 = Pos1;
@@ -50,7 +75,7 @@ public class Figures {
 	public void setHasMoved(boolean hasMoved) {
 		this.hasMoved = hasMoved;
 	}
-	
+	 
 	public boolean validMove(Board board,int x, int y) {
 		
 		return false;
