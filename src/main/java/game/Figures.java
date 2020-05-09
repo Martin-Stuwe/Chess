@@ -146,7 +146,74 @@ public class Figures {
 	}
 	
 	
+	public Boolean hasPossibleMove(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { //Move takes int values convert before this
+		Figures RestoreFrom=board.Positionen[pos1from][pos2from];
+		Figures RestoreTo=board.Positionen[pos1to][pos2to];
+		
+		if (board.Positionen[pos1from][pos2from] == null) {
+			System.out.println("!Move not allowed");
+			return false;
+			
+		}
+		if(board.getCurrentTurn()==0) {
+			if(board.Positionen[pos1from][pos2from].getColor() !="w") {
+				System.out.println("!Move not allowed");
+				return false;		
+			}
+				}
+		if(board.getCurrentTurn()==1) {
+			if(board.Positionen[pos1from][pos2from].getColor() !="b") {
+				System.out.println("!Move not allowed");
+				return false;		
+			}
+				}
+		
+		if (board.Positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false) {
+			System.out.println("!Move not allowed");
+			return false;
+		}
+		if(board.Positionen[pos1to][pos2to]!= null) {
+		if (board.Positionen[pos1from][pos2from].getColor() == board.Positionen[pos1to][pos2to].getColor()) {
+			System.out.println("!Move not allowed");
+			return false;
+		}
+		
+		}
+		
 	
+	board.Positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
+	board.Positionen[pos1from][pos2from] = null;
+	board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 	
+				
+		 if(board.checkCheck()== true) {
+			 if(board.blackCheck ==true && board.getCurrentTurn()==1) {
+				 
+			
+			 System.out.println("!Move not allowed");
+			return false;
+		 }
+	 
+		 else if(board.whiteCheck ==true && board.getCurrentTurn()==0) {
+			 
+				
+				 System.out.println("!Move not allowed");
+				return false;
+			 }	 
+	 }
+		 board.Positionen[pos1to][pos2to] = RestoreTo;
+		 board.Positionen[pos1from][pos2from] = RestoreFrom;
+		 if(board.Positionen[pos1to][pos2to]!= null) {
+			 board.Positionen[pos1to][pos2to].setPos(pos1to, pos2to);
+		 }
+		 if(board.Positionen[pos1from][pos2from]!= null) {
+			 board.Positionen[pos1from][pos2from].setPos(pos1from, pos2from);
+		 }
+	 
+	
+	return true;
+	//board.initializeBoard(); 
+}
 	
 }
+	
