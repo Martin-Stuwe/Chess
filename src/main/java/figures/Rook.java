@@ -1,18 +1,16 @@
-/**
-* Class for the figure: rook
-* @author Martin Stuwe 676421
-* @author Zeyi Sun
-* @author Richard Tank
-* @author Fin Niklas Tiedemann
-* Gruppe 23
-*/
-
-
 package figures;
 
 import game.Board;
 import game.Figures;
 
+/**
+ * Class for the figure: rook
+ * @author Martin Stuwe 676421
+ * @author Zeyi Sun
+ * @author Richard Tank
+ * @author Fin Niklas Tiedemann
+ * group 23
+ */
 public class Rook extends Figures {
 	 private String boardVisual;
 	 private int pos1;

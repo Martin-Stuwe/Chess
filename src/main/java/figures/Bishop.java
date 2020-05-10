@@ -4,13 +4,13 @@ import game.Figures;
 import game.Board;
 
 /**
-* Class for the figure: bishop
-* @author Martin Stuwe 676421
-* @author Zeyi Sun
-* @author Richard Tank
-* @author Fin Niklas Tiedemann
-* group 23
-*/
+ * Class for the figure: bishop
+ * @author Martin Stuwe 676421
+ * @author Zeyi Sun
+ * @author Richard Tank
+ * @author Fin Niklas Tiedemann
+ * group 23
+ */
 
 public class Bishop extends Figures {
 	 
