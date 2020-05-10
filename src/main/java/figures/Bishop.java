@@ -35,7 +35,7 @@ public class Bishop extends Figures {
 	private String color;
 	
 	/**
-	 * the constructor creates a new bishop object and needs a x- and y-coordinate plus a color
+	 * the constructor creates a new bishop object and needs a x and a y axis position plus a color
 	 * @param pos1 x axis position of the bishop
 	 * @param pos2 y axis position of the bishop
 	 * @param color color of the bishop, valid input: "w" for white, "b" for black
