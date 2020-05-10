@@ -22,12 +22,12 @@ public class Bishop extends Figures {
 	/**
 	 * the x axis position of the bishop 
 	 */
-	 int pos1;
+	 public int pos1;
 	
 	/**
 	 * the y axis position of the bishop 
 	 */
-	 int pos2;
+	 public int pos2;
 	
 	/**
 	 * the color of the bishop
