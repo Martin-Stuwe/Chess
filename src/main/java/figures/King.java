@@ -73,6 +73,7 @@ public class King extends Figures {
 		
 	
 	}
+	
 	/**
 	 * get-method of hasMoved
 	 * @return true if has moved
@@ -102,7 +103,7 @@ public class King extends Figures {
 	
 	/**
 	 * get-method of color
-	 * @return color of the bishop as a String
+	 * @return color of the king as a String
 	 */
 	public String getColor() {
 		return color;
