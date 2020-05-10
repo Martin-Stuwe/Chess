@@ -1,23 +1,45 @@
+package figures;
+
+import game.Figures;
+import game.Board;
+
 /**
 * Class for the figure: bishop
 * @author Martin Stuwe 676421
 * @author Zeyi Sun
 * @author Richard Tank
 * @author Fin Niklas Tiedemann
-* Gruppe 23
+* group 23
 */
 
-package figures;
-
-import game.Figures;
-import game.Board;
-
 public class Bishop extends Figures {
-	 private String boardVisual;
-	 private int pos1;
-	 private int pos2;
-	 private String color;
 	 
+	/**
+	 *  the String shown on the board in the console
+	 */
+	private String boardVisual;
+	
+	/**
+	 * the x-coordinate of the bishop 
+	 */
+	private int pos1;
+	
+	/**
+	 * the y-coordinate of the bishop 
+	 */
+	private int pos2;
+	
+	/**
+	 * the color of the bishop
+	 */
+	private String color;
+	
+	/**
+	 * the constructor creates a new bishop object and needs a x- and y-coordinate plus a color
+	 * @param pos1 x axis position of the bishop
+	 * @param pos2 y axis position of the bishop
+	 * @param color color of the bishop, valid input: "w" for white, "b" for black
+	 */
 	public Bishop(int pos1, int pos2, String color) {
 		this.pos1 = pos1;
 		this.pos2 = pos2;
@@ -25,6 +47,12 @@ public class Bishop extends Figures {
 		this.type = 1;
 	}
 	
+	/**
+	 * get-method of boardVisual
+	 * if color is "w" boardVisual is in capital letter
+	 * if color is "b" boardVisual is in lower case letter
+	 * @return boardVisual of the bishop as a String
+	 */
 	public String getBoardVisual() {
 		if(this.color =="w") {
 			this.boardVisual = "B";
@@ -39,71 +67,94 @@ public class Bishop extends Figures {
 		}
 			
 	}
-	public void setPos(int Pos1, int Pos2) { 
-		this.pos1 = Pos1;
-		this.pos2 = Pos2;
+	
+	/**
+	 * set-method of x and y axis position
+	 * @param pos1 new x axis position of bishop
+	 * @param pos2 new y axis position of bishop
+	 */
+	public void setPos(int pos1, int pos2) { 
+		this.pos1 = pos1;
+		this.pos2 = pos2;
 	}
 	
+	/**
+	 * get-method of color
+	 * @return color of the bishop as a String
+	 */
 	public String getColor() {
 		return color;
 	}
 	
 	/**
 	* Checks if the current move is valid
-	* @param x for the x axis position and y for the y axis position to move to
-	* @return true for valid move false for invalid move
+	* @param board ,the board on which the move is tested on
+	* @param x for the x axis position to move to
+	* @param y for the y axis position to move to
+	* @return true for valid move 
+	* @return false for invalid move
 	*/
 	public boolean validMove(Board board, int x, int y) {
+		
 		boolean emptySpaces = true;
+		
+		//check if the field to move to is on the board
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
 		
+		// top left diagonal + check if there are other figures in the way
 		else if(this.pos1 == x-7 && this.pos2 == y-7 || this.pos1 == x-6 && this.pos2 == y-6 || this.pos1 == x-5 && this.pos2 == y-5 || this.pos1 == x-4 && this.pos2 == y-4 || this.pos1 == x-3 && this.pos2 == y-3|| this.pos1 == x-2 && this.pos2 == y-2 || this.pos1 == x-1 && this.pos2 == y-1) {
 			for(int i=this.pos1+1 , k=this.pos2+1;i<x && k<y  ; i++ ,k++) {
 				if(board.getField(i, k) != null) {
 					emptySpaces= false;
 				}
 			}
-			if(emptySpaces ==true) {
 			
-			return true;
+			if(emptySpaces == true) {
+				return true;
 			}
+			
 			else {
 				return false;
 			}
 		}
 		
+		// bottom right diagonal + check if there are other figures in the way
 		else if(this.pos1 == x+7 && this.pos2 == y+7 || this.pos1 == x+6 && this.pos2 == y+6 || this.pos1 == x+5 && this.pos2 == y+5 || this.pos1 == x+4 && this.pos2 == y+4 || this.pos1 == x+3 && this.pos2 == y+3|| this.pos1 == x+2 && this.pos2 == y+2 || this.pos1 == x+1 && this.pos2 == y+1) {
 			for(int i=this.pos1-1 , k=this.pos2-1;i>x && k>y  ; i-- ,k--) {
 				if(board.getField(i, k) != null) {
 					emptySpaces= false;
 				}
 			}
-			if(emptySpaces ==true) {
 			
-			return true;
+			if(emptySpaces == true) {
+				return true;
 			}
+			
 			else {
 				return false;
 			}
 		}
 		
+		// top right diagonal + check if there are other figures in the way
 		else if(this.pos1 == x+7 && this.pos2 == y-7 || this.pos1 == x+6 && this.pos2 == y-6 || this.pos1 == x+5 && this.pos2 == y-5 || this.pos1 == x+4 && this.pos2 == y-4 || this.pos1 == x+3 && this.pos2 == y-3|| this.pos1 == x+2 && this.pos2 == y-2 || this.pos1 == x+1 && this.pos2 == y-1) {
 			for(int i=this.pos1-1 , k=this.pos2+1;i>x && k<y  ; i-- ,k++) {
 				if(board.getField(i, k) != null) {
 					emptySpaces= false;
 				}
 			}
-			if(emptySpaces ==true) {
 			
-			return true;
+			if(emptySpaces ==true) {
+				return true;
 			}
+			
 			else {
 				return false;
 			}
 		}
 		
+		// bottom right diagonal + check if there are other figures in the way
 		else if(this.pos1 == x-7 && this.pos2 == y+7 || this.pos1 == x-6 && this.pos2 == y+6 || this.pos1 == x-5 && this.pos2 == y+5 || this.pos1 == x-4 && this.pos2 == y+4 || this.pos1 == x-3 && this.pos2 == y+3|| this.pos1 == x-2 && this.pos2 == y+2 || this.pos1 == x-1 && this.pos2 == y+1) {
 			for(int i=this.pos1+1 , k=this.pos2-1;i<x && k>y  ; i++ ,k--) {
 				if(board.getField(i, k) != null) {
@@ -111,9 +162,9 @@ public class Bishop extends Figures {
 				}
 			}
 			if(emptySpaces ==true) {
-		
-			return true;
+				return true;
 			}
+			
 			else {
 				return false;
 			}
