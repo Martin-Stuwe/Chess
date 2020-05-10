@@ -110,13 +110,13 @@ public class King extends Figures {
 	}
 	
 	/**
-	* Checks if the current move is valid
-	* @param board ,the board on which the move is tested on
-	* @param x for the x axis position to move to
-	* @param y for the y axis position to move to
-	* @return true for valid move 
-	* @return false for invalid move
-	*/
+	 * Checks if the current move is valid
+	 * @param board ,the board on which the move is tested on
+	 * @param x for the x axis position to move to
+	 * @param y for the y axis position to move to
+	 * @return true for valid move 
+	 * @return false for invalid move
+	 */
 	public boolean validMove(Board board, int x, int y) {
 		
 		// check if the field to move to is on the board
