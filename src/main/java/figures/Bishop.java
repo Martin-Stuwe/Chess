@@ -20,12 +20,12 @@ public class Bishop extends Figures {
 	private String boardVisual;
 	
 	/**
-	 * the x-coordinate of the bishop 
+	 * the x axis position of the bishop 
 	 */
 	private int pos1;
 	
 	/**
-	 * the y-coordinate of the bishop 
+	 * the y axis position of the bishop 
 	 */
 	private int pos2;
 	
