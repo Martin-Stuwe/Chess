@@ -1,66 +1,79 @@
+package game;
+
+import schach.Console;
+import figures.*;
+
 /**
 * Class for the states of the game
 * @author Martin Stuwe 676421
 * @author Zeyi Sun
 * @author Richard Tank
 * @author Fin Niklas Tiedemann
-* Gruppe 23
+* group 23
 */
-
-package game;
-
-import schach.Console;
-import figures.*;
-
 public class StartGame {
 	
-	
 	/**
-	* Catches user input and uses convertAndMove to convert and make the move happen
-	* @param board: the actual Board object
-	*/
+	 * Catches user input and uses convertAndMove to convert and make the move happen
+	 * @param board the actual Board object
+	 */
 	public static void getAndMakeMove(Board board) { //Könnten später Player Objekt übergeben und im PlayerObj Züge Historie speichern
 		while(true) {
+			
+			// check if draw because of lack of figures
 			if(board.checkDraw() == true) {
 				System.out.println("Draw");
 			}
+			
+			// white move
 			if(board.getCurrentTurn()==0) {
-		System.out.println("White choose a position with a figure you want to move");
+				System.out.println("White choose a position with a figure you want to move");
 			}
+			
+			//black move
 			else if(board.getCurrentTurn()==1) {
 				System.out.println("Black choose a position with a figure you want to move");
-					}
-		Console playerMove = new Console();
-		playerMove.open();
-		if (playerMove.input.equals("exit")==true){
-			return;	
-		}
-		if (playerMove.input.equals("beaten")==true){
-			board.initializeBoard();
-			System.out.println(board.Feld);
-			System.out.println(board.beaten);			
-			getAndMakeMove(board);
-		}
-		convertAndMove(board,playerMove);
+			}
+			
+			Console playerMove = new Console();
+			playerMove.open();
+			
+			// exiting the game
+			if (playerMove.input.equals("exit")==true){
+				return;	
+			}
+			
+			// returns all beaten figures
+			if (playerMove.input.equals("beaten")==true){
+				board.initializeBoard();
+				System.out.println(board.Feld);
+				System.out.println(board.beaten);			
+				getAndMakeMove(board);
+			}
+			convertAndMove(board,playerMove);
 	
+		}
 	}
-}
 	
 	/**
-	* Checks the user input, uses ConvertMoveInput to convert,
-	* adds the legit move to the previous moves list 
-	* @param board: the actual Board object, console: the Console object
-	*/
+	 * Checks the user input, uses ConvertMoveInput to convert,
+	 * adds the legit move to the previous moves list 
+	 * @param board: the actual Board object, console: the Console object
+	 */
 	public static void convertAndMove(Board board, Console console) { 
-		 if(console.input.length() <5) {
-			 board.initializeBoard();
-				System.out.println(board.Feld);
-				System.out.println("!invalid Move");
-				return;
-		 }
-		String From=board.ConvertMoveInput(board, console.input.charAt(0),Character.getNumericValue(console.input.charAt(1)));
+		// check if user input is valid (length)
+		if(console.input.length() <5) {
+			board.initializeBoard();
+			System.out.println(board.Feld);
+			System.out.println("!invalid Move");
+			return;
+		}
+		
+		// converting the user input into Strings
+		String From=board.ConvertMoveInput(board,console.input.charAt(0),Character.getNumericValue(console.input.charAt(1)));
 		String To = board.ConvertMoveInput(board,console.input.charAt(3),Character.getNumericValue(console.input.charAt(4)));
 		
+		// check if user input is valid (- as third character)
 		if (From =="420" || To =="420" || console.input.charAt(2)!='-' ){
 			board.initializeBoard();
 			System.out.println(board.Feld);
@@ -68,41 +81,47 @@ public class StartGame {
 			return;
 		}
 	
-		
+		// converting Strings into Integers
 		int From1=Integer.parseInt(Character.toString(From.charAt(0))); 
 		int From2=Integer.parseInt(Character.toString(From.charAt(1))); 
 		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 
 		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
 		
-		if (board.getField(From1, From2)!=null) {
-		if(board.getField(From1, From2).move(board, From1, From2, To1, To2) ==true) {
-		Zug zug = new Zug(board.getField(To1, To2),From1,From2,To1,To2);  //creates new move and saves in list
-		board.movedList.add(zug);
-		System.out.println("!"+console.input.toString());
-		}
-		System.out.println(board.movedList);
-		pawnPromotion(From1,From2,To1,To2,board,console);
-		board.initializeBoard();
-		board.checkCheck();
-		System.out.println(board.Feld);
-		if(board.whiteCheck==true) {
-			System.out.println("Weiß steht im Schach");
-		}
-		if(board.blackCheck==true) {
-			System.out.println("Schwarz steht im Schach");
-		}
-		if(board.checkPossibleMoves()==false) {
-			if(board.checkCheck()==true) {
-			System.out.println("Schachmatt");
-			return;
+		if(board.getField(From1, From2)!=null) {
+			if(board.getField(From1, From2).move(board, From1, From2, To1, To2) ==true) {
+				Zug zug = new Zug(board.getField(To1, To2),From1,From2,To1,To2);  //creates new move and saves in list
+				board.movedList.add(zug);
+				System.out.println("!"+console.input.toString());
 			}
-			else System.out.println("Patt");
-			return;
-		}
+			// System.out.println(board.movedList);
+			
+			// promotes pawns, checks if check and prints out board
+			pawnPromotion(From1,From2,To1,To2,board,console);
+			board.initializeBoard();
+			board.checkCheck();
+			System.out.println(board.Feld);
+			
+			// prints out if someone is in check
+			if(board.whiteCheck==true) {
+				System.out.println("White is in check");
+			}
+			if(board.blackCheck==true) {
+				System.out.println("Black is in check");
+			}
+			
+			// prints out if either checkmate or stalemate
+			if(board.checkPossibleMoves()==false) {
+				if(board.checkCheck()==true) {
+					System.out.println("Checkmate");
+					return;
+				}
+				else System.out.println("Stalemate");
+				return;
+			}
 		
 		}
 		
-		
+		// check if input empty
 		else if (board.getField(From1,From2)==null) {
 			board.initializeBoard();
 			System.out.println(board.Feld);
@@ -112,40 +131,55 @@ public class StartGame {
 	
 	
 	/**
-	* promotes the pawn
-	* @param From1, From2, To1, To2, board, console
-	*/
-	public static void pawnPromotion(int From1, int From2, int To1, int To2, Board board, Console console) {
-		if(console.input.length() ==6 && board.getField(To1, To2)!= null) {
-		if(board.getField(To1, To2).getType() == 4 && To2 == 0 && console.input.charAt(5) == 'Q' || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'Q' && To2 == 7) {
-			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
-			board.setField(To1, To2, queen);
-		}
-		if(board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'R' && To2 == 0 || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'R' && To2 == 7) {
-			Rook rook = new Rook(To1, To2,board.getField(To1, To2).getColor());
-			board.setField(To1, To2, rook);
-		}
-		if(board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'N' && To2 == 0 || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'N' && To2 == 7) {
-			Knight knight = new Knight(To1, To2,board.getField(To1, To2).getColor());
-			board.setField(To1, To2, knight);
-		}
-		if(board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'B' && To2 == 0 || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == 'B' && To2 == 7) {
-			Bishop bishop = new Bishop(To1, To2,board.getField(To1, To2).getColor());
-			board.setField(To1, To2, bishop);
-		}
-		if(board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == ' ' && To2 == 0 || board.getField(To1, To2).getType() == 4 && console.input.charAt(5) == ' ' && To2 == 7) {
-			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
-			board.setField(To1, To2, queen);
-		
-		}
-		}
-		else {
-			if(board.getField(To1, To2)!= null) {
-			if(board.getField(To1, To2).getType() == 4 && To2 == 0 || board.getField(To1, To2).getType() == 4  && To2 == 7) {
-		
-			Queen queen = new Queen(To1, To2,board.getField(To1, To2).getColor());
-			board.setField(To1, To2, queen);
+	 * 
+	 * @param from1
+	 * @param from2
+	 * @param to1
+	 * @param to2
+	 * @param board
+	 * @param console
+	 */
+	public static void pawnPromotion(int from1, int from2, int to1, int to2, Board board, Console console) {
+		if(console.input.length() ==6 && board.getField(to1, to2)!= null) {
+			
+			// pawn into queen
+			if(board.getField(to1, to2).getType() == 4 && to2 == 0 && console.input.charAt(5) == 'Q' || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'Q' && to2 == 7) {
+				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
+				board.setField(to1, to2, queen);
 			}
+			
+			// pawn into rook
+			if(board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'R' && to2 == 0 || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'R' && to2 == 7) {
+				Rook rook = new Rook(to1, to2,board.getField(to1, to2).getColor());
+				board.setField(to1, to2, rook);
+			}
+			
+			// pawn into knight
+			if(board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'N' && to2 == 0 || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'N' && to2 == 7) {
+				Knight knight = new Knight(to1, to2,board.getField(to1, to2).getColor());
+				board.setField(to1, to2, knight);
+			}
+			
+			// pawn into bishop
+			if(board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'B' && to2 == 0 || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'B' && to2 == 7) {
+				Bishop bishop = new Bishop(to1, to2,board.getField(to1, to2).getColor());
+				board.setField(to1, to2, bishop);
+			}
+			
+			// pawn into queen (empty space)
+			if(board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == ' ' && to2 == 0 || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == ' ' && to2 == 7) {
+				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
+				board.setField(to1, to2, queen);
+			}
+		}
+		
+		// check if pawn is on last row
+		else {
+			if(board.getField(to1, to2)!= null) {
+				if(board.getField(to1, to2).getType() == 4 && to2 == 0 || board.getField(to1, to2).getType() == 4  && to2 == 7) {
+					Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
+					board.setField(to1, to2, queen);
+				}
 			}
 		}
 	}
@@ -195,9 +229,9 @@ public class StartGame {
 		getAndMakeMove(board2);
 		
 	}
-	/**
-	* Method to select a mode
-	*/
+	
+	/*
+
 	public static void chooseMode() { 
 		System.out.println("Choose one of the modes \n 1) Versus Human \n Enter 1 for the PlayerVsPlayer Mode");
 		Console ChosenMode = new Console();
@@ -214,6 +248,8 @@ public class StartGame {
 			}
 		
 	}
+	
+	*/
 	
 	/**
 	* Method to start the game
