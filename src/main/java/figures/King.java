@@ -21,12 +21,12 @@ public class King extends Figures {
 	/**
 	 * the x axis position of the king 
 	 */
-	private int pos1;
+	public int pos1;
 	
 	/**
 	 * the y axis position of the king
 	 */
-	private int pos2;
+	public int pos2;
 	
 	/**
 	 * the color of the king
@@ -164,14 +164,8 @@ public class King extends Figures {
 			else return false;
 		}
 		
-		// possible king standard moves (first checking y axis)
-		else if(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y) {
-				if(this.pos1 == x-1 || this.pos1 == x+1 || this.pos1 == x) {
-					return true;
-				}
-			
-				else return false;
-			}
+		
+	
 		
 		else return false;
 	}

@@ -41,8 +41,10 @@ public class BishopTest {
 		assertEquals(false, BW.validMove(board, 9, 5), "Number out of Bounds");
 		assertEquals(false, BW.validMove(board, 7, 7), "Not a valid Move");
 		assertEquals(false, BW.validMove(board, 1, 5), "Fields not Empty 1");
+		assertEquals(false, BW.validMove(board, 0, 4), "Fields not Empty 1");
 		board.setNull(2, 6);
 		assertEquals(true, BW.validMove(board, 1, 5), "Fields now Empty 1");
+		assertEquals(true, BW.validMove(board, 0, 4), "Fields now Empty 1");
 		assertEquals(false, BW.validMove(board, 6, 4), "Fields not Empty 2");
 		board.setNull(4, 6);
 		assertEquals(true, BW.validMove(board, 6, 4), "Fields now Empty 2");
