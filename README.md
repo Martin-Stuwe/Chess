@@ -18,7 +18,9 @@ To start the game you have to execute the main.java and interact with the stdout
 To choose PlayerVsPlayer: 1
 
 To move a chess figure: a2-a3 
+
 Only small letters for the letter region are valid.
+
 And numbers from 1 to 8 for the numbers region.
 
 To show all beaten figures: beaten
