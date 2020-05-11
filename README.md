@@ -2,13 +2,14 @@
 
 This Projected is a Project hosted by Universität zu Lübeck (CS2301) and written by
 
-Martin Stuwe
+* Martin Stuwe
+* 
+* Zeyi Sun
+* 
+* Richard Tank
+* 
+* Fin Niklas Tiedemann
 
-Zeyi Sun
-
-Richard Tank
-
-Fin Niklas Tiedemann
 
 
 
