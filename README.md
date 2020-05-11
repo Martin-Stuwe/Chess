@@ -19,7 +19,7 @@ To choose PlayerVsPlayer: 1
 
 To move a chess figure: a2-a3 
 
-Only small letters for the letter region are valid.
+Only small letters from a to h for the letter region are valid.
 
 And numbers from 1 to 8 for the numbers region.
 
