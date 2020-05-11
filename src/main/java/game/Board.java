@@ -14,6 +14,7 @@ import figures.*;
 * @author Richard Tank
 * @author Fin Niklas Tiedemann
 * group 23
+* it1
 */
 public class Board {
 	
