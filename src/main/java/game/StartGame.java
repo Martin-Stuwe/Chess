@@ -59,7 +59,8 @@ public class StartGame {
 	/**
 	 * Checks the user input, uses ConvertMoveInput to convert,
 	 * adds the legit move to the previous moves list 
-	 * @param board: the actual Board object, console: the Console object
+	 * @param board: the actual Board object
+	 * @param console: the Console object
 	 */
 	public static void convertAndMove(Board board, Console console) { 
 		// check if user input is valid (length)
