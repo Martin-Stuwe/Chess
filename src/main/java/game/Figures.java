@@ -213,9 +213,9 @@ public class Figures {
 						 board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
 					 }
 					 board.setCurrentTurn(1);
-				 }
+				 
 				 System.out.println("!Move not allowed");
-				 return false;
+				 return false;}
 			}
 			
 			// check if white is in check after the move and restoring the move if so
@@ -230,9 +230,9 @@ public class Figures {
 							board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
 						}
 						board.setCurrentTurn(0);
-					}
+					
 					System.out.println("!Move not allowed");
-					return false;
+					return false;}
 			 }	 
 		}
 		board.positionen[pos1to][pos2to].setHasMoved(true);
