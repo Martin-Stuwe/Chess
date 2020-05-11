@@ -3,13 +3,13 @@ package schach;
 import java.util.Scanner;
 
 /**
-* Class for reading Console input
-* @author Martin Stuwe 676421
-* @author Zeyi Sun
-* @author Richard Tank
-* @author Fin Niklas Tiedemann
-* group 23
-*/
+ * Class for reading Console input
+ * @author Martin Stuwe 676421
+ * @author Zeyi Sun
+ * @author Richard Tank
+ * @author Fin Niklas Tiedemann
+ * group 23
+ */
 public class Console {
 	
 	/**

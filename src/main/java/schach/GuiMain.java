@@ -1,5 +1,8 @@
 package schach;
 
+/**
+ * no changes made yet
+ */
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
