@@ -9,6 +9,7 @@ import java.util.Scanner;
  * @author Richard Tank
  * @author Fin Niklas Tiedemann
  * group 23
+ * it1
  */
 public class Console {
 	
