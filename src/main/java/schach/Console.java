@@ -12,7 +12,6 @@ import java.util.Scanner;
 */
 public class Console {
 	
-
 	/**
 	 * the input as a String
 	 */
