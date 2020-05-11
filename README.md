@@ -23,6 +23,8 @@ Only small letters from a to h for the letter region are valid.
 
 And numbers from 1 to 8 for the numbers region.
 
+To promote a pawn add the wanted figure name to end of your input: for example a7-a8N or a2-b1Q
+
 To show all beaten figures: beaten
 
 To exit: exit
