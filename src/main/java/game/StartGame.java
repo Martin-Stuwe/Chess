@@ -10,6 +10,7 @@ import figures.*;
 * @author Richard Tank
 * @author Fin Niklas Tiedemann
 * group 23
+* it1
 */
 public class StartGame {
 	
@@ -131,13 +132,13 @@ public class StartGame {
 	
 	
 	/**
-	 * 
-	 * @param from1
-	 * @param from2
-	 * @param to1
-	 * @param to2
-	 * @param board
-	 * @param console
+	 * method to promote the pawn
+	 * @param from1 x axis starting position (not used)
+	 * @param from2 y axis starting position (not used)
+	 * @param to1 x axis ending position
+	 * @param to2 y axis position
+	 * @param board board that the pawn gets promoted on
+	 * @param console console input
 	 */
 	public static void pawnPromotion(int from1, int from2, int to1, int to2, Board board, Console console) {
 		if(console.input.length() ==6 && board.getField(to1, to2)!= null) {
