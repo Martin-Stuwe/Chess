@@ -17,5 +17,5 @@ public class ConsoleTest {
 		System.setIn(in);
 		TC.open();				
 		assertEquals("Test" , TC.input.toString(), "Input Erfolgreich");
-		}
+		} 
 }

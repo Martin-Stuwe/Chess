@@ -14,7 +14,7 @@ public class StartGameTest {
 		Board board2 = new Board();
 		InputStream in= new ByteArrayInputStream ("exit\r\n".getBytes());
 		System.setIn(in);
-		testGame.StartGameCommand();
+		testGame.StartGameCommand(); 
 
 	}
 	@Test
