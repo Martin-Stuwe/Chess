@@ -213,9 +213,7 @@ public class Board {
 		return CurrentTurn;
 	}
 	
-	public void checkGameEnded() {
-		
-	}
+	
 	
 	public boolean checkCheck() {
 		for(int i =0; i<8;i++) {
