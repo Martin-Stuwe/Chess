@@ -232,6 +232,7 @@ public class StartGame {
 	
 	/*
 
+
 	public static void chooseMode() { 
 		System.out.println("Choose one of the modes \n 1) Versus Human \n Enter 1 for the PlayerVsPlayer Mode");
 		Console ChosenMode = new Console();
