@@ -3,21 +3,19 @@ package schach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import java.io.InputStream;
+import java.util.Scanner;
 import java.io.ByteArrayInputStream;
 import static org.junit.jupiter.api.Assertions.*;
-
+import java.util.Scanner;
 
 public class ConsoleTest {
 
 	@Test
 	public void testConsole() {
 		Console TC = new Console();	
-		ByteArrayInputStream in= new ByteArrayInputStream ("Test".getBytes());
+		InputStream in= new ByteArrayInputStream ("Test\r\n".getBytes());
 		System.setIn(in);
-		int n = in.available();
-		byte[] bytes = new byte[n];
-		in.read(bytes, 0, n);
-		String s = new String(bytes); 
-		assertEquals("Test" , s, "Input Erfolgreich");
+		TC.open();				
+		assertEquals("Test" , TC.input.toString(), "Input Erfolgreich");
 		}
 }
