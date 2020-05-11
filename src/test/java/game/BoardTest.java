@@ -64,5 +64,55 @@ public class BoardTest {
 			assertEquals(2, board.getCurrentTurn(), "getCurrentTurn und setCurrentTurn funktionieren");
 			
 		}
-	
+		@Test
+		public void testCheckCheck() {
+			Board board = new Board();
+			board.setStart();
+			assertEquals(false, board.checkCheck(), "checkCheck 1");
+			board.setField(4, 1, new Queen(4,1,"w"));
+			board.checkCheck();
+			assertEquals(true, board.blackCheck, "checkCheck 2");
+			board.setField(4, 6, new Queen(4,6,"b"));
+			board.setNull(4, 1);
+			board.checkCheck();
+
+			assertEquals(true, board.whiteCheck, "checkCheck 2");
+			
+		}
+		
+		@Test
+		public void testCheckField() {
+			Board board = new Board();
+			board.setStart();
+			assertEquals(false, board.checkField(0,0,"b"), "checkField 1");
+			assertEquals(true, board.checkField(4,5,"b"), "checkField 2");
+			assertEquals(false, board.checkField(4,5,"w"), "checkField 3");
+			
+			
+		}
+		@Test
+		public void testCheckPossibleMoves() {
+			Board board = new Board();
+			board.setStart();
+			assertEquals(true, board.checkPossibleMoves(), "checkField 1");
+			board.setCurrentTurn(1);
+			assertEquals(true, board.checkPossibleMoves(), "checkField 2");
+			board.setCurrentTurn(0);
+			board.getField(4, 6).move(board, 4, 6, 4, 4);
+			board.getField(5, 1).move(board, 5, 1, 5, 2);
+			board.getField(5, 7).move(board, 5, 7, 4, 6);
+			board.getField(6, 1).move(board, 6, 1, 6, 3);
+			board.getField(4, 6).move(board, 4, 6, 7, 3);
+			assertEquals(false, board.checkPossibleMoves(), "checkField 3");
+			}
+		
+		@Test
+		public void testCheckDraw() {
+			Board board = new Board();
+			board.setStart();
+			assertEquals(false, board.checkDraw(), "checkField 1");
+			
+			
+			
+		}
 }
