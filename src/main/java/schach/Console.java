@@ -1,27 +1,30 @@
+package schach;
+
+import java.util.Scanner;
+
 /**
 * Class for reading Console input
 * @author Martin Stuwe 676421
 * @author Zeyi Sun
 * @author Richard Tank
 * @author Fin Niklas Tiedemann
-* Gruppe 23
+* group 23
 */
-
-
-package schach;
-import java.util.Scanner;
-
-
 public class Console {
 	
 
-	
+	/**
+	 * the input as a String
+	 */
 	public String input;
-		
-		public void open() {
-		    Scanner userInput = new Scanner(System.in);
-		      this.input = userInput.nextLine();
-		}
+	
+	/**
+	 * method to open the console
+	 */
+	public void open() {
+		Scanner userInput = new Scanner(System.in);
+		this.input = userInput.nextLine();
+	}
 		
 
 }
