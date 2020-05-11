@@ -23,7 +23,7 @@ import figures.*;
 
 public class Board {
 	
-	String Feld; //store for the actual board
+	public String Feld; //store for the actual board
 	private boolean gameLive = true;
 	
 	/**
