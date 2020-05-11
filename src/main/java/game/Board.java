@@ -1,39 +1,40 @@
+package game;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+
+import figures.*;
+
 /**
 * Class for the Chess Board
 * @author Martin Stuwe 676421
 * @author Zeyi Sun
 * @author Richard Tank
 * @author Fin Niklas Tiedemann
-* Gruppe 23
+* group 23
 */
-
-
-
-
-
-package game;
-import java.time.temporal.ValueRange;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-
-
-import figures.*;
-
 public class Board {
 	
-	public String Feld; //store for the actual board
+	/**
+	 * actual board shown in the console
+	 */
+	public String Feld;
+	
+	/**
+	 * boolean to check if game is live (not used)
+	 */
 	private boolean gameLive = true;
 	
 	/**
-	* Array for all positions as Figures objects
-	*/
+	 * Array for all positions as Figures objects
+	 */
 	Figures[][] positionen= new Figures[8][8]; //Array to store each field later change to figure or field object
 	
 	/**
-	* Array for all board symbols as String
-	*/
+	 * Array for all board symbols as String
+	 */
 	String[][] positionenS = new String[8][8];
 	
 	/**
@@ -42,16 +43,26 @@ public class Board {
 	LinkedList<String> beaten = new LinkedList<String>();
 	
 	/**
-	* List with all previous moves
-	*/
+	 * List with all previous moves
+	 */
 	public LinkedList<Zug> movedList = new LinkedList<Zug>();
 	
+	/**
+	 * check if black is in check
+	 */
 	public boolean blackCheck;
-	public boolean whiteCheck;
-	public boolean lastCheck;
 	
-	//Field object for highlighting prob needed
-	int CurrentTurn; // 0=weis  1=schwarz
+	/**
+	 * check if white is in check
+	 */
+	public boolean whiteCheck;
+	
+	
+	/**
+	 * integer to store whose turn it is currently
+	 * 0 = white, 1 = black
+	 */
+	int CurrentTurn; 
 	
 	/**
 	* Initializes all initial Figures objects
@@ -73,24 +84,45 @@ public class Board {
 	King King1b	= new King(4,0,"b");
 	King King1w = new King(4,7,"w");
 	
+	/**
+	 * get-method for getLive
+	 * @return gameLive
+	 */
 	public boolean getGameLive() {
 		return gameLive;
 	}
-	public LinkedList<String> getBeaten() {
 	
+	/**
+	 * get-method for the beaten figures list
+	 * @return beaten list of beaten figures
+	 */
+	public LinkedList<String> getBeaten() {
 		return beaten;
 	}
 	
+	/**
+	 * get-method for all moves played before
+	 * @return movedList list of moves played before
+	 */
 	public LinkedList<Zug> getPreMoves() {
-		
 		return movedList;
 	}
+	
+	/**
+	 * set-method for gameLive
+	 * @param gameLive true or false depending on game state
+	 */
 	public void setGameLive(boolean gameLive) {
-		
+		this.gameLive = gameLive;
 	}
 	
-	public void initializeBoard() { //Method to init the console based board. Also acts as updater
+	/**
+	 * method to initialize the board
+	 * also works to update the board
+	 */
+	public void initializeBoard() { 
 		
+		// gets boardVisual of figures if existing
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
@@ -103,8 +135,9 @@ public class Board {
 				}
 			}
 			
-		} //test
+		} 
 		
+		// the actual board
 		this.Feld = "8"+" "+  positionenS[0][0] +" "+  positionenS[1][0] +" "+  positionenS[2][0] +" "+  positionenS[3][0] +" "+ positionenS[4][0] +" "+  positionenS[5][0] +" "+  positionenS[6][0] +" "+  positionenS[7][0] + "\n" 
 				  + "7"+" "+  positionenS[0][1] +" "+  positionenS[1][1] +" "+  positionenS[2][1] +" "+  positionenS[3][1] +" "+ positionenS[4][1] +" "+  positionenS[5][1] +" "+  positionenS[6][1] +" "+  positionenS[7][1] +"\n" 
 				  + "6"+" "+  positionenS[0][2] +" "+  positionenS[1][2] +" "+  positionenS[2][2] +" "+  positionenS[3][2] +" "+ positionenS[4][2] +" "+  positionenS[5][2] +" "+  positionenS[6][2] +" "+  positionenS[7][2]+"\n" 
@@ -117,6 +150,9 @@ public class Board {
 		
 	} 
 	
+	/**
+	 * sets starting position of all figures
+	 */
 	public void setStart() {
 		setField(0,0, Rook1b);
 		setField(1,0, Knight1b);
@@ -142,17 +178,32 @@ public class Board {
 		}
 	}
 	
-	
+	/**
+	 * get-method for certain fields on the board
+	 * @param pos1 x axis position on the board
+	 * @param pos2 y axis position on the board
+	 * @return figure on the position on the board
+	 */
 	public Figures getField(int pos1, int pos2) {
 		return this.positionen[pos1][pos2];
 	}
 	
-	
+	/**
+	 * set-method for certain fields on the board
+	 * @param pos1 x axis position on the board
+	 * @param pos2 y axis position on the board
+	 * @param setTo figure to place on the field
+	 */
 	public void setField(int pos1, int pos2, Figures setTo) {
 		this.positionen[pos1][pos2] = setTo;
 		this.positionen[pos1][pos2].setPos(pos1, pos2);
 	}
 	
+	/**
+	 * emptying certain field on the board
+	 * @param pos1 x axis position on the board
+	 * @param pos2 y axis position on the board
+	 */
 	public void setNull(int pos1, int pos2) {
 		positionen[pos1][pos2]=null;
 	}
@@ -160,11 +211,16 @@ public class Board {
 	
 	/**
 	* Converts the user input for position to internal conform input
-	* @param board: board object, pos1from: first position character e.g.: A, pos2from: second position integer e.g.: 1 (a1)
+	* @param board: board object pos2from: second position integer e.g.: 1 (a1)
+	* @param pos1from first position character e.g.: a (a1)
+	* @param pos2from second position integer e.g.: 1 (a1)
 	* @return converted version as String e.g.: 07
 	*/
-	public String ConvertMoveInput(Board board, char pos1from, int pos2from) { //UserInput umwandeln für gewählte Figur.
+	public String ConvertMoveInput(Board board, char pos1from, int pos2from) { 
+		
+		// integer to save first position
 		int pos1new;
+		
 		switch (pos1from) {
 		case 'a':
 			pos1new =0;
@@ -195,39 +251,53 @@ public class Board {
 			return "420";
 			
 		}
-	int pos2new = pos2from;
-	if (pos2new < 1 || pos2new >8) {
-		return "420";
-	}
-	else {
-		pos2new =-1*(pos2from-8);
-	}
-	return pos1new+Integer.toString(pos2new);
+		// integer to save second position
+		int pos2new = pos2from;
+	
+		if (pos2new < 1 || pos2new >8) {
+			return "420";
+		}
+		else {
+			pos2new =-1*(pos2from-8);
+		}
+		return pos1new+Integer.toString(pos2new);
 
 	}
+	
+	/**
+	 * set-method to set current players turn
+	 * @param x 0 if white, 1 if black
+	 */
 	public void setCurrentTurn(int x) {
 		CurrentTurn = x;
 	}
 	
+	/**
+	 * get-method to get current players turn
+	 * @return CurrentTurn 0 if white, 1 if black
+	 */
 	public int getCurrentTurn() {
 		return CurrentTurn;
 	}
 	
 	
-	
+	/**
+	 * checks if a player is in check
+	 * @return true if a player is in check
+	 */
 	public boolean checkCheck() {
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
+				// check if white is in check
 				if(positionen[i][y] == King1w) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
 							if(positionen[k][j]!= null) {
-							if(positionen[k][j].validMove(this, i, y) == true && positionen[k][j].getColor() != positionen[i][y].getColor()) {
-							
-							whiteCheck = true;
-							return true;
-							}
+								if(positionen[k][j].validMove(this, i, y) == true && positionen[k][j].getColor() != positionen[i][y].getColor()) {
+									whiteCheck = true;
+									return true;
+								}
 							}
 							
 						}
@@ -235,15 +305,15 @@ public class Board {
 					} 
 				}
 				
+				// check if black is in check
 				else if (positionen[i][y] == King1b ) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
 							if(positionen[k][j]!= null) {
-							if(positionen[k][j].validMove(this, i, y) == true && positionen[k][j].getColor() != positionen[i][y].getColor()) {
-							
-							blackCheck = true;
-							return true;
-							}
+								if(positionen[k][j].validMove(this, i, y) == true && positionen[k][j].getColor() != positionen[i][y].getColor()) {
+									blackCheck = true;
+									return true;
+								}
 							}
 							
 						}
@@ -253,19 +323,21 @@ public class Board {
 			}
 			
 		} 
-		
 		blackCheck = false;
 		whiteCheck = false;
 		return false;
 	}
 	
+	/**
+	 * check if field is in check (to check if castling is possible)
+	 */
 	public boolean checkField(int x, int y, String color) {
 		for(int k =0; k<8;k++) {
 			for(int j =0; j<8;j++) {
 				if(positionen[k][j]!= null &&positionen[k][j].getType() !=2) {
-				if(positionen[k][j].validMove(this, x, y) == true && positionen[k][j].getColor() != color) {			
-				return true;
-				}
+					if(positionen[k][j].validMove(this, x, y) == true && positionen[k][j].getColor() != color) {			
+						return true;
+					}
 				}
 				
 			}
@@ -273,74 +345,76 @@ public class Board {
 		} 
 		return false;
 	}
+	
+	/**
+	 * check if current player has a possible move
+	 * @return true if current player has a possible move
+	 */
 	public boolean checkPossibleMoves() {
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
+				// check if white has possible move
 				if(positionen[i][y] == King1w) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
 							if(positionen[k][j]!= null) {
-							if(positionen[k][j].getColor() == positionen[i][y].getColor()) {
-								for(int a =0; a<8;a++) {
-									for(int b =0; b<8;b++) {
-										if(positionen[k][j]!= null) {
-										if(positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
-											System.out.println(positionen[k][j] +"has a valid move");
-											return true;
-										}
+								if(positionen[k][j].getColor() == positionen[i][y].getColor()) {
+									for(int a =0; a<8;a++) {
+										for(int b =0; b<8;b++) {
+											if(positionen[k][j]!= null) {
+												if(positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
+													return true;
+												}
+											}
 										}
 									}
 								}
-							
-								
-							
-							}
-							}
-							
-						}
-						
+							}	
+						}	
 					} 
 				}
 				
+				// check if black has possible move
 				else if (positionen[i][y] == King1b ) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
 							if(positionen[k][j]!= null) {
-							if(positionen[k][j].getColor() == positionen[i][y].getColor()) {
-								for(int a =0; a<8;a++) {
-									for(int b =0; b<8;b++) {
-										if(positionen[k][j]!= null) {
-										if(positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
-											System.out.println(positionen[k][j] +"has a valid move");
-											return true;
-										}
+								if(positionen[k][j].getColor() == positionen[i][y].getColor()) {
+									for(int a =0; a<8;a++) {
+										for(int b =0; b<8;b++) {
+											if(positionen[k][j]!= null) {
+												if(positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
+													return true;
+												}
+											}
 										}
 									}
 								}
 							}
-							
-							
-							}
-							}
-							
 						}
+							
+					}
 						
-					} 
-				}
+				} 
 			}
-			
-		 
-		
+		}
 		return false;
 	}
 	
+	/**
+	 * check if there is no checkmate possible anymore
+	 * @return true if no checkmate possible anymore
+	 */
 	public boolean checkDraw() {
+		// figures that together can not checkmate anymore
 		ArrayList<String> draw1 = new ArrayList<String>(Arrays.asList(new String[]{"K", "k", "B"}));
 		ArrayList<String> draw2 = new ArrayList<String>(Arrays.asList(new String[]{"K","k","b"}));
 		ArrayList<String> draw3 = new ArrayList<String>(Arrays.asList(new String[]{"K","k","n"}));
 		ArrayList<String> draw4 = new ArrayList<String>(Arrays.asList(new String[]{"K","k","N"}));
 		ArrayList<String> test = new ArrayList<String>();
+		
+		// adding figures to arraylist
 		for(int i = 0; i<8; i++) {
 			for(int y = 0; y<8; y++) {
 				if(positionen[i][y] != null) {
@@ -353,6 +427,8 @@ public class Board {
 		Collections.sort(draw3);
 		Collections.sort(draw4);
 		Collections.sort(test);
+		
+		// comparing board's arraylist to no checkmate positions
 		if(test.equals(draw1)) {
 			return true;
 		}
