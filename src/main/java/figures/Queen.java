@@ -21,12 +21,12 @@ public class Queen extends Figures {
 	/**
 	 * the x axis position of the queen
 	 */
-	private int pos1;
+	public int pos1;
 	
 	/**
 	 * the y axis position of the queen 
 	 */
-	private int pos2;
+	public int pos2;
 	
 	/**
 	 * the color of the queen
