@@ -172,7 +172,7 @@ public class Bishop extends Figures {
 		}
 		
 		else return false;
-	}
+	} // for loop ?
 	
 }
 

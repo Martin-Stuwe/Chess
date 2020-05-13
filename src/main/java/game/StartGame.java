@@ -67,7 +67,7 @@ public class StartGame {
 		if(console.input.length() <5) {
 			board.initializeBoard();
 			System.out.println(board.Feld);
-			System.out.println("!invalid Move");
+			System.out.println("!Invalid Move");
 			return;
 		}
 		
@@ -79,7 +79,7 @@ public class StartGame {
 		if (From =="420" || To =="420" || console.input.charAt(2)!='-' ){
 			board.initializeBoard();
 			System.out.println(board.Feld);
-			System.out.println("!invalid Move");
+			System.out.println("!Invalid Move");
 			return;
 		}
 	
@@ -127,7 +127,7 @@ public class StartGame {
 		else if (board.getField(From1,From2)==null) {
 			board.initializeBoard();
 			System.out.println(board.Feld);
-			System.out.println("!invalid Move");
+			System.out.println("!Invalid Move");
 		}
 	}
 	
