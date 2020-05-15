@@ -141,7 +141,7 @@ public class Rook extends Figures {
 				}
 			}
 			
-			if(emptySpaces ==true) {
+			if(emptySpaces) {
 				return true;
 			}
 			
@@ -170,7 +170,7 @@ public class Rook extends Figures {
 				}
 			}
 			
-			if(emptySpaces ==true) {
+			if(emptySpaces) {
 				return true;
 			}
 			
@@ -179,7 +179,9 @@ public class Rook extends Figures {
 			}
 		}
 		
-		else return false;
+		else {
+			return false;
+		}
 	}
 		
 }
