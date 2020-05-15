@@ -133,27 +133,31 @@ public class King extends Figures {
 		// short castling (check hasMoved + emptySpaces + check if check)
 		else if(this.pos1 == x-2 && this.pos2 == y &&board.getField(7, y)!= null 
 				&& board.getField(6, y) == null && board.getField(5, y)== null) {
-					if(this.hasMoved == false && board.getField(7, y).getHasMoved() == false
-					&& board.checkField(4, y, this.color)==false && board.checkField(5, y, this.color)==false && board.checkField(6, y, this.color)==false) {
+					if(!this.hasMoved && !board.getField(7, y).getHasMoved()
+					&& !board.checkField(4, y, this.color) && !board.checkField(5, y, this.color) && !board.checkField(6, y, this.color)) {
 						board.setField(5, y, board.getField(7, y));
 						board.setNull(7, y);
 						return true;
 					}
 					
-			else return false;
+			else {
+				return false;
+			}
 		}
 		
 		// long castling (check hasMoved + emptySpaces + check if check)
 		else if(this.pos1 == x+2 && this.pos2 == y && board.getField(0, y)!= null 
 				&& board.getField(3, y) == null && board.getField(2, y)== null) {
-					if(this.hasMoved == false && board.getField(0, y).getHasMoved() == false 
-					&& board.checkField(4, y, this.color) == false && board.checkField(3, y, this.color) == false && board.checkField(2, y, this.color) == false) {
+					if(!this.hasMoved && !board.getField(0, y).getHasMoved()
+					&& !board.checkField(4, y, this.color) && !board.checkField(3, y, this.color)&& !board.checkField(2, y, this.color)) {
 						board.setField(3, y, board.getField(0, y));
 						board.setNull(0, y);
 						return true;
 					}
 					
-			else return false;
+			else {
+				return false;
+			}
 		}
 		
 		// possible king standard moves (first checking x axis)
@@ -162,13 +166,14 @@ public class King extends Figures {
 					return true;
 			}
 				
-			else return false;
+			else {
+				return false;
+			}
 		}
 		
-		
-	
-		
-		else return false;
+		else {
+			return false;
+		}
 	}
 	
 }
