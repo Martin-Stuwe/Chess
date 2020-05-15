@@ -22,7 +22,7 @@ public class StartGame {
 		while(true) {
 			
 			// check if draw because of lack of figures
-			if(board.checkDraw() == true) {
+			if(board.checkDraw()) {
 				System.out.println("Draw");
 			}
 			
@@ -40,12 +40,12 @@ public class StartGame {
 			playerMove.open();
 			
 			// exiting the game
-			if (playerMove.input.equals("exit")==true){
+			if (playerMove.input.equals("exit")){
 				return;	
 			}
 			
 			// returns all beaten figures
-			if (playerMove.input.equals("beaten")==true){
+			if (playerMove.input.equals("beaten")){
 				board.initializeBoard();
 				System.out.println(board.Feld);
 				System.out.println(board.beaten);			
@@ -90,7 +90,7 @@ public class StartGame {
 		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
 		
 		if(board.getField(From1, From2)!=null) {
-			if(board.getField(From1, From2).move(board, From1, From2, To1, To2) ==true) {
+			if(board.getField(From1, From2).move(board, From1, From2, To1, To2)) {
 				Zug zug = new Zug(board.getField(To1, To2),From1,From2,To1,To2);  //creates new move and saves in list
 				board.movedList.add(zug);
 				System.out.println("!"+console.input.toString());
@@ -104,21 +104,24 @@ public class StartGame {
 			System.out.println(board.Feld);
 			
 			// prints out if someone is in check
-			if(board.whiteCheck==true) {
+			if(board.whiteCheck) {
 				System.out.println("White is in check");
 			}
-			if(board.blackCheck==true) {
+			if(board.blackCheck) {
 				System.out.println("Black is in check");
 			}
 			
 			// prints out if either checkmate or stalemate
-			if(board.checkPossibleMoves()==false) {
-				if(board.checkCheck()==true) {
+			if(!board.checkPossibleMoves()) {
+				if(board.checkCheck()) {
 					System.out.println("Checkmate");
 					return;
 				}
-				else System.out.println("Stalemate");
-				return;
+				else {
+					System.out.println("Stalemate");
+					return;
+				}
+				
 			}
 		
 		}
@@ -259,7 +262,7 @@ public class StartGame {
 	*/
 	public static void StartGameCommand() {
 		PlayerVsPlayer();
-		return;
-}
+		
+	}
 
 }
