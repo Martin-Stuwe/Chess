@@ -161,15 +161,12 @@ public class King extends Figures {
 		}
 		
 		// possible king standard moves (first checking x axis)
-		else if(this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x) {
-				if(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y) {	
+		else if(this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x&&this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y) {	
 					return true;
 			}
 				
 			
-				return false;
-			
-		}
+	
 		
 		else {
 			return false;
