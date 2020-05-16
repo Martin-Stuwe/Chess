@@ -95,133 +95,15 @@ public class Queen extends Figures {
 	 * @return false for invalid move
 	 */
 	public boolean validMove(Board board,int x, int y) {
-		boolean emptySpaces = true;
-		
-		// check if the field to move to is on the board
-		if(x < 0 || x > 7 || y < 0 || y > 7) {
+		Rook QRook = new Rook(this.pos1, this.pos2, this.color);
+		Bishop QBishop = new Bishop(this.pos1, this.pos2, this.color);
+		if(QRook.validMove(board, x, y) || QBishop.validMove(board, x, y)) {
+			return true;
+			
+		}
+
 			return false;
-		}
 		
-		// top left diagonal + check if there are other figures in the way
-		else if(this.pos1 == x-7 && this.pos2 == y-7 || this.pos1 == x-6 && this.pos2 == y-6 || this.pos1 == x-5 && this.pos2 == y-5 || this.pos1 == x-4 && this.pos2 == y-4 || this.pos1 == x-3 && this.pos2 == y-3|| this.pos1 == x-2 && this.pos2 == y-2 || this.pos1 == x-1 && this.pos2 == y-1) {
-			for(int i=this.pos1+1 , k=this.pos2+1;i<x && k<y  ; i++ ,k++) {
-				if(board.getField(i, k) != null) {
-					emptySpaces= false;
-				}
-			}
-			if(emptySpaces ==true) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
-		}
-		
-		// bottom right diagonal + check if there are other figures in the way
-		else if(this.pos1 == x+7 && this.pos2 == y+7 || this.pos1 == x+6 && this.pos2 == y+6 || this.pos1 == x+5 && this.pos2 == y+5 || this.pos1 == x+4 && this.pos2 == y+4 || this.pos1 == x+3 && this.pos2 == y+3|| this.pos1 == x+2 && this.pos2 == y+2 || this.pos1 == x+1 && this.pos2 == y+1) {
-			for(int i=this.pos1-1 , k=this.pos2-1;i>x && k>y  ; i-- ,k--) {
-				if(board.getField(i, k) != null) {
-					emptySpaces= false;
-				}
-			}
-			if(emptySpaces ==true) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
-		}
-		
-		// top right diagonal + check if there are other figures in the way
-		else if(this.pos1 == x+7 && this.pos2 == y-7 || this.pos1 == x+6 && this.pos2 == y-6 || this.pos1 == x+5 && this.pos2 == y-5 || this.pos1 == x+4 && this.pos2 == y-4 || this.pos1 == x+3 && this.pos2 == y-3|| this.pos1 == x+2 && this.pos2 == y-2 || this.pos1 == x+1 && this.pos2 == y-1) {
-			for(int i=this.pos1-1 , k=this.pos2+1;i>x && k<y  ; i-- ,k++) {
-				if(board.getField(i, k) != null) {
-					emptySpaces= false;
-				}
-			}
-			if(emptySpaces ==true) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
-		}
-		
-		// bottom right diagonal + check if there are other figures in the way
-		else if(this.pos1 == x-7 && this.pos2 == y+7 || this.pos1 == x-6 && this.pos2 == y+6 || this.pos1 == x-5 && this.pos2 == y+5 || this.pos1 == x-4 && this.pos2 == y+4 || this.pos1 == x-3 && this.pos2 == y+3|| this.pos1 == x-2 && this.pos2 == y+2 || this.pos1 == x-1 && this.pos2 == y+1) {
-			for(int i=this.pos1+1 , k=this.pos2-1;i<x && k>y  ; i++ ,k--) {
-				if(board.getField(i, k) != null) {
-					emptySpaces= false;
-				}
-			}
-			if(emptySpaces ==true) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
-		}
-		
-		// horizontal line + check if there are other figures in the way
-		else if(this.pos1 == x && this.pos2 != y) {
-			if(y > this.pos2) {
-				for(int i=this.pos2+1;i<y; i++) {
-					if(board.getField(x, i) != null) {
-						emptySpaces= false;
-					}
-				}
-				
-			}
-			else {
-				for(int i=this.pos2-1;i>y; i--) {
-					if(board.getField(x, i) != null) {
-						emptySpaces= false;
-					}
-				}
-			}
-			
-			if(emptySpaces == true) {
-				this.setHasMoved(true);
-				return true;
-				}
-			
-			else {
-				return false;
-			}
-		}
-		
-		// vertical line + check if there are other figures in the way
-		else if(this.pos1 != x && this.pos2 == y) {
-			if(x > this.pos1) {
-				for(int i=this.pos1+1;i<x; i++) {
-					if(board.getField(i, y) != null) {
-						emptySpaces= false;
-					}
-				}
-				
-			}
-			else {
-				for(int i=this.pos1-1;i>x; i--) {
-					if(board.getField(i, y) != null) {
-						emptySpaces= false;
-					}
-				}
-			}
-			
-			if(emptySpaces ==true) {
-				this.setHasMoved(true);
-				return true;
-				}
-			
-				else {
-					return false;
-				}
-		}
-		else return false;
 	}
 }
 
