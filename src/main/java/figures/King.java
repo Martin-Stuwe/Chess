@@ -121,7 +121,7 @@ public class King extends Figures {
 	public boolean validMove(Board board, int x, int y) {
 		
 		// check if the field to move to is on the board
-		if(x < 0 || x > 7 || y < 0 || y > 7) {
+		if (checkxy(x,y)) {
 			return false;
 		}
 		
@@ -131,6 +131,9 @@ public class King extends Figures {
 		}
 		
 		return check1(board,x,y);
+		}
+		public boolean checkxy(int x,int y) {
+			return x<0 || x>7|| y<0 || y>7 ;
 		}
 		
 		public boolean check1(Board board, int x, int y) {
