@@ -214,8 +214,7 @@ public class Figures {
 			}
 			
 			// check if white is in check after the move and restoring the move if so
-			else if(board.whiteCheck) {
-					if(board.getCurrentTurn()==1) {
+			else if(board.whiteCheck&&board.getCurrentTurn()==1) {
 						board.positionen[pos1to][pos2to] = RestoreTo;
 						board.positionen[pos1from][pos2from] = RestoreFrom;
 						if(board.positionen[pos1to][pos2to]!= null) {
@@ -229,8 +228,8 @@ public class Figures {
 					System.out.println(unallowed);
 					return false;
 					}
-			 }	 
-		}
+		}	 
+		
 		board.positionen[pos1to][pos2to].setHasMoved(true);
 		return true;
 	}
