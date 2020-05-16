@@ -42,9 +42,9 @@ public class PawnTest {
 	@Test
 	public void testhasMoved () {
 		Pawn PW = new Pawn(3,2,"w");
-		assertEquals(false, PW.getHasMoved(), "hasMoved ausgelesen");
+		assertEquals(false, PW.isHasMoved(), "hasMoved ausgelesen");
 		PW.setHasMoved(true);
-		assertEquals(true, PW.getHasMoved(), "hasMoved gesetzt");
+		assertEquals(true, PW.isHasMoved(), "hasMoved gesetzt");
 	}
 	@Test
 	public void testValidMoves () {

@@ -31,7 +31,7 @@ public class FiguresTest {
 	public void testHasMoved() {
 		Figures ftest = new Figures();
 		ftest.setHasMoved(true);
-		assertEquals(true, ftest.getHasMoved(), "hasMoved = true");
+		assertEquals(true, ftest.isHasMoved(), "hasMoved = true");
 	}
 	@Test
 	public void testValidMove() {
