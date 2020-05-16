@@ -170,7 +170,11 @@ public class Figures {
 			return false;
 		}
 		
-		// color change and adding beaten black figures to the beaten list
+		return move22(board, pos1from, pos2from, pos1to,pos2to, RestoreFrom, RestoreTo);
+		}
+		public boolean move22(Board board, int pos1from, int pos2from, int pos1to, int pos2to,Figures RestoreFrom, Figures RestoreTo) {
+		
+			// color change and adding beaten black figures to the beaten list
 		if(board.getCurrentTurn()==0) {
 			if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1to][pos2to].getColor() == "b") {
 					board.beaten.add(board.positionen[pos1to][pos2to].getBoardVisual());
