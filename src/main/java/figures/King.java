@@ -164,9 +164,7 @@ public class King extends Figures {
 		// long castling (check hasMoved + emptySpaces + check if check)
 		if(this.pos1 == x+2 && this.pos2 == y && board.getField(0, y)!= null 
 				&& board.getField(3, y) == null && board.getField(2, y)== null) {
-					if(!this.hasMoved && !board.getField(0, y).isHasMoved()
-					&& !board.checkField(4, y, this.color) && !board.checkField(3, y, this.color)&& 
-					!board.checkField(2, y, this.color)) {
+					if(checkStuff2(board,x,y)) {
 						board.setField(3, y, board.getField(0, y));
 						board.setNull(0, y);
 						return true;
@@ -189,5 +187,10 @@ public class King extends Figures {
 			return false;
 	
 	}
+		public boolean checkStuff2(Board board, int x, int y) {
+		return !this.hasMoved && !board.getField(0, y).isHasMoved()
+		&& !board.checkField(4, y, this.color) && !board.checkField(3, y, this.color)&& 
+		!board.checkField(2, y, this.color);
+}
 }
 
