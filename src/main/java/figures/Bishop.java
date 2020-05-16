@@ -50,7 +50,7 @@ public class Bishop extends Figures {
 		this.pos1 = pos1;
 		this.pos2 = pos2;
 		this.color = color;
-		this.type = 1;
+		type = 1;
 	}
 	
 	/**
@@ -61,11 +61,11 @@ public class Bishop extends Figures {
 	 */
 	public String getBoardVisual() {
 		if(this.color =="w") {
-			this.boardVisual = "B";
+			boardVisual = "B";
 			return boardVisual;
 		}
 		else if(this.color =="b") {
-			this.boardVisual = "b";
+			boardVisual = "b";
 			return boardVisual;
 		}
 		else {
