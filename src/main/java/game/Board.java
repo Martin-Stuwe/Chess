@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
-
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
 import figures.*;
 
 /**
@@ -41,12 +43,12 @@ public class Board {
 	/**
 	* List with all previous beaten Figures
 	*/
-	LinkedList<String> beaten = new LinkedList<String>();
+	public List<String> beaten = new ArrayList<String>();
 	
 	/**
 	 * List with all previous moves
 	 */
-	public LinkedList<Zug> movedList = new LinkedList<Zug>();
+	public List<Zug> movedList = new ArrayList<Zug>();
 	
 	/**
 	 * check if black is in check
@@ -97,7 +99,7 @@ public class Board {
 	 * get-method for the beaten figures list
 	 * @return beaten list of beaten figures
 	 */
-	public LinkedList<String> getBeaten() {
+	public List<String> getBeaten() {
 		return beaten;
 	}
 	
@@ -105,7 +107,7 @@ public class Board {
 	 * get-method for all moves played before
 	 * @return movedList list of moves played before
 	 */
-	public LinkedList<Zug> getPreMoves() {
+	public List<Zug> getPreMoves() {
 		return movedList;
 	}
 	
