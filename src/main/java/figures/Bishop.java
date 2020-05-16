@@ -115,10 +115,7 @@ public class Bishop extends Figures {
 	public boolean validMove1(Board board, int x, int y) {
 		
 		// top left diagonal + check if there are other figures in the way
-		if( checkSame(x,y,-7,-7) || checkSame(x,y,-6,-6) || 
-				checkSame(x,y,-5,-5)  || checkSame(x,y,-4,-4) || 
-				checkSame(x,y,-3,-3)|| checkSame(x,y,-2,-2) || 
-				checkSame(x,y,-1,-1)) {
+		if(checkNumb(x,y,-1,-1) ) {
 			for(int i=this.pos1+1 , k=this.pos2+1;i<x && k<y  ; i++ ,k++) {
 				notNull(board,i,k);
 			}
@@ -131,10 +128,7 @@ public class Bishop extends Figures {
 		public boolean validMove2(Board board, int x, int y) {
 		
 		// bottom right diagonal + check if there are other figures in the way
-		if( checkSame(x,y,7,7) || checkSame(x,y,6,6) || 
-			checkSame(x,y,5,5)  || checkSame(x,y,4,4) || 
-			checkSame(x,y,3,3)|| checkSame(x,y,2,2) || 
-			checkSame(x,y,1,1)) {
+		if(checkNumb(x,y,1,1) ) {
 			for(int i=this.pos1-1 , k=this.pos2-1;i>x && k>y  ; i-- ,k--) {
 				notNull(board,i,k);
 			}
@@ -146,10 +140,7 @@ public class Bishop extends Figures {
 		public boolean validMove3(Board board, int x, int y) {
 		
 		// top right diagonal + check if there are other figures in the way
-		if(	checkSame(x,y,7,-7) || 	checkSame(x,y,6,-6) || 
-				checkSame(x,y,5,-5) || checkSame(x,y,4,-4) || 
-				checkSame(x,y,3,-3)|| checkSame(x,y,2,-2) || 
-				checkSame(x,y,1,-1)) {
+			if(checkNumb(x,y,1,-1) ) {
 			for(int i=this.pos1-1 , k=this.pos2+1;i>x && k<y  ; i-- ,k++) {
 				notNull(board,i,k);
 			}
@@ -161,10 +152,7 @@ public class Bishop extends Figures {
 		
 		public boolean validMove4(Board board, int x, int y) {
 		// bottom right diagonal + check if there are other figures in the way
-		if(checkSame(x,y,-7,7) || checkSame(x,y,-6,6)|| 
-				checkSame(x,y,-5,5) || checkSame(x,y,-4,4) || 
-				checkSame(x,y,-3,3)|| checkSame(x,y,-2,2) || 
-				checkSame(x,y,-1,1)) {
+			if(checkNumb(x,y,-1,1) ) {
 			for(int i=this.pos1+1 , k=this.pos2-1;i<x && k>y  ; i++ ,k--) {
 				notNull(board,i,k);
 			}
@@ -181,7 +169,15 @@ public class Bishop extends Figures {
 	}
 	public boolean checkSame(int x, int y,int z1, int z2) {
 		return this.pos1 == x+z1&& this.pos2 == y+z2;
-		
+	}
+	public boolean checkNumb(int sign1, int sign2,int x,int y) {
+		if(checkSame(x,y,sign1*7,sign2*7) || checkSame(x,y,sign1*6,sign2*6)|| 
+				checkSame(x,y,sign1*5,sign2*5) || checkSame(x,y,sign1*4,sign2*4) || 
+				checkSame(x,y,sign1*3,sign2*3)|| checkSame(x,y,sign1*2,sign2*2) || 
+				checkSame(x,y,sign1*1,sign2*1)) {
+			return true;
+		}
+		return false;
 	}
 }
 
