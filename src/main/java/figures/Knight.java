@@ -103,26 +103,30 @@ public class Knight extends Figures {
 		}
 		
 		// top left
-		else if(this.pos1 == x-2 && this.pos2 == y-1 || this.pos1 == x-1 && this.pos2 == y-2) {
+		else if(checkFirstSec(x,y,-2,-1,-1,-2)) {
 			
 			return true;
 		}
 		
 		// top right
-		else if(this.pos1 == x+1 && this.pos2 == y-2 || this.pos1 == x+2 && this.pos2 == y-1) {
+		else if(checkFirstSec(x,y,1,-2,2,-1)) {
 			
 			return true;
 		}
 		
 		// bottom left
-		else if(this.pos1 == x-2 && this.pos2 == y+1 || this.pos1 == x-1 && this.pos2 == y+2) {
+		else if(checkFirstSec(x,y,-2,1,-1,2)) {
 			
 			return true;
 		}
 		
 		// bottom right
-		return this.pos1 == x+2 && this.pos2 == y+1 || this.pos1 == x+1 && this.pos2 == y+2; 
+		return checkFirstSec(x,y,2,1,1,2); 
 					
 		
 
-}}
+}
+	public boolean checkFirstSec(int x,int y, int num1, int num2, int num3, int num4) {
+		return this.pos1==x+num1 && this.pos2==y+num2 || this.pos1==x+num3 && this.pos2 == y+num4;
+	}
+}
