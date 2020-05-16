@@ -130,8 +130,12 @@ public class King extends Figures {
 			return false;
 		}
 		
+		return check1(board,x,y);
+		}
+		
+		public boolean check1(Board board, int x, int y) {
 		// short castling (check hasMoved + emptySpaces + check if check)
-		else if(this.pos1 == x-2 && this.pos2 == y &&board.getField(7, y)!= null 
+		if(this.pos1 == x-2 && this.pos2 == y &&board.getField(7, y)!= null 
 				&& board.getField(6, y) == null && board.getField(5, y)== null) {
 					if(!this.hasMoved && !board.getField(7, y).isHasMoved()
 					&& !board.checkField(4, y, this.color) && !board.checkField(5, y, this.color) && !board.checkField(6, y, this.color)) {
