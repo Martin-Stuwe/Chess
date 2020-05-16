@@ -255,7 +255,7 @@ public class Figures {
 				System.out.println(unallowed);
 				return false;
 				}
-		return false;
+		return true;
 	}
 	
 	/**
