@@ -128,7 +128,7 @@ public class Bishop extends Figures {
 		public boolean validMove2(Board board, int x, int y) {
 		
 		// bottom right diagonal + check if there are other figures in the way
-		if(this.pos1 == x+7 && this.pos2 == y+7 || this.pos1 == x+6 && this.pos2 == y+6 || 
+		if(this.pos2 == y+7 || this.pos2 == y+6 || 
 				this.pos1 == x+5 && this.pos2 == y+5 || this.pos1 == x+4 && this.pos2 == y+4 || 
 				this.pos1 == x+3 && this.pos2 == y+3|| this.pos1 == x+2 && this.pos2 == y+2 || 
 				this.pos1 == x+1 && this.pos2 == y+1) {
@@ -143,7 +143,7 @@ public class Bishop extends Figures {
 		public boolean validMove3(Board board, int x, int y) {
 		
 		// top right diagonal + check if there are other figures in the way
-		if(this.pos1 == x+7 && this.pos2 == y-7 || this.pos1 == x+6 && this.pos2 == y-6 || 
+		if(this.pos2 == y-7 ||  this.pos2 == y-6 || 
 				this.pos1 == x+5 && this.pos2 == y-5 || this.pos1 == x+4 && this.pos2 == y-4 || 
 				this.pos1 == x+3 && this.pos2 == y-3|| this.pos1 == x+2 && this.pos2 == y-2 || 
 				this.pos1 == x+1 && this.pos2 == y-1) {
