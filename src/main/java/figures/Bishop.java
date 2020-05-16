@@ -102,7 +102,7 @@ public class Bishop extends Figures {
 	 */
 	public boolean validMove(Board board, int x, int y) {
 		
-
+		emptySpaces = true;
 		
 		//check if the field to move to is on the board
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
