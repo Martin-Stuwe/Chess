@@ -86,10 +86,10 @@ public class Board {
 	King King1w = new King(4,7,"w");
 	
 	/**
-	 * get-method for getLive
+	 * get-method for gameLive
 	 * @return gameLive
 	 */
-	public boolean getGameLive() {
+	public boolean isGameLive() {
 		return gameLive;
 	}
 	
@@ -290,41 +290,23 @@ public class Board {
 	public boolean checkCheck() {
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
+				for(int k =0; k<8;k++) {
+					for(int j =0; j<8;j++) {
+						// check if white is in check
+						if(positionen[i][y] == King1w && positionen[k][j]!= null && positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor()) {
+							whiteCheck = true;
+							return true;	
+						} 
 				
-				// check if white is in check
-				if(positionen[i][y] == King1w) {
-					for(int k =0; k<8;k++) {
-						for(int j =0; j<8;j++) {
-							if(positionen[k][j]!= null) {
-								if(positionen[k][j].validMove(this, i, y) == true && positionen[k][j].getColor() != positionen[i][y].getColor()) {
-									whiteCheck = true;
-									return true;
-								}
-							}
-							
+						// check if black is in check
+						else if (positionen[i][y] == King1b && positionen[k][j]!= null && positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor()) {
+							blackCheck = true;
+							return true;
 						}
-						
-					} 
+					}
 				}
-				
-				// check if black is in check
-				else if (positionen[i][y] == King1b ) {
-					for(int k =0; k<8;k++) {
-						for(int j =0; j<8;j++) {
-							if(positionen[k][j]!= null) {
-								if(positionen[k][j].validMove(this, i, y) == true && positionen[k][j].getColor() != positionen[i][y].getColor()) {
-									blackCheck = true;
-									return true;
-								}
-							}
-							
-						}
-						
-					} 
-				}
-			}
-			
-		} 
+			} 
+		}
 		blackCheck = false;
 		whiteCheck = false;
 		return false;
@@ -337,7 +319,7 @@ public class Board {
 		for(int k =0; k<8;k++) {
 			for(int j =0; j<8;j++) {
 				if(positionen[k][j]!= null &&positionen[k][j].getType() !=2) {
-					if(positionen[k][j].validMove(this, x, y) == true && positionen[k][j].getColor() != color) {			
+					if(positionen[k][j].validMove(this, x, y) && positionen[k][j].getColor() != color) {			
 						return true;
 					}
 				}
