@@ -121,15 +121,8 @@ public class Knight extends Figures {
 		}
 		
 		// bottom right
-		else if(this.pos1 == x+2 && this.pos2 == y+1 || this.pos1 == x+1 && this.pos2 == y+2) {
-			
-			return true;
-		}
+		return (this.pos1 == x+2 && this.pos2 == y+1 || this.pos1 == x+1 && this.pos2 == y+2); 
+					
 		
-		else { 
-			return false;
-		
-		}
-	}
-}
 
+}}
