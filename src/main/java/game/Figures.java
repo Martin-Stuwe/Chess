@@ -140,52 +140,41 @@ public class Figures {
 		}
 		
 		// on white's turn, check if figure to be moved is white
-		if(board.getCurrentTurn()==0) {
-			if(board.positionen[pos1from][pos2from].getColor() !="w") {
-				System.out.println("!Move not allowed");
-				return false;		
-			}
-		
+		if(board.getCurrentTurn()==0 && board.positionen[pos1from][pos2from].getColor() !="w") {
+			System.out.println("!Move not allowed");
+			return false;		
 		}
 		
 		// on black's turn, check if figure to be moved is black
-		if(board.getCurrentTurn()==1) {
-			if(board.positionen[pos1from][pos2from].getColor() !="b") {
-				System.out.println("!Move not allowed");
-				return false;		
-			}
+		if(board.getCurrentTurn()==1 && board.positionen[pos1from][pos2from].getColor() !="b") {
+			System.out.println("!Move not allowed");
+			return false;		
 		}
 		
 		// check if figure is allowed to make certain move
-		if (board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false) {
+		if (!board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to)) {
 			System.out.println("!Move not allowed");
 			return false;
 		}
 		
 		// check if a same color figure is on the ending position
-		if(board.positionen[pos1to][pos2to]!= null) {
-			if(board.positionen[pos1from][pos2from].getColor() == board.positionen[pos1to][pos2to].getColor()) {
+		if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1from][pos2from].getColor() == board.positionen[pos1to][pos2to].getColor()) {
 			System.out.println("!Move not allowed");
 			return false;
-			}
 		}
 		
 		// color change and adding beaten black figures to the beaten list
 		if(board.getCurrentTurn()==0) {
-			if(board.positionen[pos1to][pos2to]!= null) {
-				if(board.positionen[pos1to][pos2to].getColor() == "b") {
+			if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1to][pos2to].getColor() == "b") {
 					board.beaten.add(board.positionen[pos1to][pos2to].getBoardVisual());
-				}
 			}
 			board.setCurrentTurn(1);
 		}
 		
 		// color change and adding beaten white figures to the beaten list
 		else if(board.getCurrentTurn()==1) {
-				if(board.positionen[pos1to][pos2to]!= null) {
-					if(board.positionen[pos1to][pos2to].getColor() == "w") {
-						board.beaten.add(board.positionen[pos1to][pos2to].getBoardVisual());
-					}
+				if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1to][pos2to].getColor() == "w") {
+					board.beaten.add(board.positionen[pos1to][pos2to].getBoardVisual());
 				}
 			board.setCurrentTurn(0);
 		}
@@ -200,10 +189,10 @@ public class Figures {
 		board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 	
 		// check if you are in check after the move		
-		if(board.checkCheck()== true) {
+		if(board.checkCheck()) {
 			
 			// check if black is in check after the move and restoring the move if so
-			if(board.blackCheck == true){
+			if(board.blackCheck){
 				if(board.getCurrentTurn()==0) {
 					 board.positionen[pos1to][pos2to] = RestoreTo;
 					 board.positionen[pos1from][pos2from] = RestoreFrom;
@@ -216,11 +205,12 @@ public class Figures {
 					 board.setCurrentTurn(1);
 				 
 				 System.out.println("!Move not allowed");
-				 return false;}
+				 return false;
+				 }
 			}
 			
 			// check if white is in check after the move and restoring the move if so
-			else if(board.whiteCheck ==true) {
+			else if(board.whiteCheck) {
 					if(board.getCurrentTurn()==1) {
 						board.positionen[pos1to][pos2to] = RestoreTo;
 						board.positionen[pos1from][pos2from] = RestoreFrom;
@@ -233,7 +223,8 @@ public class Figures {
 						board.setCurrentTurn(0);
 					
 					System.out.println("!Move not allowed");
-					return false;}
+					return false;
+					}
 			 }	 
 		}
 		board.positionen[pos1to][pos2to].setHasMoved(true);
@@ -263,30 +254,25 @@ public class Figures {
 		}
 		
 		// on white's turn, check if figure to be moved is white
-		if(board.getCurrentTurn()==0) {
-			if(board.positionen[pos1from][pos2from].getColor() !="w") {
-				return false;		
-			}
+		if(board.getCurrentTurn()==0 && board.positionen[pos1from][pos2from].getColor() !="w") {
+			return false;			
 		}
 		
 		// on black's turn, check if figure to be moved is black
-		if(board.getCurrentTurn()==1) {
-			if(board.positionen[pos1from][pos2from].getColor() !="b") {
-				return false;		
-			}
+		if(board.getCurrentTurn()==1 && board.positionen[pos1from][pos2from].getColor() !="b") {
+			return false;		
 		}
 		
 		// check if figure is allowed to make certain move
-		if (board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to) == false){
+		if (!board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to)){
 			return false;
 		}
 		
 		// check if a same color figure is on the ending position
-		if(board.positionen[pos1to][pos2to]!= null) {
-			if(board.positionen[pos1from][pos2from].getColor() == board.positionen[pos1to][pos2to].getColor()) {
-				return false;
-			}
+		if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1from][pos2from].getColor() == board.positionen[pos1to][pos2to].getColor()) {
+			return false;
 		}
+		
 		
 		// moving the figure
 		board.positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
@@ -298,7 +284,7 @@ public class Figures {
 		board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 		
 		// check if you are in check after the move	
-		if(board.checkCheck()==true) {
+		if(board.checkCheck()) {
 			board.positionen[pos1to][pos2to] = RestoreTo;
 			board.positionen[pos1from][pos2from] = RestoreFrom;
 			if(board.positionen[pos1to][pos2to]!= null) {
