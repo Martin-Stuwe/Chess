@@ -270,10 +270,10 @@ public class Figures {
 	public Boolean hasPossibleMove(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { 
 		
 		// saves starting position of figure
-		Figures RestoreFrom=board.positionen[pos1from][pos2from];
+		restoreFrom=board.positionen[pos1from][pos2from];
 		
 		// saves ending position of figure
-		Figures RestoreTo=board.positionen[pos1to][pos2to];
+		restoreTo=board.positionen[pos1to][pos2to];
 		
 		// check if starting position is empty
 		if (board.positionen[pos1from][pos2from] == null) {
@@ -309,11 +309,13 @@ public class Figures {
 		
 		// changing the figures position integers
 		board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
-		
+		return hasPossibleMove(board,pos1from, pos2from, pos1to, pos2to);
+	}
+		public Boolean hasPossibleMove2(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { 
 		// check if you are in check after the move	
 		if(board.checkCheck()) {
-			board.positionen[pos1to][pos2to] = RestoreTo;
-			board.positionen[pos1from][pos2from] = RestoreFrom;
+			board.positionen[pos1to][pos2to] = restoreTo;
+			board.positionen[pos1from][pos2from] = restoreFrom;
 			if(board.positionen[pos1to][pos2to]!= null) {
 				board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 			}
@@ -324,10 +326,10 @@ public class Figures {
 		}
 		
 		// restoring the the ending position
-		board.positionen[pos1to][pos2to] = RestoreTo;
+		board.positionen[pos1to][pos2to] = restoreTo;
 		
 		// restoring the starting position
-		board.positionen[pos1from][pos2from] = RestoreFrom;
+		board.positionen[pos1from][pos2from] = restoreFrom;
 		
 		// restoring the integers of the ending position
 		if(board.positionen[pos1to][pos2to]!= null) {
