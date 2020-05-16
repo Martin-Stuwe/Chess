@@ -37,7 +37,7 @@ public class Bishop extends Figures {
 	/**
 	 * the color of the bishop
 	 */
-	private boolean emptySpaces;
+	private boolean emptySpaces=false;
 	
 	
 	/**
