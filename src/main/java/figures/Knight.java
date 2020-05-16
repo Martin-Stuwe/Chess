@@ -121,7 +121,7 @@ public class Knight extends Figures {
 		}
 		
 		// bottom right
-		return (this.pos1 == x+2 && this.pos2 == y+1 || this.pos1 == x+1 && this.pos2 == y+2); 
+		return this.pos1 == x+2 && this.pos2 == y+1 || this.pos1 == x+1 && this.pos2 == y+2; 
 					
 		
 
