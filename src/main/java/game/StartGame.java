@@ -149,32 +149,36 @@ public class StartGame {
 	public static void pawnPromotion(int to1, int to2, Board board, Console console) {
 		if(console.input.length() ==6 && board.getField(to1, to2)!= null) {
 			
+			
+			if(board.getField(to1, to2).getType()==4 && (to2==0||to2==7) ) {
+				
+			}
 			// pawn into queen
-			if(board.getField(to1, to2).getType() == 4 && to2 == 0 && console.input.charAt(5) == 'Q' || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'Q' && to2 == 7) {
+			if(to2 == 0 && console.input.charAt(5) == 'Q' ) {
 				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, queen);
 			}
 			
 			// pawn into rook
-			if(board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'R' && to2 == 0 || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'R' && to2 == 7) {
+			if(console.input.charAt(5) == 'R' ) {
 				Rook rook = new Rook(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, rook);
 			}
 			
 			// pawn into knight
-			if(board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'N' && to2 == 0 || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'N' && to2 == 7) {
+			if(console.input.charAt(5) == 'N') {
 				Knight knight = new Knight(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, knight);
 			}
 			
 			// pawn into bishop
-			if(board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'B' && to2 == 0 || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == 'B' && to2 == 7) {
+			if(console.input.charAt(5) == 'B' ) {
 				Bishop bishop = new Bishop(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, bishop);
 			}
 			
 			// pawn into queen (empty space)
-			if(board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == ' ' && to2 == 0 || board.getField(to1, to2).getType() == 4 && console.input.charAt(5) == ' ' && to2 == 7) {
+			if( console.input.charAt(5) == ' ') {
 				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, queen);
 			}
