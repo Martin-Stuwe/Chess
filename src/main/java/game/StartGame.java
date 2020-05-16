@@ -164,6 +164,20 @@ public class StartGame {
 				Rook rook = new Rook(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, rook);
 			}
+			else {
+				pawnPromo2(to1,to2,board,console);
+			}
+			}
+			}
+		else {
+			if(board.getField(to1, to2)!= null && board.getField(to1, to2).getType() == 4 && to2 == 0 || board.getField(to1, to2)!= null && board.getField(to1, to2).getType() == 4  && to2 == 7) {
+					Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
+					board.setField(to1, to2, queen);
+			}
+		}
+		}
+			
+			public static void pawnPromo2(int to1, int to2, Board board, Console console) {
 			
 			// pawn into knight
 			if(console.input.charAt(5) == 'N') {
@@ -182,16 +196,11 @@ public class StartGame {
 				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, queen);
 			}
-		}}
+		}
 		
 		// check if pawn is on last row
-		else {
-			if(board.getField(to1, to2)!= null && board.getField(to1, to2).getType() == 4 && to2 == 0 || board.getField(to1, to2)!= null && board.getField(to1, to2).getType() == 4  && to2 == 7) {
-					Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
-					board.setField(to1, to2, queen);
-			}
-		}
-	}
+
+	
 		
 	/**
 	* Method for PlayerVsPlayer Mode
