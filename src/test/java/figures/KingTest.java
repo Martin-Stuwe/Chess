@@ -35,9 +35,9 @@ public class KingTest {
 	@Test
 	public void testhasMoved () {
 		King KW = new King(3,2,"w");
-		assertEquals(false, KW.getHasMoved(), "hasMoved ausgelesen");
+		assertEquals(false, KW.isHasMoved(), "hasMoved ausgelesen");
 		KW.setHasMoved(true);
-		assertEquals(true, KW.getHasMoved(), "hasMoved gesetzt");
+		assertEquals(true, KW.isHasMoved(), "hasMoved gesetzt");
 	}
 	@Test
 	public void testValidMoves () {
