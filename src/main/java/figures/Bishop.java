@@ -108,30 +108,27 @@ public class Bishop extends Figures {
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
-		if (this.pos1==x+6||pos1==x+7) {
-			return validMove2(board,x,y);
-		}
-		
+
 		// top left diagonal + check if there are other figures in the way
-		else if(this.pos1 == x-7 && this.pos2 == y-7 || this.pos1 == x-6 && this.pos2 == y-6 || 
-				this.pos1 == x-5 && this.pos2 == y-5 || this.pos1 == x-4 && this.pos2 == y-4 || 
-				this.pos1 == x-3 && this.pos2 == y-3|| this.pos1 == x-2 && this.pos2 == y-2 || 
-				this.pos1 == x-1 && this.pos2 == y-1) {
+		if( checkSame(x,y,-7,-7) || checkSame(x,y,-6,-6) || 
+				checkSame(x,y,-5,-5)  || checkSame(x,y,-4,-4) || 
+				checkSame(x,y,-3,-3)|| checkSame(x,y,-2,-2) || 
+				checkSame(x,y,-1,-1)) {
 			for(int i=this.pos1+1 , k=this.pos2+1;i<x && k<y  ; i++ ,k++) {
 				notNull(board,i,k);
 			}
 			
 			return emptySpaces;
 		}
-		return validMove4(board,x,y);
+		return validMove2(board,x,y);
 		}
 		public boolean validMove2(Board board, int x, int y) {
 		
 		// bottom right diagonal + check if there are other figures in the way
-		if(this.pos2 == y+7 || this.pos2 == y+6 || 
-				this.pos1 == x+5 && this.pos2 == y+5 || this.pos1 == x+4 && this.pos2 == y+4 || 
-				this.pos1 == x+3 && this.pos2 == y+3|| this.pos1 == x+2 && this.pos2 == y+2 || 
-				this.pos1 == x+1 && this.pos2 == y+1) {
+		if( checkSame(x,y,7,7) || checkSame(x,y,6,6) || 
+			checkSame(x,y,5,5)  || checkSame(x,y,4,4) || 
+			checkSame(x,y,3,3)|| checkSame(x,y,2,2) || 
+			checkSame(x,y,1,1)) {
 			for(int i=this.pos1-1 , k=this.pos2-1;i>x && k>y  ; i-- ,k--) {
 				notNull(board,i,k);
 			}
@@ -143,10 +140,10 @@ public class Bishop extends Figures {
 		public boolean validMove3(Board board, int x, int y) {
 		
 		// top right diagonal + check if there are other figures in the way
-		if(this.pos2 == y-7 ||  this.pos2 == y-6 || 
-				this.pos1 == x+5 && this.pos2 == y-5 || this.pos1 == x+4 && this.pos2 == y-4 || 
-				this.pos1 == x+3 && this.pos2 == y-3|| this.pos1 == x+2 && this.pos2 == y-2 || 
-				this.pos1 == x+1 && this.pos2 == y-1) {
+		if(this.pos1 == x+7 && this.pos2 == y-7 || this.pos1 == x+6 && this.pos2 == y-6 || 
+				checkSame(x,y,5,-5) || checkSame(x,y,4,-4) || 
+				checkSame(x,y,3,-3)|| checkSame(x,y,2,-2) || 
+				checkSame(x,y,1,-1)) {
 			for(int i=this.pos1-1 , k=this.pos2+1;i>x && k<y  ; i-- ,k++) {
 				notNull(board,i,k);
 			}
@@ -158,10 +155,10 @@ public class Bishop extends Figures {
 		
 		public boolean validMove4(Board board, int x, int y) {
 		// bottom right diagonal + check if there are other figures in the way
-		if(this.pos1 == x-7 && this.pos2 == y+7 || this.pos1 == x-6 && this.pos2 == y+6 || 
-				this.pos1 == x-5 && this.pos2 == y+5 || this.pos1 == x-4 && this.pos2 == y+4 || 
-				this.pos1 == x-3 && this.pos2 == y+3|| this.pos1 == x-2 && this.pos2 == y+2 || 
-				this.pos1 == x-1 && this.pos2 == y+1) {
+		if(checkSame(x,y,-7,7) || checkSame(x,y,-6,6)|| 
+				checkSame(x,y,-5,5) || checkSame(x,y,-4,4) || 
+				checkSame(x,y,-3,3)|| checkSame(x,y,-2,2) || 
+				checkSame(x,y,-1,1)) {
 			for(int i=this.pos1+1 , k=this.pos2-1;i<x && k>y  ; i++ ,k--) {
 				notNull(board,i,k);
 			}
@@ -175,6 +172,10 @@ public class Bishop extends Figures {
 		if(board.getField(i, k) != null) {
 			emptySpaces= false;
 		}
+	}
+	public boolean checkSame(int x, int y,int z1, int z2) {
+		return (this.pos1 == x+z1&& this.pos2 == y+z2);
+		
 	}
 }
 
