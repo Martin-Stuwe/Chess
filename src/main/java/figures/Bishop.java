@@ -109,6 +109,11 @@ public class Bishop extends Figures {
 			return false;
 		}
 
+	return validMove1(board,x,y);
+	}
+	
+	public boolean validMove1(Board board, int x, int y) {
+		
 		// top left diagonal + check if there are other figures in the way
 		if( checkSame(x,y,-7,-7) || checkSame(x,y,-6,-6) || 
 				checkSame(x,y,-5,-5)  || checkSame(x,y,-4,-4) || 
@@ -122,6 +127,7 @@ public class Bishop extends Figures {
 		}
 		return validMove2(board,x,y);
 		}
+	
 		public boolean validMove2(Board board, int x, int y) {
 		
 		// bottom right diagonal + check if there are other figures in the way
