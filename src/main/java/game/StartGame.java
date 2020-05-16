@@ -151,23 +151,9 @@ public class StartGame {
 			
 			
 			if(board.getField(to1, to2).getType()==4 && (to2==0||to2==7) ) {
-				
-			
-			// pawn into queen
-			if(to2 == 0 && console.input.charAt(5) == 'Q' ) {
-				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
-				board.setField(to1, to2, queen);
-			}
-			
-			// pawn into rook
-			if(console.input.charAt(5) == 'R' ) {
-				Rook rook = new Rook(to1, to2,board.getField(to1, to2).getColor());
-				board.setField(to1, to2, rook);
-			}
-			else {
 				pawnPromo2(to1,to2,board,console);
 			}
-			}
+			
 			}
 		else {
 			if(board.getField(to1, to2)!= null && board.getField(to1, to2).getType() == 4 && to2 == 0 || board.getField(to1, to2)!= null && board.getField(to1, to2).getType() == 4  && to2 == 7) {
@@ -178,6 +164,16 @@ public class StartGame {
 		}
 			
 			public static void pawnPromo2(int to1, int to2, Board board, Console console) {
+				if(to2 == 0 && console.input.charAt(5) == 'Q' ) {
+					Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
+					board.setField(to1, to2, queen);
+				}
+				
+				// pawn into rook
+				if(console.input.charAt(5) == 'R' ) {
+					Rook rook = new Rook(to1, to2,board.getField(to1, to2).getColor());
+					board.setField(to1, to2, rook);
+				}
 			
 			// pawn into knight
 			if(console.input.charAt(5) == 'N') {
