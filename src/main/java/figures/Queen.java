@@ -97,12 +97,9 @@ public class Queen extends Figures {
 	public boolean validMove(Board board,int x, int y) {
 		Rook QRook = new Rook(this.pos1, this.pos2, this.color);
 		Bishop QBishop = new Bishop(this.pos1, this.pos2, this.color);
-		if(QRook.validMove(board, x, y) || QBishop.validMove(board, x, y)) {
-			return true;
+		return(QRook.validMove(board, x, y) || QBishop.validMove(board, x, y)) ;
 			
-		}
-
-			return false;
+		
 		
 	}
 }
