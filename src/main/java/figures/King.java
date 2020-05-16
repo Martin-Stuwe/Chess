@@ -126,7 +126,7 @@ public class King extends Figures {
 		}
 		
 		// check if starting position equals ending position
-		else if(this.pos1 == x && this.pos2 ==y) {
+		if(this.pos1 == x && this.pos2 ==y) {
 			return false;
 		}
 		
