@@ -309,7 +309,7 @@ public class Figures {
 		
 		// changing the figures position integers
 		board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
-		hasPossibleMove(board,pos1from, pos2from, pos1to, pos2to);
+		hasPossibleMove2(board,pos1from, pos2from, pos1to, pos2to);
 	}
 		public Boolean hasPossibleMove2(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { 
 		// check if you are in check after the move	
