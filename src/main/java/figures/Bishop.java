@@ -174,7 +174,7 @@ public class Bishop extends Figures {
 		}
 	}
 	public boolean checkSame(int x, int y,int z1, int z2) {
-		return (this.pos1 == x+z1&& this.pos2 == y+z2);
+		return this.pos1 == x+z1&& this.pos2 == y+z2;
 		
 	}
 }
