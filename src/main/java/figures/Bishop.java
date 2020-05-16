@@ -170,7 +170,7 @@ public class Bishop extends Figures {
 	public boolean checkSame(int x, int y,int z1, int z2) {
 		return this.pos1 == x+z1&& this.pos2 == y+z2;
 	}
-	public boolean checkNumb(int sign1, int sign2,int x,int y) {
+	public boolean checkNumb(int x,int y, int sign1, int sign2) {
 		return(checkSame(x,y,sign1*7,sign2*7) || checkSame(x,y,sign1*6,sign2*6)|| 
 				checkSame(x,y,sign1*5,sign2*5) || checkSame(x,y,sign1*4,sign2*4) || 
 				checkSame(x,y,sign1*3,sign2*3)|| checkSame(x,y,sign1*2,sign2*2) || 
