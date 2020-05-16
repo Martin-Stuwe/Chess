@@ -231,7 +231,7 @@ public class Figures {
 				 }
 			}
 			
-			else check4(board, pos1to, pos2to, pos1from, pos2from);
+			else return check4(board, pos1to, pos2to, pos1from, pos2from);
 		}	 
 		
 		board.positionen[pos1to][pos2to].setHasMoved(true);
