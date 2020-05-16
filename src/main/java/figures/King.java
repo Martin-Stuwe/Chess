@@ -80,7 +80,7 @@ public class King extends Figures {
 	 * @return true if has moved
 	 * @return false if king hasn't moved yet
 	 */
-	public boolean getHasMoved() {
+	public boolean isHasMoved() {
 		return hasMoved;
 	}
 	
