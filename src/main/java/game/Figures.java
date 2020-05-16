@@ -35,6 +35,10 @@ public class Figures {
 	* The figure's color
 	*/
 	String color;
+	/**
+	* The warning for unallowed Move
+	*/
+	String unallowed = "!Move not allowed";
 	
 	/**
 	* check if the figure has moved yet
@@ -135,31 +139,31 @@ public class Figures {
 		
 		// check if starting position is empty
 		if (board.positionen[pos1from][pos2from] == null) {
-			System.out.println("!Move not allowed");
+			System.out.println(unallowed);
 			return false;	
 		}
 		
 		// on white's turn, check if figure to be moved is white
 		if(board.getCurrentTurn()==0 && board.positionen[pos1from][pos2from].getColor() !="w") {
-			System.out.println("!Move not allowed");
+			System.out.println(unallowed);
 			return false;		
 		}
 		
 		// on black's turn, check if figure to be moved is black
 		if(board.getCurrentTurn()==1 && board.positionen[pos1from][pos2from].getColor() !="b") {
-			System.out.println("!Move not allowed");
+			System.out.println(unallowed);
 			return false;		
 		}
 		
 		// check if figure is allowed to make certain move
 		if (!board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to)) {
-			System.out.println("!Move not allowed");
+			System.out.println(unallowed);
 			return false;
 		}
 		
 		// check if a same color figure is on the ending position
 		if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1from][pos2from].getColor() == board.positionen[pos1to][pos2to].getColor()) {
-			System.out.println("!Move not allowed");
+			System.out.println(unallowed);
 			return false;
 		}
 		
@@ -204,7 +208,7 @@ public class Figures {
 					 }
 					 board.setCurrentTurn(1);
 				 
-				 System.out.println("!Move not allowed");
+				 System.out.println(unallowed);
 				 return false;
 				 }
 			}
@@ -222,7 +226,7 @@ public class Figures {
 						}
 						board.setCurrentTurn(0);
 					
-					System.out.println("!Move not allowed");
+					System.out.println(unallowed);
 					return false;
 					}
 			 }	 
