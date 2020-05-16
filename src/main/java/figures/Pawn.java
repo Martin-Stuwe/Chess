@@ -120,9 +120,12 @@ public class Pawn extends Figures {
 				}
 				return false;
 		}
+		return validmove2(board,x,y);
+		}
+		public  boolean validmove2(Board board, int x, int y){
 			
 		// en passant for black
-		else if(this.color=="b"&&pos2==4&&y==5&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&    
+		if(this.color=="b"&&pos2==4&&y==5&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&    
 				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==-2) {
 					if( (board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1) || 
 						( board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1 )) {
@@ -131,10 +134,13 @@ public class Pawn extends Figures {
 					}
 					return false;			
 		}
+		return validmove3(board,x,y);
+		}
+		public boolean validmove3(Board board, int x, int y) {
 			
 		
 		// normal move white
-		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+1) {
+		if(this.color =="w" && this.pos1 == x && this.pos2 == y+1) {
 			
 			return board.getField(x, this.pos2-1) == null;
 			
@@ -158,9 +164,12 @@ public class Pawn extends Figures {
 				return true;
 
 		}
+		return validmove4(board,x,y);
+		}
 		
+		public boolean validmove4(Board board, int x, int y){
 		// double move black
-		else if(this.color =="b" && this.pos1 == x && this.pos2 == y-2 && this.pos2 == 1) {
+		if(this.color =="b" && this.pos1 == x && this.pos2 == y-2 && this.pos2 == 1) {
 			if(board.getField(x, this.pos2+1) != null) {
 				return false;
 			}
@@ -197,4 +206,5 @@ public class Pawn extends Figures {
 		}
 	}
 }
+
 
