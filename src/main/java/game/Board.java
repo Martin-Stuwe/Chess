@@ -3,11 +3,13 @@ package game;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.HashSet;
-import figures.*;
+import figures.Bishop;
+import figures.King;
+import figures.Knight;
+import figures.Pawn;
+import figures.Queen;
+import figures.Rook;
 
 /**
 * Class for the Chess Board
