@@ -132,6 +132,10 @@ public class Figures {
 	 */
 	public Boolean move(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { 
 		
+		// saves starting position of figure
+		Figures RestoreFrom=board.positionen[pos1from][pos2from];
+		// saves ending position of figure
+		Figures RestoreTo=board.positionen[pos1to][pos2to];
 		
 		// check if starting position is empty
 		if (board.positionen[pos1from][pos2from] == null) {
@@ -152,9 +156,9 @@ public class Figures {
 		}
 		
 		// check if figure is allowed to make certain move
-		return move2(board, pos1from, pos2from, pos1to,pos2to);
+		return move2(board, pos1from, pos2from, pos1to,pos2to, RestoreFrom, RestoreTo);
 	}
-		public boolean move2(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
+		public boolean move2(Board board, int pos1from, int pos2from, int pos1to, int pos2to,Figures RestoreFrom, Figures RestoreTo) {
 		if (!board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to)) {
 			System.out.println(unallowed);
 			return false;
@@ -166,9 +170,9 @@ public class Figures {
 			return false;
 		}
 		
-		return move22(board, pos1from, pos2from, pos1to,pos2to);
+		return move22(board, pos1from, pos2from, pos1to,pos2to, RestoreFrom, RestoreTo);
 		}
-		public boolean move22(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
+		public boolean move22(Board board, int pos1from, int pos2from, int pos1to, int pos2to,Figures RestoreFrom, Figures RestoreTo) {
 		
 			// color change and adding beaten black figures to the beaten list
 		if(board.getCurrentTurn()==0) {
@@ -185,9 +189,9 @@ public class Figures {
 				}
 			board.setCurrentTurn(0);
 		}
-		return move3(board,pos1from, pos2from,pos1to,pos2to);
+		return move3(board,pos1from, pos2from,pos1to,pos2to, RestoreFrom, RestoreTo);
 		}
-		public boolean move3(Board board,int pos1from, int pos2from, int pos1to, int pos2to) {
+		public boolean move3(Board board,int pos1from, int pos2from, int pos1to, int pos2to, Figures RestoreFrom, Figures RestoreTo) {
 		
 		// moving the figure
 		board.positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
@@ -198,13 +202,10 @@ public class Figures {
 		// changing the figures position integers
 		board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 		
-		return move4(board,pos1from, pos2from, pos1to, pos2to);
+		return move4(board,pos1from, pos2from, pos1to, pos2to, RestoreFrom, RestoreTo);
 		}
-		public boolean move4(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
-			// saves starting position of figure
-			Figures RestoreFrom=board.positionen[pos1from][pos2from];
-			// saves ending position of figure
-			Figures RestoreTo=board.positionen[pos1to][pos2to];
+		public boolean move4(Board board, int pos1from, int pos2from, int pos1to, int pos2to, Figures RestoreFrom, Figures RestoreTo) {
+	
 		// check if you are in check after the move		
 		if(board.checkCheck()) {
 			
@@ -225,37 +226,27 @@ public class Figures {
 				 return false;
 				 }
 			}
-			else move5(board,pos1to,pos2to,pos1from,pos2from);
-		
+			
+			// check if white is in check after the move and restoring the move if so
+			else if(board.whiteCheck&&board.getCurrentTurn()==1) {
+						board.positionen[pos1to][pos2to] = RestoreTo;
+						board.positionen[pos1from][pos2from] = RestoreFrom;
+						if(board.positionen[pos1to][pos2to]!= null) {
+							board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
+						}
+						if(board.positionen[pos1from][pos2from]!= null) {
+							board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
+						}
+						board.setCurrentTurn(0);
+					
+					System.out.println(unallowed);
+					return false;
+					}
 		}	 
 		
 		board.positionen[pos1to][pos2to].setHasMoved(true);
 		return true;
 	}
-		
-		
-		public boolean move5(Board board, int pos1to, int pos2to, int pos1from, int pos2from){
-			// saves starting position of figure
-			Figures RestoreFrom=board.positionen[pos1from][pos2from];
-			// saves ending position of figure
-			Figures RestoreTo=board.positionen[pos1to][pos2to];
-			
-			if(board.whiteCheck&&board.getCurrentTurn()==1) {
-				board.positionen[pos1to][pos2to] = RestoreTo;
-				board.positionen[pos1from][pos2from] = RestoreFrom;
-				if(board.positionen[pos1to][pos2to]!= null) {
-					board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
-				}
-				if(board.positionen[pos1from][pos2from]!= null) {
-					board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
-				}
-				board.setCurrentTurn(0);
-			
-			System.out.println(unallowed);
-			return false;
-			}
-			return false;
-		}
 	
 	/**
 	 * method to check if figures on the board have possible moves
