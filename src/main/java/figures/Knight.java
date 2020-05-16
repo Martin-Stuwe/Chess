@@ -126,7 +126,10 @@ public class Knight extends Figures {
 			return true;
 		}
 		
-		else return false;
+		else { 
+			return false;
+		
+		}
 	}
 }
 

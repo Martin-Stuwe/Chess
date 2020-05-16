@@ -146,10 +146,9 @@ public class Pawn extends Figures {
 			if(board.getField(x, this.pos2-1) != null) {
 				return false;
 			}
-			
-			else {
+				
 				return true;
-			}
+			
 		}
 		
 		// normal move black
@@ -158,9 +157,7 @@ public class Pawn extends Figures {
 				return false;
 			}
 			
-			else {
 				return true;
-			}
 		}
 		
 		// double move white
@@ -171,10 +168,9 @@ public class Pawn extends Figures {
 			else if(board.getField(x, this.pos2-2) != null) {
 				return false;
 			}
-			
-			else {
+						
 				return true;
-			}
+
 		}
 		
 		// double move black
@@ -186,9 +182,8 @@ public class Pawn extends Figures {
 				return false;
 			}
 			
-			else {
 				return true;
-			}
+			
 		}
 		
 		// take move black
@@ -197,11 +192,12 @@ public class Pawn extends Figures {
 				if(board.getField(x, y).getColor()!="w") {
 					return false;
 			}
-			else {
 					return true;
-				}
+				
 			}
-			else return false;
+			else {
+				return false;
+			}
 		}
 		
 		// take move white
@@ -210,13 +206,16 @@ public class Pawn extends Figures {
 				if(board.getField(x, y).getColor()!="b") {
 					return false;
 			}
-			else {
 					return true;
-				}
+				
 			}
-			else return false;
+			else {
+				return false;
+			}
 		}
-		else return false;
+		else {
+			return false;
+		}
 	}
 }
 

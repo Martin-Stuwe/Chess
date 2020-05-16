@@ -141,14 +141,7 @@ public class Rook extends Figures {
 				}
 			}
 			
-			if(emptySpaces) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
-			
+			return emptySpaces;			
 		}
 		
 		// vertical line + check if there are other figures in the way
@@ -170,13 +163,7 @@ public class Rook extends Figures {
 				}
 			}
 			
-			if(emptySpaces) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
+			return emptySpaces;		
 		}
 		
 		else {

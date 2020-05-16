@@ -166,9 +166,9 @@ public class King extends Figures {
 					return true;
 			}
 				
-			else {
+			
 				return false;
-			}
+			
 		}
 		
 		else {
