@@ -152,7 +152,7 @@ public class StartGame {
 			
 			if(board.getField(to1, to2).getType()==4 && (to2==0||to2==7) ) {
 				
-			}
+			
 			// pawn into queen
 			if(to2 == 0 && console.input.charAt(5) == 'Q' ) {
 				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
@@ -182,7 +182,7 @@ public class StartGame {
 				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, queen);
 			}
-		}
+		}}
 		
 		// check if pawn is on last row
 		else {
