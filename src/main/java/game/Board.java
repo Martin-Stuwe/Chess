@@ -322,10 +322,9 @@ public class Board {
 	public boolean checkField(int x, int y, String color) {
 		for(int k =0; k<8;k++) {
 			for(int j =0; j<8;j++) {
-				if(positionen[k][j]!= null &&positionen[k][j].getType() !=2) {
-					if(positionen[k][j].validMove(this, x, y) && positionen[k][j].getColor() != color) {			
+				if(positionen[k][j]!= null &&positionen[k][j].getType() !=2 && positionen[k][j].validMove(this, x, y) && positionen[k][j].getColor() != color) {			
 						return true;
-					}
+					
 				}
 				
 			}
@@ -346,15 +345,13 @@ public class Board {
 				if(positionen[i][y] == King1w) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
-							if(positionen[k][j]!= null) {
-								if(positionen[k][j].getColor() == positionen[i][y].getColor()) {
+							if(positionen[k][j]!= null&&positionen[k][j].getColor() == positionen[i][y].getColor()) {
 									for(int a =0; a<8;a++) {
 										for(int b =0; b<8;b++) {
-											if(positionen[k][j]!= null) {
-												if(positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
+											if(positionen[k][j]!= null&&positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
 													return true;
-												}
-											}
+												
+											
 										}
 									}
 								}
@@ -367,15 +364,13 @@ public class Board {
 				else if (positionen[i][y] == King1b ) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
-							if(positionen[k][j]!= null) {
-								if(positionen[k][j].getColor() == positionen[i][y].getColor()) {
+							if(positionen[k][j]!= null&&positionen[k][j].getColor() == positionen[i][y].getColor()) {
 									for(int a =0; a<8;a++) {
 										for(int b =0; b<8;b++) {
-											if(positionen[k][j]!= null) {
-												if(positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
+											if(positionen[k][j]!= null&&positionen[k][j].hasPossibleMove(this, k, j, a, b)==true) {
 													return true;
-												}
-											}
+												
+											
 										}
 									}
 								}
