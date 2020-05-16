@@ -94,7 +94,7 @@ public class Figures {
 	 * get-method of hasMoved
 	 * @return hasMoved current state depending on if the figure has been moved
 	 */
-	public boolean getHasMoved() {
+	public boolean isHasMoved() {
 		return hasMoved;
 	}
 	
