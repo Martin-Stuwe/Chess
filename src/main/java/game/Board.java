@@ -342,7 +342,7 @@ public class Board {
 			for(int y =0; y<8;y++) {
 				
 				// check if white has possible move
-				if(positionen[i][y] == King1w) {
+				if(positionen[i][y] == King1w|| positionen[i][y] == King1b ) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
 							if(positionen[k][j]!= null&&positionen[k][j].getColor() == positionen[i][y].getColor()) {
@@ -361,25 +361,7 @@ public class Board {
 				}
 				
 				// check if black has possible move
-				else if (positionen[i][y] == King1b ) {
-					for(int k =0; k<8;k++) {
-						for(int j =0; j<8;j++) {
-							if(positionen[k][j]!= null&&positionen[k][j].getColor() == positionen[i][y].getColor()) {
-									for(int a =0; a<8;a++) {
-										for(int b =0; b<8;b++) {
-											if(positionen[k][j]!= null&&positionen[k][j].hasPossibleMove(this, k, j, a, b)) {
-													return true;
-												
-											
-										}
-									}
-								}
-							}
-						}
-							
-					}
-						
-				} 
+			
 			}
 		}
 		return false;
