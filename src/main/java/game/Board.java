@@ -425,6 +425,7 @@ public class Board {
 		else if(test.equals(draw4)) {
 			return true;
 		}
+		
 		else return false;
 	}
 }
