@@ -311,9 +311,7 @@ public class Figures {
 		if(board.positionen[pos1from][pos2from]!= null) {
 			board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
 		}
-		
 	return true;
- 
 	}
 	
 }
