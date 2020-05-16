@@ -149,6 +149,7 @@ public class Board {
 				  + "1"+" "+  positionenS[0][7] +" "+  positionenS[1][7] +" "+  positionenS[2][7] +" "+  positionenS[3][7] +" "+ positionenS[4][7] +" "+  positionenS[5][7] +" "+  positionenS[6][7] +" "+  positionenS[7][7] +"\n"
 				  + " "+" a"+" b"+" c"+ " d"+" e"+" f"+" g"+" h";
 		
+		System.out.println(Feld);
 	} 
 	
 	/**

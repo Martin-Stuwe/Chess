@@ -1,8 +1,10 @@
 package game;
 
 import schach.Console;
-import figures.*;
-
+import figures.Queen;
+import figures.Rook;
+import figures.Knight;
+import figures.Bishop;
 /**
 * Class for the states of the game
 * @author Martin Stuwe 676421
@@ -66,7 +68,7 @@ public class StartGame {
 		// check if user input is valid (length)
 		if(console.input.length() <5) {
 			board.initializeBoard();
-			System.out.println(board.Feld);
+			//System.out.println(board.Feld);
 			System.out.println("!Invalid Move");
 			return;
 		}
@@ -78,7 +80,7 @@ public class StartGame {
 		// check if user input is valid (- as third character)
 		if (From =="420" || To =="420" || console.input.charAt(2)!='-' ){
 			board.initializeBoard();
-			System.out.println(board.Feld);
+			//System.out.println(board.Feld);
 			System.out.println("!Invalid Move");
 			return;
 		}
@@ -101,7 +103,7 @@ public class StartGame {
 			pawnPromotion(To1,To2,board,console);
 			board.initializeBoard();
 			board.checkCheck();
-			System.out.println(board.Feld);
+			//System.out.println(board.Feld);
 			
 			// prints out if someone is in check
 			if(board.whiteCheck) {
@@ -129,7 +131,7 @@ public class StartGame {
 		// check if input empty
 		else if (board.getField(From1,From2)==null) {
 			board.initializeBoard();
-			System.out.println(board.Feld);
+			//System.out.println(board.Feld);
 			System.out.println("!Move not allowed");
 		}
 	}
