@@ -109,7 +109,7 @@ public class Bishop extends Figures {
 			return false;
 		}
 		if (this.pos1==x+6||pos1==x+7) {
-			validMove2(board,x,y);
+			return validMove2(board,x,y);
 		}
 		
 		// top left diagonal + check if there are other figures in the way
