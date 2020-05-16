@@ -143,21 +143,14 @@ public class Pawn extends Figures {
 		// normal move white
 		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+1) {
 			
-			if(board.getField(x, this.pos2-1) != null) {
-				return false;
-			}
-				
-				return true;
+			return board.getField(x, this.pos2-1) == null;
+			
 			
 		}
 		
 		// normal move black
 		else if(this.color =="b" && this.pos1 == x && this.pos2 == y-1) {
-			if(board.getField(x, this.pos2+1) != null) {
-				return false;
-			}
-			
-				return true;
+			return board.getField(x, this.pos2+1) == null;
 		}
 		
 		// double move white
@@ -189,11 +182,7 @@ public class Pawn extends Figures {
 		// take move black
 		else if(this.color =="b" && this.pos1 == x+1 && this.pos2 == y-1 || this.color =="b" && this.pos1 == x-1 && this.pos2 == y-1) {
 			if(board.getField(x, y)!= null){
-				if(board.getField(x, y).getColor()!="w") {
-					return false;
-			}
-					return true;
-				
+				return board.getField(x, y).getColor()=="w";
 			}
 			else {
 				return false;
@@ -203,10 +192,7 @@ public class Pawn extends Figures {
 		// take move white
 		else if(this.color =="w" && this.pos1 == x+1 && this.pos2 == y+1 || this.color =="w" && this.pos1 == x-1 && this.pos2 == y+1) {
 			if(board.getField(x, y)!= null){
-				if(board.getField(x, y).getColor()!="b") {
-					return false;
-			}
-					return true;
+				return board.getField(x, y).getColor()=="b";
 				
 			}
 			else {
