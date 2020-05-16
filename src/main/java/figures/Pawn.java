@@ -110,36 +110,24 @@ public class Pawn extends Figures {
 		}
 		
 		// en passant for white
-		else if(this.color=="w"&&pos2==3&&y==2&&x==pos1+1&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&  
-				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&    
-				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==2) {
-				board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
-				return true; 
-				}
-			
-		// en passant for white
-		else if(this.color=="w"&&pos2==3&&y==2&&x==pos1-1&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&  
-				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&    
-				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==2) {
-				board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
-				return true; 
-				}
-		// en passant for black
-		else if(this.color=="b"&&pos2==4&&y==5&&x==pos1-1&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&  
-				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&    
-				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==-2) {
+		else if(this.color=="w"&&    
+				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&pos2==3&&y==2&&((x==pos1+1 &&  
+				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) )|| (x==pos1-1 &&  
+				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) )  ) 
+				) {
 				board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
 				return true; 
 				}
 			
 		// en passant for black
-		else if(this.color=="b"&&pos2==4&&y==5&&x==pos1+1&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&  
-				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&    
-				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==-2) {
+		else if(this.color=="b"&&    
+				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==-2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&pos2==4&&y==5&&( ( x==pos1-1 &&  
+				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2))|| (x==pos1+1 &&  
+				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) ) )) {
 				board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
 				return true; 
 				}
-		
+			
 		// normal move white
 		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+1) {
 			
