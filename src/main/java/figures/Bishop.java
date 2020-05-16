@@ -140,7 +140,7 @@ public class Bishop extends Figures {
 		public boolean validMove3(Board board, int x, int y) {
 		
 		// top right diagonal + check if there are other figures in the way
-		if(this.pos1 == x+7 && this.pos2 == y-7 || this.pos1 == x+6 && this.pos2 == y-6 || 
+		if(	checkSame(x,y,7,-7) || 	checkSame(x,y,6,-6) || 
 				checkSame(x,y,5,-5) || checkSame(x,y,4,-4) || 
 				checkSame(x,y,3,-3)|| checkSame(x,y,2,-2) || 
 				checkSame(x,y,1,-1)) {
