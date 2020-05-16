@@ -98,7 +98,7 @@ public class StartGame {
 			// System.out.println(board.movedList);
 			
 			// promotes pawns, checks if check and prints out board
-			pawnPromotion(From1,From2,To1,To2,board,console);
+			pawnPromotion(To1,To2,board,console);
 			board.initializeBoard();
 			board.checkCheck();
 			System.out.println(board.Feld);
@@ -144,7 +144,7 @@ public class StartGame {
 	 * @param board board that the pawn gets promoted on
 	 * @param console console input
 	 */
-	public static void pawnPromotion(int from1, int from2, int to1, int to2, Board board, Console console) {
+	public static void pawnPromotion(int to1, int to2, Board board, Console console) {
 		if(console.input.length() ==6 && board.getField(to1, to2)!= null) {
 			
 			// pawn into queen
@@ -180,11 +180,9 @@ public class StartGame {
 		
 		// check if pawn is on last row
 		else {
-			if(board.getField(to1, to2)!= null) {
-				if(board.getField(to1, to2).getType() == 4 && to2 == 0 || board.getField(to1, to2).getType() == 4  && to2 == 7) {
+			if(board.getField(to1, to2)!= null && board.getField(to1, to2).getType() == 4 && to2 == 0 || board.getField(to1, to2)!= null && board.getField(to1, to2).getType() == 4  && to2 == 7) {
 					Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
 					board.setField(to1, to2, queen);
-				}
 			}
 		}
 	}

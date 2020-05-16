@@ -100,36 +100,36 @@ public class StartGameTest {
 		System.setIn(in);
 		TC.open();
 		board2.setField(2, 0, new Pawn(2,0,"w"));
-		testGame.pawnPromotion(2,6, 2, 0, board2, TC);
+		testGame.pawnPromotion(2, 0, board2, TC);
 		
 		InputStream in2= new ByteArrayInputStream ("e2-e8R\r\n".getBytes());
 		System.setIn(in2);
 		TC.open();
 		board2.setField(2, 0, new Pawn(2,0,"w"));
-		testGame.pawnPromotion(2,6, 2, 0, board2, TC);
+		testGame.pawnPromotion(2, 0, board2, TC);
 		
 		InputStream in3= new ByteArrayInputStream ("e2-e8N\r\n".getBytes());
 		System.setIn(in3);
 		TC.open();
 		board2.setField(2, 0, new Pawn(2,0,"w"));
-		testGame.pawnPromotion(2,6, 2, 0, board2, TC);
+		testGame.pawnPromotion(2, 0, board2, TC);
 		
 		InputStream in4= new ByteArrayInputStream ("e2-e8B\r\n".getBytes());
 		System.setIn(in4);
 		TC.open();
 		board2.setField(2, 0, new Pawn(2,0,"w"));
-		testGame.pawnPromotion(2,6, 2, 0, board2, TC);
+		testGame.pawnPromotion(2, 0, board2, TC);
 		
 		InputStream in5= new ByteArrayInputStream ("e2-e8\r\n".getBytes());
 		System.setIn(in5);
 		TC.open();
 		board2.setField(2, 0, new Pawn(2,0,"w"));
-		testGame.pawnPromotion(2,6, 2, 0, board2, TC);
+		testGame.pawnPromotion(2, 0, board2, TC);
 		
 		InputStream in6= new ByteArrayInputStream ("e2-e8 \r\n".getBytes());
 		System.setIn(in6);
 		TC.open();
 		board2.setField(2, 0, new Pawn(2,0,"w"));
-		testGame.pawnPromotion(2,6, 2, 0, board2, TC);
+		testGame.pawnPromotion(2, 0, board2, TC);
 	}
 }
