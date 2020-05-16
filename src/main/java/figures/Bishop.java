@@ -112,13 +112,7 @@ public class Bishop extends Figures {
 				}
 			}
 			
-			if(emptySpaces == true) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
+			return emptySpaces;
 		}
 		
 		// bottom right diagonal + check if there are other figures in the way
@@ -129,13 +123,7 @@ public class Bishop extends Figures {
 				}
 			}
 			
-			if(emptySpaces == true) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
+			return emptySpaces;
 		}
 		
 		// top right diagonal + check if there are other figures in the way
@@ -146,13 +134,7 @@ public class Bishop extends Figures {
 				}
 			}
 			
-			if(emptySpaces ==true) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
+			return emptySpaces;
 		}
 		
 		// bottom right diagonal + check if there are other figures in the way
@@ -162,16 +144,11 @@ public class Bishop extends Figures {
 					emptySpaces= false;
 				}
 			}
-			if(emptySpaces ==true) {
-				return true;
-			}
-			
-			else {
-				return false;
-			}
+			return emptySpaces;
 		}
 		
-		else return false;
+		else { return false;
+		}
 	} // for loop ?
 	
 }
