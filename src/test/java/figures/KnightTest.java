@@ -35,9 +35,9 @@ public class KnightTest {
 	@Test
 	public void testhasMoved () {
 		Knight NW = new Knight(3,2,"w");
-		assertEquals(false, NW.getHasMoved(), "hasMoved ausgelesen");
+		assertEquals(false, NW.isHasMoved(), "hasMoved ausgelesen");
 		NW.setHasMoved(true);
-		assertEquals(true, NW.getHasMoved(), "hasMoved gesetzt");
+		assertEquals(true, NW.isHasMoved(), "hasMoved gesetzt");
 	}
 	@Test
 	public void testValidMoves () {

@@ -35,9 +35,9 @@ public class RookTest {
 	@Test
 	public void testhasMoved () {
 		Rook RW = new Rook(3,2,"w");
-		assertEquals(false, RW.getHasMoved(), "hasMoved ausgelesen");
+		assertEquals(false, RW.isHasMoved(), "hasMoved ausgelesen");
 		RW.setHasMoved(true);
-		assertEquals(true, RW.getHasMoved(), "hasMoved gesetzt");
+		assertEquals(true, RW.isHasMoved(), "hasMoved gesetzt");
 	}
 	@Test
 	public void testValidMoves () {
