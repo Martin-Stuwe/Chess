@@ -91,6 +91,17 @@ public class StartGame {
 		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 
 		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
 		
+		convertAndMoveCheck(board, From1, From2, To1, To2, console);
+		
+		// check if input empty
+		if (board.getField(From1,From2)==null) {
+			board.initializeBoard();
+			//System.out.println(board.Feld);
+			System.out.println("!Move not allowed");
+		}
+	}
+	
+	public static void convertAndMoveCheck(Board board, int From1, int From2, int To1, int To2, Console console){
 		if(board.getField(From1, From2)!=null) {
 			if(board.getField(From1, From2).move(board, From1, From2, To1, To2)) {
 				Zug zug = new Zug(board.getField(To1, To2),From1,From2,To1,To2);  //creates new move and saves in list
@@ -126,13 +137,6 @@ public class StartGame {
 				
 			}
 		
-		}
-		
-		// check if input empty
-		else if (board.getField(From1,From2)==null) {
-			board.initializeBoard();
-			//System.out.println(board.Feld);
-			System.out.println("!Move not allowed");
 		}
 	}
 	
