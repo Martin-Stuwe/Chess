@@ -351,7 +351,9 @@ public class Board {
 				
 				// check if white has possible move
 				if(positionen[i][y] == King1w|| positionen[i][y] == King1b ) {
-					checkPossibleMovesCheck(i, y);
+					if (checkPossibleMovesCheck(i, y)) {
+						return true;
+					}
 				}
 				
 				// check if black has possible move
