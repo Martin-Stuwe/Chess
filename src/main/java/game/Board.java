@@ -301,13 +301,13 @@ public class Board {
 				for(int k =0; k<8;k++) {
 					for(int j =0; j<8;j++) {
 						// check if white is in check
-						if(positionen[i][y] == King1w && positionen[k][j]!= null && positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor()) {
+						if(positionen[i][y] == King1w && checkCheckCheck(i,j, k, y) ) {
 							whiteCheck = true;
 							return true;	
 						} 
 				
 						// check if black is in check
-						else if (positionen[i][y] == King1b && positionen[k][j]!= null && positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor()) {
+						else if (positionen[i][y] == King1b && checkCheckCheck(i,j, k, y) ) {
 							blackCheck = true;
 							return true;
 						}
@@ -318,6 +318,10 @@ public class Board {
 		blackCheck = false;
 		whiteCheck = false;
 		return false;
+	}
+	
+	public boolean checkCheckCheck(int i, int j, int k, int y) {
+		return positionen[k][j]!= null &&positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor();
 	}
 	
 	/**
