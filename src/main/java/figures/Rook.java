@@ -39,6 +39,8 @@ public class Rook extends Figures {
 	 */
 	private boolean hasMoved;
 	
+	private boolean emptySpaces;
+	
 	/**
 	 * the constructor creates a new rook object and needs a x and a y axis position plus a color
 	 * @param pos1 x axis position of the rook
@@ -115,7 +117,7 @@ public class Rook extends Figures {
 	* @return true for valid move false for invalid move
 	*/
 	public boolean validMove(Board board,int x, int y) {
-		boolean emptySpaces = true;
+		emptySpaces = true;
 		
 		// check if the field to move to is on the board
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
@@ -143,9 +145,12 @@ public class Rook extends Figures {
 			
 			return emptySpaces;			
 		}
+		return validMove2(board,x,y);
+	}
+		public boolean validMove2(Board board, int x, int y) {
 		
 		// vertical line + check if there are other figures in the way
-		else if(this.pos1 != x && this.pos2 == y) {
+		if(this.pos1 != x && this.pos2 == y) {
 			if(x > this.pos1) {
 				for(int i=this.pos1+1;i<x; i++) {
 					if(board.getField(i, y) != null) {
