@@ -353,17 +353,7 @@ public class Board {
 				if(positionen[i][y] == King1w|| positionen[i][y] == King1b ) {
 					for(int k =0; k<8;k++) {
 						for(int j =0; j<8;j++) {
-							if(positionen[k][j]!= null&&positionen[k][j].getColor() == positionen[i][y].getColor()) {
-									for(int a =0; a<8;a++) {
-										for(int b =0; b<8;b++) {
-											if(positionen[k][j]!= null&&positionen[k][j].hasPossibleMove(this, k, j, a, b)) {
-													return true;
-												
-											
-										}
-									}
-								}
-							}	
+							checkPossibleMovesCheck(i,j,k,y);
 						}	
 					} 
 				}
@@ -374,7 +364,20 @@ public class Board {
 		}
 		return false;
 	}
-	
+	public boolean checkPossibleMovesCheck(int i,int j,int k, int y) {
+		if(positionen[k][j]!= null&&positionen[k][j].getColor() == positionen[i][y].getColor()) {
+			for(int a =0; a<8;a++) {
+				for(int b =0; b<8;b++) {
+					if(positionen[k][j]!= null&&positionen[k][j].hasPossibleMove(this, k, j, a, b)) {
+							return true;
+						
+					
+				}
+			}
+		}
+	}
+		return false;
+	}
 	/**
 	 * check if there is no checkmate possible anymore
 	 * @return true if no checkmate possible anymore
