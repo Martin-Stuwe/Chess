@@ -162,8 +162,12 @@ public class Pawn extends Figures {
 			return board.getField(x, this.pos2+1) == null;
 		}
 		
+		return validMove3_2(board,x,y);
+		}
+		public boolean validMove3_2(Board board, int x, int y) {
+		
 		// double move white
-		else if(this.color =="w" && this.pos1 == x && this.pos2 == y+2 && this.pos2 == 6) {
+		if(this.color =="w" && this.pos1 == x && this.pos2 == y+2 && this.pos2 == 6) {
 			if(board.getField(x, this.pos2-1) != null) {
 				return false;
 			}
