@@ -257,6 +257,9 @@ public class Board {
 			return "420";
 			
 		}
+		return convertMoveInput2(board,pos1new,pos2from);
+	}
+		public String convertMoveInput2(Board board, int pos1new, int pos2from) {
 		// integer to save second position
 		int pos2new = pos2from;
 	
