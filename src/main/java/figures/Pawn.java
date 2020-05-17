@@ -180,9 +180,12 @@ public class Pawn extends Figures {
 				return true;
 			
 		}
+		return validMove5(board,x,y);
+		}
+		public boolean validMove5(Board board, int x, int y){
 		
 		// take move black
-		else if(this.color =="b" && this.pos1 == x+1 && this.pos2 == y-1 || this.color =="b" && this.pos1 == x-1 && this.pos2 == y-1) {
+		if(this.color =="b" && this.pos1 == x+1 && this.pos2 == y-1 || this.color =="b" && this.pos1 == x-1 && this.pos2 == y-1) {
 			if(board.getField(x, y)!= null){
 				return board.getField(x, y).getColor()=="w";
 			}
@@ -191,8 +194,11 @@ public class Pawn extends Figures {
 			}
 		}
 		
+		return validMove6(board,x,y);
+		}
+		public boolean validMove6(Board board, int x, int y) {
 		// take move white
-		else if(this.color =="w" && this.pos1 == x+1 && this.pos2 == y+1 || this.color =="w" && this.pos1 == x-1 && this.pos2 == y+1) {
+		if(this.color =="w" && this.pos1 == x+1 && this.pos2 == y+1 || this.color =="w" && this.pos1 == x-1 && this.pos2 == y+1) {
 			if(board.getField(x, y)!= null){
 				return board.getField(x, y).getColor()=="b";
 				
