@@ -116,9 +116,7 @@ public class Pawn extends Figures {
 		// en passant for white
 		if(this.color=="w"&&pos2==3&&y==2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&    
 				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==2 ) {
-				if (  
-				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1  ||
-				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1 ) {
+				if (  checkStuff1(board,x,y) ) {
 				board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
 				return true; 
 				}
@@ -131,14 +129,22 @@ public class Pawn extends Figures {
 		// en passant for black
 		if(this.color=="b"&&pos2==4&&y==5&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&    
 				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==-2) {
-					if( board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1 || 
-						board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1 ) {
+					if(checkStuff2(board,x,y) ) {
 						board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
 						return true; 
 					}
 					return false;			
 		}
 		return validmove3(board,x,y);
+		}
+		
+		public boolean checkStuff1(Board board, int x, int y) {
+			return board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1  ||
+					board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1;
+		}
+		public boolean checkStuff2(Board board, int x, int y) {
+			return board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1 || 
+					board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1 ;
 		}
 		public boolean validmove3(Board board, int x, int y) {
 			
