@@ -124,8 +124,12 @@ public class Rook extends Figures {
 			return false;
 		}
 		
+		return validMove1(board,x,y);
+	}
+	public boolean validMove1(Board board, int x, int y) {
+		
 		// horizontal line + check if there are other figures in the way
-		else if(this.pos1 == x && this.pos2 != y) {
+		if(this.pos1 == x && this.pos2 != y) {
 			if(y > this.pos2) {
 				for(int i=this.pos2+1;i<y; i++) {
 					if(board.getField(x, i) != null) {
