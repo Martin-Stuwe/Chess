@@ -300,17 +300,18 @@ public class Board {
 				for(int k =0; k<8;k++) {
 					for(int j =0; j<8;j++) {
 						// check if white is in check
-						if(positionen[i][y] == King1w && positionen[k][j]!= null && positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor()) {
+						if(positionen[k][j]!= null && positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor()) {
+							if(positionen[i][y] == King1w ) {
 							whiteCheck = true;
 							return true;	
 						} 
-				
+							if (positionen[i][y]==King1b) {
+								blackCheck = true;
+								return true;
+							}
 						// check if black is in check
-						else if (positionen[i][y] == King1b && positionen[k][j]!= null && positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor()) {
-							blackCheck = true;
-							return true;
-						}
-					}
+					
+					}}
 				}
 			} 
 		}
