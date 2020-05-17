@@ -305,7 +305,7 @@ public class Board {
 							whiteCheck = true;
 							return true;	
 						} 
-							if (positionen[i][y]==King1b) {
+							else if (positionen[i][y]==King1b) {
 								blackCheck = true;
 								return true;
 							}
