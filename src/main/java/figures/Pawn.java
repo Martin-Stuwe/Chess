@@ -109,8 +109,12 @@ public class Pawn extends Figures {
 			return false;
 		}
 		
+		return validMove1(board,x,y);
+	}
+		public boolean validMove1(Board board, int x, int y) {
+		
 		// en passant for white
-		else if(this.color=="w"&&pos2==3&&y==2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&    
+		if(this.color=="w"&&pos2==3&&y==2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&    
 				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==2 ) {
 				if (  
 				board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1  ||
