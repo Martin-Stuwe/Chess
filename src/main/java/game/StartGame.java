@@ -91,7 +91,7 @@ public class StartGame {
 		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 
 		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
 		
-		convertAndMoveCheck(board, From1, From2, To1, To2, console);
+		
 		
 		// check if input empty
 		if (board.getField(From1,From2)==null) {
@@ -99,6 +99,7 @@ public class StartGame {
 			//System.out.println(board.Feld);
 			System.out.println("!Move not allowed");
 		}
+		convertAndMoveCheck(board, From1, From2, To1, To2, console);
 	}
 	
 	public static void convertAndMoveCheck(Board board, int From1, int From2, int To1, int To2, Console console){
@@ -159,10 +160,7 @@ public class StartGame {
 			}
 			
 			}
-		else {
-					Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
-					board.setField(to1, to2, queen);
-			}
+		
 		}
 		
 			
@@ -240,7 +238,7 @@ public class StartGame {
 		Board board2 = new Board();
 		board2.setStart();
 		board2.initializeBoard();
-		System.out.println(board2.Feld);
+		
 		
 		
 		getAndMakeMove(board2);
