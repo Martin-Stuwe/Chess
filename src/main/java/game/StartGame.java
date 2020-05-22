@@ -161,6 +161,11 @@ public class StartGame {
 			
 		}
 		
+		else if(board.getField(to1, to2)!= null && board.getField(to1, to2).getType()==4 && (to2==0||to2==7) ) {
+			Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
+			board.setField(to1, to2, queen);
+		}
+		
 	}
 		
 			
