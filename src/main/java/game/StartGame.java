@@ -159,37 +159,37 @@ public class StartGame {
 				pawnPromo2(to1,to2,board,console);
 			}
 			
-			}
-		
 		}
 		
+	}
+		
 			
-			public static void pawnPromo2(int to1, int to2, Board board, Console console) {
-				if(to2 == 0 && console.input.charAt(5) == 'Q' ) {
-					Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
-					board.setField(to1, to2, queen);
-				}
+	public static void pawnPromo2(int to1, int to2, Board board, Console console) {
+		if(console.input.charAt(5) == 'Q' ) {
+			Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
+			board.setField(to1, to2, queen);
+		}
 				
 				// pawn into rook
-				if(console.input.charAt(5) == 'R' ) {
+		if(console.input.charAt(5) == 'R' ) {
 					Rook rook = new Rook(to1, to2,board.getField(to1, to2).getColor());
 					board.setField(to1, to2, rook);
 				}
 			
 			// pawn into knight
-			if(console.input.charAt(5) == 'N') {
+		if(console.input.charAt(5) == 'N') {
 				Knight knight = new Knight(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, knight);
 			}
 			
 			// pawn into bishop
-			if(console.input.charAt(5) == 'B' ) {
+		if(console.input.charAt(5) == 'B' ) {
 				Bishop bishop = new Bishop(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, bishop);
 			}
 			
 			// pawn into queen (empty space)
-			if( console.input.charAt(5) == ' ') {
+		if( console.input.charAt(5) == ' ') {
 				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, queen);
 			}
