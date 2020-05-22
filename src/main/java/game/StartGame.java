@@ -193,7 +193,9 @@ public class StartGame {
 				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, queen);
 			}
+		
 		}
+	
 		
 		// check if pawn is on last row
 
