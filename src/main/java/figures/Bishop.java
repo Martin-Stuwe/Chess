@@ -94,7 +94,7 @@ public class Bishop extends Figures {
 	
 	/**
 	 * Checks if the current move is valid
-	 * @param board ,the board on which the move is tested on
+	 * @param board the board on which the move is tested on
 	 * @param x for the x axis position to move to
 	 * @param y for the y axis position to move to
 	 * @return true for valid move 
@@ -112,6 +112,13 @@ public class Bishop extends Figures {
 	return validMove1(board,x,y);
 	}
 	
+	/**
+	 * method to check if move is on top left diagonal
+	 * @param board the board on which the move is tested on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if move is valid, false if figures in the way or goes on to validMove2
+	 */
 	public boolean validMove1(Board board, int x, int y) {
 		
 		// top left diagonal + check if there are other figures in the way
@@ -122,10 +129,18 @@ public class Bishop extends Figures {
 			
 			return emptySpaces;
 		}
+		
 		return validMove2(board,x,y);
-		}
+	}
 	
-		public boolean validMove2(Board board, int x, int y) {
+	/**
+	 * method to check if move is on bottom right diagonal
+	 * @param board the board on which the move is tested on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if move is valid, false if figures in the way or goes on to validMove3
+	 */
+	public boolean validMove2(Board board, int x, int y) {
 		
 		// bottom right diagonal + check if there are other figures in the way
 		if(checkNumb(x,y,1,1) ) {
@@ -135,9 +150,18 @@ public class Bishop extends Figures {
 			
 			return emptySpaces;
 		}
+		
 		return validMove3(board,x,y);
-		}
-		public boolean validMove3(Board board, int x, int y) {
+	}
+	
+	/**
+	 * method to check if move is on top right diagonal
+	 * @param board the board on which the move is tested on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if move is valid, false if figures in the way or goes on to validMove4
+	 */
+	public boolean validMove3(Board board, int x, int y) {
 		
 		// top right diagonal + check if there are other figures in the way
 			if(checkNumb(x,y,1,-1) ) {
@@ -148,9 +172,18 @@ public class Bishop extends Figures {
 			return emptySpaces;
 		}
 		return validMove4(board,x,y);
-		}
+	}
+	
+	/**
+	 * method to check if move is on bottom right diagonal
+	 * @param board the board on which the move is tested on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if move is valid
+	 * @return false if move is not valid
+	 */
+	public boolean validMove4(Board board, int x, int y) {
 		
-		public boolean validMove4(Board board, int x, int y) {
 		// bottom right diagonal + check if there are other figures in the way
 			if(checkNumb(x,y,-1,1) ) {
 			for(int i=this.pos1+1 , k=this.pos2-1;i<x && k>y  ; i++ ,k--) {
@@ -159,17 +192,27 @@ public class Bishop extends Figures {
 			return emptySpaces;
 		}
 		
-		else { return false;
+		else { 
+			return false;
 		}
 	} // for loop ?
+	
+	/**
+	 * method to check if field is empty and to set emptySpaces to false if so
+	 * @param board the board on which the move is tested on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 */
 	public void notNull(Board board,int i, int k) {
 		if(board.getField(i, k) != null) {
 			emptySpaces= false;
 		}
 	}
+	
 	public boolean checkSame(int x, int y,int z1, int z2) {
 		return this.pos1 == x+z1&& this.pos2 == y+z2;
 	}
+	
 	public boolean checkNumb(int x,int y, int sign1, int sign2) {
 		return checkSame(x,y,sign1*7,sign2*7) || checkSame(x,y,sign1*6,sign2*6)|| 
 				checkSame(x,y,sign1*5,sign2*5) || checkSame(x,y,sign1*4,sign2*4) || 
