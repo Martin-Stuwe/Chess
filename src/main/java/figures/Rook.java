@@ -112,10 +112,12 @@ public class Rook extends Figures {
 	}
 	
 	/**
-	* Checks if the current move is valid
-	* @param x for the x axis position and y for the y axis position to move to
-	* @return true for valid move false for invalid move
-	*/
+	 * Checks if the current move is valid
+	 * @param board the board on which the move is tested on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true for valid move false for invalid move 
+	 */
 	public boolean validMove(Board board,int x, int y) {
 		emptySpaces = true;
 		
@@ -126,6 +128,14 @@ public class Rook extends Figures {
 		
 		return validMove1(board,x,y);
 	}
+	
+	/**
+	 * method to check if move is on the horizental line
+	 * @param board the board on which the move is tested on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if move is valid, false if not or goes on to validMove2
+	 */
 	public boolean validMove1(Board board, int x, int y) {
 		
 		// horizontal line + check if there are other figures in the way
@@ -151,7 +161,15 @@ public class Rook extends Figures {
 		}
 		return validMove2(board,x,y);
 	}
-		public boolean validMove2(Board board, int x, int y) {
+	
+	/**
+	 * method to check if move is on the vertical line
+	 * @param board the board on which the move is tested on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if move is valid, else false
+	 */
+	public boolean validMove2(Board board, int x, int y) {
 		
 		// vertical line + check if there are other figures in the way
 		if(this.pos1 != x && this.pos2 == y) {
