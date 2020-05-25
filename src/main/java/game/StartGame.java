@@ -66,7 +66,7 @@ public class StartGame {
 	 */
 	public static void convertAndMove(Board board, Console console) { 
 		// check if user input is valid (length)
-		if(console.input.length() <5) {
+		if(console.input.length() <5 ||(console.input.length() >5 && console.input.charAt(5)!='Q' && console.input.charAt(5)!='R' && console.input.charAt(5)!='N' && console.input.charAt(5)!='B' && console.input.charAt(5)!=' ') ) {
 			board.initializeBoard();
 			//System.out.println(board.Feld);
 			System.out.println("!Invalid move");
