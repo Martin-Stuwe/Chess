@@ -40,6 +40,7 @@ public class Pawn extends Figures {
 	 * @param pos2 y axis position of the pawn
 	 * @param color color of the pawn, valid input: "w" for white, "b" for black
 	 */
+	boolean realMove;
 	public Pawn(int pos1, int pos2, String color) {
 		this.pos1 = pos1;
 		this.pos2 = pos2;
@@ -103,7 +104,15 @@ public class Pawn extends Figures {
 	 * @return false for invalid move
 	 */
 	public boolean validMove(Board board,int x, int y) {
-
+	
+		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+			StackTraceElement stackTraceElement = stackTraceElements[2];
+			if(stackTraceElement.getMethodName() == "move2"){
+				realMove =true;
+			}
+			else {
+				realMove =false;
+			}
 		// check if the field to move to is on the board
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
@@ -114,7 +123,7 @@ public class Pawn extends Figures {
 		public boolean validMove1(Board board, int x, int y) {
 		
 		// en passant for white
-		if(this.color=="w"&&pos2==3&&y==2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&    
+		if(realMove &&this.color=="w"&&pos2==3&&y==2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&    
 				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==2 ) {
 				if (  checkStuff1(board,x,y) ) {
 				board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
@@ -127,7 +136,7 @@ public class Pawn extends Figures {
 		public  boolean validmove2(Board board, int x, int y){
 			
 		// en passant for black
-		if(this.color=="b"&&pos2==4&&y==5&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&    
+		if(realMove &&this.color=="b"&&pos2==4&&y==5&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&    
 				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==-2) {
 					if(checkStuff2(board,x,y) ) {
 						board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
