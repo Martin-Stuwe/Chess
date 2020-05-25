@@ -139,12 +139,12 @@ public class Pawn extends Figures {
 		}
 		
 		public boolean checkStuff1(Board board, int x, int y) {
-			return board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1  ||
-					board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1;
+			return this.pos1 != 8&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1  ||
+				this.pos1 != 0&&	board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1;
 		}
 		public boolean checkStuff2(Board board, int x, int y) {
-			return board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1 || 
-					board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1 ;
+			return this.pos1 != 8&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1 || 
+					this.pos1 != 0&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1 ;
 		}
 		public boolean validmove3(Board board, int x, int y) {
 			
