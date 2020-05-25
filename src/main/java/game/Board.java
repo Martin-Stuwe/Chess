@@ -296,6 +296,8 @@ public class Board {
 	 */
 
 	public boolean checkCheck() {
+		whiteCheck=false;
+		blackCheck=false;
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				for(int k =0; k<8;k++) {
@@ -303,18 +305,25 @@ public class Board {
 						// check if white is in check
 						if(positionen[i][y] == King1w && checkCheckCheck(i,j, k, y) ) {
 							whiteCheck = true;
-							return true;	
+								
 						} 
 				
 						// check if black is in check
 						else if (positionen[i][y] == King1b && checkCheckCheck(i,j, k, y) ) {
 							blackCheck = true;
-							return true;
+							
 						}
 					}
 				}
-			} 
+			}
 		}
+		if (whiteCheck) {
+			return true;
+		}
+		if (blackCheck) {
+			return true;
+		}
+	
 		blackCheck = false;
 		whiteCheck = false;
 		return false;
