@@ -111,21 +111,25 @@ public class PawnTest {
 		board.setField(1,4,sacPawnW);
 		Zug zug1 = new Zug(sacPawnW,1,6,1,4);  
 		board.movedList.add(zug1);
-		assertEquals(true, PB.validMove(board, 1, 5), "En Passant b1 true");
+		PB.realMove =true;
+		assertEquals(true, PB.validMove1(board, 1, 5), "En Passant b1 true");
 		
 		board.setField(3,4,sacPawnW);
 		Zug zug2 = new Zug(sacPawnW,3,6,3,4);  
 		board.movedList.add(zug2);
-		assertEquals(true, PB.validMove(board, 3, 5), "En Passant b2 true");
+		PB.realMove =true;
+		assertEquals(true, PB.validMove1(board, 3, 5), "En Passant b2 true");
 		
 		board.setField(5,3,sacPawnB);
 		Zug zug3 = new Zug(sacPawnB,5,1,5,3);  
 		board.movedList.add(zug3);
-		assertEquals(true, PW.validMove(board, 5, 2), "En Passant w1 true");
+		PW.realMove =true;
+		assertEquals(true, PW.validMove1(board, 5, 2), "En Passant w1 true");
 		
 		board.setField(7,3,sacPawnB);
 		Zug zug4 = new Zug(sacPawnB,7,1,7,3);  
 		board.movedList.add(zug4);
-		assertEquals(true, PW.validMove(board, 7, 2), "En Passant w2 true");
+		PW.realMove =true;
+		assertEquals(true, PW.validMove1(board, 7, 2), "En Passant w2 true");
 	}
 }
