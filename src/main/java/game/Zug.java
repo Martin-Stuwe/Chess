@@ -110,15 +110,14 @@ public class Zug {
 				for(int k =0; k<8;k++) {
 					for(int j =0; j<8;j++) {
 						// check if white is in check
-						if(board.positionen[i][y]!=null&&board.positionen[i][y].getClass() == King.class && board.positionen[i][y].getColor() == "w" && checkCheckCheck(board,i,j, k, y)) {
-							board.whiteCheck = true;
+						if(board.positionen[i][y]!=null&&board.positionen[i][y].getClass() == King.class && checkCheckCheck(board,Integer.toString(i)+Integer.toString(j)+Integer.toString(k)+Integer.toString(y))) {
+							if(board.positionen[i][y].getColor() == "w") {
+								board.whiteCheck = true;
+							}
+							if (board.positionen[i][y].getColor() == "b") {
+								board.blackCheck=true;
+							}
 								
-						} 
-				
-						// check if black is in check
-						else if (board.positionen[i][y]!=null&&board.positionen[i][y].getClass() == King.class && board.positionen[i][y].getColor() == "b"&& checkCheckCheck(board,i,j, k, y) ) {
-							board.blackCheck = true;
-							
 						}
 					}
 				}
@@ -143,7 +142,11 @@ public class Zug {
 	 * @param y y axis position of the king
 	 * @return true if other figure has validMove to king's position
 	 */
-	public static boolean checkCheckCheck(Board board,int i, int j, int k, int y) {
+	public static boolean checkCheckCheck(Board board,String num) {
+		int i = Character.getNumericValue(num.charAt(0));
+		int j = Character.getNumericValue(num.charAt(1));	
+		int k = Character.getNumericValue(num.charAt(2));
+		int y = Character.getNumericValue(num.charAt(3));	
 		return board.positionen[k][j]!= null &&board.positionen[k][j].validMove(board, i, y) && board.positionen[k][j].getColor() != board.positionen[i][y].getColor();
 	}
 
