@@ -35,12 +35,16 @@ public class Pawn extends Figures {
 	private String color;
 	
 	/**
+	 * check if move real
+	 */
+	boolean realMove;
+	
+	/**
 	 * the constructor creates a new pawn object and needs a x and a y axis position plus a color
 	 * @param pos1 x axis position of the pawn
 	 * @param pos2 y axis position of the pawn
 	 * @param color color of the pawn, valid input: "w" for white, "b" for black
 	 */
-	boolean realMove;
 	public Pawn(int pos1, int pos2, String color) {
 		this.pos1 = pos1;
 		this.pos2 = pos2;

@@ -259,7 +259,15 @@ public class Board {
 		}
 		return convertMoveInput2(board,pos1new,pos2from);
 	}
-		public String convertMoveInput2(Board board, int pos1new, int pos2from) {
+	
+	/**
+	 * method which converts second position of the input
+	 * @param board board the move is on
+	 * @param pos1new x axis starting position of the figure
+	 * @param pos2from y axis starting position of the figure
+	 * @return converted version as String e.g.: 07
+	 */
+	public String convertMoveInput2(Board board, int pos1new, int pos2from) {
 		// integer to save second position
 		int pos2new = pos2from;
 	
@@ -294,7 +302,6 @@ public class Board {
 	 * checks if a player is in check
 	 * @return true if a player is in check
 	 */
-
 	public boolean checkCheck() {
 		whiteCheck=false;
 		blackCheck=false;
@@ -329,12 +336,24 @@ public class Board {
 		return false;
 	}
 	
+	/**
+	 * method to check for check
+	 * @param i x axis position of the king
+	 * @param j x axis position of the other figures
+	 * @param k y axis position of the other figures
+	 * @param y y axis position of the king
+	 * @return true if other figure has validMove to king's position
+	 */
 	public boolean checkCheckCheck(int i, int j, int k, int y) {
 		return positionen[k][j]!= null &&positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor();
 	}
 	
 	/**
-	 * check if field is in check (to check if castling is possible)
+	 * method to check if certain Field would be in check
+	 * @param x the x axis position of the field
+	 * @param y the y axis position of the field
+	 * @param color the color that needs to be checked for check
+	 * @return true if field is in check
 	 */
 	public boolean checkField(int x, int y, String color) {
 		for(int k =0; k<8;k++) {
@@ -358,19 +377,24 @@ public class Board {
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
-				// check if white has possible move
+				// check if white or black has possible move
 				if(positionen[i][y] == King1w|| positionen[i][y] == King1b ) {
 					if (checkPossibleMovesCheck(i, y)) {
 						return true;
 					}
 				}
 				
-				// check if black has possible move
-			
 			}
 		}
 		return false;
 	}
+	
+	/**
+	 * method to check for possible moves
+	 * @param i the x axis position of the king
+	 * @param y the y axis position of the king
+	 * @return true if figures have possible moves
+	 */
 	public boolean checkPossibleMovesCheck(int i, int y) {
 		for(int k =0; k<8;k++) {
 			for(int j =0; j<8;j++) {
@@ -389,6 +413,7 @@ public class Board {
 		}
 		return false;
 	}
+	
 	/**
 	 * check if there is no checkmate possible anymore
 	 * @return true if no checkmate possible anymore
