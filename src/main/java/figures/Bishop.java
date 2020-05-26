@@ -164,7 +164,7 @@ public class Bishop extends Figures {
 	public boolean validMove3(Board board, int x, int y) {
 		
 		// top right diagonal + check if there are other figures in the way
-			if(checkNumb(x,y,1,-1) ) {
+		if(checkNumb(x,y,1,-1) ) {
 			for(int i=this.pos1-1 , k=this.pos2+1;i>x && k<y  ; i-- ,k++) {
 				notNull(board,i,k);
 			}
@@ -185,7 +185,7 @@ public class Bishop extends Figures {
 	public boolean validMove4(Board board, int x, int y) {
 		
 		// bottom right diagonal + check if there are other figures in the way
-			if(checkNumb(x,y,-1,1) ) {
+		if(checkNumb(x,y,-1,1) ) {
 			for(int i=this.pos1+1 , k=this.pos2-1;i<x && k>y  ; i++ ,k--) {
 				notNull(board,i,k);
 			}
@@ -209,10 +209,26 @@ public class Bishop extends Figures {
 		}
 	}
 	
+	/**
+	 * checks if field to move to + diagonal distance equals the starting position
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @param z1 diagonal distance x axis
+	 * @param z2 diagonal distance y axis
+	 * @return true if field to move to + diagonal distance equals the starting position
+	 */
 	public boolean checkSame(int x, int y,int z1, int z2) {
 		return this.pos1 == x+z1&& this.pos2 == y+z2;
 	}
 	
+	/**
+	 * method to check if move is on diagonal
+	 * @param x the x axis starting position
+	 * @param y the y axis starting position
+	 * @param sign1 x multiplication number
+	 * @param sign2 y multiplication number
+	 * @return true if move is on diagonal
+	 */
 	public boolean checkNumb(int x,int y, int sign1, int sign2) {
 		return checkSame(x,y,sign1*7,sign2*7) || checkSame(x,y,sign1*6,sign2*6)|| 
 				checkSame(x,y,sign1*5,sign2*5) || checkSame(x,y,sign1*4,sign2*4) || 
