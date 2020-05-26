@@ -78,11 +78,11 @@ public class StartGameTest {
 		testGame.convertAndMove(board2, TC);
 		board2.setStart();
 		board2.setCurrentTurn(0);
-		board2.getField(4, 6).move(board2, 4, 6, 4, 4);
-		board2.getField(5, 1).move(board2, 5, 1, 5, 2);
-		board2.getField(5, 7).move(board2, 5, 7, 4, 6);
-		board2.getField(6, 1).move(board2, 6, 1, 6, 3);
-		board2.getField(4, 6).move(board2, 4, 6, 7, 3);
+		board2.getField(4, 6).move(board2, 4, 6, "44");
+		board2.getField(5, 1).move(board2, 5, 1, "52");
+		board2.getField(5, 7).move(board2, 5, 7, "46");
+		board2.getField(6, 1).move(board2, 6, 1, "63");
+		board2.getField(4, 6).move(board2, 4, 6, "73");
 		
 		InputStream in6= new ByteArrayInputStream ("a3-a4\r\n".getBytes());
 		System.setIn(in6);

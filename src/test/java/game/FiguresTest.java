@@ -45,22 +45,22 @@ public class FiguresTest {
 		board.setStart();
 		Rook rook = new Rook(4,4,"w");
 		board.setField(4, 4, rook);
-		assertEquals(true,board.getField(4, 4).move(board, 4, 4, 4, 3),"valid move rightturn");
-		assertEquals(false,board.getField(4, 3).move(board, 4, 3, 4, 4),"valid move wrong turn");
+		assertEquals(true,board.getField(4, 4).move(board, 4, 4, "43"),"valid move rightturn");
+		assertEquals(false,board.getField(4, 3).move(board, 4, 3, "44"),"valid move wrong turn");
 		board.setCurrentTurn(0);
-		assertEquals(true,board.getField(4, 3).move(board, 4, 3, 4, 1),"valid move wrong turn");
-		assertEquals(false,board.getField(0, 1).move(board, 0, 1, 0, 3),"valid move");
+		assertEquals(true,board.getField(4, 3).move(board, 4, 3, "41"),"valid move wrong turn");
+		assertEquals(false,board.getField(0, 1).move(board, 0, 1, "03"),"valid move");
 		
 		board.setStart();
 		Rook rookb = new Rook(4,4,"b");
 		board.setField(4, 4, rookb);
 		board.setCurrentTurn(1);
-		assertEquals(true,board.getField(4, 4).move(board, 4, 4, 4, 3),"valid move rightturn");
-		assertEquals(false,board.getField(4, 3).move(board, 4, 3, 4, 4),"valid move wrong turn");
+		assertEquals(true,board.getField(4, 4).move(board, 4, 4, "43"),"valid move rightturn");
+		assertEquals(false,board.getField(4, 3).move(board, 4, 3, "44"),"valid move wrong turn");
 		board.setCurrentTurn(1);
-		assertEquals(false,board.getField(4, 3).move(board, 4, 3, 7, 4),"invalid move");
+		assertEquals(false,board.getField(4, 3).move(board, 4, 3, "74"),"invalid move");
 		
-		assertEquals(true,board.getField(4, 3).move(board, 4, 3, 4, 6),"valid move");
-		assertEquals(false,board.getField(0, 6).move(board, 0, 6, 0, 4),"valid move");
+		assertEquals(true,board.getField(4, 3).move(board, 4, 3, "46"),"valid move");
+		assertEquals(false,board.getField(0, 6).move(board, 0, 6, "04"),"valid move");
 	}
 }

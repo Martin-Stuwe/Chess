@@ -98,11 +98,11 @@ public class BoardTest {
 			board.setCurrentTurn(1);
 			assertEquals(true, board.checkPossibleMoves(), "checkField 2");
 			board.setCurrentTurn(0);
-			board.getField(4, 6).move(board, 4, 6, 4, 4);
-			board.getField(5, 1).move(board, 5, 1, 5, 2);
-			board.getField(5, 7).move(board, 5, 7, 4, 6);
-			board.getField(6, 1).move(board, 6, 1, 6, 3);
-			board.getField(4, 6).move(board, 4, 6, 7, 3);
+			board.getField(4, 6).move(board, 4, 6, "44");
+			board.getField(5, 1).move(board, 5, 1, "52");
+			board.getField(5, 7).move(board, 5, 7, "46");
+			board.getField(6, 1).move(board, 6, 1, "63");
+			board.getField(4, 6).move(board, 4, 6, "73");
 			assertEquals(false, board.checkPossibleMoves(), "checkField 3");
 			}
 		
