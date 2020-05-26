@@ -35,13 +35,18 @@ public class Figures {
 	* The figure's color
 	*/
 	String color;
+	
 	/**
 	* The warning for unallowed Move
 	*/
 	String unallowed = "!Move not allowed";
-	
+	/**
+	 * save for starting position
+	 */
 	Figures restoreFrom;
-	
+	/**
+	 * save for ending position
+	 */
 	Figures restoreTo;
 	
 	/**
@@ -162,8 +167,20 @@ public class Figures {
 		// check if figure is allowed to make certain move
 		return move2(board, pos1from, pos2from, pos1to,pos2to);
 	}
-		public boolean move2(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
-		if (!board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to)) {
+	
+	/**
+	 * method to check if move is valid
+	 * @param board the board the move is on
+	 * @param pos1from the x axis position of the starting field
+	 * @param pos2from the y axis position of the starting field
+	 * @param pos1to the x axis position of the field to move to
+	 * @param pos2to the y axis position of the field to move to
+	 * @return false if move not valid, else go on to move22
+	 */
+	public boolean move2(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
+		
+		// if move not valid
+		if(!board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to)) {
 			System.out.println(unallowed);
 			return false;
 		}
@@ -175,10 +192,20 @@ public class Figures {
 		}
 		
 		return move22(board, pos1from, pos2from, pos1to,pos2to);
-		}
-		public boolean move22(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
+	}
+	
+	/**
+	 * method to add beaten figures to the beaten list
+	 * @param board the board the move is on
+	 * @param pos1from the x axis position of the starting field
+	 * @param pos2from the y axis position of the starting field
+	 * @param pos1to the x axis position of the field to move to
+	 * @param pos2to the y axis position of the field to move to
+	 * @return move3
+	 */
+	public boolean move22(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
 		
-			// color change and adding beaten black figures to the beaten list
+		// color change and adding beaten black figures to the beaten list
 		if(board.getCurrentTurn()==0) {
 			if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1to][pos2to].getColor() == "b") {
 					board.beaten.add(board.positionen[pos1to][pos2to].getBoardVisual());
@@ -194,8 +221,18 @@ public class Figures {
 			board.setCurrentTurn(0);
 		}
 		return move3(board,pos1from, pos2from,pos1to,pos2to);
-		}
-		public boolean move3(Board board,int pos1from, int pos2from, int pos1to, int pos2to) {
+	}
+	
+	/**
+	 * method to change the figures position in the array and its position attributes
+	 * @param board the board the move is on
+	 * @param pos1from the x axis position of the starting field
+	 * @param pos2from the y axis position of the starting field
+	 * @param pos1to the x axis position of the field to move to
+	 * @param pos2to the y axis position of the field to move to
+	 * @return move4
+	 */
+	public boolean move3(Board board,int pos1from, int pos2from, int pos1to, int pos2to) {
 		
 		// moving the figure
 		board.positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
@@ -207,15 +244,24 @@ public class Figures {
 		board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 		
 		return move4(board,pos1from, pos2from, pos1to, pos2to);
-		}
-		public boolean move4(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
+	}
+	
+	/**
+	 * method to check if black is in check after black's move
+	 * @param board the board the move is on
+	 * @param pos1from the x axis position of the starting field
+	 * @param pos2from the y axis position of the starting field
+	 * @param pos1to the x axis position of the field to move to
+	 * @param pos2to the y axis position of the field to move to
+	 * @return true if no check, false if black in check after the move or go on to check4
+	 */
+	public boolean move4(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
 	
 		// check if you are in check after the move		
 		if(board.checkCheck()) {
 			
 			// check if black is in check after the move and restoring the move if so
-			if(board.blackCheck){
-				if(board.getCurrentTurn()==0) {
+			if(board.blackCheck && board.getCurrentTurn()==0){
 					 board.positionen[pos1to][pos2to] = restoreTo;
 					 board.positionen[pos1from][pos2from] = restoreFrom;
 					 if(board.positionen[pos1to][pos2to]!= null) {
@@ -228,7 +274,7 @@ public class Figures {
 				 
 				 System.out.println(unallowed);
 				 return false;
-				 }
+				 
 			}
 			
 			else return check4(board, pos1to, pos2to, pos1from, pos2from);
@@ -238,7 +284,15 @@ public class Figures {
 		return true;
 	}
 		
-		
+	/**
+	 * method to check if white is in check after white's move
+	 * @param board the board the move is on
+	 * @param pos1from the x axis position of the starting field
+	 * @param pos2from the y axis position of the starting field
+	 * @param pos1to the x axis position of the field to move to
+	 * @param pos2to the y axis position of the field to move to
+	 * @return true if move is valid
+	 */
 	public boolean check4(Board board, int pos1to, int pos2to, int pos1from, int pos2from) {
 		// check if white is in check after the move and restoring the move if so
 		if(board.whiteCheck&&board.getCurrentTurn()==1) {
@@ -311,7 +365,17 @@ public class Figures {
 		board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 		return hasPossibleMove2(board,pos1from, pos2from, pos1to, pos2to);
 	}
-		public Boolean hasPossibleMove2(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { 
+	
+	/**
+	 * method to check if there is check after the move
+	 * @param board the board the move is on
+	 * @param pos1from the x axis position of the starting field
+	 * @param pos2from the y axis position of the starting field
+	 * @param pos1to the x axis position of the field to move to
+	 * @param pos2to the y axis position of the field to move to
+	 * @return true if no check
+	 */
+	public Boolean hasPossibleMove2(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { 
 		// check if you are in check after the move	
 		if(board.checkCheck()) {
 			board.positionen[pos1to][pos2to] = restoreTo;
