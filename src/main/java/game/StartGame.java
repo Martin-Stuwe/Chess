@@ -88,18 +88,14 @@ public class StartGame {
 		// converting Strings into Integers
 		int From1=Integer.parseInt(Character.toString(From.charAt(0))); 
 		int From2=Integer.parseInt(Character.toString(From.charAt(1))); 
-		int To1=Integer.parseInt(Character.toString(To.charAt(0))); 
-		int To2=Integer.parseInt(Character.toString(To.charAt(1))); 
-		
-		
-		
+				
 		// check if input empty
 		if (board.getField(From1,From2)==null) {
 			board.initializeBoard();
 			//System.out.println(board.Feld);
 			System.out.println("!Move not allowed");
 		}
-		convertAndMoveCheck(board, From1, From2, To1, To2, console);
+		convertAndMoveCheck(board,  From+To, console);
 	}
 	
 	/**
@@ -111,7 +107,11 @@ public class StartGame {
 	 * @param To2 y axis position to move to
 	 * @param console console input
 	 */
-	public static void convertAndMoveCheck(Board board, int From1, int From2, int To1, int To2, Console console){
+	public static void convertAndMoveCheck(Board board, String pos, Console console){
+		int From1=Integer.parseInt(Character.toString(pos.charAt(0)));
+		int From2=Integer.parseInt(Character.toString(pos.charAt(1)));
+		int To1=Integer.parseInt(Character.toString(pos.charAt(2)));
+		int To2=Integer.parseInt(Character.toString(pos.charAt(3)));
 		if(board.getField(From1, From2)!=null) {
 			String ToString = Integer.toString(To1)+Integer.toString(To2);
 			if(board.getField(From1, From2).move(board, From1, From2, ToString)) {
