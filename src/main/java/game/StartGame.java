@@ -113,7 +113,8 @@ public class StartGame {
 	 */
 	public static void convertAndMoveCheck(Board board, int From1, int From2, int To1, int To2, Console console){
 		if(board.getField(From1, From2)!=null) {
-			if(board.getField(From1, From2).move(board, From1, From2, To1, To2)) {
+			String ToString = Integer.toString(To1)+Integer.toString(To2);
+			if(board.getField(From1, From2).move(board, From1, From2, ToString)) {
 				Zug zug = new Zug(board.getField(To1, To2),From1,From2,To1,To2);  //creates new move and saves in list
 				board.movedList.add(zug);
 				System.out.println("!"+console.input.toString());

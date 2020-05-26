@@ -139,7 +139,10 @@ public class Figures {
 	 * @param pos2to y axis position where the figure is moved to
 	 * @return true if figure has been moved
 	 */
-	public Boolean move(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { 
+	public Boolean move(Board board, int pos1from, int pos2from,  String posTo) { 
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
+		
 		
 		// saves starting position of figure
 		restoreFrom=board.positionen[pos1from][pos2from];
