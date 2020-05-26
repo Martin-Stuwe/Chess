@@ -170,18 +170,15 @@ public class StartGame {
 	 * @param console console input
 	 */
 	public static void pawnPromotion(int to1, int to2, Board board, Console console) {
-		if(console.input.length() ==6 && board.getField(to1, to2)!= null) {
-			
-			
-			if(board.getField(to1, to2).getType()==4 && (to2==0||to2==7) ) {
+		if(console.input.length() ==6 && board.getField(to1, to2)!= null &&board.getField(to1, to2).getType()==4 && (to2==0||to2==7) ) {
 				pawnPromo2(to1,to2,board,console);
 			}
 			
-		}
 		
-		pawnPromoCheckLast(to1, to2, board, console);
 		
-		}
+		pawnPromoCheckLast(to1, to2, board);
+	}
+		
 	
 		/**
 		 * method to check for promote the pawn and second part of pawnPromotion
@@ -190,7 +187,7 @@ public class StartGame {
 		 * @param board board that the pawn gets promoted on
 		 * @param console console input
 		 */
-		private static void pawnPromoCheckLast(int to1, int to2, Board board, Console console) {
+		private static void pawnPromoCheckLast(int to1, int to2, Board board) {
 			
 		
 		if(board.getField(to1, to2)!= null && board.getField(to1, to2).getType()==4 && (to2==0||to2==7) ) {

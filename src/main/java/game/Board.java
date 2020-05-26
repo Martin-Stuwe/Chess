@@ -331,14 +331,7 @@ public class Board {
 		 * @return true if a player is in check
 	 	*/
 		public boolean checkCheck2(boolean whitecheck, boolean blackcheck) {
-		if (whitecheck) {
-			return true;
-		}
-		if (blackcheck) {
-			return true;
-		}
-	
-		return false;
+		return whitecheck||blackcheck;
 	}
 
 	
