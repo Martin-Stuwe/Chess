@@ -96,23 +96,22 @@ public class Pawn extends Figures {
 	}
 	
 	/**
-	 * Checks if the current move is valid
+	 * checks if the current move is valid
 	 * @param board ,the board on which the move is tested on
 	 * @param x for the x axis position to move to
 	 * @param y for the y axis position to move to
-	 * @return true for valid move 
-	 * @return false for invalid move
+	 * @return false for invalid move else go to validMove1
 	 */
 	public boolean validMove(Board board,int x, int y) {
 	
 		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-			StackTraceElement stackTraceElement = stackTraceElements[2];
-			if(stackTraceElement.getMethodName() == "move2"){
-				realMove =true;
+		StackTraceElement stackTraceElement = stackTraceElements[2];
+		if(stackTraceElement.getMethodName() == "move2"){
+			realMove =true;
 			}
-			else {
-				realMove =false;
-			}
+		else {
+			realMove =false;
+		}
 		// check if the field to move to is on the board
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
@@ -120,50 +119,84 @@ public class Pawn extends Figures {
 		
 		return validMove1(board,x,y);
 	}
-		public boolean validMove1(Board board, int x, int y) {
-		
+	
+	/**
+	 * check for white en passant move
+	 * @param board the board the move is on
+	 * @param x the x axis position to move
+	 * @param y the y axis position to move
+	 * @return true if en passant move is valid, false if not and else continue to validmove2
+	 */
+	public boolean validMove1(Board board, int x, int y) {
 		// en passant for white
 		if(realMove &&this.color=="w"&&pos2==3&&y==2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&    
 				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==2 ) {
-				if (  checkStuff1(board,x,y) ) {
-				board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
-				return true; 
+				if (checkStuff1(board,x,y)) {
+					board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
+					return true; 
 				}
 				return false;
 		}
+		
 		return validmove2(board,x,y);
-		}
-		public  boolean validmove2(Board board, int x, int y){
-			
+	}
+	
+	/**
+	 * check for black en passant move
+	 * @param board the board the move is on
+	 * @param x the x axis position to move
+	 * @param y the y axis position to move
+	 * @return true if en passant move is valid, false if not and else continue to validmove3
+	 */
+	public  boolean validmove2(Board board, int x, int y){	
 		// en passant for black
 		if(realMove &&this.color=="b"&&pos2==4&&y==5&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&    
-				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==-2) {
-					if(checkStuff2(board,x,y) ) {
-						board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
-						return true; 
-					}
-					return false;			
+			board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==-2) {
+				if(checkStuff2(board,x,y) ) {
+					board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
+					return true; 
+				}
+				return false;			
 		}
 		return validmove3(board,x,y);
-		}
-		
-		public boolean checkStuff1(Board board, int x, int y) {
-			return this.pos1 != 8&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1  ||
-				this.pos1 != 0&&	board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1;
-		}
-		public boolean checkStuff2(Board board, int x, int y) {
-			return this.pos1 != 8&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1 || 
-					this.pos1 != 0&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1 ;
-		}
-		public boolean validmove3(Board board, int x, int y) {
-			
-		
+	}
+	
+	/**
+	 * method to check if last move was double pawn move by black
+	 * @param board the board to move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if last move was double move
+	 */
+	public boolean checkStuff1(Board board, int x, int y) {
+		return this.pos1 != 8&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1  ||
+				this.pos1 != 0&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1;
+	}
+	
+	/**
+	 * method to check if last move was double pawn move by white
+	 * @param board the board to move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if last move was double pawn move
+	 */
+	public boolean checkStuff2(Board board, int x, int y) {
+		return this.pos1 != 8&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1 || 
+				this.pos1 != 0&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1 ;
+	}
+	
+	/**
+	 * check if normal is possible
+	 * @param board the board the move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if the normal move is possible, false if not or go on to validMove3_2
+	 */
+	public boolean validmove3(Board board, int x, int y) {
+
 		// normal move white
 		if(this.color =="w" && this.pos1 == x && this.pos2 == y+1) {
-			
-			return board.getField(x, this.pos2-1) == null;
-			
-			
+			return board.getField(x, this.pos2-1) == null;	
 		}
 		
 		// normal move black
@@ -172,25 +205,38 @@ public class Pawn extends Figures {
 		}
 		
 		return validMove3_2(board,x,y);
-		}
-		public boolean validMove3_2(Board board, int x, int y) {
+	}
+	
+	/**
+	 * check if double move for white is possible
+	 * @param board the board the move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if the double move is possible, false if not or go on to validMove4
+	 */
+	public boolean validMove3_2(Board board, int x, int y) {
 		
-		// double move white
+	// double move white
 		if(this.color =="w" && this.pos1 == x && this.pos2 == y+2 && this.pos2 == 6) {
 			if(board.getField(x, this.pos2-1) != null) {
 				return false;
 			}
 			else if(board.getField(x, this.pos2-2) != null) {
 				return false;
-			}
-						
+			}			
 				return true;
-
 		}
 		return validmove4(board,x,y);
-		}
-		
-		public boolean validmove4(Board board, int x, int y){
+	}
+	
+	/**
+	 * check if double move for black is possible
+	 * @param board the board the move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if the double move is possible, false if not or go on to validMove5
+	 */
+	public boolean validmove4(Board board, int x, int y){
 		// double move black
 		if(this.color =="b" && this.pos1 == x && this.pos2 == y-2 && this.pos2 == 1) {
 			if(board.getField(x, this.pos2+1) != null) {
@@ -204,8 +250,16 @@ public class Pawn extends Figures {
 			
 		}
 		return validMove5(board,x,y);
-		}
-		public boolean validMove5(Board board, int x, int y){
+	}
+	
+	/**
+	 * check if take move for black is possible
+	 * @param board the board the move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if take move is possible, false if not or go on to validMove6
+	 */
+	public boolean validMove5(Board board, int x, int y){
 		
 		// take move black
 		if(this.color =="b" && this.pos1 == x+1 && this.pos2 == y-1 || this.color =="b" && this.pos1 == x-1 && this.pos2 == y-1) {
@@ -218,8 +272,16 @@ public class Pawn extends Figures {
 		}
 		
 		return validMove6(board,x,y);
-		}
-		public boolean validMove6(Board board, int x, int y) {
+	}
+	
+	/**
+	 * check if take move for white is possible
+	 * @param board the board the move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if take move is possible 
+	 */
+	public boolean validMove6(Board board, int x, int y) {
 		// take move white
 		if(this.color =="w" && this.pos1 == x+1 && this.pos2 == y+1 || this.color =="w" && this.pos1 == x-1 && this.pos2 == y+1) {
 			if(board.getField(x, y)!= null){
