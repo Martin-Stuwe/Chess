@@ -139,7 +139,7 @@ public class Pawn extends Figures {
 					board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
 					return true; 
 				}
-				return false;
+				return validmove2(board,x,y);
 		}
 		
 		return validmove2(board,x,y);
@@ -160,7 +160,7 @@ public class Pawn extends Figures {
 					board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
 					return true; 
 				}
-				return false;			
+				return validmove3(board,x,y);			
 		}
 		return validmove3(board,x,y);
 	}
