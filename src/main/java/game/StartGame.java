@@ -102,6 +102,15 @@ public class StartGame {
 		convertAndMoveCheck(board, From1, From2, To1, To2, console);
 	}
 	
+	/**
+	 * method to show current state
+	 * @param board the board the move is on
+	 * @param From1 x axis starting position
+	 * @param From2 y axis starting position
+	 * @param To1 x axis position to move to
+	 * @param To2 y axis position to move to
+	 * @param console console input
+	 */
 	public static void convertAndMoveCheck(Board board, int From1, int From2, int To1, int To2, Console console){
 		if(board.getField(From1, From2)!=null) {
 			if(board.getField(From1, From2).move(board, From1, From2, To1, To2)) {
