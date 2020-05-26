@@ -108,8 +108,19 @@ public class Knight extends Figures {
 			return true;
 		}
 		
+		return validMove2(board,x ,y);
+	}
+	/**
+	 * Second part of validmove() to check if current move is valid
+	 * @param board ,the board on which the move is tested on
+	 * @param x for the x axis position to move to
+	 * @param y for the y axis position to move to
+	 * @return true for valid move 
+	 * @return false for invalid move
+	 */
+		public boolean validMove2(Board board, int x, int y) {
 		// top right
-		else if(this.pos1==x+1&&this.pos2==y-2||this.pos1==x+2&&this.pos2==y-1)  {
+		if(this.pos1==x+1&&this.pos2==y-2||this.pos1==x+2&&this.pos2==y-1)  {
 			
 			return true;
 		}

@@ -324,6 +324,9 @@ public class Board {
 				}
 			}
 		}
+		return checkCheck2(whiteCheck,blackCheck);
+	}
+		public boolean checkCheck2(boolean whiteCheck, boolean blackCheck) {
 		if (whiteCheck) {
 			return true;
 		}
@@ -335,6 +338,7 @@ public class Board {
 		whiteCheck = false;
 		return false;
 	}
+
 	
 	/**
 	 * method to check for check
@@ -347,6 +351,7 @@ public class Board {
 	public boolean checkCheckCheck(int i, int j, int k, int y) {
 		return positionen[k][j]!= null &&positionen[k][j].validMove(this, i, y) && positionen[k][j].getColor() != positionen[i][y].getColor();
 	}
+
 	
 	/**
 	 * method to check if certain Field would be in check
