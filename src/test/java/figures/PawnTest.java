@@ -109,25 +109,25 @@ public class PawnTest {
 		board.setField(2,4,PB);
 		
 		board.setField(1,4,sacPawnW);
-		Zug zug1 = new Zug(sacPawnW,1,6,1,4);  
+		Zug zug1 = new Zug(sacPawnW,1,6,"14");  
 		board.movedList.add(zug1);
 		PB.realMove =true;
 		assertEquals(true, PB.validMove1(board, 1, 5), "En Passant b1 true");
 		
 		board.setField(3,4,sacPawnW);
-		Zug zug2 = new Zug(sacPawnW,3,6,3,4);  
+		Zug zug2 = new Zug(sacPawnW,3,6,"34");  
 		board.movedList.add(zug2);
 		PB.realMove =true;
 		assertEquals(true, PB.validMove1(board, 3, 5), "En Passant b2 true");
 		
 		board.setField(5,3,sacPawnB);
-		Zug zug3 = new Zug(sacPawnB,5,1,5,3);  
+		Zug zug3 = new Zug(sacPawnB,5,1,"53");  
 		board.movedList.add(zug3);
 		PW.realMove =true;
 		assertEquals(true, PW.validMove1(board, 5, 2), "En Passant w1 true");
 		
 		board.setField(7,3,sacPawnB);
-		Zug zug4 = new Zug(sacPawnB,7,1,7,3);  
+		Zug zug4 = new Zug(sacPawnB,7,1,"73");  
 		board.movedList.add(zug4);
 		PW.realMove =true;
 		assertEquals(true, PW.validMove1(board, 7, 2), "En Passant w2 true");

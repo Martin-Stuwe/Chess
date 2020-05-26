@@ -66,7 +66,7 @@ public class StartGame {
 	 */
 	public static void convertAndMove(Board board, Console console) { 
 		// check if user input is valid (length)
-		if(console.input.length() <5 ||(console.input.length() >5 && console.input.charAt(5)!='Q' && console.input.charAt(5)!='R' && console.input.charAt(5)!='N' && console.input.charAt(5)!='B' && console.input.charAt(5)!=' ') ) {
+		if(console.input.length() <5 ||console.input.length() >5 && console.input.charAt(5)!='Q' && console.input.charAt(5)!='R' && console.input.charAt(5)!='N' && console.input.charAt(5)!='B' && console.input.charAt(5)!=' ')  {
 			board.initializeBoard();
 			//System.out.println(board.Feld);
 			System.out.println("!Invalid move");
@@ -115,7 +115,7 @@ public class StartGame {
 		if(board.getField(From1, From2)!=null) {
 			String ToString = Integer.toString(To1)+Integer.toString(To2);
 			if(board.getField(From1, From2).move(board, From1, From2, ToString)) {
-				Zug zug = new Zug(board.getField(To1, To2),From1,From2,To1,To2);  //creates new move and saves in list
+				Zug zug = new Zug(board.getField(To1, To2),From1,From2,ToString);  //creates new move and saves in list
 				board.movedList.add(zug);
 				System.out.println("!"+console.input.toString());
 			}

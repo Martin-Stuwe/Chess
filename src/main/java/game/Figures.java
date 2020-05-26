@@ -284,7 +284,7 @@ public class Figures {
 				 
 			}
 			
-			else return check4(board, posTo, pos1from, pos2from);
+			else {return check4(board, posTo, pos1from, pos2from);}
 		}	 
 		
 		board.positionen[pos1to][pos2to].setHasMoved(true);
@@ -331,7 +331,9 @@ public class Figures {
 	 * @param pos2to y axis position where the figure is moved to
 	 * @return true if figure has at least one possible move
 	 */
-	public Boolean hasPossibleMove(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { 
+	public Boolean hasPossibleMove(Board board, int pos1from, int pos2from, String To) {
+		int pos1to=Character.getNumericValue(To.charAt(0));
+		int pos2to=Character.getNumericValue(To.charAt(1));
 		
 		// saves starting position of figure
 		restoreFrom=board.positionen[pos1from][pos2from];
@@ -373,7 +375,7 @@ public class Figures {
 		
 		// changing the figures position integers
 		board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
-		return hasPossibleMove2(board,pos1from, pos2from, pos1to, pos2to);
+		return hasPossibleMove2(board,pos1from, pos2from, To);
 	}
 	
 	/**
@@ -385,7 +387,9 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return true if no check
 	 */
-	public Boolean hasPossibleMove2(Board board, int pos1from, int pos2from, int pos1to, int pos2to) { 
+	public Boolean hasPossibleMove2(Board board, int pos1from, int pos2from, String To) { 
+		int pos1to=Character.getNumericValue(To.charAt(0));
+		int pos2to=Character.getNumericValue(To.charAt(1));
 		// check if you are in check after the move	
 		if(board.checkCheck()) {
 			board.positionen[pos1to][pos2to] = restoreTo;

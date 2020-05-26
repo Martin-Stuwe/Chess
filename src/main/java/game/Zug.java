@@ -44,12 +44,12 @@ public class Zug {
 	 * @param to1 x axis position
 	 * @param to2 y axis position
 	 */
-	public Zug(Figures figure, int from1, int from2, int to1, int to2) {  
+	public Zug(Figures figure, int from1, int from2, String to) {  
 		this.figure = figure;
 		this.from1 = from1;
 		this.from2 = from2;
-		this.to1 = to1;
-		this.to2 = to2;
+		this.to1 = Character.getNumericValue(to.charAt(0));
+		this.to2 = Character.getNumericValue(to.charAt(1));	
 	}
 	
 	/**

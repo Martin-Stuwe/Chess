@@ -401,7 +401,7 @@ public class Board {
 				if(positionen[k][j]!= null&&positionen[k][j].getColor() == positionen[i][y].getColor()) {
 						for(int a =0; a<8;a++) {
 							for(int b =0; b<8;b++) {
-								if(positionen[k][j]!= null&&positionen[k][j].hasPossibleMove(this, k, j, a, b)) {
+								if(positionen[k][j]!= null&&positionen[k][j].hasPossibleMove(this, k, j, Integer.toString(a)+Integer.toString(b))) {
 										return true;
 									
 								
