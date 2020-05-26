@@ -123,9 +123,18 @@ public class Knight extends Figures {
 		// bottom right
 		return checkFirstSec(x,y,2,1,1,2); 
 					
-		
-
-}
+	}
+	
+	/**
+	 * method to check if move has right x and y difference for a knight move
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to 
+	 * @param num1 x axis difference first possible move
+	 * @param num2 y axis difference first possible move
+	 * @param num3 x axis difference second possible move
+	 * @param num4 y axis difference second possible move
+	 * @return true if move has right x and y difference
+	 */
 	public boolean checkFirstSec(int x,int y, int num1, int num2, int num3, int num4) {
 		return this.pos1==x+num1 && this.pos2==y+num2 || this.pos1==x+num3 && this.pos2 == y+num4;
 	}
