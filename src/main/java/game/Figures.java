@@ -168,7 +168,7 @@ public class Figures {
 		}
 		
 		// check if figure is allowed to make certain move
-		return move2(board, pos1from, pos2from, pos1to,pos2to);
+		return move2(board, pos1from, pos2from,posTo);
 	}
 	
 	/**
@@ -180,8 +180,9 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return false if move not valid, else go on to move22
 	 */
-	public boolean move2(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
-		
+	public boolean move2(Board board, int pos1from, int pos2from, String posTo) { 
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// if move not valid
 		if(!board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to)) {
 			System.out.println(unallowed);
@@ -194,7 +195,7 @@ public class Figures {
 			return false;
 		}
 		
-		return move22(board, pos1from, pos2from, pos1to,pos2to);
+		return move22(board, pos1from, pos2from, posTo);
 	}
 	
 	/**
@@ -206,8 +207,9 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return move3
 	 */
-	public boolean move22(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
-		
+	public boolean move22(Board board, int pos1from, int pos2from, String posTo) { 
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// color change and adding beaten black figures to the beaten list
 		if(board.getCurrentTurn()==0) {
 			if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1to][pos2to].getColor() == "b") {
@@ -223,7 +225,7 @@ public class Figures {
 				}
 			board.setCurrentTurn(0);
 		}
-		return move3(board,pos1from, pos2from,pos1to,pos2to);
+		return move3(board,pos1from, pos2from,posTo);
 	}
 	
 	/**
@@ -235,8 +237,9 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return move4
 	 */
-	public boolean move3(Board board,int pos1from, int pos2from, int pos1to, int pos2to) {
-		
+	public boolean move3(Board board,int pos1from, int pos2from,String posTo) { 
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// moving the figure
 		board.positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
 		
@@ -246,7 +249,7 @@ public class Figures {
 		// changing the figures position integers
 		board.positionen[pos1to][pos2to].setPos(pos1to, pos2to);
 		
-		return move4(board,pos1from, pos2from, pos1to, pos2to);
+		return move4(board,pos1from, pos2from, posTo);
 	}
 	
 	/**
@@ -258,8 +261,9 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return true if no check, false if black in check after the move or go on to check4
 	 */
-	public boolean move4(Board board, int pos1from, int pos2from, int pos1to, int pos2to) {
-	
+	public boolean move4(Board board, int pos1from, int pos2from, String posTo) { 
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// check if you are in check after the move		
 		if(board.checkCheck()) {
 			
@@ -280,7 +284,7 @@ public class Figures {
 				 
 			}
 			
-			else return check4(board, pos1to, pos2to, pos1from, pos2from);
+			else return check4(board, posTo, pos1from, pos2from);
 		}	 
 		
 		board.positionen[pos1to][pos2to].setHasMoved(true);
@@ -296,7 +300,10 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return true if move is valid
 	 */
-	public boolean check4(Board board, int pos1to, int pos2to, int pos1from, int pos2from) {
+	public boolean check4(Board board, String posTo, int pos1from, int pos2from) {
+		 
+			int pos1to=Character.getNumericValue(posTo.charAt(0));
+			int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// check if white is in check after the move and restoring the move if so
 		if(board.whiteCheck&&board.getCurrentTurn()==1) {
 					board.positionen[pos1to][pos2to] = restoreTo;
