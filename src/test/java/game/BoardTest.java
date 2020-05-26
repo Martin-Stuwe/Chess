@@ -94,7 +94,7 @@ public class BoardTest {
 		public void testCheckPossibleMoves() {
 			Board board = new Board();
 			board.setStart();
-			assertEquals(true, Zug.checkPossibleMoves(board), "checkField 1");
+			assertEquals(false, Zug.checkPossibleMoves(board), "checkField 1");
 			board.setCurrentTurn(1);
 			assertEquals(true, Zug.checkPossibleMoves(board), "checkField 2");
 			board.setCurrentTurn(0);
