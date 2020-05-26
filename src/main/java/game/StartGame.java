@@ -24,7 +24,7 @@ public class StartGame {
 		while(true) {
 			
 			// check if draw because of lack of figures
-			if(board.checkDraw()) {
+			if(Zug.checkDraw(board)) {
 				System.out.println("Draw");
 			}
 			
@@ -134,7 +134,7 @@ public class StartGame {
 			// promotes pawns, checks if check and prints out board
 			pawnPromotion(To1,To2,board,console);
 			board.initializeBoard();
-			board.checkCheck();
+			Zug.checkCheck(board);
 			//System.out.println(board.Feld);
 			
 			// prints out if someone is in check
@@ -146,8 +146,8 @@ public class StartGame {
 			}
 			
 			// prints out if either checkmate or stalemate
-			if(!board.checkPossibleMoves()) {
-				if(board.checkCheck()) {
+			if(!Zug.checkPossibleMoves(board)) {
+				if(Zug.checkCheck(board)) {
 					System.out.println("Checkmate");
 					return;
 				}

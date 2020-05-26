@@ -265,7 +265,7 @@ public class Figures {
 		int pos1to=Character.getNumericValue(posTo.charAt(0));
 		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// check if you are in check after the move		
-		if(board.checkCheck()) {
+		if(Zug.checkCheck(board)) {
 			
 			// check if black is in check after the move and restoring the move if so
 			if(board.blackCheck && board.getCurrentTurn()==0){
@@ -391,7 +391,7 @@ public class Figures {
 		int pos1to=Character.getNumericValue(To.charAt(0));
 		int pos2to=Character.getNumericValue(To.charAt(1));
 		// check if you are in check after the move	
-		if(board.checkCheck()) {
+		if(Zug.checkCheck(board)) {
 			board.positionen[pos1to][pos2to] = restoreTo;
 			board.positionen[pos1from][pos2from] = restoreFrom;
 			if(board.positionen[pos1to][pos2to]!= null) {

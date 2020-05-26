@@ -68,13 +68,13 @@ public class BoardTest {
 		public void testCheckCheck() {
 			Board board = new Board();
 			board.setStart();
-			assertEquals(false, board.checkCheck(), "checkCheck 1");
+			assertEquals(false, Zug.checkCheck(board), "checkCheck 1");
 			board.setField(4, 1, new Queen(4,1,"w"));
-			board.checkCheck();
+			Zug.checkCheck(board);
 			assertEquals(true, board.blackCheck, "checkCheck 2");
 			board.setField(4, 6, new Queen(4,6,"b"));
 			board.setNull(4, 1);
-			board.checkCheck();
+			Zug.checkCheck(board);
 
 			assertEquals(true, board.whiteCheck, "checkCheck 2");
 			
@@ -84,9 +84,9 @@ public class BoardTest {
 		public void testCheckField() {
 			Board board = new Board();
 			board.setStart();
-			assertEquals(false, board.checkField(0,0,"b"), "checkField 1");
-			assertEquals(true, board.checkField(4,5,"b"), "checkField 2");
-			assertEquals(false, board.checkField(4,5,"w"), "checkField 3");
+			assertEquals(false, Zug.checkField(board,0,0,"b"), "checkField 1");
+			assertEquals(true, Zug.checkField(board,4,5,"b"), "checkField 2");
+			assertEquals(false, Zug.checkField(board,4,5,"w"), "checkField 3");
 			
 			
 		}
@@ -94,23 +94,23 @@ public class BoardTest {
 		public void testCheckPossibleMoves() {
 			Board board = new Board();
 			board.setStart();
-			assertEquals(true, board.checkPossibleMoves(), "checkField 1");
+			assertEquals(true, Zug.checkPossibleMoves(board), "checkField 1");
 			board.setCurrentTurn(1);
-			assertEquals(true, board.checkPossibleMoves(), "checkField 2");
+			assertEquals(true, Zug.checkPossibleMoves(board), "checkField 2");
 			board.setCurrentTurn(0);
 			board.getField(4, 6).move(board, 4, 6, "44");
 			board.getField(5, 1).move(board, 5, 1, "52");
 			board.getField(5, 7).move(board, 5, 7, "46");
 			board.getField(6, 1).move(board, 6, 1, "63");
 			board.getField(4, 6).move(board, 4, 6, "73");
-			assertEquals(false, board.checkPossibleMoves(), "checkField 3");
+			assertEquals(false, Zug.checkPossibleMoves(board), "checkField 3");
 			}
 		
 		@Test
 		public void testCheckDraw() {
 			Board board = new Board();
 			board.setStart();
-			assertEquals(false, board.checkDraw(), "checkField 1");
+			assertEquals(false, Zug.checkDraw(board), "checkField 1");
 			
 			
 			

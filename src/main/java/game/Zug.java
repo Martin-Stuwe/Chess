@@ -1,5 +1,9 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Class for the moves
  * @author Martin Stuwe 676421
@@ -35,6 +39,17 @@ public class Zug {
 	 * where the figure has moved to y axis position
 	 */
 	int to2;
+	
+	/**
+	 * check if black is in check
+	 */
+	public boolean blackCheck;
+	
+	/**
+	 * check if white is in check
+	 */
+	public boolean whiteCheck;
+	
 	
 	/**
 	 * constructor for a zug object
@@ -91,5 +106,166 @@ public class Zug {
 	public int getTo2() {
 		return this.to2;
 	}
+	/**
+	 * checks if a player is in check
+	 * @return true if a player is in check
+	 */
+	public static boolean checkCheck(Board board) {
+		board.whiteCheck=false;
+		board.blackCheck=false;
+		for(int i =0; i<8;i++) {
+			for(int y =0; y<8;y++) {
+				for(int k =0; k<8;k++) {
+					for(int j =0; j<8;j++) {
+						// check if white is in check
+						if(board.positionen[i][y] == board.King1w && checkCheckCheck(board,i,j, k, y) ) {
+							board.whiteCheck = true;
+								
+						} 
+				
+						// check if black is in check
+						else if (board.positionen[i][y] == board.King1b && checkCheckCheck(board,i,j, k, y) ) {
+							board.blackCheck = true;
+							
+						}
+					}
+				}
+			}
+		}
+		return checkCheck2(board.whiteCheck,board.blackCheck);
+	}
+		/**
+		 * Second part of checkCheck to return whether white or black is in check or not
+		 * @return true if a player is in check
+	 	*/
+		public static boolean checkCheck2(boolean whitecheck, boolean blackcheck) {
+		return whitecheck||blackcheck;
+	}
 
+	
+	/**
+	 * method to check for check
+	 * @param i x axis position of the king
+	 * @param j x axis position of the other figures
+	 * @param k y axis position of the other figures
+	 * @param y y axis position of the king
+	 * @return true if other figure has validMove to king's position
+	 */
+	public static boolean checkCheckCheck(Board board,int i, int j, int k, int y) {
+		return board.positionen[k][j]!= null &&board.positionen[k][j].validMove(board, i, y) && board.positionen[k][j].getColor() != board.positionen[i][y].getColor();
+	}
+
+	
+	/**
+	 * method to check if certain Field would be in check
+	 * @param x the x axis position of the field
+	 * @param y the y axis position of the field
+	 * @param color the color that needs to be checked for check
+	 * @return true if field is in check
+	 */
+	public static boolean checkField(Board board,int x, int y, String color) {
+		for(int k =0; k<8;k++) {
+			for(int j =0; j<8;j++) {
+				if(board.positionen[k][j]!= null &&board.positionen[k][j].getType() !=2 && board.positionen[k][j].validMove(board, x, y) && board.positionen[k][j].getColor() != color) {			
+						return true;
+					
+				}
+				
+			}
+			
+		} 
+		return false;
+	}
+	
+	/**
+	 * check if current player has a possible move
+	 * @return true if current player has a possible move
+	 */
+	public static boolean checkPossibleMoves(Board board) {
+		for(int i =0; i<8;i++) {
+			for(int y =0; y<8;y++) {
+				
+				// check if white or black has possible move
+				if(board.positionen[i][y] == board.King1w|| board.positionen[i][y] == board.King1b ) {
+					return Zug.checkPossibleMovesCheck(board,i, y); 
+			
+				}
+				
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * method to check for possible moves
+	 * @param i the x axis position of the king
+	 * @param y the y axis position of the king
+	 * @return true if figures have possible moves
+	 */
+	public static boolean checkPossibleMovesCheck(Board board, int i, int y) {
+		for(int k =0; k<8;k++) {
+			for(int j =0; j<8;j++) {
+				if(board.positionen[k][j]!= null&&board.positionen[k][j].getColor() == board.positionen[i][y].getColor()) {
+						for(int a =0; a<8;a++) {
+							for(int b =0; b<8;b++) {
+								if(board.positionen[k][j]!= null&&board.positionen[k][j].hasPossibleMove(board, k, j, Integer.toString(a)+Integer.toString(b))) {
+										return true;
+									
+								
+							}
+						}
+					}
+				}	
+			}	
+		}
+		return false;
+	}
+	
+	/**
+	 * check if there is no checkmate possible anymore
+	 * @return true if no checkmate possible anymore
+	 */
+	public static boolean checkDraw(Board board) {
+		// figures that together can not checkmate anymore
+		ArrayList<String> draw1 = new ArrayList<String>(Arrays.asList(new String[]{"K", "k", "B"}));
+		ArrayList<String> draw2 = new ArrayList<String>(Arrays.asList(new String[]{"K","k","b"}));
+		ArrayList<String> draw3 = new ArrayList<String>(Arrays.asList(new String[]{"K","k","n"}));
+		ArrayList<String> draw4 = new ArrayList<String>(Arrays.asList(new String[]{"K","k","N"}));
+		ArrayList<String> test = new ArrayList<String>();
+		
+		// adding figures to arraylist
+		for(int i = 0; i<8; i++) {
+			for(int y = 0; y<8; y++) {
+				if(board.positionen[i][y] != null) {
+					test.add(board.positionen[i][y].getBoardVisual());
+				}
+			}
+		}
+		Collections.sort(draw1);
+		Collections.sort(draw2);
+		Collections.sort(draw3);
+		Collections.sort(draw4);
+		Collections.sort(test);
+		
+		// comparing board's arraylist to no checkmate positions
+		if(test.equals(draw1)) {
+			return true;
+		}
+		else if(test.equals(draw2)) {
+			return true;
+		}
+		else if(test.equals(draw3)) {
+			return true;
+		}
+		else if(test.equals(draw4)) {
+			return true;
+		}
+		
+
+			
+		return false;
+		
+	}
 }
+
+

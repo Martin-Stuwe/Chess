@@ -2,6 +2,7 @@ package figures;
 
 import game.Board;
 import game.Figures;
+import game.Zug;
 
 /**
  * Class for the figure: king
@@ -175,8 +176,8 @@ public class King extends Figures {
 	 */
 	public boolean checkStuff1(Board board, int x, int y) {
 		return !this.hasMoved && !board.getField(7, y).isHasMoved()
-		&& !board.checkField(4, y, this.color) && !board.checkField(5, y, this.color) && 
-			!board.checkField(6, y, this.color);
+		&& !Zug.checkField(board,4, y, this.color) && !Zug.checkField(board,5, y, this.color) && 
+			!Zug.checkField(board,6, y, this.color);
 	}
 	
 	/**
@@ -218,8 +219,8 @@ public class King extends Figures {
 		 */
 		public boolean checkStuff2(Board board, int x, int y) {
 			return !this.hasMoved && !board.getField(0, y).isHasMoved()
-					&& !board.checkField(4, y, this.color) && !board.checkField(3, y, this.color)&& 
-					!board.checkField(2, y, this.color);
+					&& !Zug.checkField(board,4, y, this.color) && !Zug.checkField(board,3, y, this.color)&& 
+					!Zug.checkField(board,2, y, this.color);
 		}
 		
 		/**
