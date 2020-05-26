@@ -12,6 +12,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class GuiMain extends Application {
+	/**
+	 * method to launch GUI
+	 */
     public static void main(String[] args) {
         launch(args);
     }

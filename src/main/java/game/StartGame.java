@@ -72,6 +72,16 @@ public class StartGame {
 			System.out.println("!Invalid move");
 			return;
 		}
+		convertAndMove2(board,console);
+	}
+	
+	/**
+	 * Uses ConvertMoveInput to convert, parses and checks for From != null,
+	 * adds the legit move to the previous moves list 
+	 * @param board: the actual Board object
+	 * @param console: the Console object
+	 */
+	public static void convertAndMove2(Board board, Console console){
 		
 		// converting the user input into Strings
 		String From=board.ConvertMoveInput(board,console.input.charAt(0),Character.getNumericValue(console.input.charAt(1)));

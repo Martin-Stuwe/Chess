@@ -326,16 +326,20 @@ public class Board {
 		}
 		return checkCheck2(whiteCheck,blackCheck);
 	}
-		public boolean checkCheck2(boolean whiteCheck, boolean blackCheck) {
-		if (whiteCheck) {
+		/**
+		 * Second part of checkCheck to return whether white or black is in check or not
+		 * @return true if a player is in check
+	 	*/
+		public boolean checkCheck2(boolean whiteChecks, boolean blackChecks) {
+		if (whiteChecks) {
 			return true;
 		}
-		if (blackCheck) {
+		if (blackChecks) {
 			return true;
 		}
 	
-		blackCheck = false;
-		whiteCheck = false;
+		blackChecks = false;
+		whiteChecks = false;
 		return false;
 	}
 
