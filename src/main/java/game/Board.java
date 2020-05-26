@@ -1,8 +1,6 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import figures.Bishop;
 import figures.King;
@@ -60,7 +58,7 @@ public class Board {
 	/**
 	 * check if white is in check
 	 */
-	public boolean whiteCheck;
+	public  boolean whiteCheck;
 	
 	
 	/**
@@ -69,25 +67,6 @@ public class Board {
 	 */
 	int CurrentTurn; 
 	
-	/**
-	* Initializes all initial Figures objects
-	*/
-	Rook Rook1b = new Rook(0,0,"b");
-	Rook Rook2b = new Rook(7,0,"b");
-	Rook Rook1w = new Rook(0,7,"w");
-	Rook Rook2w = new Rook(7,7,"w");
-	Knight Knight1b = new Knight(1,0,"b");
-	Knight Knight2b = new Knight(6,0,"b");
-	Knight Knight1w = new Knight(1,7,"w");
-	Knight Knight2w = new Knight(6,7,"w");
-	Bishop Bishop1b = new Bishop(2,0,"b");
-	Bishop Bishop2b = new Bishop(0,5,"b");
-	Bishop Bishop1w = new Bishop(2,7,"w");
-	Bishop Bishop2w = new Bishop(5,7,"w");
-	Queen Queen1b = new Queen(3,0,"b");
-	Queen Queen1w = new Queen(3,7,"w");
-	King King1b	= new King(4,0,"b");
-	King King1w = new King(4,7,"w");
 	
 	/**
 	 * get-method for gameLive
@@ -160,6 +139,25 @@ public class Board {
 	 * sets starting position of all figures
 	 */
 	public void setStart() {
+		/**
+		* Initializes all initial Figures objects
+		*/
+		Rook Rook1b = new Rook(0,0,"b");
+		Rook Rook2b = new Rook(7,0,"b");
+		Rook Rook1w = new Rook(0,7,"w");
+		Rook Rook2w = new Rook(7,7,"w");
+		Knight Knight1b = new Knight(1,0,"b");
+		Knight Knight2b = new Knight(6,0,"b");
+		Knight Knight1w = new Knight(1,7,"w");
+		Knight Knight2w = new Knight(6,7,"w");
+		Bishop Bishop1b = new Bishop(2,0,"b");
+		Bishop Bishop2b = new Bishop(0,5,"b");
+		Bishop Bishop1w = new Bishop(2,7,"w");
+		Bishop Bishop2w = new Bishop(5,7,"w");
+		Queen Queen1b = new Queen(3,0,"b");
+		Queen Queen1w = new Queen(3,7,"w");
+		King King1b	= new King(4,0,"b");
+		King King1w = new King(4,7,"w");
 		setField(0,0, Rook1b);
 		setField(1,0, Knight1b);
 		setField(2,0, Bishop1b);

@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import figures.King;
 
 /**
  * Class for the moves
@@ -40,16 +41,7 @@ public class Zug {
 	 */
 	int to2;
 	
-	/**
-	 * check if black is in check
-	 */
-	public boolean blackCheck;
-	
-	/**
-	 * check if white is in check
-	 */
-	public boolean whiteCheck;
-	
+
 	
 	/**
 	 * constructor for a zug object
@@ -118,13 +110,13 @@ public class Zug {
 				for(int k =0; k<8;k++) {
 					for(int j =0; j<8;j++) {
 						// check if white is in check
-						if(board.positionen[i][y] == board.King1w && checkCheckCheck(board,i,j, k, y) ) {
+						if(board.positionen[i][y]!=null&&board.positionen[i][y].getClass() == King.class && board.positionen[i][y].getColor() == "w" && checkCheckCheck(board,i,j, k, y)) {
 							board.whiteCheck = true;
 								
 						} 
 				
 						// check if black is in check
-						else if (board.positionen[i][y] == board.King1b && checkCheckCheck(board,i,j, k, y) ) {
+						else if (board.positionen[i][y]!=null&&board.positionen[i][y].getClass() == King.class && board.positionen[i][y].getColor() == "b"&& checkCheckCheck(board,i,j, k, y) ) {
 							board.blackCheck = true;
 							
 						}
@@ -186,7 +178,7 @@ public class Zug {
 			for(int y =0; y<8;y++) {
 				
 				// check if white or black has possible move
-				if(board.positionen[i][y] == board.King1w|| board.positionen[i][y] == board.King1b ) {
+				if(board.positionen[i][y]!=null&&board.positionen[i][y].getClass() == King.class) {
 					return Zug.checkPossibleMovesCheck(board,i, y); 
 			
 				}
