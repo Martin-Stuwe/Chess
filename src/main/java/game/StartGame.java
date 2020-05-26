@@ -144,8 +144,6 @@ public class StartGame {
 	
 	/**
 	 * method to promote the pawn
-	 * @param from1 x axis starting position (not used)
-	 * @param from2 y axis starting position (not used)
 	 * @param to1 x axis ending position
 	 * @param to2 y axis position
 	 * @param board board that the pawn gets promoted on
@@ -168,32 +166,39 @@ public class StartGame {
 		
 	}
 		
-			
+	/**
+	 * method to replace pawn with wanted figure
+	 * @param to1 x axis ending position
+	 * @param to2 y axis position
+	 * @param board board that the pawn gets promoted on
+	 * @param console console input
+	 */
 	public static void pawnPromo2(int to1, int to2, Board board, Console console) {
+		//pawn into queen
 		if(console.input.charAt(5) == 'Q' ) {
 			Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
 			board.setField(to1, to2, queen);
 		}
 				
-				// pawn into rook
+		// pawn into rook
 		if(console.input.charAt(5) == 'R' ) {
 					Rook rook = new Rook(to1, to2,board.getField(to1, to2).getColor());
 					board.setField(to1, to2, rook);
 				}
 			
-			// pawn into knight
+		// pawn into knight
 		if(console.input.charAt(5) == 'N') {
 				Knight knight = new Knight(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, knight);
 			}
 			
-			// pawn into bishop
+		// pawn into bishop
 		if(console.input.charAt(5) == 'B' ) {
 				Bishop bishop = new Bishop(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, bishop);
 			}
 			
-			// pawn into queen (empty space)
+		// pawn into queen (empty space)
 		if( console.input.charAt(5) == ' ') {
 				Queen queen = new Queen(to1, to2,board.getField(to1, to2).getColor());
 				board.setField(to1, to2, queen);
