@@ -114,7 +114,7 @@ public class Zug {
 							if(board.positionen[i][y].getColor() == "w") {
 								board.whiteCheck = true;
 							}
-							if (board.positionen[i][y].getColor() == "b") {
+							else{
 								board.blackCheck=true;
 							}
 								
@@ -123,16 +123,11 @@ public class Zug {
 				}
 			}
 		}
-		return checkCheck2(board.whiteCheck,board.blackCheck);
-	}
-		/**
-		 * Second part of checkCheck to return whether white or black is in check or not
-		 * @return true if a player is in check
-	 	*/
-		public static boolean checkCheck2(boolean whitecheck, boolean blackcheck) {
-		return whitecheck||blackcheck;
+		return board.whiteCheck||board.blackCheck;
 	}
 
+
+		
 	
 	/**
 	 * method to check for check
