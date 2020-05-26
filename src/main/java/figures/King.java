@@ -121,7 +121,7 @@ public class King extends Figures {
 	public boolean validMove(Board board, int x, int y) {
 		
 		// check if the field to move to is on the board
-		if (checkxy(x,y)) {
+		if(checkxy(x,y)) {
 			return false;
 		}
 		
@@ -131,12 +131,26 @@ public class King extends Figures {
 		}
 		
 		return check1(board,x,y);
-		}
-		public boolean checkxy(int x,int y) {
-			return x<0 || x>7|| y<0 || y>7 ;
-		}
-		
-		public boolean check1(Board board, int x, int y) {
+	}
+	
+	/**
+	 * check if move is on the board
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if move is off the board
+	 */
+	public boolean checkxy(int x,int y) {
+		return x<0 || x>7|| y<0 || y>7 ;
+	}
+	
+	/**
+	 * method to check for short castling
+	 * @param board the board the move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if short castling move was possible, else go on to check2
+	 */
+	public boolean check1(Board board, int x, int y) {
 		// short castling (check hasMoved + emptySpaces + check if check)
 		if(this.pos1 == x-2 && this.pos2 == y &&board.getField(7, y)!= null 
 				&& board.getField(6, y) == null && board.getField(5, y)== null) {
@@ -146,31 +160,43 @@ public class King extends Figures {
 						return true;
 					}
 					
-			else {
-				return false;
+					else {
+						return false;
 			}
 		}
 		return check2(board,x,y);
 	}
-		public boolean checkStuff1(Board board, int x, int y) {
+	/**
+	 * check if king and rook have moved
+	 * @param board the board the move in on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if castling figures haven't moved yet
+	 */
+	public boolean checkStuff1(Board board, int x, int y) {
 		return !this.hasMoved && !board.getField(7, y).isHasMoved()
 		&& !board.checkField(4, y, this.color) && !board.checkField(5, y, this.color) && 
 			!board.checkField(6, y, this.color);
-		}
-		public boolean check2(Board board, int x, int y) {
-				
-		
-		
+	}
+	
+	/**
+	 * check for long castling and normal king moves
+	 * @param board the board the move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if move is valid
+	 */
+	public boolean check2(Board board, int x, int y) {
 		// long castling (check hasMoved + emptySpaces + check if check)
 		if(checkStuff3(board,x,y)) {
-					if(checkStuff2(board,x,y)) {
-						board.setField(3, y, board.getField(0, y));
-						board.setNull(0, y);
-						return true;
+			if(checkStuff2(board,x,y)) {
+					board.setField(3, y, board.getField(0, y));
+					board.setNull(0, y);
+					return true;
 					}
 					
-			else {
-				return false;
+		else {
+			return false;
 			}
 		}
 		
@@ -179,21 +205,33 @@ public class King extends Figures {
 					return true;
 			}
 				
-			
-	
-		
-		
 			return false;
-	
-	}
+		}
+		
+		
+		/**
+		 * check if long castling figures have moved
+		 * @param board the board the move is on	
+		 * @param x the x axis position to move to 
+		 * @param y the y axis position to move to
+		 * @return true if figures haven't moved yet
+		 */
 		public boolean checkStuff2(Board board, int x, int y) {
-		return !this.hasMoved && !board.getField(0, y).isHasMoved()
-		&& !board.checkField(4, y, this.color) && !board.checkField(3, y, this.color)&& 
-		!board.checkField(2, y, this.color);
-}
+			return !this.hasMoved && !board.getField(0, y).isHasMoved()
+					&& !board.checkField(4, y, this.color) && !board.checkField(3, y, this.color)&& 
+					!board.checkField(2, y, this.color);
+		}
+		
+		/**
+		 * method to check if next move is supposed to be castling
+		 * @param board the board the move is on
+		 * @param x the x axis position to move to
+		 * @param y the y axis position to move to
+		 * @return true if next move is supposed to be castling
+		 */
 		public boolean checkStuff3(Board board, int x, int y) {
-		return this.pos1 == x+2 && this.pos2 == y && board.getField(0, y)!= null 
+			return this.pos1 == x+2 && this.pos2 == y && board.getField(0, y)!= null 
 				&& board.getField(3, y) == null && board.getField(2, y)== null;
-}
+			}
 		}
 
