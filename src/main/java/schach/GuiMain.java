@@ -84,16 +84,15 @@ public class GuiMain extends Application {
         ai.setToggleGroup(mode);
         HBox modebox = new HBox(100, pla, ai);
         
-        BorderPane border = new BorderPane();
-        border.setBottom(btn);
-        border.setTop(colorbox);
-        border.setCenter(modebox);
-        modebox.setAlignment(Pos.CENTER);
-        colorbox.setAlignment(Pos.CENTER);
-        btn.setAlignment(Pos.CENTER);
+        VBox option = new VBox();
+        option.setSpacing(primaryScreenBounds.getHeight() /20);
+        option.getChildren().add(colorbox);
+        option.getChildren().add(modebox);
+        option.getChildren().add(btn);
+        option.setPadding(new Insets(primaryScreenBounds.getHeight() /3,primaryScreenBounds.getWidth() /3,primaryScreenBounds.getHeight() /3,primaryScreenBounds.getWidth() /3));
         
         StackPane root = new StackPane();
-        root.getChildren().add(border);
+        root.getChildren().add(option);
         primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
