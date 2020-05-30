@@ -7,19 +7,17 @@ import game.StartGame;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -72,11 +70,8 @@ public class GuiMain extends Application {
     public void startGame(Stage primaryStage) {
         primaryStage.setTitle("Chess");
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-
-        GridPane board = new GridPane();
-        Button btn = new Button();
-        btn.setText("start game");
-       
+        // create chessboard
+        GridPane board = new GridPane();     
         final int size = 8 ;
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col ++) {
@@ -91,11 +86,35 @@ public class GuiMain extends Application {
                 board.add(Feld, col, row);
             }
         }
- 
+        //define left side
+        VBox leftVbox = new VBox();
+        leftVbox.setSpacing(primaryScreenBounds.getHeight() /12);
+        leftVbox.getChildren().add(new Label("8"));
+        leftVbox.getChildren().add(new Label("7"));
+        leftVbox.getChildren().add(new Label("6"));
+        leftVbox.getChildren().add(new Label("5"));
+        leftVbox.getChildren().add(new Label("4"));
+        leftVbox.getChildren().add(new Label("3"));
+        leftVbox.getChildren().add(new Label("2"));
+        leftVbox.getChildren().add(new Label("1"));
+        leftVbox.setPadding(new Insets(primaryScreenBounds.getHeight() /20,20,0,20));
+        //define Bottom
+        HBox bottomHbox = new HBox();
+        bottomHbox.setSpacing(primaryScreenBounds.getHeight() /10.5);
+        bottomHbox.getChildren().add(new Label("a"));
+        bottomHbox.getChildren().add(new Label("b"));
+        bottomHbox.getChildren().add(new Label("c"));
+        bottomHbox.getChildren().add(new Label("d"));
+        bottomHbox.getChildren().add(new Label("e"));
+        bottomHbox.getChildren().add(new Label("f"));
+        bottomHbox.getChildren().add(new Label("g"));
+        bottomHbox.getChildren().add(new Label("h"));
+        bottomHbox.setPadding(new Insets(0,0,primaryScreenBounds.getHeight()/10 -20,primaryScreenBounds.getHeight()/12));
+        //add elements to BorderPane
         BorderPane border = new BorderPane();
         border.setTop(new Rectangle(primaryScreenBounds.getWidth(),primaryScreenBounds.getHeight() /10,Color.GREY));
-        border.setBottom(new Label("Bottom"));
-        border.setLeft(new Label("Left"));
+        border.setBottom(bottomHbox);
+        border.setLeft(leftVbox);
         border.setRight(new Label("Right"));
         border.setCenter(board);
 
