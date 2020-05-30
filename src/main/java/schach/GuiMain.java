@@ -91,10 +91,7 @@ public class GuiMain extends Application {
                 board.add(Feld, col, row);
             }
         }
-        for (int i = 0; i < size; i++) {
-            board.getColumnConstraints().add(new ColumnConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, HPos.CENTER, true));
-            board.getRowConstraints().add(new RowConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, VPos.CENTER, true));
-        }
+     
  
 
         
