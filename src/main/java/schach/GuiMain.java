@@ -65,7 +65,7 @@ public class GuiMain extends Application {
             public void handle(ActionEvent event) {
             	start(primaryStage);
             }
-        });
+        }); 
         
         StackPane root = new StackPane();
         root.getChildren().add(btn);
