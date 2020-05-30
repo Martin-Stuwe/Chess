@@ -1,5 +1,6 @@
 package schach;
 
+import game.StartGame;
 /**
  * no changes made yet
  */
@@ -21,20 +22,54 @@ public class GuiMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Startscreen");
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("new game");
         btn.setOnAction(new EventHandler<ActionEvent>() {
  
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                startOptions(primaryStage);
             }
         });
         
         StackPane root = new StackPane();
         root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.setScene(new Scene(root, 1600, 900));
+        primaryStage.show();
+    }
+    public void startOptions(Stage primaryStage) {
+        primaryStage.setTitle("Options");
+        Button btn = new Button();
+        btn.setText("start game");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	startGame(primaryStage);
+            }
+        });
+        
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        primaryStage.setScene(new Scene(root, 1600, 900));
+        primaryStage.show();
+    }
+    public void startGame(Stage primaryStage) {
+        primaryStage.setTitle("Chess");
+        Button btn = new Button();
+        btn.setText("todo");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	start(primaryStage);
+            }
+        });
+        
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        primaryStage.setScene(new Scene(root, 1600, 900));
         primaryStage.show();
     }
 }
