@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.geometry.Rectangle2D;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,6 +23,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class GuiMain extends Application {
@@ -69,10 +71,8 @@ public class GuiMain extends Application {
     }
     public void startGame(Stage primaryStage) {
         primaryStage.setTitle("Chess");
-        Rectangle RW = new Rectangle(100,100);
-        RW.setFill(Color.WHITE);
-        Rectangle RB = new Rectangle(100,100);
-        RB.setFill(Color.BLACK);
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
         GridPane board = new GridPane();
         Button btn = new Button();
         btn.setText("start game");
@@ -80,7 +80,7 @@ public class GuiMain extends Application {
         final int size = 8 ;
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col ++) {
-                Rectangle Feld = new Rectangle(100,100);
+                Rectangle Feld = new Rectangle(primaryScreenBounds.getHeight() /10,primaryScreenBounds.getHeight() /10);
                 Paint color ;
                 if ((row + col) % 2 == 0) {
                     color = Color.WHITE;
@@ -91,12 +91,9 @@ public class GuiMain extends Application {
                 board.add(Feld, col, row);
             }
         }
-     
  
-
-        
         BorderPane border = new BorderPane();
-        border.setTop(new Label("Top"));
+        border.setTop(new Rectangle(primaryScreenBounds.getWidth(),100,Color.GREY));
         border.setBottom(new Label("Bottom"));
         border.setLeft(new Label("Left"));
         border.setRight(new Label("Right"));
@@ -105,7 +102,9 @@ public class GuiMain extends Application {
         
         StackPane root = new StackPane();
         root.getChildren().add(border);
-        primaryStage.setScene(new Scene(root, 1600, 900));
+        primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
+        primaryStage.setX(primaryScreenBounds.getMinX());
+        primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
     }
 }
