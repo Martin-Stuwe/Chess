@@ -7,9 +7,21 @@ import game.StartGame;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class GuiMain extends Application {
@@ -57,18 +69,45 @@ public class GuiMain extends Application {
     }
     public void startGame(Stage primaryStage) {
         primaryStage.setTitle("Chess");
+        Rectangle RW = new Rectangle(100,100);
+        RW.setFill(Color.WHITE);
+        Rectangle RB = new Rectangle(100,100);
+        RB.setFill(Color.BLACK);
+        GridPane board = new GridPane();
         Button btn = new Button();
-        btn.setText("todo");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-            	start(primaryStage);
+        btn.setText("start game");
+       
+        final int size = 8 ;
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col ++) {
+                Rectangle Feld = new Rectangle(100,100);
+                Paint color ;
+                if ((row + col) % 2 == 0) {
+                    color = Color.WHITE;
+                } else {
+                    color = Color.BLACK;
+                }
+                Feld.setFill(color);
+                board.add(Feld, col, row);
             }
-        });  
+        }
+        for (int i = 0; i < size; i++) {
+            board.getColumnConstraints().add(new ColumnConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, HPos.CENTER, true));
+            board.getRowConstraints().add(new RowConstraints(5, Control.USE_COMPUTED_SIZE, Double.POSITIVE_INFINITY, Priority.ALWAYS, VPos.CENTER, true));
+        }
+ 
+
+        
+        BorderPane border = new BorderPane();
+        border.setTop(new Label("Top"));
+        border.setBottom(new Label("Bottom"));
+        border.setLeft(new Label("Left"));
+        border.setRight(new Label("Right"));
+        border.setCenter(board);
+
         
         StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        root.getChildren().add(border);
         primaryStage.setScene(new Scene(root, 1600, 900));
         primaryStage.show();
     }
