@@ -11,7 +11,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -86,7 +88,7 @@ public class GuiMain extends Application {
                 board.add(Feld, col, row);
             }
         }
-        //define left side
+        //define left 
         VBox leftVbox = new VBox();
         leftVbox.setSpacing(primaryScreenBounds.getHeight() /12);
         leftVbox.getChildren().add(new Label("8"));
@@ -110,12 +112,49 @@ public class GuiMain extends Application {
         bottomHbox.getChildren().add(new Label("g"));
         bottomHbox.getChildren().add(new Label("h"));
         bottomHbox.setPadding(new Insets(0,0,primaryScreenBounds.getHeight()/10 -20,primaryScreenBounds.getHeight()/12));
+        //define right
+        VBox rightVbox = new VBox();
+        rightVbox.setSpacing(20);
+        ListView historie = new ListView();
+        historie.minHeight(primaryScreenBounds.getHeight()/4);
+        ListView beaten = new ListView();
+        beaten.minHeight(primaryScreenBounds.getHeight()/4);
+        rightVbox.getChildren().add(new Label("historie"));
+        rightVbox.getChildren().add(historie);
+        rightVbox.getChildren().add(new Label("beaten figures"));
+        rightVbox.getChildren().add(beaten);
+        rightVbox.setPadding(new Insets(20,primaryScreenBounds.getHeight()/12,0,20));
+        //define top
+        HBox topHbox = new HBox();
+        topHbox.setSpacing(primaryScreenBounds.getHeight() /50);
+        CheckBox check1 = new CheckBox();
+        CheckBox check2 = new CheckBox();
+        CheckBox check3 = new CheckBox();
+        CheckBox check4 = new CheckBox();
+        CheckBox check5 = new CheckBox();
+        topHbox.getChildren().add(check1);
+        topHbox.getChildren().add(new Label("text"));
+        topHbox.getChildren().add(new Label(""));
+        topHbox.getChildren().add(check2);
+        topHbox.getChildren().add(new Label("text"));
+        topHbox.getChildren().add(new Label(""));
+        topHbox.getChildren().add(check3);
+        topHbox.getChildren().add(new Label("text"));
+        topHbox.getChildren().add(new Label(""));
+        topHbox.getChildren().add(check4);
+        topHbox.getChildren().add(new Label("text"));
+        topHbox.getChildren().add(new Label(""));
+        topHbox.getChildren().add(check5);
+        topHbox.getChildren().add(new Label("text"));
+        topHbox.getChildren().add(new Label(""));
+        topHbox.setPadding(new Insets(primaryScreenBounds.getHeight()/20,primaryScreenBounds.getHeight()/10,primaryScreenBounds.getHeight()/20,primaryScreenBounds.getHeight()/4));
+        
         //add elements to BorderPane
         BorderPane border = new BorderPane();
-        border.setTop(new Rectangle(primaryScreenBounds.getWidth(),primaryScreenBounds.getHeight() /10,Color.GREY));
+        border.setTop(topHbox);
         border.setBottom(bottomHbox);
         border.setLeft(leftVbox);
-        border.setRight(new Label("Right"));
+        border.setRight(rightVbox);
         border.setCenter(board);
 
         
