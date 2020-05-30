@@ -8,13 +8,16 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -54,6 +57,7 @@ public class GuiMain extends Application {
     }
     public void startOptions(Stage primaryStage) {
         primaryStage.setTitle("Options");
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         Button btn = new Button();
         btn.setText("start game");
         btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -64,9 +68,35 @@ public class GuiMain extends Application {
             }
         });
         
+        RadioButton white = new RadioButton("white");
+        white.setSelected(true);
+        RadioButton black = new RadioButton("black");
+        final ToggleGroup color = new ToggleGroup();
+        white.setToggleGroup(color);
+        black.setToggleGroup(color);
+        HBox colorbox = new HBox(100, white, black);
+        
+        RadioButton pla = new RadioButton("player vs player");
+        RadioButton ai = new RadioButton("player vs ai");
+        pla.setSelected(true);
+        final ToggleGroup mode = new ToggleGroup();
+        pla.setToggleGroup(mode);
+        ai.setToggleGroup(mode);
+        HBox modebox = new HBox(100, pla, ai);
+        
+        BorderPane border = new BorderPane();
+        border.setBottom(btn);
+        border.setTop(colorbox);
+        border.setCenter(modebox);
+        modebox.setAlignment(Pos.CENTER);
+        colorbox.setAlignment(Pos.CENTER);
+        btn.setAlignment(Pos.CENTER);
+        
         StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 1600, 900));
+        root.getChildren().add(border);
+        primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
+        primaryStage.setX(primaryScreenBounds.getMinX());
+        primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
     }
     public void startGame(Stage primaryStage) {
