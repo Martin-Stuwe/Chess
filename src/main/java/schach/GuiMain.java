@@ -93,7 +93,7 @@ public class GuiMain extends Application {
         }
  
         BorderPane border = new BorderPane();
-        border.setTop(new Rectangle(primaryScreenBounds.getWidth(),100,Color.GREY));
+        border.setTop(new Rectangle(primaryScreenBounds.getWidth(),primaryScreenBounds.getHeight() /10,Color.GREY));
         border.setBottom(new Label("Bottom"));
         border.setLeft(new Label("Left"));
         border.setRight(new Label("Right"));
