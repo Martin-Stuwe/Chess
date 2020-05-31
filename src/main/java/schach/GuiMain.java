@@ -1,5 +1,6 @@
 package schach;
 
+import game.Board;
 import game.StartGame;
 /**
  * no changes made yet
@@ -101,6 +102,8 @@ public class GuiMain extends Application {
     public void startGame(Stage primaryStage) {
         primaryStage.setTitle("Chess");
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        Board brett = new Board();
+        brett.setStart();
         // create chessboard
         GridPane board = new GridPane();     
         final int size = 8 ;
@@ -115,6 +118,9 @@ public class GuiMain extends Application {
                 }
                 Feld.setFill(color);
                 board.add(Feld, col, row);
+                if(brett.getField(col, row)!=null) {
+                board.add(new Label(brett.getField(col, row).getBoardVisual()), col, row);
+                }
             }
         }
         //define left 
@@ -155,27 +161,17 @@ public class GuiMain extends Application {
         rightVbox.setPadding(new Insets(20,primaryScreenBounds.getHeight()/12,0,20));
         //define top
         HBox topHbox = new HBox();
-        topHbox.setSpacing(primaryScreenBounds.getHeight() /50);
-        CheckBox check1 = new CheckBox();
-        CheckBox check2 = new CheckBox();
-        CheckBox check3 = new CheckBox();
-        CheckBox check4 = new CheckBox();
-        CheckBox check5 = new CheckBox();
+        topHbox.setSpacing(primaryScreenBounds.getHeight() /20);
+        CheckBox check1 = new CheckBox("text");
+        CheckBox check2 = new CheckBox("text");
+        CheckBox check3 = new CheckBox("text");
+        CheckBox check4 = new CheckBox("text");
+        CheckBox check5 = new CheckBox("text");
         topHbox.getChildren().add(check1);
-        topHbox.getChildren().add(new Label("text"));
-        topHbox.getChildren().add(new Label(""));
         topHbox.getChildren().add(check2);
-        topHbox.getChildren().add(new Label("text"));
-        topHbox.getChildren().add(new Label(""));
         topHbox.getChildren().add(check3);
-        topHbox.getChildren().add(new Label("text"));
-        topHbox.getChildren().add(new Label(""));
         topHbox.getChildren().add(check4);
-        topHbox.getChildren().add(new Label("text"));
-        topHbox.getChildren().add(new Label(""));
         topHbox.getChildren().add(check5);
-        topHbox.getChildren().add(new Label("text"));
-        topHbox.getChildren().add(new Label(""));
         topHbox.setPadding(new Insets(primaryScreenBounds.getHeight()/20,primaryScreenBounds.getHeight()/10,primaryScreenBounds.getHeight()/20,primaryScreenBounds.getHeight()/4));
         
         //add elements to BorderPane
