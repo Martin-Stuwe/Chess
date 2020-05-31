@@ -19,6 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -135,12 +136,12 @@ public class GuiMain extends Application {
                 if ((row + col) % 2 == 0) {
                     color = Color.WHITE;
                 } else {
-                    color = Color.BLACK;
+                    color = Color.LIGHTGRAY;
                 }
                 Feld.setFill(color);
                 board.add(Feld, col, row);
                 if(brett.getField(col, row)!=null) {
-                board.add(new Label(brett.getField(col, row).getBoardVisual()), col, row);
+                board.add(getImage(brett,col,row), col, row);
                 }
             }
         }
@@ -212,7 +213,65 @@ public class GuiMain extends Application {
         return leftVbox;
     }
     
+    public Label getImage(Board brett, int i, int y) {
+    	Label image = new Label("");
+    	if(brett.getField(i, y).getColor()=="w") {
+    		image.setText(checkWhiteSymbols(brett,i,y));
+    	}
+    	else {
+    		image.setText(checkBlackSymbols(brett,i,y));
+    	}
+    	
+    	image.setScaleX(screenHeight/300);
+    	image.setScaleY(screenHeight/300);
+    	image.setPadding(new Insets(0,0,0,screenHeight/50));
+    	return image;
+    }
     
+    public String checkWhiteSymbols(Board brett, int i, int y) {
+    	String white = "";
+    	if(brett.getField(i, y).getBoardVisual()=="P") {
+    		white="♙" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="N") {
+    		white="♘" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="B") {
+    		white="♗" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="R") {
+    		white="♖" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="Q") {
+    		white="♕" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="K") {
+    		white="♔" ;
+    	}
+    	return white;
+    }
+    public String checkBlackSymbols(Board brett, int i, int y) {
+    	String black = "";
+     	if(brett.getField(i, y).getBoardVisual()=="p") {
+    		black="♟" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="n") {
+    		black="♞" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="b") {
+    		black="♝" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="r") {
+    		black="♜" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="q") {
+    		black="♛" ;
+    	}
+    	if(brett.getField(i, y).getBoardVisual()=="k") {
+    		black="♚" ;
+    	}
+    	return black;
+    }
     
     
     
