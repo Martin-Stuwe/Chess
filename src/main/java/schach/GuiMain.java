@@ -20,6 +20,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -226,6 +227,13 @@ public class GuiMain extends Application {
     	image.setScaleX(screenHeight/300);
     	image.setScaleY(screenHeight/300);
     	image.setPadding(new Insets(0,0,0,screenHeight/50));
+    	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                showPossibleMoves(brett,i,y);
+            }
+
+        });
     	return image;
     }
     
@@ -274,7 +282,9 @@ public class GuiMain extends Application {
     	return black;
     }
     
-    
+    public void showPossibleMoves(Board brett, int i, int y){
+    	System.out.println("test");
+    }
     
     
 }
