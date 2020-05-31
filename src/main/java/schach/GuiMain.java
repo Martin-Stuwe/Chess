@@ -34,6 +34,8 @@ public class GuiMain extends Application {
 	/**
 	 * method to launch GUI
 	 */
+	double screenHeight;
+	double screenWidth;
     public static void main(String[] args) {
         launch(args);
     }
@@ -102,27 +104,12 @@ public class GuiMain extends Application {
     public void startGame(Stage primaryStage) {
         primaryStage.setTitle("Chess");
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        screenHeight =primaryScreenBounds.getHeight();
+        screenWidth =primaryScreenBounds.getWidth();
         Board brett = new Board();
         brett.setStart();
         // create chessboard
-        GridPane board = new GridPane();     
-        final int size = 8 ;
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col ++) {
-                Rectangle Feld = new Rectangle(primaryScreenBounds.getHeight() /10,primaryScreenBounds.getHeight() /10);
-                Paint color ;
-                if ((row + col) % 2 == 0) {
-                    color = Color.WHITE;
-                } else {
-                    color = Color.BLACK;
-                }
-                Feld.setFill(color);
-                board.add(Feld, col, row);
-                if(brett.getField(col, row)!=null) {
-                board.add(new Label(brett.getField(col, row).getBoardVisual()), col, row);
-                }
-            }
-        }
+        
         //define left 
         VBox leftVbox = new VBox();
         leftVbox.setSpacing(primaryScreenBounds.getHeight() /12);
@@ -180,7 +167,7 @@ public class GuiMain extends Application {
         border.setBottom(bottomHbox);
         border.setLeft(leftVbox);
         border.setRight(rightVbox);
-        border.setCenter(board);
+        border.setCenter(drawBoard(brett));
 
         
         StackPane root = new StackPane();
@@ -189,5 +176,26 @@ public class GuiMain extends Application {
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
+    }
+    public GridPane drawBoard (Board brett) {
+        GridPane board = new GridPane();     
+        final int size = 8 ;
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col ++) {
+                Rectangle Feld = new Rectangle(screenHeight /10,screenHeight /10);
+                Paint color ;
+                if ((row + col) % 2 == 0) {
+                    color = Color.WHITE;
+                } else {
+                    color = Color.BLACK;
+                }
+                Feld.setFill(color);
+                board.add(Feld, col, row);
+                if(brett.getField(col, row)!=null) {
+                board.add(new Label(brett.getField(col, row).getBoardVisual()), col, row);
+                }
+            }
+        }
+        return board;
     }
 }
