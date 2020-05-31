@@ -108,65 +108,13 @@ public class GuiMain extends Application {
         screenWidth =primaryScreenBounds.getWidth();
         Board brett = new Board();
         brett.setStart();
-        // create chessboard
-        
-        //define left 
-        VBox leftVbox = new VBox();
-        leftVbox.setSpacing(screenHeight /12);
-        leftVbox.getChildren().add(new Label("8"));
-        leftVbox.getChildren().add(new Label("7"));
-        leftVbox.getChildren().add(new Label("6"));
-        leftVbox.getChildren().add(new Label("5"));
-        leftVbox.getChildren().add(new Label("4"));
-        leftVbox.getChildren().add(new Label("3"));
-        leftVbox.getChildren().add(new Label("2"));
-        leftVbox.getChildren().add(new Label("1"));
-        leftVbox.setPadding(new Insets(screenHeight /20,20,0,20));
-        //define Bottom
-        HBox bottomHbox = new HBox();
-        bottomHbox.setSpacing(screenHeight/10.5);
-        bottomHbox.getChildren().add(new Label("a"));
-        bottomHbox.getChildren().add(new Label("b"));
-        bottomHbox.getChildren().add(new Label("c"));
-        bottomHbox.getChildren().add(new Label("d"));
-        bottomHbox.getChildren().add(new Label("e"));
-        bottomHbox.getChildren().add(new Label("f"));
-        bottomHbox.getChildren().add(new Label("g"));
-        bottomHbox.getChildren().add(new Label("h"));
-        bottomHbox.setPadding(new Insets(0,0,screenHeight/10 -20,screenHeight/12));
-        //define right
-        VBox rightVbox = new VBox();
-        rightVbox.setSpacing(20);
-        ListView historie = new ListView();
-        historie.minHeight(screenHeight/4);
-        ListView beaten = new ListView();
-        beaten.minHeight(primaryScreenBounds.getHeight()/4);
-        rightVbox.getChildren().add(new Label("historie"));
-        rightVbox.getChildren().add(historie);
-        rightVbox.getChildren().add(new Label("beaten figures"));
-        rightVbox.getChildren().add(beaten);
-        rightVbox.setPadding(new Insets(20,screenHeight/12,0,20));
-        //define top
-        HBox topHbox = new HBox();
-        topHbox.setSpacing(screenHeight /20);
-        CheckBox check1 = new CheckBox("text");
-        CheckBox check2 = new CheckBox("text");
-        CheckBox check3 = new CheckBox("text");
-        CheckBox check4 = new CheckBox("text");
-        CheckBox check5 = new CheckBox("text");
-        topHbox.getChildren().add(check1);
-        topHbox.getChildren().add(check2);
-        topHbox.getChildren().add(check3);
-        topHbox.getChildren().add(check4);
-        topHbox.getChildren().add(check5);
-        topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
-        
+
         //add elements to BorderPane
         BorderPane border = new BorderPane();
-        border.setTop(topHbox);
-        border.setBottom(bottomHbox);
-        border.setLeft(leftVbox);
-        border.setRight(rightVbox);
+        border.setTop(drawTop());
+        border.setBottom(drawBottom());
+        border.setLeft(drawLeft());
+        border.setRight(drawRight());
         border.setCenter(drawBoard(brett));
 
         
@@ -198,4 +146,75 @@ public class GuiMain extends Application {
         }
         return board;
     }
+    
+    public HBox drawTop() {
+    	HBox topHbox = new HBox();
+        topHbox.setSpacing(screenHeight /20);
+        CheckBox check1 = new CheckBox("text");
+        CheckBox check2 = new CheckBox("text");
+        CheckBox check3 = new CheckBox("text");
+        CheckBox check4 = new CheckBox("text");
+        CheckBox check5 = new CheckBox("text");
+        topHbox.getChildren().add(check1);
+        topHbox.getChildren().add(check2);
+        topHbox.getChildren().add(check3);
+        topHbox.getChildren().add(check4);
+        topHbox.getChildren().add(check5);
+        topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
+        return topHbox;
+    }
+    
+    public VBox drawRight() {
+    	 VBox rightVbox = new VBox();
+         rightVbox.setSpacing(20);
+         ListView historie = new ListView();
+         historie.minHeight(screenHeight/4);
+         ListView beaten = new ListView();
+         beaten.minHeight(screenHeight/4);
+         rightVbox.getChildren().add(new Label("historie"));
+         rightVbox.getChildren().add(historie);
+         rightVbox.getChildren().add(new Label("beaten figures"));
+         rightVbox.getChildren().add(beaten);
+         rightVbox.setPadding(new Insets(20,screenHeight/12,0,20));
+         return rightVbox;
+    }
+    
+    public HBox drawBottom() {
+        //define Bottom
+        HBox bottomHbox = new HBox();
+        bottomHbox.setSpacing(screenHeight/10.5);
+        bottomHbox.getChildren().add(new Label("a"));
+        bottomHbox.getChildren().add(new Label("b"));
+        bottomHbox.getChildren().add(new Label("c"));
+        bottomHbox.getChildren().add(new Label("d"));
+        bottomHbox.getChildren().add(new Label("e"));
+        bottomHbox.getChildren().add(new Label("f"));
+        bottomHbox.getChildren().add(new Label("g"));
+        bottomHbox.getChildren().add(new Label("h"));
+        bottomHbox.setPadding(new Insets(0,0,screenHeight/10 -20,screenHeight/12));
+        return bottomHbox;
+        
+    }
+    
+    public VBox drawLeft() {
+    	 //define left 
+        VBox leftVbox = new VBox();
+        leftVbox.setSpacing(screenHeight /12);
+        leftVbox.getChildren().add(new Label("8"));
+        leftVbox.getChildren().add(new Label("7"));
+        leftVbox.getChildren().add(new Label("6"));
+        leftVbox.getChildren().add(new Label("5"));
+        leftVbox.getChildren().add(new Label("4"));
+        leftVbox.getChildren().add(new Label("3"));
+        leftVbox.getChildren().add(new Label("2"));
+        leftVbox.getChildren().add(new Label("1"));
+        leftVbox.setPadding(new Insets(screenHeight /20,20,0,20));
+        return leftVbox;
+    }
+    
+    
+    
+    
+    
+    
 }
