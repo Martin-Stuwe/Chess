@@ -43,19 +43,33 @@ public class GuiMain extends Application {
 	double screenHeight;
 	double screenWidth;
 	BorderPane border= new BorderPane();
-	boolean checkRotate = false;
-	boolean checkShowCheck = true;
-	boolean checkShowMove = true;
-	boolean checkTouchMove = false;
+	boolean rotate = false;
+	boolean showCheck = true;
+	boolean showMove = true;
+	boolean touchMove = false;
 	
 	
     public static void main(String[] args) {
         launch(args);
     }
     
-    public void setShowMove(boolean isSelected) {
-    	checkShowMove = isSelected;
+    
+    public void setRotate(boolean isSelected) {
+    	rotate = isSelected;
     }
+    
+    public void setShowCheck(boolean isSelected) {
+    	showCheck = isSelected;
+    }
+    
+    public void setShowMove(boolean isSelected) {
+    	showMove = isSelected;
+    }
+    
+    public void setTouchMove(boolean isSelected) {
+    	touchMove = isSelected;
+    }
+    
     
     
     
@@ -320,7 +334,7 @@ public class GuiMain extends Application {
 				if(brett.getField(a, b) != null && brett.getField(a, b).hasPossibleMove(brett, a, b,"" +i+y)) {
 					Rectangle poss = new Rectangle(screenHeight /10.1,screenHeight /10.1);
 					
-					if(checkShowMove) {
+					if(showMove) {
 						poss.setStroke(Color.RED);
 						poss.setFill(Color.TRANSPARENT);
 					}
