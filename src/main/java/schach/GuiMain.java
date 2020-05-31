@@ -43,9 +43,21 @@ public class GuiMain extends Application {
 	double screenHeight;
 	double screenWidth;
 	BorderPane border= new BorderPane();
+	boolean checkRotate = false;
+	boolean checkShowCheck = true;
+	boolean checkShowMove = true;
+	boolean checkTouchMove = false;
+	
+	
     public static void main(String[] args) {
         launch(args);
     }
+    
+    public void setShowMove(boolean isSelected) {
+    	checkShowMove = isSelected;
+    }
+    
+    
     
     @Override
     public void start(Stage primaryStage) {
@@ -159,11 +171,22 @@ public class GuiMain extends Application {
     public HBox drawTop() {
     	HBox topHbox = new HBox();
         topHbox.setSpacing(screenHeight /20);
-        CheckBox check1 = new CheckBox("text");
-        CheckBox check2 = new CheckBox("text");
-        CheckBox check3 = new CheckBox("text");
-        CheckBox check4 = new CheckBox("text");
+        CheckBox check1 = new CheckBox("rotate board");
+        CheckBox check2 = new CheckBox("show moves");
+        CheckBox check3 = new CheckBox("show being in check");
+        CheckBox check4 = new CheckBox("touch-move rule");
         CheckBox check5 = new CheckBox("text");
+        check2.setSelected(true);
+        check3.setSelected(true);
+        
+        check2.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+                setShowMove(check2.isSelected());
+            }
+        });
+        
         topHbox.getChildren().add(check1);
         topHbox.getChildren().add(check2);
         topHbox.getChildren().add(check3);
@@ -296,8 +319,15 @@ public class GuiMain extends Application {
 				String to = ""+i+y;
 				if(brett.getField(a, b) != null && brett.getField(a, b).hasPossibleMove(brett, a, b,"" +i+y)) {
 					Rectangle poss = new Rectangle(screenHeight /10.1,screenHeight /10.1);
-					poss.setStroke(Color.RED);
-					poss.setFill(Color.TRANSPARENT);
+					
+					if(checkShowMove) {
+						poss.setStroke(Color.RED);
+						poss.setFill(Color.TRANSPARENT);
+					}
+					else {
+						poss.setStroke(Color.TRANSPARENT);
+						poss.setFill(Color.TRANSPARENT);
+					}
 					poss.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			            @Override
 			            public void handle(MouseEvent event) {
@@ -315,6 +345,5 @@ public class GuiMain extends Application {
 		}
     	border.setCenter(possible);
     }
-    
     
 }
