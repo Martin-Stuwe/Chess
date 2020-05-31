@@ -143,7 +143,7 @@ public class GuiMain extends Application {
         brett.setStart();
 
         //add elements to BorderPane
-        border.setTop(drawTop());
+        border.setTop(drawTop(brett));
         border.setBottom(drawBottom());
         border.setLeft(drawLeft());
         border.setRight(drawRight());
@@ -172,9 +172,14 @@ public class GuiMain extends Application {
                 Feld.setFill(color);
                 board.add(Feld, col, row);
                 if(brett.getField(col, row)!=null) {
-                Label image = getImage(brett,col,row);
-                board.setHalignment(image, HPos.CENTER);
-                board.add(image, col, row);
+                	Label image = getImage(brett,col,row);
+                	board.setHalignment(image, HPos.CENTER);
+                	if(rotate) {
+                		 board.add(image, convertRotate(col), convertRotate(row));
+                	}
+                	else {
+                		board.add(image, col, row);
+                	}
                 }
             }
         }
@@ -182,7 +187,7 @@ public class GuiMain extends Application {
         return board;
     }
     
-    public HBox drawTop() {
+    public HBox drawTop(Board brett) {
     	HBox topHbox = new HBox();
         topHbox.setSpacing(screenHeight /20);
         CheckBox check1 = new CheckBox("rotate board");
@@ -199,6 +204,7 @@ public class GuiMain extends Application {
                 setRotate(check1.isSelected());
                 border.setLeft(drawLeft());
                 border.setBottom(drawBottom());
+                drawBoard(brett);
             }
         });
         check2.setOnAction(new EventHandler<ActionEvent>() {
@@ -392,4 +398,39 @@ public class GuiMain extends Application {
     	border.setCenter(possible);
     }
     
+    public int convertRotate(int i) {
+    	if(i == 0) {
+    		i = 7;
+    		
+    	}
+    	else if(i == 1) {
+    		i = 6;
+    		
+    	}
+    	else if(i == 2) {
+    		i = 5;
+    		
+    	}
+    	else if(i == 3) {
+    		i = 4;
+    		
+    	}
+    	else if(i == 4) {
+    		i = 3;
+    		
+    	}
+    	else if(i == 5) {
+    		i = 2;
+    		
+    	}
+    	else if(i == 6) {
+    		i = 1;
+    		
+    	}
+    	else if (i == 7) {
+    		i = 0;
+    		
+    	}
+    	return i;
+    }
 }
