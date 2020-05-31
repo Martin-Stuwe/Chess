@@ -192,7 +192,15 @@ public class GuiMain extends Application {
         CheckBox check5 = new CheckBox("text");
         check2.setSelected(true);
         check3.setSelected(true);
-        
+        check1.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+                setRotate(check1.isSelected());
+                border.setLeft(drawLeft());
+                border.setBottom(drawBottom());
+            }
+        });
         check2.setOnAction(new EventHandler<ActionEvent>() {
         	 
             @Override
@@ -229,14 +237,26 @@ public class GuiMain extends Application {
         //define Bottom
         HBox bottomHbox = new HBox();
         bottomHbox.setSpacing(screenHeight/10.5);
-        bottomHbox.getChildren().add(new Label("a"));
-        bottomHbox.getChildren().add(new Label("b"));
-        bottomHbox.getChildren().add(new Label("c"));
-        bottomHbox.getChildren().add(new Label("d"));
-        bottomHbox.getChildren().add(new Label("e"));
-        bottomHbox.getChildren().add(new Label("f"));
-        bottomHbox.getChildren().add(new Label("g"));
-        bottomHbox.getChildren().add(new Label("h"));
+        if(!rotate) {
+        	bottomHbox.getChildren().add(new Label("a"));
+        	bottomHbox.getChildren().add(new Label("b"));
+        	bottomHbox.getChildren().add(new Label("c"));
+        	bottomHbox.getChildren().add(new Label("d"));
+        	bottomHbox.getChildren().add(new Label("e"));
+        	bottomHbox.getChildren().add(new Label("f"));
+        	bottomHbox.getChildren().add(new Label("g"));
+        	bottomHbox.getChildren().add(new Label("h"));
+        }
+        else {
+        	bottomHbox.getChildren().add(new Label("h"));
+            bottomHbox.getChildren().add(new Label("g"));
+            bottomHbox.getChildren().add(new Label("f"));
+            bottomHbox.getChildren().add(new Label("e"));
+            bottomHbox.getChildren().add(new Label("d"));
+            bottomHbox.getChildren().add(new Label("c"));
+            bottomHbox.getChildren().add(new Label("b"));
+            bottomHbox.getChildren().add(new Label("a"));
+        }
         bottomHbox.setPadding(new Insets(0,0,screenHeight/10 -20,screenHeight/12));
         return bottomHbox;
         
@@ -246,14 +266,26 @@ public class GuiMain extends Application {
     	 //define left 
         VBox leftVbox = new VBox();
         leftVbox.setSpacing(screenHeight /12);
-        leftVbox.getChildren().add(new Label("8"));
-        leftVbox.getChildren().add(new Label("7"));
-        leftVbox.getChildren().add(new Label("6"));
-        leftVbox.getChildren().add(new Label("5"));
-        leftVbox.getChildren().add(new Label("4"));
-        leftVbox.getChildren().add(new Label("3"));
-        leftVbox.getChildren().add(new Label("2"));
-        leftVbox.getChildren().add(new Label("1"));
+        if(!rotate) {
+        	leftVbox.getChildren().add(new Label("8"));
+        	leftVbox.getChildren().add(new Label("7"));
+        	leftVbox.getChildren().add(new Label("6"));
+        	leftVbox.getChildren().add(new Label("5"));
+        	leftVbox.getChildren().add(new Label("4"));
+        	leftVbox.getChildren().add(new Label("3"));
+        	leftVbox.getChildren().add(new Label("2"));
+        	leftVbox.getChildren().add(new Label("1"));
+        }
+        else {
+            leftVbox.getChildren().add(new Label("1"));
+            leftVbox.getChildren().add(new Label("2"));
+            leftVbox.getChildren().add(new Label("3"));
+            leftVbox.getChildren().add(new Label("4"));
+            leftVbox.getChildren().add(new Label("5"));
+            leftVbox.getChildren().add(new Label("6"));
+            leftVbox.getChildren().add(new Label("7"));
+            leftVbox.getChildren().add(new Label("8"));
+        }
         leftVbox.setPadding(new Insets(screenHeight /20,20,0,20));
         return leftVbox;
     }
