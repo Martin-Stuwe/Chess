@@ -225,7 +225,6 @@ public class GuiMain extends Application {
     	else {
     		image.setText(checkBlackSymbols(brett,i,y));
     	}
-    	
     	image.setScaleX(screenHeight/300);
     	image.setScaleY(screenHeight/300);
     	image.setPadding(new Insets(0,0,0,screenHeight/50));
