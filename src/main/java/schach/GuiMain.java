@@ -37,6 +37,7 @@ public class GuiMain extends Application {
 	 */
 	double screenHeight;
 	double screenWidth;
+	BorderPane border= new BorderPane();
     public static void main(String[] args) {
         launch(args);
     }
@@ -111,12 +112,11 @@ public class GuiMain extends Application {
         brett.setStart();
 
         //add elements to BorderPane
-        BorderPane border = new BorderPane();
         border.setTop(drawTop());
         border.setBottom(drawBottom());
         border.setLeft(drawLeft());
         border.setRight(drawRight());
-        border.setCenter(drawBoard(brett));
+        drawBoard(brett);
 
         
         StackPane root = new StackPane();
@@ -126,7 +126,7 @@ public class GuiMain extends Application {
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
     }
-    public GridPane drawBoard (Board brett) {
+    public void drawBoard (Board brett) {
         GridPane board = new GridPane();     
         final int size = 8 ;
         for (int row = 0; row < size; row++) {
@@ -145,7 +145,7 @@ public class GuiMain extends Application {
                 }
             }
         }
-        return board;
+        border.setCenter(board);
     }
     
     public HBox drawTop() {
