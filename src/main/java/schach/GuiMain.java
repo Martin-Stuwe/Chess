@@ -8,6 +8,7 @@ import game.StartGame;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -31,6 +32,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -144,7 +146,9 @@ public class GuiMain extends Application {
                 Feld.setFill(color);
                 board.add(Feld, col, row);
                 if(brett.getField(col, row)!=null) {
-                board.add(getImage(brett,col,row), col, row);
+                Label image = getImage(brett,col,row);
+                board.setHalignment(image, HPos.CENTER);
+                board.add(image, col, row);
                 }
             }
         }
@@ -225,9 +229,11 @@ public class GuiMain extends Application {
     	else {
     		image.setText(checkBlackSymbols(brett,i,y));
     	}
-    	image.setScaleX(screenHeight/300);
-    	image.setScaleY(screenHeight/300);
-    	image.setPadding(new Insets(0,0,0,screenHeight/50));
+    	image.setScaleX(screenHeight/200);
+    	image.setScaleY(screenHeight/200);
+    	image.autosize();
+    	image.setTextAlignment(TextAlignment.CENTER);
+
     	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -289,7 +295,9 @@ public class GuiMain extends Application {
 			for(int y =0; y<8;y++) {
 				String to = ""+i+y;
 				if(brett.getField(a, b) != null && brett.getField(a, b).hasPossibleMove(brett, a, b,"" +i+y)) {
-					Label poss = new Label("possible");
+					Rectangle poss = new Rectangle(screenHeight /10.1,screenHeight /10.1);
+					poss.setStroke(Color.RED);
+					poss.setFill(Color.TRANSPARENT);
 					poss.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			            @Override
 			            public void handle(MouseEvent event) {
