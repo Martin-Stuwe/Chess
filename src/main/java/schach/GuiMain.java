@@ -289,7 +289,7 @@ public class GuiMain extends Application {
     	for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
-				if(brett.getField(a, b) != null && brett.getField(a, b).validMove(brett, i, y)) {
+				if(brett.getField(a, b) != null && brett.getField(a, b).hasPossibleMove(brett, a, b,"" +i+y)) {
 					possible.add(new Label("possible"), i,y);
 					System.out.println("possible move to"+i+y);
 				}
