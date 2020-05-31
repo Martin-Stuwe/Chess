@@ -28,6 +28,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
@@ -128,7 +129,7 @@ public class GuiMain extends Application {
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
     }
-    public void drawBoard (Board brett) {
+    public GridPane drawBoard (Board brett) {
         GridPane board = new GridPane();     
         final int size = 8 ;
         for (int row = 0; row < size; row++) {
@@ -148,6 +149,7 @@ public class GuiMain extends Application {
             }
         }
         border.setCenter(board);
+        return board;
     }
     
     public HBox drawTop() {
@@ -282,8 +284,19 @@ public class GuiMain extends Application {
     	return black;
     }
     
-    public void showPossibleMoves(Board brett, int i, int y){
-    	System.out.println("test");
+    public void showPossibleMoves(Board brett, int a, int b){
+    	GridPane possible = drawBoard(brett);
+    	for(int i =0; i<8;i++) {
+			for(int y =0; y<8;y++) {
+				
+				if(brett.getField(a, b) != null && brett.getField(a, b).validMove(brett, i, y)) {
+					possible.add(new Label("possible"), i,y);
+					System.out.println("possible move to"+i+y);
+				}
+		}
+			
+		}
+    	border.setCenter(possible);
     }
     
     
