@@ -145,7 +145,7 @@ public class GuiMain extends Application {
         //add elements to BorderPane
         border.setTop(drawTop(brett));
         border.setBottom(drawBottom());
-        border.setLeft(drawLeft());
+        border.setLeft(drawLeft(brett));
         border.setRight(drawRight());
         drawBoard(brett);
 
@@ -164,26 +164,28 @@ public class GuiMain extends Application {
             for (int col = 0; col < size; col ++) {
                 Rectangle Feld = new Rectangle(screenHeight /10,screenHeight /10);
                 Paint color ;
-                if ((row + col) % 2 == 0) {
+                int rrow =row;
+            	if(rotate && brett.getCurrentTurn()==1) {
+            		rrow = (rrow-7)*-1;
+            	}
+                if ((rrow + col) % 2 == 0) {
                     color = Color.WHITE;
                 } else {
                     color = Color.LIGHTGRAY;
                 }
                 Feld.setFill(color);
-                board.add(Feld, col, row);
+                board.add(Feld, col, rrow);
                 if(brett.getField(col, row)!=null) {
                 	Label image = getImage(brett,col,row);
                 	board.setHalignment(image, HPos.CENTER);
-                	if(rotate) {
-                		 board.add(image, convertRotate(col), convertRotate(row));
-                	}
-                	else {
-                		board.add(image, col, row);
-                	}
+                	
+                	board.add(image, col, rrow);
+                
                 }
             }
         }
         border.setCenter(board);
+        border.setLeft(drawLeft(brett));
         return board;
     }
     
@@ -202,7 +204,7 @@ public class GuiMain extends Application {
             @Override
             public void handle(ActionEvent event) {
                 setRotate(check1.isSelected());
-                border.setLeft(drawLeft());
+                border.setLeft(drawLeft(brett));
                 border.setBottom(drawBottom());
                 drawBoard(brett);
             }
@@ -243,7 +245,6 @@ public class GuiMain extends Application {
         //define Bottom
         HBox bottomHbox = new HBox();
         bottomHbox.setSpacing(screenHeight/10.5);
-        if(!rotate) {
         	bottomHbox.getChildren().add(new Label("a"));
         	bottomHbox.getChildren().add(new Label("b"));
         	bottomHbox.getChildren().add(new Label("c"));
@@ -252,27 +253,17 @@ public class GuiMain extends Application {
         	bottomHbox.getChildren().add(new Label("f"));
         	bottomHbox.getChildren().add(new Label("g"));
         	bottomHbox.getChildren().add(new Label("h"));
-        }
-        else {
-        	bottomHbox.getChildren().add(new Label("h"));
-            bottomHbox.getChildren().add(new Label("g"));
-            bottomHbox.getChildren().add(new Label("f"));
-            bottomHbox.getChildren().add(new Label("e"));
-            bottomHbox.getChildren().add(new Label("d"));
-            bottomHbox.getChildren().add(new Label("c"));
-            bottomHbox.getChildren().add(new Label("b"));
-            bottomHbox.getChildren().add(new Label("a"));
-        }
+        
         bottomHbox.setPadding(new Insets(0,0,screenHeight/10 -20,screenHeight/12));
         return bottomHbox;
         
     }
     
-    public VBox drawLeft() {
+    public VBox drawLeft(Board brett) {
     	 //define left 
         VBox leftVbox = new VBox();
         leftVbox.setSpacing(screenHeight /12);
-        if(!rotate) {
+        if(!rotate || brett.getCurrentTurn()==0) {
         	leftVbox.getChildren().add(new Label("8"));
         	leftVbox.getChildren().add(new Label("7"));
         	leftVbox.getChildren().add(new Label("6"));
@@ -369,6 +360,10 @@ public class GuiMain extends Application {
     	for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				String to = ""+i+y;
+				int rrow =y;
+            	if(rotate && brett.getCurrentTurn()==1) {
+            		rrow = (rrow-7)*-1;
+            	}
 				if(brett.getField(a, b) != null && brett.getField(a, b).hasPossibleMove(brett, a, b,"" +i+y)) {
 					Rectangle poss = new Rectangle(screenHeight /10.1,screenHeight /10.1);
 					
@@ -389,7 +384,7 @@ public class GuiMain extends Application {
 			            }
 
 			        });
-					possible.add(poss, i,y);
+					possible.add(poss, i,rrow);
 					
 				}
 		}
