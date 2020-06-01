@@ -125,6 +125,8 @@ public class StartGame {
 		if(board.getField(From1, From2)!=null) {
 			String ToString = Integer.toString(To1)+Integer.toString(To2);
 			if(board.getField(From1, From2).move(board, From1, From2, ToString)) {
+				Zug zug = new Zug(board.getField(To1, To2),From1,From2,ToString);  //creates new move and saves in list
+				board.movedList.add(zug);
 				System.out.println("!"+console.input.toString());
 			}
 			// System.out.println(board.movedList);
