@@ -144,7 +144,6 @@ public class GuiMain extends Application {
 
         //add elements to BorderPane
         border.setTop(drawTop(brett));
-        border.setRight(drawRight());
         drawBoard(brett);
 
         
@@ -187,6 +186,7 @@ public class GuiMain extends Application {
         border.setCenter(board);
         border.setLeft(drawLeft(brett));
         border.setBottom(drawBottom(brett));
+        border.setRight(drawRight(brett));
         return board;
     }
     
@@ -225,17 +225,15 @@ public class GuiMain extends Application {
         return topHbox;
     }
     
-    public VBox drawRight() {
+    public VBox drawRight(Board brett) {
     	 VBox rightVbox = new VBox();
          rightVbox.setSpacing(20);
-         ListView historie = new ListView();
+         ListView<String> historie = new ListView<String>();
          historie.minHeight(screenHeight/4);
-         ListView beaten = new ListView();
-         beaten.minHeight(screenHeight/4);
          rightVbox.getChildren().add(new Label("historie"));
          rightVbox.getChildren().add(historie);
          rightVbox.getChildren().add(new Label("beaten figures"));
-         rightVbox.getChildren().add(beaten);
+         rightVbox.getChildren().add(addBeaten(brett));
          rightVbox.setPadding(new Insets(20,screenHeight/12,0,20));
          return rightVbox;
     }
@@ -300,10 +298,10 @@ public class GuiMain extends Application {
     public Label getImage(Board brett, int i, int y) {
     	Label image = new Label("");
     	if(brett.getField(i, y).getColor()=="w") {
-    		image.setText(checkWhiteSymbols(brett,i,y));
+    		image.setText(checkWhiteSymbols(brett.getField(i, y).getBoardVisual()));
     	}
     	else {
-    		image.setText(checkBlackSymbols(brett,i,y));
+    		image.setText(checkBlackSymbols(brett.getField(i, y).getBoardVisual()));
     	}
     	image.setScaleX(screenHeight/200);
     	image.setScaleY(screenHeight/200);
@@ -320,46 +318,46 @@ public class GuiMain extends Application {
     	return image;
     }
     
-    public String checkWhiteSymbols(Board brett, int i, int y) {
+    public String checkWhiteSymbols(String visual) {
     	String white = "";
-    	if(brett.getField(i, y).getBoardVisual()=="P") {
+    	if(visual=="P") {
     		white="♙" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="N") {
+    	if(visual=="N") {
     		white="♘" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="B") {
+    	if(visual=="B") {
     		white="♗" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="R") {
+    	if(visual=="R") {
     		white="♖" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="Q") {
+    	if(visual=="Q") {
     		white="♕" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="K") {
+    	if(visual=="K") {
     		white="♔" ;
     	}
     	return white;
     }
-    public String checkBlackSymbols(Board brett, int i, int y) {
+    public String checkBlackSymbols(String visual) {
     	String black = "";
-     	if(brett.getField(i, y).getBoardVisual()=="p") {
+     	if(visual=="p") {
     		black="♟" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="n") {
+    	if(visual=="n") {
     		black="♞" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="b") {
+    	if(visual=="b") {
     		black="♝" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="r") {
+    	if(visual=="r") {
     		black="♜" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="q") {
+    	if(visual=="q") {
     		black="♛" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="k") {
+    	if(visual=="k") {
     		black="♚" ;
     	}
     	return black;
@@ -405,5 +403,15 @@ public class GuiMain extends Application {
     	border.setCenter(possible);
     }
     
+    public ListView<String> addBeaten(Board brett) {
+    	  ListView <String>beaten = new ListView<String>();
+          beaten.minHeight(screenHeight/4);
+          for(int i=0; i<brett.beaten.size();i++) {
+        		  beaten.getItems().add(checkWhiteSymbols(brett.beaten.get(i))+checkBlackSymbols(brett.beaten.get(i)));
+        	  
 
+          }
+          return beaten;
+
+    }
 }
