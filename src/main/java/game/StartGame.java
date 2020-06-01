@@ -254,7 +254,7 @@ public class StartGame {
 		AI.Calculate(board);
 		System.out.println(AI.possibleMoves);
 		System.out.println(AI.EnemyValue);
-		AI.DoRndMove(board);
+		AI.DoMinMove(board);
 		}
 	}
 		

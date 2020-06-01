@@ -17,6 +17,7 @@ public class AI {
 
 	
 	public static void Calculate(Board board) {
+		EnemyValue.removeAll(EnemyValue);
 		Console AIconsole = new Console();
 		AIconsole.input="AI Move";
 		Board restBoard = board;
