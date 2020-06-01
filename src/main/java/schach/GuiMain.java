@@ -47,6 +47,7 @@ public class GuiMain extends Application {
 	boolean showCheck = true;
 	boolean showMove = true;
 	boolean touchMove = false;
+	boolean clicked = false;
 	
 	
     public static void main(String[] args) {
@@ -69,7 +70,9 @@ public class GuiMain extends Application {
     public void setTouchMove(boolean isSelected) {
     	touchMove = isSelected;
     }
-    
+    public void setClicked(boolean click) {
+    	clicked = click;
+    }
     
     
     
@@ -216,6 +219,18 @@ public class GuiMain extends Application {
             }
         });
         
+        check4.setOnAction(new EventHandler<ActionEvent>() {
+         	 
+            @Override
+            public void handle(ActionEvent event) {
+               setTouchMove(check4.isSelected());
+                
+            }
+        });
+    	
+    	
+    
+        
         topHbox.getChildren().add(check1);
         topHbox.getChildren().add(check2);
         topHbox.getChildren().add(check3);
@@ -308,15 +323,20 @@ public class GuiMain extends Application {
     	image.autosize();
     	image.setTextAlignment(TextAlignment.CENTER);
 
-    	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                showPossibleMoves(brett,i,y);
-            }
+    	if(!clicked && touchMove || !touchMove) {
+        	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    showPossibleMoves(brett,i,y);
+                    setClicked(true);
+                }
 
-        });
-    	return image;
-    }
+            	});
+        	
+        	}
+     
+    		return image;
+        }
     
     public String checkWhiteSymbols(String visual) {
     	String white = "";
@@ -390,6 +410,7 @@ public class GuiMain extends Application {
 			            public void handle(MouseEvent event) {
 			            	
 			            	brett.getField(a, b).move(brett, a, b, to);
+			            	setClicked(false);
 			            	drawBoard(brett);
 			            }
 
