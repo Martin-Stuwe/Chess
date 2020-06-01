@@ -133,10 +133,12 @@ public class Pawn extends Figures {
 	 */
 	public boolean validMove1(Board board, int x, int y) {
 		// en passant for white
-		if(realMove &&this.color=="w"&&pos2==3&&y==2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&    
+		if(!board.movedList.isEmpty() &&this.color=="w"&&pos2==3&&y==2&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4&&    
 				board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==2 ) {
 				if (checkStuff1(board,x,y)) {
+					if(realMove) {
 					board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
+					}
 					return true; 
 				}
 				return validmove2(board,x,y);
@@ -154,10 +156,12 @@ public class Pawn extends Figures {
 	 */
 	public  boolean validmove2(Board board, int x, int y){	
 		// en passant for black
-		if(realMove &&this.color=="b"&&pos2==4&&y==5&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&    
+		if(!board.movedList.isEmpty() &&this.color=="b"&&pos2==4&&y==5&&board.movedList.get(board.movedList.size()-1).getFigure().getType()==4 &&    
 			board.movedList.get(board.movedList.size()-1).getTo2()-board.movedList.get(board.movedList.size()-1).getFrom2()  ==-2) {
 				if(checkStuff2(board,x,y) ) {
+					if(realMove) {
 					board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
+					} 
 					return true; 
 				}
 				return validmove3(board,x,y);			
@@ -273,6 +277,7 @@ public class Pawn extends Figures {
 			else {
 				return false;
 			}
+			
 		}
 		
 		return validMove6(board,x,y);
@@ -286,7 +291,8 @@ public class Pawn extends Figures {
 	 * @return true if take move is possible 
 	 */
 	public boolean validMove6(Board board, int x, int y) {
-		// take move white
+		// take move white 
+		
 		if(this.color =="w" && this.pos1 == x+1 && this.pos2 == y+1 || this.color =="w" && this.pos1 == x-1 && this.pos2 == y+1) {
 			if(board.getField(x, y)!= null){
 				return board.getField(x, y).getColor()=="b";
