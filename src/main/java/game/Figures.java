@@ -288,6 +288,8 @@ public class Figures {
 		}	 
 		
 		board.positionen[pos1to][pos2to].setHasMoved(true);
+		Zug zug = new Zug(board.getField(pos1to, pos2to),pos1from,pos2from,posTo);  //creates new move and saves in list
+		board.movedList.add(zug);
 		return true;
 	}
 		

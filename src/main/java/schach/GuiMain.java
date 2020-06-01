@@ -47,6 +47,7 @@ public class GuiMain extends Application {
 	boolean showCheck = true;
 	boolean showMove = true;
 	boolean touchMove = false;
+	boolean clicked = false;
 	
 	
     public static void main(String[] args) {
@@ -69,7 +70,9 @@ public class GuiMain extends Application {
     public void setTouchMove(boolean isSelected) {
     	touchMove = isSelected;
     }
-    
+    public void setClicked(boolean click) {
+    	clicked = click;
+    }
     
     
     
@@ -144,9 +147,6 @@ public class GuiMain extends Application {
 
         //add elements to BorderPane
         border.setTop(drawTop(brett));
-        border.setBottom(drawBottom());
-        border.setLeft(drawLeft());
-        border.setRight(drawRight());
         drawBoard(brett);
 
         
@@ -164,26 +164,32 @@ public class GuiMain extends Application {
             for (int col = 0; col < size; col ++) {
                 Rectangle Feld = new Rectangle(screenHeight /10,screenHeight /10);
                 Paint color ;
-                if ((row + col) % 2 == 0) {
+                int rrow =row;
+                int rcol =col;
+            	if(rotate && brett.getCurrentTurn()==1) {
+            		rrow = (rrow-7)*-1;
+            		rcol = (rcol-7)*-1;
+            	}
+                if ((rrow + col) % 2 == 0) {
                     color = Color.WHITE;
                 } else {
                     color = Color.LIGHTGRAY;
                 }
                 Feld.setFill(color);
-                board.add(Feld, col, row);
+                board.add(Feld, rcol, rrow);
                 if(brett.getField(col, row)!=null) {
                 	Label image = getImage(brett,col,row);
                 	board.setHalignment(image, HPos.CENTER);
-                	if(rotate) {
-                		 board.add(image, convertRotate(col), convertRotate(row));
-                	}
-                	else {
-                		board.add(image, col, row);
-                	}
+                	
+                	board.add(image, rcol, rrow);
+                
                 }
             }
         }
         border.setCenter(board);
+        border.setLeft(drawLeft(brett));
+        border.setBottom(drawBottom(brett));
+        border.setRight(drawRight(brett));
         return board;
     }
     
@@ -202,8 +208,6 @@ public class GuiMain extends Application {
             @Override
             public void handle(ActionEvent event) {
                 setRotate(check1.isSelected());
-                border.setLeft(drawLeft());
-                border.setBottom(drawBottom());
                 drawBoard(brett);
             }
         });
@@ -215,6 +219,18 @@ public class GuiMain extends Application {
             }
         });
         
+        check4.setOnAction(new EventHandler<ActionEvent>() {
+         	 
+            @Override
+            public void handle(ActionEvent event) {
+               setTouchMove(check4.isSelected());
+                
+            }
+        });
+    	
+    	
+    
+        
         topHbox.getChildren().add(check1);
         topHbox.getChildren().add(check2);
         topHbox.getChildren().add(check3);
@@ -224,26 +240,24 @@ public class GuiMain extends Application {
         return topHbox;
     }
     
-    public VBox drawRight() {
+    public VBox drawRight(Board brett) {
     	 VBox rightVbox = new VBox();
          rightVbox.setSpacing(20);
-         ListView historie = new ListView();
+         ListView<String> historie = new ListView<String>();
          historie.minHeight(screenHeight/4);
-         ListView beaten = new ListView();
-         beaten.minHeight(screenHeight/4);
          rightVbox.getChildren().add(new Label("historie"));
          rightVbox.getChildren().add(historie);
          rightVbox.getChildren().add(new Label("beaten figures"));
-         rightVbox.getChildren().add(beaten);
+         rightVbox.getChildren().add(addBeaten(brett));
          rightVbox.setPadding(new Insets(20,screenHeight/12,0,20));
          return rightVbox;
     }
     
-    public HBox drawBottom() {
+    public HBox drawBottom(Board brett) {
         //define Bottom
         HBox bottomHbox = new HBox();
         bottomHbox.setSpacing(screenHeight/10.5);
-        if(!rotate) {
+        if(!rotate || brett.getCurrentTurn()==0) {
         	bottomHbox.getChildren().add(new Label("a"));
         	bottomHbox.getChildren().add(new Label("b"));
         	bottomHbox.getChildren().add(new Label("c"));
@@ -255,24 +269,24 @@ public class GuiMain extends Application {
         }
         else {
         	bottomHbox.getChildren().add(new Label("h"));
-            bottomHbox.getChildren().add(new Label("g"));
-            bottomHbox.getChildren().add(new Label("f"));
-            bottomHbox.getChildren().add(new Label("e"));
-            bottomHbox.getChildren().add(new Label("d"));
-            bottomHbox.getChildren().add(new Label("c"));
-            bottomHbox.getChildren().add(new Label("b"));
-            bottomHbox.getChildren().add(new Label("a"));
+        	bottomHbox.getChildren().add(new Label("g"));
+        	bottomHbox.getChildren().add(new Label("f"));
+        	bottomHbox.getChildren().add(new Label("e"));
+        	bottomHbox.getChildren().add(new Label("d"));
+        	bottomHbox.getChildren().add(new Label("c"));
+        	bottomHbox.getChildren().add(new Label("b"));
+        	bottomHbox.getChildren().add(new Label("a"));
         }
         bottomHbox.setPadding(new Insets(0,0,screenHeight/10 -20,screenHeight/12));
         return bottomHbox;
         
     }
     
-    public VBox drawLeft() {
+    public VBox drawLeft(Board brett) {
     	 //define left 
         VBox leftVbox = new VBox();
         leftVbox.setSpacing(screenHeight /12);
-        if(!rotate) {
+        if(!rotate || brett.getCurrentTurn()==0) {
         	leftVbox.getChildren().add(new Label("8"));
         	leftVbox.getChildren().add(new Label("7"));
         	leftVbox.getChildren().add(new Label("6"));
@@ -299,66 +313,72 @@ public class GuiMain extends Application {
     public Label getImage(Board brett, int i, int y) {
     	Label image = new Label("");
     	if(brett.getField(i, y).getColor()=="w") {
-    		image.setText(checkWhiteSymbols(brett,i,y));
+    		image.setText(checkWhiteSymbols(brett.getField(i, y).getBoardVisual()));
     	}
     	else {
-    		image.setText(checkBlackSymbols(brett,i,y));
+    		image.setText(checkBlackSymbols(brett.getField(i, y).getBoardVisual()));
     	}
     	image.setScaleX(screenHeight/200);
     	image.setScaleY(screenHeight/200);
     	image.autosize();
     	image.setTextAlignment(TextAlignment.CENTER);
 
-    	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                showPossibleMoves(brett,i,y);
-            }
+    	if(!clicked && touchMove || !touchMove) {
+        	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                	 setClicked(true);
+                    showPossibleMoves(brett,i,y);
+                 
+                }
 
-        });
-    	return image;
-    }
+            	});
+        	
+        	}
+     
+    		return image;
+        }
     
-    public String checkWhiteSymbols(Board brett, int i, int y) {
+    public String checkWhiteSymbols(String visual) {
     	String white = "";
-    	if(brett.getField(i, y).getBoardVisual()=="P") {
+    	if(visual=="P") {
     		white="♙" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="N") {
+    	if(visual=="N") {
     		white="♘" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="B") {
+    	if(visual=="B") {
     		white="♗" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="R") {
+    	if(visual=="R") {
     		white="♖" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="Q") {
+    	if(visual=="Q") {
     		white="♕" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="K") {
+    	if(visual=="K") {
     		white="♔" ;
     	}
     	return white;
     }
-    public String checkBlackSymbols(Board brett, int i, int y) {
+    public String checkBlackSymbols(String visual) {
     	String black = "";
-     	if(brett.getField(i, y).getBoardVisual()=="p") {
+     	if(visual=="p") {
     		black="♟" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="n") {
+    	if(visual=="n") {
     		black="♞" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="b") {
+    	if(visual=="b") {
     		black="♝" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="r") {
+    	if(visual=="r") {
     		black="♜" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="q") {
+    	if(visual=="q") {
     		black="♛" ;
     	}
-    	if(brett.getField(i, y).getBoardVisual()=="k") {
+    	if(visual=="k") {
     		black="♚" ;
     	}
     	return black;
@@ -369,6 +389,12 @@ public class GuiMain extends Application {
     	for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				String to = ""+i+y;
+				int rrow =y;
+				int rcol =i;
+            	if(rotate && brett.getCurrentTurn()==1) {
+            		rrow = (rrow-7)*-1;
+            		rcol = (rcol-7)*-1;
+            	}
 				if(brett.getField(a, b) != null && brett.getField(a, b).hasPossibleMove(brett, a, b,"" +i+y)) {
 					Rectangle poss = new Rectangle(screenHeight /10.1,screenHeight /10.1);
 					
@@ -385,11 +411,12 @@ public class GuiMain extends Application {
 			            public void handle(MouseEvent event) {
 			            	
 			            	brett.getField(a, b).move(brett, a, b, to);
+			            	setClicked(false);
 			            	drawBoard(brett);
 			            }
 
 			        });
-					possible.add(poss, i,y);
+					possible.add(poss, rcol,rrow);
 					
 				}
 		}
@@ -398,39 +425,15 @@ public class GuiMain extends Application {
     	border.setCenter(possible);
     }
     
-    public int convertRotate(int i) {
-    	if(i == 0) {
-    		i = 7;
-    		
-    	}
-    	else if(i == 1) {
-    		i = 6;
-    		
-    	}
-    	else if(i == 2) {
-    		i = 5;
-    		
-    	}
-    	else if(i == 3) {
-    		i = 4;
-    		
-    	}
-    	else if(i == 4) {
-    		i = 3;
-    		
-    	}
-    	else if(i == 5) {
-    		i = 2;
-    		
-    	}
-    	else if(i == 6) {
-    		i = 1;
-    		
-    	}
-    	else if (i == 7) {
-    		i = 0;
-    		
-    	}
-    	return i;
+    public ListView<String> addBeaten(Board brett) {
+    	  ListView <String>beaten = new ListView<String>();
+          beaten.minHeight(screenHeight/4);
+          for(int i=0; i<brett.beaten.size();i++) {
+        		  beaten.getItems().add(checkWhiteSymbols(brett.beaten.get(i))+checkBlackSymbols(brett.beaten.get(i)));
+        	  
+
+          }
+          return beaten;
+
     }
 }
