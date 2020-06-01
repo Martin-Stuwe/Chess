@@ -247,9 +247,13 @@ public class StartGame {
 		
 		
 		while (true) {
+			System.out.println(board.getCurrentTurn());
 		getAndMakeMove(board);
+	
 		AI.findPossMoves(board);
+		AI.Calculate(board);
 		System.out.println(AI.possibleMoves);
+		System.out.println(AI.EnemyValue);
 		AI.DoRndMove(board);
 		}
 	}
