@@ -327,8 +327,9 @@ public class GuiMain extends Application {
         	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
+                	 setClicked(true);
                     showPossibleMoves(brett,i,y);
-                    setClicked(true);
+                 
                 }
 
             	});
