@@ -21,7 +21,7 @@ public class StartGame {
 	 * @param board the actual Board object
 	 */
 	public static void getAndMakeMove(Board board) { //Könnten später Player Objekt übergeben und im PlayerObj Züge Historie speichern
-		while(true) {
+		
 			
 			// check if draw because of lack of figures
 			if(Zug.checkDraw(board)) {
@@ -53,9 +53,9 @@ public class StartGame {
 				System.out.println(board.beaten);			
 				getAndMakeMove(board);
 			}
+			
 			convertAndMove(board,playerMove);
-	
-		}
+		
 	}
 	
 	/**
@@ -240,7 +240,20 @@ public class StartGame {
 		
 		// check if pawn is on last row
 
-	
+	public static void PlayerVsAI() {
+		
+		Board board = new Board();
+		board.setStart();
+		board.initializeBoard();
+		
+		
+		while (true) {
+		getAndMakeMove(board);
+		AI.findPossMoves(board);
+		System.out.println(AI.possibleMoves);
+		AI.DoRndMove(board);
+		}
+	}
 		
 	/**
 	* Method for PlayerVsPlayer Mode
@@ -283,9 +296,9 @@ public class StartGame {
 		board2.initializeBoard();
 		
 		
-		
+		while(true) {
 		getAndMakeMove(board2);
-		
+		}
 	}
 	
 	/*
@@ -314,7 +327,7 @@ public class StartGame {
 	* Method to start the game
 	*/
 	public static void StartGameCommand() {
-		PlayerVsPlayer();
+		PlayerVsAI();
 		
 	}
 
