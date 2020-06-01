@@ -405,39 +405,5 @@ public class GuiMain extends Application {
     	border.setCenter(possible);
     }
     
-    public int convertRotate(int i) {
-    	if(i == 0) {
-    		i = 7;
-    		
-    	}
-    	else if(i == 1) {
-    		i = 6;
-    		
-    	}
-    	else if(i == 2) {
-    		i = 5;
-    		
-    	}
-    	else if(i == 3) {
-    		i = 4;
-    		
-    	}
-    	else if(i == 4) {
-    		i = 3;
-    		
-    	}
-    	else if(i == 5) {
-    		i = 2;
-    		
-    	}
-    	else if(i == 6) {
-    		i = 1;
-    		
-    	}
-    	else if (i == 7) {
-    		i = 0;
-    		
-    	}
-    	return i;
-    }
+
 }
