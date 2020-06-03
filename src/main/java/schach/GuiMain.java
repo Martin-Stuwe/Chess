@@ -2,6 +2,7 @@ package schach;
 
 import game.Board;
 import game.StartGame;
+import game.Zug;
 /**
  * no changes made yet
  */
@@ -33,6 +34,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -48,6 +50,7 @@ public class GuiMain extends Application {
 	boolean showMove = true;
 	boolean touchMove = false;
 	boolean clicked = false;
+	ListView<String> historie = new ListView<String>();
 	
 	
     public static void main(String[] args) {
@@ -146,7 +149,7 @@ public class GuiMain extends Application {
         brett.setStart();
 
         //add elements to BorderPane
-        border.setTop(drawTop(brett));
+        border.setTop(drawTop(brett, primaryStage));
         drawBoard(brett);
 
         
@@ -184,7 +187,23 @@ public class GuiMain extends Application {
                 	board.add(image, rcol, rrow);
                 
                 }
+                
             }
+        }
+        if(brett.getCurrentTurn() == 0) {
+        	board.add(new Label ("  white to move"), 8, 0);
+        }
+        else if(brett.getCurrentTurn() == 1) {
+        	board.add(new Label ("  black to move"), 8, 0);
+        }
+        if(Zug.checkCheck(brett) && showCheck) {
+        	if(brett.whiteCheck) {
+        		board.add(new Label ("  white is in check"), 8, 1);
+        	}
+        	else if(brett.blackCheck) {
+        		board.add(new Label ("  black is in check"), 8, 1);
+        	}
+        	
         }
         border.setCenter(board);
         border.setLeft(drawLeft(brett));
@@ -193,16 +212,27 @@ public class GuiMain extends Application {
         return board;
     }
     
-    public HBox drawTop(Board brett) {
+    public HBox drawTop(Board brett, Stage primaryStage) {
     	HBox topHbox = new HBox();
         topHbox.setSpacing(screenHeight /20);
         CheckBox check1 = new CheckBox("rotate board");
         CheckBox check2 = new CheckBox("show moves");
         CheckBox check3 = new CheckBox("show being in check");
         CheckBox check4 = new CheckBox("touch-move rule");
-        CheckBox check5 = new CheckBox("text");
+        Button back = new Button("back to menu");
+        
+        Button loschbitte = new Button("test");
+        loschbitte.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            	pawnPromo(primaryStage);
+            }
+        });
+        
         check2.setSelected(true);
         check3.setSelected(true);
+        
         check1.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
@@ -219,6 +249,15 @@ public class GuiMain extends Application {
             }
         });
         
+        check3.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+               setShowCheck(check3.isSelected());
+               drawBoard(brett);
+            }
+        });
+        
         check4.setOnAction(new EventHandler<ActionEvent>() {
          	 
             @Override
@@ -228,14 +267,23 @@ public class GuiMain extends Application {
             }
         });
     	
-    	
+        back.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+                start(primaryStage);
+                historie.getItems().clear();
+            }
+        });
     
         
         topHbox.getChildren().add(check1);
         topHbox.getChildren().add(check2);
         topHbox.getChildren().add(check3);
         topHbox.getChildren().add(check4);
-        topHbox.getChildren().add(check5);
+        topHbox.getChildren().add(back);
+        topHbox.getChildren().add(loschbitte);
+        
         topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
         return topHbox;
     }
@@ -243,7 +291,6 @@ public class GuiMain extends Application {
     public VBox drawRight(Board brett) {
     	 VBox rightVbox = new VBox();
          rightVbox.setSpacing(20);
-         ListView<String> historie = new ListView<String>();
          historie.minHeight(screenHeight/4);
          rightVbox.getChildren().add(new Label("historie"));
          rightVbox.getChildren().add(historie);
@@ -411,6 +458,7 @@ public class GuiMain extends Application {
 			            public void handle(MouseEvent event) {
 			            	
 			            	brett.getField(a, b).move(brett, a, b, to);
+			            	convertInputToHistorie(a, b , to);
 			            	setClicked(false);
 			            	drawBoard(brett);
 			            }
@@ -435,5 +483,122 @@ public class GuiMain extends Application {
           }
           return beaten;
 
+    }
+    
+    public void convertInputToHistorie(int a, int b, String to) {
+    	String output ="";
+    	
+    	int to1=Character.getNumericValue(to.charAt(0));
+		int to2=Character.getNumericValue(to.charAt(1));
+		output = numberToString(a) + numberToNumber(b) + "-" + numberToString(to1) + numberToNumber(to2);
+    	historie.getItems().add(output);
+    }
+    
+    public int numberToNumber(int a) {
+    	if(a == 0) {
+    		a = 8;
+    	}
+    	else if (a == 1) {
+    		a = 7;
+    	}
+    	else if (a == 2) {
+    		a = 6;
+    	}
+    	else if (a == 3) {
+    		a = 5;
+    	}
+    	else if (a == 4) {
+    		a = 4;
+    	}
+    	else if (a == 5) {
+    		a = 3;
+    	}
+    	else if (a == 6) {
+    		a = 2;
+    	}
+    	else if (a == 7) {
+    		a = 1;
+    	}
+    	return a;
+    }
+    
+    public String numberToString(int a) {
+    	String b ="";
+    	if(a == 0) {
+    		b = "a";
+    	}
+    	else if (a == 1) {
+    		b = "b";
+    	}
+    	else if (a == 2) {
+    		b = "c";
+    	}
+    	else if (a == 3) {
+    		b = "d";
+    	}
+    	else if (a == 4) {
+    		b = "e";
+    	}
+    	else if (a == 5) {
+    		b = "f";
+    	}
+    	else if (a == 6) {
+    		b = "g";
+    	}
+    	else if (a == 7) {
+    		b = "h";
+    	}
+    	return b;
+    }
+    
+    public void pawnPromo(Stage primaryStage) {
+    	Stage window = new Stage();
+    	window.setTitle("pawn promotion");
+        window.initModality(Modality.APPLICATION_MODAL);
+        Button queen = new Button("♕/♛");
+        Button rook = new Button("♖/♜");
+        Button knight = new Button("♘/♞");
+        Button bishop = new Button ("♗/♝");
+        HBox box = new HBox();
+        box.getChildren().add(queen);
+        box.getChildren().add(rook);
+        box.getChildren().add(knight);
+        box.getChildren().add(bishop);
+        StackPane root = new StackPane();
+        root.getChildren().add(box);
+        window.setScene(new Scene(root, 200,200));
+        window.show();
+        queen.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                window.close();
+            }
+        });
+        
+        rook.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+                window.close();
+            }
+        });
+        
+       knight.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+                window.close();
+            }
+        });
+        
+        bishop.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+                window.close();
+            }
+        });
+        
     }
 }
