@@ -148,7 +148,7 @@ public class GuiMain extends Application {
         brett.setStart();
 
         //add elements to BorderPane
-        border.setTop(drawTop(brett));
+        border.setTop(drawTop(brett, primaryStage));
         drawBoard(brett);
 
         
@@ -211,13 +211,14 @@ public class GuiMain extends Application {
         return board;
     }
     
-    public HBox drawTop(Board brett) {
+    public HBox drawTop(Board brett, Stage primaryStage) {
     	HBox topHbox = new HBox();
         topHbox.setSpacing(screenHeight /20);
         CheckBox check1 = new CheckBox("rotate board");
         CheckBox check2 = new CheckBox("show moves");
         CheckBox check3 = new CheckBox("show being in check");
         CheckBox check4 = new CheckBox("touch-move rule");
+        Button back = new Button("back to menu");
         
         check2.setSelected(true);
         check3.setSelected(true);
@@ -256,13 +257,21 @@ public class GuiMain extends Application {
             }
         });
     	
-    	
+        back.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+                start(primaryStage);
+                historie.getItems().clear();
+            }
+        });
     
         
         topHbox.getChildren().add(check1);
         topHbox.getChildren().add(check2);
         topHbox.getChildren().add(check3);
         topHbox.getChildren().add(check4);
+        topHbox.getChildren().add(back);
        
         topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
         return topHbox;
