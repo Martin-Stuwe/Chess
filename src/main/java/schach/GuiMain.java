@@ -34,6 +34,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -220,6 +221,15 @@ public class GuiMain extends Application {
         CheckBox check4 = new CheckBox("touch-move rule");
         Button back = new Button("back to menu");
         
+        Button loschbitte = new Button("test");
+        loschbitte.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            	pawnPromo(primaryStage);
+            }
+        });
+        
         check2.setSelected(true);
         check3.setSelected(true);
         
@@ -272,7 +282,8 @@ public class GuiMain extends Application {
         topHbox.getChildren().add(check3);
         topHbox.getChildren().add(check4);
         topHbox.getChildren().add(back);
-       
+        topHbox.getChildren().add(loschbitte);
+        
         topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
         return topHbox;
     }
@@ -538,5 +549,56 @@ public class GuiMain extends Application {
     		b = "h";
     	}
     	return b;
+    }
+    
+    public void pawnPromo(Stage primaryStage) {
+    	Stage window = new Stage();
+    	window.setTitle("pawn promotion");
+        window.initModality(Modality.APPLICATION_MODAL);
+        Button queen = new Button("♕/♛");
+        Button rook = new Button("♖/♜");
+        Button knight = new Button("♘/♞");
+        Button bishop = new Button ("♗/♝");
+        HBox box = new HBox();
+        box.getChildren().add(queen);
+        box.getChildren().add(rook);
+        box.getChildren().add(knight);
+        box.getChildren().add(bishop);
+        StackPane root = new StackPane();
+        root.getChildren().add(box);
+        window.setScene(new Scene(root, 200,200));
+        window.show();
+        queen.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                window.close();
+            }
+        });
+        
+        rook.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+                window.close();
+            }
+        });
+        
+       knight.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+                window.close();
+            }
+        });
+        
+        bishop.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+                window.close();
+            }
+        });
+        
     }
 }
