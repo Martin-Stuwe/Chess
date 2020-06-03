@@ -603,15 +603,18 @@ public class GuiMain extends Application {
 
 	
 	public void makeMove(Board brett, int a, int b, String to ) {
+		setClicked(false);
 		int to1=Character.getNumericValue(to.charAt(0));
 		int to2=Character.getNumericValue(to.charAt(1));
+
 		brett.getField(a, b).move(brett, a, b, to);
 		convertInputToHistorie(a, b , to);
-		setClicked(false);
-		if(brett.getField(to1, to2).getType()==4 && (brett.getField(to1, to2).getColor()=="w"&& to2==0 ||brett.getField(to1, to2).getColor()=="b"&& to2==7  )) {
+		
+		if(brett.getField(to1, to2)!= null&&brett.getField(to1, to2).getType()==4 && (brett.getField(to1, to2).getColor()=="w"&& to2==0 ||brett.getField(to1, to2).getColor()=="b"&& to2==7  )) {
 		pawnPromo(brett,to1,to2);
 		}
 		drawBoard(brett);
+		
 		
 	}
 	}

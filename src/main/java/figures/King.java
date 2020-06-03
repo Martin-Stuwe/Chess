@@ -46,6 +46,7 @@ public class King extends Figures {
 	 * @param pos2 y axis position of the king
 	 * @param color color of the king, valid input: "w" for white, "b" for black
 	 */
+	private boolean realMove;
 	public King(int pos1, int pos2, String color) {
 		this.pos1 = pos1;
 		this.pos2 = pos2;
@@ -120,7 +121,14 @@ public class King extends Figures {
 	 * @return false for invalid move
 	 */
 	public boolean validMove(Board board, int x, int y) {
-		
+		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+		StackTraceElement stackTraceElement = stackTraceElements[2];
+		if(stackTraceElement.getMethodName() == "move2"){
+			realMove =true;
+			}
+		else {
+			realMove =false;
+		}
 		// check if the field to move to is on the board
 		if(checkxy(x,y)) {
 			return false;
@@ -130,6 +138,7 @@ public class King extends Figures {
 		if(this.pos1 == x && this.pos2 ==y) {
 			return false;
 		}
+		
 		
 		return check1(board,x,y);
 	}
@@ -156,8 +165,10 @@ public class King extends Figures {
 		if(this.pos1 == x-2 && this.pos2 == y &&board.getField(7, y)!= null 
 				&& board.getField(6, y) == null && board.getField(5, y)== null) {
 					if(checkStuff1(board,x,y) ) {
+						if(realMove) {
 						board.setField(5, y, board.getField(7, y));
 						board.setNull(7, y);
+						}
 						return true;
 					}
 					
@@ -191,8 +202,10 @@ public class King extends Figures {
 		// long castling (check hasMoved + emptySpaces + check if check)
 		if(checkStuff3(board,x,y)) {
 			if(checkStuff2(board,x,y)) {
+				if(realMove) {
 					board.setField(3, y, board.getField(0, y));
 					board.setNull(0, y);
+				}
 					return true;
 					}
 					
