@@ -2,6 +2,7 @@ package schach;
 
 import game.Board;
 import game.StartGame;
+import game.Zug;
 /**
  * no changes made yet
  */
@@ -184,7 +185,23 @@ public class GuiMain extends Application {
                 	board.add(image, rcol, rrow);
                 
                 }
+                
             }
+        }
+        if(brett.getCurrentTurn() == 0) {
+        	board.add(new Label ("  white to move"), 8, 0);
+        }
+        else if(brett.getCurrentTurn() == 1) {
+        	board.add(new Label ("  black to move"), 8, 0);
+        }
+        if(Zug.checkCheck(brett) && showCheck) {
+        	if(brett.whiteCheck) {
+        		board.add(new Label ("  white is in check"), 8, 1);
+        	}
+        	else if(brett.blackCheck) {
+        		board.add(new Label ("  black is in check"), 8, 1);
+        	}
+        	
         }
         border.setCenter(board);
         border.setLeft(drawLeft(brett));
@@ -200,9 +217,10 @@ public class GuiMain extends Application {
         CheckBox check2 = new CheckBox("show moves");
         CheckBox check3 = new CheckBox("show being in check");
         CheckBox check4 = new CheckBox("touch-move rule");
-        CheckBox check5 = new CheckBox("text");
+        
         check2.setSelected(true);
         check3.setSelected(true);
+        
         check1.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
@@ -216,6 +234,15 @@ public class GuiMain extends Application {
             @Override
             public void handle(ActionEvent event) {
                 setShowMove(check2.isSelected());
+            }
+        });
+        
+        check3.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+               setShowCheck(check3.isSelected());
+               drawBoard(brett);
             }
         });
         
@@ -235,7 +262,7 @@ public class GuiMain extends Application {
         topHbox.getChildren().add(check2);
         topHbox.getChildren().add(check3);
         topHbox.getChildren().add(check4);
-        topHbox.getChildren().add(check5);
+       
         topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
         return topHbox;
     }
