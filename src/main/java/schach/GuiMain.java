@@ -162,35 +162,8 @@ public class GuiMain extends Application {
         primaryStage.show();
     }
     public GridPane drawBoard (Board brett) {
-        GridPane board = new GridPane();     
-        final int size = 8 ;
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col ++) {
-                Rectangle Feld = new Rectangle(screenHeight /10,screenHeight /10);
-                Paint color ;
-                int rrow =row;
-                int rcol =col;
-            	if(rotate && brett.getCurrentTurn()==1) {
-            		rrow = (rrow-7)*-1;
-            		rcol = (rcol-7)*-1;
-            	}
-                if ((rrow + col) % 2 == 0) {
-                    color = Color.WHITE;
-                } else {
-                    color = Color.LIGHTGRAY;
-                }
-                Feld.setFill(color);
-                board.add(Feld, rcol, rrow);
-                if(brett.getField(col, row)!=null) {
-                	Label image = getImage(brett,col,row);
-                	board.setHalignment(image, HPos.CENTER);
-                	
-                	board.add(image, rcol, rrow);
-                
-                }
-                
-            }
-        }
+        GridPane board = drawFeld(brett);     
+
         if(brett.getCurrentTurn() == 0) {
         	board.add(new Label ("  white to move"), 8, 0);
         }
@@ -207,12 +180,29 @@ public class GuiMain extends Application {
         	
         }
         if(!Zug.checkPossibleMoves(brett)) {
-        	board.add(new Label (" Keine Züge mehr"), 9, 4);
+        	Stage window = new Stage();
+        	window.setTitle("Game End");
+            window.initModality(Modality.APPLICATION_MODAL);
+           
+            HBox box = new HBox();
+            if(Zug.checkCheck(brett)) {
+            	box.getChildren().add(new Label("Checkmate"));
+            }
+            else {
+            	box.getChildren().add(new Label("Stalemate"));
+            }
+            
+         
+            StackPane root = new StackPane();
+            root.getChildren().add(box);
+            window.setScene(new Scene(root, 200,200));
+            window.show();
         }
         border.setCenter(board);
         border.setLeft(drawLeft(brett));
         border.setBottom(drawBottom(brett));
         border.setRight(drawRight(brett));
+        
         return board;
     }
     
@@ -619,5 +609,37 @@ public class GuiMain extends Application {
 		drawBoard(brett);
 		
 		
+	}
+	public GridPane drawFeld(Board brett) {
+        GridPane board = new GridPane();
+		final int size = 8 ;
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col ++) {
+                Rectangle Feld = new Rectangle(screenHeight /10,screenHeight /10);
+                Paint color ;
+                int rrow =row;
+                int rcol =col;
+            	if(rotate && brett.getCurrentTurn()==1) {
+            		rrow = (rrow-7)*-1;
+            		rcol = (rcol-7)*-1;
+            	}
+                if ((rrow + col) % 2 == 0) {
+                    color = Color.WHITE;
+                } else {
+                    color = Color.LIGHTGRAY;
+                }
+                Feld.setFill(color);
+                board.add(Feld, rcol, rrow);
+                if(brett.getField(col, row)!=null) {
+                	Label image = getImage(brett,col,row);
+                	board.setHalignment(image, HPos.CENTER);
+                	
+                	board.add(image, rcol, rrow);
+                
+                }
+                
+            }
+        }
+        return board;
 	}
 	}
