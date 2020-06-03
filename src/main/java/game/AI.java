@@ -30,8 +30,11 @@ public class AI {
 		
 		for (int z=0;z<possibleMoves.size();z++) {
 			EnemyValue.add(0);
-		Figures.move(restBoard,possibleMoves.get(z).from1,possibleMoves.get(z).from2,Integer.toString(possibleMoves.get(z).to1)+Integer.toString(possibleMoves.get(z).to2));
-			for (int x=0;x<8;x++) {
+			Figures f = board.getField(possibleMoves.get(z).to1,possibleMoves.get(z).to2);
+			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
+			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=null;
+		
+		for (int x=0;x<8;x++) {
 				for (int y=0;y<8;y++) {
 					if (board.getField(x, y)!=null&&board.getField(x, y).getColor() != convTurn) {
 					
@@ -56,11 +59,14 @@ public class AI {
 						
 						if (board.getField(x, y).getClass()==Rook.class) {
 							EnemyValue.set(z, EnemyValue.get(z)+5);
-						}	
+						}
+						
 					}
 				}	
 				
 			}
+		board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
+		board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
 		}
 		board.setCurrentTurn(1);
 		board = restBoard;
@@ -96,7 +102,7 @@ public class AI {
 	
 	public static void DoRndMove(Board board) {
 		Random rnd= new Random();
-		System.out.println("Z");
+
 		Zug rndMove = possibleMoves.get(rnd.nextInt(possibleMoves.size()));	
 		System.out.println(rnd.nextInt(possibleMoves.size()));
 		System.out.println(rndMove);
@@ -120,12 +126,13 @@ public class AI {
 		System.out.println(EnemyValue.get(0));
 				
 		if (EnemyValue.get(EnemyValue.size()-1).equals(EnemyValue.get(0))) {
-			System.out.println("XXXXXXXXXXXXXXXXXXX");
+			
 			DoRndMove(board);
 			
 			
 		}
-		else {Figures.move(board,possibleMoves.get(min).from1,possibleMoves.get(min).from2,Integer.toString(possibleMoves.get(min).to1)+Integer.toString(possibleMoves.get(min).to2));
+		else {
+			Figures.move(board,possibleMoves.get(min).from1,possibleMoves.get(min).from2,Integer.toString(possibleMoves.get(min).to1)+Integer.toString(possibleMoves.get(min).to2));
 		}
 	
 	}
