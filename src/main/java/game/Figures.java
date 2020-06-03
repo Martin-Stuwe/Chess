@@ -39,7 +39,7 @@ public class Figures {
 	/**
 	* The warning for unallowed Move
 	*/
-	String unallowed = "!Move not allowed";
+	static String unallowed = "!Move not allowed";
 	/**
 	 * save for starting position
 	 */
@@ -139,7 +139,7 @@ public class Figures {
 	 * @param pos2to y axis position where the figure is moved to
 	 * @return true if figure has been moved
 	 */
-	public Boolean move(Board board, int pos1from, int pos2from,  String posTo) { 
+	public static Boolean move(Board board, int pos1from, int pos2from,  String posTo) { 
 		int pos1to=Character.getNumericValue(posTo.charAt(0));
 		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		
@@ -180,7 +180,7 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return false if move not valid, else go on to move22
 	 */
-	public boolean move2(Board board, int pos1from, int pos2from, String posTo) { 
+	public static boolean move2(Board board, int pos1from, int pos2from, String posTo) { 
 		int pos1to=Character.getNumericValue(posTo.charAt(0));
 		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// if move not valid
@@ -207,7 +207,7 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return move3
 	 */
-	public boolean move22(Board board, int pos1from, int pos2from, String posTo) { 
+	public static boolean move22(Board board, int pos1from, int pos2from, String posTo) { 
 		int pos1to=Character.getNumericValue(posTo.charAt(0));
 		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// color change and adding beaten black figures to the beaten list
@@ -237,7 +237,7 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return move4
 	 */
-	public boolean move3(Board board,int pos1from, int pos2from,String posTo) { 
+	public static boolean move3(Board board,int pos1from, int pos2from,String posTo) { 
 		int pos1to=Character.getNumericValue(posTo.charAt(0));
 		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// moving the figure
@@ -261,7 +261,7 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return true if no check, false if black in check after the move or go on to check4
 	 */
-	public boolean move4(Board board, int pos1from, int pos2from, String posTo) { 
+	public static boolean move4(Board board, int pos1from, int pos2from, String posTo) { 
 		int pos1to=Character.getNumericValue(posTo.charAt(0));
 		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// check if you are in check after the move		
@@ -302,7 +302,7 @@ public class Figures {
 	 * @param pos2to the y axis position of the field to move to
 	 * @return true if move is valid
 	 */
-	public boolean check4(Board board, String posTo, int pos1from, int pos2from) {
+	public static boolean check4(Board board, String posTo, int pos1from, int pos2from) {
 		 
 			int pos1to=Character.getNumericValue(posTo.charAt(0));
 			int pos2to=Character.getNumericValue(posTo.charAt(1));

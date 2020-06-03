@@ -255,6 +255,7 @@ public class StartGame {
 		System.out.println(AI.possibleMoves);
 		System.out.println(AI.EnemyValue);
 		AI.DoMinMove(board);
+		//board.setCurrentTurn(0);
 		}
 	}
 		
