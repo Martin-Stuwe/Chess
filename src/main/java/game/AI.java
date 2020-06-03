@@ -33,7 +33,7 @@ public class AI {
 			Figures f = board.getField(possibleMoves.get(z).to1,possibleMoves.get(z).to2);
 			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
 			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=null;
-		
+			board.initializeBoard();
 		for (int x=0;x<8;x++) {
 				for (int y=0;y<8;y++) {
 					if (board.getField(x, y)!=null&&board.getField(x, y).getColor() != convTurn) {
@@ -122,10 +122,10 @@ public class AI {
 				min = x;
 			}
 		}
-		System.out.println(EnemyValue.get(EnemyValue.size()-1));
+
 		System.out.println(EnemyValue.get(0));
 				
-		if (EnemyValue.get(EnemyValue.size()-1).equals(EnemyValue.get(0))) {
+		if (sortedList.get(sortedList.size()-1).equals(sortedList.get(0))) {
 			
 			DoRndMove(board);
 			
