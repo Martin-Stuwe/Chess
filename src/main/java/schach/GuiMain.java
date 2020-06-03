@@ -49,6 +49,7 @@ public class GuiMain extends Application {
 	boolean showMove = true;
 	boolean touchMove = false;
 	boolean clicked = false;
+	ListView<String> historie = new ListView<String>();
 	
 	
     public static void main(String[] args) {
@@ -270,7 +271,6 @@ public class GuiMain extends Application {
     public VBox drawRight(Board brett) {
     	 VBox rightVbox = new VBox();
          rightVbox.setSpacing(20);
-         ListView<String> historie = new ListView<String>();
          historie.minHeight(screenHeight/4);
          rightVbox.getChildren().add(new Label("historie"));
          rightVbox.getChildren().add(historie);
@@ -438,6 +438,7 @@ public class GuiMain extends Application {
 			            public void handle(MouseEvent event) {
 			            	
 			            	brett.getField(a, b).move(brett, a, b, to);
+			            	convertInputToHistorie(a, b , to);
 			            	setClicked(false);
 			            	drawBoard(brett);
 			            }
@@ -462,5 +463,71 @@ public class GuiMain extends Application {
           }
           return beaten;
 
+    }
+    
+    public void convertInputToHistorie(int a, int b, String to) {
+    	String output ="";
+    	
+    	int to1=Character.getNumericValue(to.charAt(0));
+		int to2=Character.getNumericValue(to.charAt(1));
+		output = numberToString(a) + numberToNumber(b) + "-" + numberToString(to1) + numberToNumber(to2);
+    	historie.getItems().add(output);
+    }
+    
+    public int numberToNumber(int a) {
+    	if(a == 0) {
+    		a = 8;
+    	}
+    	else if (a == 1) {
+    		a = 7;
+    	}
+    	else if (a == 2) {
+    		a = 6;
+    	}
+    	else if (a == 3) {
+    		a = 5;
+    	}
+    	else if (a == 4) {
+    		a = 4;
+    	}
+    	else if (a == 5) {
+    		a = 3;
+    	}
+    	else if (a == 6) {
+    		a = 2;
+    	}
+    	else if (a == 7) {
+    		a = 1;
+    	}
+    	return a;
+    }
+    
+    public String numberToString(int a) {
+    	String b ="";
+    	if(a == 0) {
+    		b = "a";
+    	}
+    	else if (a == 1) {
+    		b = "b";
+    	}
+    	else if (a == 2) {
+    		b = "c";
+    	}
+    	else if (a == 3) {
+    		b = "d";
+    	}
+    	else if (a == 4) {
+    		b = "e";
+    	}
+    	else if (a == 5) {
+    		b = "f";
+    	}
+    	else if (a == 6) {
+    		b = "g";
+    	}
+    	else if (a == 7) {
+    		b = "h";
+    	}
+    	return b;
     }
 }
