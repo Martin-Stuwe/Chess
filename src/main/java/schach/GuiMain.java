@@ -271,6 +271,7 @@ public class GuiMain extends Application {
                 AI.Calculate(brett);
                 AI.DoMinMove(brett);
                 drawBoard(brett);
+                
             }
         });
         
