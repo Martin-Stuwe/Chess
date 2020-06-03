@@ -3,6 +3,7 @@ package schach;
 import game.Board;
 import game.StartGame;
 import game.Zug;
+import figures.*;
 /**
  * no changes made yet
  */
@@ -226,7 +227,7 @@ public class GuiMain extends Application {
           	 
             @Override
             public void handle(ActionEvent event) {
-            	pawnPromo(primaryStage);
+            	pawnPromo(brett, 8,8);
             }
         });
         
@@ -457,10 +458,7 @@ public class GuiMain extends Application {
 			            @Override
 			            public void handle(MouseEvent event) {
 			            	
-			            	brett.getField(a, b).move(brett, a, b, to);
-			            	convertInputToHistorie(a, b , to);
-			            	setClicked(false);
-			            	drawBoard(brett);
+			            	makeMove(brett,a,b,to );
 			            }
 
 			        });
@@ -551,7 +549,7 @@ public class GuiMain extends Application {
     	return b;
     }
     
-    public void pawnPromo(Stage primaryStage) {
+    public void pawnPromo(Board brett, int to1, int to2) {
     	Stage window = new Stage();
     	window.setTitle("pawn promotion");
         window.initModality(Modality.APPLICATION_MODAL);
@@ -572,6 +570,8 @@ public class GuiMain extends Application {
  
             @Override
             public void handle(ActionEvent event) {
+            	brett.setField(to1, to2, new Queen(to1,to2,brett.getField(to1, to2).getColor()));
+            	 drawBoard(brett);
                 window.close();
             }
         });
@@ -580,6 +580,8 @@ public class GuiMain extends Application {
         	 
             @Override
             public void handle(ActionEvent event) {
+            	brett.setField(to1, to2, new Rook(to1,to2,brett.getField(to1, to2).getColor()));
+            	 drawBoard(brett);
                 window.close();
             }
         });
@@ -588,6 +590,8 @@ public class GuiMain extends Application {
         	 
             @Override
             public void handle(ActionEvent event) {
+            	brett.setField(to1, to2, new Knight(to1,to2,brett.getField(to1, to2).getColor()));
+            	 drawBoard(brett);
                 window.close();
             }
         });
@@ -596,9 +600,25 @@ public class GuiMain extends Application {
         	 
             @Override
             public void handle(ActionEvent event) {
+            	brett.setField(to1, to2, new Bishop(to1,to2,brett.getField(to1, to2).getColor()));
+            	 drawBoard(brett);
                 window.close();
             }
         });
-        
+  
     }
-}
+
+	
+	public void makeMove(Board brett, int a, int b, String to ) {
+		int to1=Character.getNumericValue(to.charAt(0));
+		int to2=Character.getNumericValue(to.charAt(1));
+		brett.getField(a, b).move(brett, a, b, to);
+		convertInputToHistorie(a, b , to);
+		setClicked(false);
+		if(brett.getField(to1, to2).getType()==4 && (brett.getField(to1, to2).getColor()=="w"&& to2==0 ||brett.getField(to1, to2).getColor()=="b"&& to2==7  )) {
+		pawnPromo(brett,to1,to2);
+		}
+		drawBoard(brett);
+		
+	}
+	}
