@@ -38,7 +38,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
+import game.AI;
 public class GuiMain extends Application {
 	/**
 	 * method to launch GUI
@@ -214,7 +214,7 @@ public class GuiMain extends Application {
         CheckBox check3 = new CheckBox("show being in check");
         CheckBox check4 = new CheckBox("touch-move rule");
         Button back = new Button("back to menu");
-        
+        Button test = new Button("AI test");
        
         
         check2.setSelected(true);
@@ -262,14 +262,24 @@ public class GuiMain extends Application {
                 historie.getItems().clear();
             }
         });
-    
+        
+        test.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+                AI.findPossMoves(brett);
+                AI.Calculate(brett);
+                AI.DoMinMove(brett);
+                drawBoard(brett);
+            }
+        });
         
         topHbox.getChildren().add(check1);
         topHbox.getChildren().add(check2);
         topHbox.getChildren().add(check3);
         topHbox.getChildren().add(check4);
         topHbox.getChildren().add(back);
-
+        topHbox.getChildren().add(test);
         
         topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
         return topHbox;
