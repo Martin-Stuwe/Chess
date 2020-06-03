@@ -222,14 +222,7 @@ public class GuiMain extends Application {
         CheckBox check4 = new CheckBox("touch-move rule");
         Button back = new Button("back to menu");
         
-        Button loschbitte = new Button("test");
-        loschbitte.setOnAction(new EventHandler<ActionEvent>() {
-          	 
-            @Override
-            public void handle(ActionEvent event) {
-            	pawnPromo(brett, 8,8);
-            }
-        });
+       
         
         check2.setSelected(true);
         check3.setSelected(true);
@@ -283,7 +276,7 @@ public class GuiMain extends Application {
         topHbox.getChildren().add(check3);
         topHbox.getChildren().add(check4);
         topHbox.getChildren().add(back);
-        topHbox.getChildren().add(loschbitte);
+
         
         topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
         return topHbox;
