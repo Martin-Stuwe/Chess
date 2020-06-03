@@ -206,6 +206,9 @@ public class GuiMain extends Application {
         	}
         	
         }
+        if(!Zug.checkPossibleMoves(brett)) {
+        	board.add(new Label (" Keine Züge mehr"), 9, 4);
+        }
         border.setCenter(board);
         border.setLeft(drawLeft(brett));
         border.setBottom(drawBottom(brett));

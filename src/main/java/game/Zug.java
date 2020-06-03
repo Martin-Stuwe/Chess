@@ -172,18 +172,23 @@ public class Zug {
 	 * @return true if current player has a possible move
 	 */
 	public static boolean checkPossibleMoves(Board board) {
+		boolean whitemoves=false;
+		boolean blackmoves=false;
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 				
 				// check if white or black has possible move
-				if(board.positionen[i][y]!=null&&board.positionen[i][y].getClass() == King.class) {
-					return Zug.checkPossibleMovesCheck(board,i, y); 
+				if(board.positionen[i][y]!=null&&board.positionen[i][y].getClass() == King.class&&board.positionen[i][y].getColor()=="b") {
+					blackmoves = Zug.checkPossibleMovesCheck(board,i, y); 
 			
 				}
-				
+				if(board.positionen[i][y]!=null&&board.positionen[i][y].getClass() == King.class&&board.positionen[i][y].getColor()=="w") {
+					whitemoves = Zug.checkPossibleMovesCheck(board,i, y); 
+			
+				}
 			}
 		}
-		return false;
+		return blackmoves||whitemoves;
 	}
 	
 	/**
