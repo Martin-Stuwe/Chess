@@ -223,29 +223,29 @@ public class King extends Figures {
 		}
 		
 		
-		/**
-		 * check if long castling figures have moved
-		 * @param board the board the move is on	
-		 * @param x the x axis position to move to 
-		 * @param y the y axis position to move to
-		 * @return true if figures haven't moved yet
-		 */
-		public boolean checkStuff2(Board board, int x, int y) {
-			return !this.hasMoved && !board.getField(0, y).isHasMoved()
-					&& !Zug.checkField(board,4, y, this.color) && !Zug.checkField(board,3, y, this.color)&& 
-					!Zug.checkField(board,2, y, this.color);
+	/**
+	 * check if long castling figures have moved
+	 * @param board the board the move is on	
+	 * @param x the x axis position to move to 
+	 * @param y the y axis position to move to
+	 * @return true if figures haven't moved yet
+	 */
+	public boolean checkStuff2(Board board, int x, int y) {
+		return !this.hasMoved && !board.getField(0, y).isHasMoved()
+				&& !Zug.checkField(board,4, y, this.color) && !Zug.checkField(board,3, y, this.color)&& 
+				!Zug.checkField(board,2, y, this.color);
 		}
 		
-		/**
-		 * method to check if next move is supposed to be castling
-		 * @param board the board the move is on
-		 * @param x the x axis position to move to
-		 * @param y the y axis position to move to
-		 * @return true if next move is supposed to be castling
-		 */
-		public boolean checkStuff3(Board board, int x, int y) {
-			return this.pos1 == x+2 && this.pos2 == y && board.getField(0, y)!= null 
-				&& board.getField(3, y) == null && board.getField(2, y)== null;
-			}
+	/**
+	 * method to check if next move is supposed to be castling
+	 * @param board the board the move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if next move is supposed to be castling
+	 */
+	public boolean checkStuff3(Board board, int x, int y) {
+		return this.pos1 == x+2 && this.pos2 == y && board.getField(0, y)!= null 
+			&& board.getField(3, y) == null && board.getField(2, y)== null;
 		}
+	}
 
