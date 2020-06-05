@@ -1,6 +1,7 @@
 package schach;
 
 import game.Board;
+import game.GuiCalcs;
 import game.StartGame;
 import game.Zug;
 import figures.*;
@@ -52,7 +53,7 @@ public class GuiMain extends Application {
 	boolean touchMove = false;
 	boolean clicked = false;
 	ListView<String> historie = new ListView<String>();
-	
+	GuiCalcs rechner = new GuiCalcs();
 	
     public static void main(String[] args) {
         launch(args);
@@ -293,7 +294,7 @@ public class GuiMain extends Application {
          rightVbox.getChildren().add(new Label("historie"));
          rightVbox.getChildren().add(historie);
          rightVbox.getChildren().add(new Label("beaten figures"));
-         rightVbox.getChildren().add(addBeaten(brett));
+         rightVbox.getChildren().add(rechner.addBeaten(brett, screenHeight));
          rightVbox.setPadding(new Insets(20,screenHeight/12,0,20));
          return rightVbox;
     }
@@ -355,79 +356,6 @@ public class GuiMain extends Application {
         return leftVbox;
     }
     
-    public Label getImage(Board brett, int i, int y) {
-    	Label image = new Label("");
-    	if(brett.getField(i, y).getColor()=="w") {
-    		image.setText(checkWhiteSymbols(brett.getField(i, y).getBoardVisual()));
-    	}
-    	else {
-    		image.setText(checkBlackSymbols(brett.getField(i, y).getBoardVisual()));
-    	}
-    	image.setScaleX(screenHeight/200);
-    	image.setScaleY(screenHeight/200);
-    	image.autosize();
-    	image.setTextAlignment(TextAlignment.CENTER);
-
-    	if(!clicked && touchMove || !touchMove) {
-        	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                	 setClicked(true);
-                    showPossibleMoves(brett,i,y);
-                 
-                }
-
-            	});
-        	
-        	}
-     
-    		return image;
-        }
-    
-    public String checkWhiteSymbols(String visual) {
-    	String white = "";
-    	if(visual=="P") {
-    		white="♙" ;
-    	}
-    	if(visual=="N") {
-    		white="♘" ;
-    	}
-    	if(visual=="B") {
-    		white="♗" ;
-    	}
-    	if(visual=="R") {
-    		white="♖" ;
-    	}
-    	if(visual=="Q") {
-    		white="♕" ;
-    	}
-    	if(visual=="K") {
-    		white="♔" ;
-    	}
-    	return white;
-    }
-    public String checkBlackSymbols(String visual) {
-    	String black = "";
-     	if(visual=="p") {
-    		black="♟" ;
-    	}
-    	if(visual=="n") {
-    		black="♞" ;
-    	}
-    	if(visual=="b") {
-    		black="♝" ;
-    	}
-    	if(visual=="r") {
-    		black="♜" ;
-    	}
-    	if(visual=="q") {
-    		black="♛" ;
-    	}
-    	if(visual=="k") {
-    		black="♚" ;
-    	}
-    	return black;
-    }
     
     public void showPossibleMoves(Board brett, int a, int b){
     	GridPane possible = drawBoard(brett);
@@ -468,84 +396,44 @@ public class GuiMain extends Application {
     	border.setCenter(possible);
     }
     
-    public ListView<String> addBeaten(Board brett) {
-    	  ListView <String>beaten = new ListView<String>();
-          beaten.minHeight(screenHeight/4);
-          for(int i=0; i<brett.beaten.size();i++) {
-        		  beaten.getItems().add(checkWhiteSymbols(brett.beaten.get(i))+checkBlackSymbols(brett.beaten.get(i)));
-        	  
-
-          }
-          return beaten;
-
-    }
-    
+   
     public void convertInputToHistorie(int a, int b, String to) {
     	String output ="";
     	
     	int to1=Character.getNumericValue(to.charAt(0));
 		int to2=Character.getNumericValue(to.charAt(1));
-		output = numberToString(a) + numberToNumber(b) + "-" + numberToString(to1) + numberToNumber(to2);
+		output = rechner.numberToString(a) + rechner.numberToNumber(b) + "-" + rechner.numberToString(to1) + rechner.numberToNumber(to2);
     	historie.getItems().add(output);
     }
-    
-    public int numberToNumber(int a) {
-    	if(a == 0) {
-    		a = 8;
+	public Label getImage(Board brett, int i, int y) {
+    	Label image = new Label("");
+    	if(brett.getField(i, y).getColor()=="w") {
+    		image.setText(rechner.checkWhiteSymbols(brett.getField(i, y).getBoardVisual()));
     	}
-    	else if (a == 1) {
-    		a = 7;
+    	else {
+    		image.setText(rechner.checkBlackSymbols(brett.getField(i, y).getBoardVisual()));
     	}
-    	else if (a == 2) {
-    		a = 6;
-    	}
-    	else if (a == 3) {
-    		a = 5;
-    	}
-    	else if (a == 4) {
-    		a = 4;
-    	}
-    	else if (a == 5) {
-    		a = 3;
-    	}
-    	else if (a == 6) {
-    		a = 2;
-    	}
-    	else if (a == 7) {
-    		a = 1;
-    	}
-    	return a;
-    }
-    
-    public String numberToString(int a) {
-    	String b ="";
-    	if(a == 0) {
-    		b = "a";
-    	}
-    	else if (a == 1) {
-    		b = "b";
-    	}
-    	else if (a == 2) {
-    		b = "c";
-    	}
-    	else if (a == 3) {
-    		b = "d";
-    	}
-    	else if (a == 4) {
-    		b = "e";
-    	}
-    	else if (a == 5) {
-    		b = "f";
-    	}
-    	else if (a == 6) {
-    		b = "g";
-    	}
-    	else if (a == 7) {
-    		b = "h";
-    	}
-    	return b;
-    }
-    
+    	image.setScaleX(screenHeight/200);
+    	image.setScaleY(screenHeight/200);
+    	image.autosize();
+    	image.setTextAlignment(TextAlignment.CENTER);
+
+    	if(!clicked && touchMove || !touchMove) {
+        	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                	 setClicked(true);
+                    showPossibleMoves(brett,i,y);
+                 
+                }
+
+            	});
+        	
+        	}
+     
+    		return image;
+        } 
+   
     public void pawnPromo(Board brett, int to1, int to2) {
     	Stage window = new Stage();
     	window.setTitle("pawn promotion");
