@@ -46,10 +46,9 @@ public class Zug {
 	/**
 	 * constructor for a zug object
 	 * @param figure figure that has been moved
-	 * @param from1 x axis position
-	 * @param from2 y axis position
-	 * @param to1 x axis position
-	 * @param to2 y axis position
+	 * @param from1 x axis position of starting field
+	 * @param from2 y axis position of starting field
+	 * @param to String of x and y axis position of the field to move to
 	 */
 	public Zug(Figures figure, int from1, int from2, String to) {  
 		this.figure = figure;
