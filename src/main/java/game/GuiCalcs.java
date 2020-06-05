@@ -64,31 +64,32 @@ public class GuiCalcs {
 
   }
     public int numberToNumber(int a) {
+    	int b =0;
     	if(a == 0) {
-    		a = 8;
+    		b = 8;
     	}
     	else if (a == 1) {
-    		a = 7;
+    		b = 7;
     	}
     	else if (a == 2) {
-    		a = 6;
+    		b = 6;
     	}
     	else if (a == 3) {
-    		a = 5;
+    		b = 5;
     	}
     	else if (a == 4) {
-    		a = 4;
+    		b = 4;
     	}
     	else if (a == 5) {
-    		a = 3;
+    		b = 3;
     	}
     	else if (a == 6) {
-    		a = 2;
+    		b = 2;
     	}
     	else if (a == 7) {
-    		a = 1;
+    		b = 1;
     	}
-    	return a;
+    	return b;
     }
     
     public String numberToString(int a) {
