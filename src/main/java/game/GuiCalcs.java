@@ -1,13 +1,23 @@
 package game;
 
-/**
- * no changes made yet
- */
-
 import javafx.scene.control.ListView;
+
+/**
+ * Class for the Gui calculations
+ * @author Martin Stuwe 676421
+ * @author Zeyi Sun
+ * @author Richard Tank
+ * @author Fin Niklas Tiedemann
+ * group 23
+ * it2
+ */
 public class GuiCalcs {
 
-    
+    /**
+     * method to change the board visual to a real figure picture
+     * @param visual the board visual of the figure
+     * @return white the white symbol of the figure
+     */
     public String checkWhiteSymbols(String visual) {
     	String white = "";
     	if(visual=="P") {
@@ -30,6 +40,12 @@ public class GuiCalcs {
     	}
     	return white;
     }
+    
+    /**
+     * method to change the board visual to a real figure picture
+     * @param visual the board visual of the figure
+     * @return black the black symbol of the figure
+     */
     public String checkBlackSymbols(String visual) {
     	String black = "";
      	if(visual=="p") {
@@ -52,6 +68,13 @@ public class GuiCalcs {
     	}
     	return black;
     }
+    
+    /**
+     * method to add beaten figures to a list
+     * @param brett board on which the game is on
+     * @param screenHeight height of screen
+     * @return beaten the list of the beaten figures
+     */
     public ListView<String> addBeaten(Board brett, double screenHeight) {
   	  ListView <String>beaten = new ListView<String>();
         beaten.minHeight(screenHeight/4);
@@ -62,9 +85,16 @@ public class GuiCalcs {
         }
         return beaten;
 
-  }
+    }
+    
+    /**
+     * method to convert the array number into the real board number
+     * for example top left array spot 0,0 would be the 8 of a8
+     * @param a number that has to be converted
+     * @return b the converted number
+     */
     public int numberToNumber(int a) {
-    	int b =0;
+    	int b = 0;
     	if(a == 0) {
     		b = 8;
     	}
@@ -92,6 +122,12 @@ public class GuiCalcs {
     	return b;
     }
     
+    /**
+     * method to convert the array number into the real board letter
+     * for example top left array spot 0,0 would be the a of a8
+     * @param a number that has to be converted
+     * @return b the converted letter
+     */
     public String numberToString(int a) {
     	String b ="";
     	if(a == 0) {
