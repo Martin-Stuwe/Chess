@@ -192,7 +192,7 @@ public class King extends Figures {
 	}
 	
 	/**
-	 * check for long castling and normal king moves
+	 * check for long castling 
 	 * @param board the board the move is on
 	 * @param x the x axis position to move to
 	 * @param y the y axis position to move to
@@ -215,14 +215,25 @@ public class King extends Figures {
 		}
 		
 		// possible king standard moves (first checking x axis)
-		else if((this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x)&&(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y)) {	
+		else {
+			return checkNormalMoves(board, x,y);
+		}
+	}
+	/**
+	 * check if normal King moves are possible
+	 * @param board the board the move is on	
+	 * @param x the x axis position to move to 
+	 * @param y the y axis position to move to
+	 * @return true if figures haven't moved yet
+	 */
+			public boolean checkNormalMoves(Board board, int x, int y) {
+				if((this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x)&&(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y)) {	
 					return true;
 			}
 				
 			return false;
 		}
-		
-		
+			
 	/**
 	 * check if long castling figures have moved
 	 * @param board the board the move is on	
