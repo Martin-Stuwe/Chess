@@ -5,7 +5,6 @@ package game;
  */
 
 import javafx.scene.control.ListView;
-
 public class GuiCalcs {
 
     

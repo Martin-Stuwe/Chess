@@ -2,7 +2,6 @@ package schach;
 
 import game.Board;
 import game.GuiCalcs;
-
 import game.Zug;
 import figures.*;
 /**
