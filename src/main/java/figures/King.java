@@ -232,7 +232,7 @@ public class King extends Figures {
 	 */
 			public boolean checkNormalMoves(Board board, int x, int y) {
 				return ((this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x)&&(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y));
-			}
+			} 
 	/**
 	 * check if long castling figures have moved
 	 * @param board the board the move is on	
