@@ -227,13 +227,8 @@ public class King extends Figures {
 	 * @return true if figures haven't moved yet
 	 */
 			public boolean checkNormalMoves(Board board, int x, int y) {
-				if((this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x)&&(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y)) {	
-					return true;
+				return ((this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x)&&(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y));
 			}
-				
-			return false;
-		}
-			
 	/**
 	 * check if long castling figures have moved
 	 * @param board the board the move is on	
