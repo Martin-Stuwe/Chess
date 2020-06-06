@@ -39,41 +39,111 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import game.AI;
+
+/**
+ * Class for the Gui
+ * @author Martin Stuwe 676421
+ * @author Zeyi Sun
+ * @author Richard Tank
+ * @author Fin Niklas Tiedemann
+ * group 23
+ * it2
+ */
 public class GuiMain extends Application {
 	/**
-	 * method to launch GUI
+	 * height of the screen 
 	 */
 	double screenHeight;
+	
+	/**
+	 * width of the screen
+	 */
 	double screenWidth;
+	
+	/**
+	 * main BorderPane of the Gui
+	 */
 	BorderPane border= new BorderPane();
+	
+	/**
+	 * check if rotate checkbox is ticked
+	 */
 	boolean rotate = false;
+	
+	/**
+	 * check if showCheck checkbox is ticked
+	 */
 	boolean showCheck = true;
+	
+	/**
+	 * check if showMove checkbox is ticked
+	 */
 	boolean showMove = true;
+	
+	/**
+	 * check if touchMove checkbox is ticked
+	 */
 	boolean touchMove = false;
+	
+	/**
+	 * check if figure has been clicked
+	 */
 	boolean clicked = false;
+	
+	/**
+	 * list to save the historie of the chess game
+	 */
 	ListView<String> historie = new ListView<String>();
+	
+	/**
+	 * calculator for the game
+	 */
 	GuiCalcs rechner = new GuiCalcs();
 	
+	/**
+	 * main-method for the game
+	 * @param args
+	 */
     public static void main(String[] args) {
         launch(args);
     }
     
-    
+    /**
+     * set-method for rotate
+     * @param isSelected current state of checkbox
+     */
     public void setRotate(boolean isSelected) {
     	rotate = isSelected;
     }
     
+    /**
+     * set-method for showCheck
+     * @param isSelected current state of checkbox
+     */
     public void setShowCheck(boolean isSelected) {
     	showCheck = isSelected;
     }
     
+    /**
+     * set-method for showMove
+     * @param isSelected current state of checkbox
+     */
     public void setShowMove(boolean isSelected) {
     	showMove = isSelected;
     }
     
+    /**
+     * set-method for touchMove
+     * @param isSelected current state of checkbox
+     */
     public void setTouchMove(boolean isSelected) {
     	touchMove = isSelected;
     }
+    
+    /**
+     * set-method for clicked
+     * @param click true if a figure has been clicked
+     */
     public void setClicked(boolean click) {
     	clicked = click;
     }
