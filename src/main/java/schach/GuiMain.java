@@ -514,7 +514,12 @@ public class GuiMain extends Application {
     	border.setCenter(possible);
     }
     
-   
+    /**
+     * method to convert input into valid chess notation and save it
+     * @param a x axis starting position
+     * @param b y axis starting position
+     * @param to x and y axis ending position as a String
+     */
     public void convertInputToHistorie(int a, int b, String to) {
     	String output ="";
     	

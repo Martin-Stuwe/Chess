@@ -41,12 +41,16 @@ public class King extends Figures {
 	private boolean hasMoved;
 	
 	/**
+	 * check if move is real
+	 */
+	private boolean realMove;
+	
+	/**
 	 * the constructor creates a new king object and needs a x and a y axis position plus a color
 	 * @param pos1 x axis position of the king
 	 * @param pos2 y axis position of the king
 	 * @param color color of the king, valid input: "w" for white, "b" for black
 	 */
-	private boolean realMove;
 	public King(int pos1, int pos2, String color) {
 		this.pos1 = pos1;
 		this.pos2 = pos2;
