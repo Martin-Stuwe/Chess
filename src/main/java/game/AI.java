@@ -46,8 +46,8 @@ public class AI {
 			convTurn = "b";
 	}
 		
-		for (int i=0;i<8;i++) {
-			for (int j=0;j<8;j++) {
+		for (int i=0;i<7;i++) {
+			for (int j=0;j<7;j++) {
 				for (int x=0;x<8;x++) {
 					for (int y=0;y<8;y++) {
 						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()&&Figures.hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
@@ -242,7 +242,9 @@ public class AI {
 		Zug rndMove = possibleMoves.get(rnd.nextInt(possibleMoves.size()));	
 		System.out.println(rnd.nextInt(possibleMoves.size()));
 		System.out.println(rndMove);
-		Figures.move(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2));
+		if(!Figures.move(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2))) {
+			DoRndMove(board);
+		}
 		return;
 	}
 	
