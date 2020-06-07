@@ -12,7 +12,7 @@ import figures.King;
  * @author Richard Tank
  * @author Fin Niklas Tiedemann
  * group 23
- * it2
+ * it1
  */
 public class Zug {
 	
@@ -46,9 +46,10 @@ public class Zug {
 	/**
 	 * constructor for a zug object
 	 * @param figure figure that has been moved
-	 * @param from1 x axis position of starting field
-	 * @param from2 y axis position of starting field
-	 * @param to String of x and y axis position of the field to move to
+	 * @param from1 x axis position
+	 * @param from2 y axis position
+	 * @param to1 x axis position
+	 * @param to2 y axis position
 	 */
 	public Zug(Figures figure, int from1, int from2, String to) {  
 		this.figure = figure;
@@ -99,7 +100,6 @@ public class Zug {
 	}
 	/**
 	 * checks if a player is in check
-	 * @param board board on which the check Test is on
 	 * @return true if a player is in check
 	 */
 	public static boolean checkCheck(Board board) {
@@ -131,8 +131,10 @@ public class Zug {
 	
 	/**
 	 * method to check for check
-	 * @param board the board the check of check is on
-	 * @param num String of the x and y axis positions of the king and the figure that could do check
+	 * @param i x axis position of the king
+	 * @param j x axis position of the other figures
+	 * @param k y axis position of the other figures
+	 * @param y y axis position of the king
 	 * @return true if other figure has validMove to king's position
 	 */
 	public static boolean checkCheckCheck(Board board,String num) {
@@ -167,7 +169,6 @@ public class Zug {
 	
 	/**
 	 * check if current player has a possible move
-	 * @param board the board the move is o
 	 * @return true if current player has a possible move
 	 */
 	public static boolean checkPossibleMoves(Board board) {
@@ -192,7 +193,6 @@ public class Zug {
 	
 	/**
 	 * method to check for possible moves
-	 * @param board the board the check test is on
 	 * @param i the x axis position of the king
 	 * @param y the y axis position of the king
 	 * @return true if figures have possible moves
@@ -218,7 +218,6 @@ public class Zug {
 	
 	/**
 	 * check if there is no checkmate possible anymore
-	 * @param board the board the draw is on
 	 * @return true if no checkmate possible anymore
 	 */
 	public static boolean checkDraw(Board board) {

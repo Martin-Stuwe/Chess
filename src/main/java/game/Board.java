@@ -10,14 +10,14 @@ import figures.Queen;
 import figures.Rook;
 
 /**
- * Class for the Chess Board
- * @author Martin Stuwe 676421
- * @author Zeyi Sun
- * @author Richard Tank
- * @author Fin Niklas Tiedemann
- * group 23
- * it1
- */
+* Class for the Chess Board
+* @author Martin Stuwe 676421
+* @author Zeyi Sun
+* @author Richard Tank
+* @author Fin Niklas Tiedemann
+* group 23
+* it1
+*/
 public class Board {
 	
 	/**

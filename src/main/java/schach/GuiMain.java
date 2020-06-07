@@ -1,7 +1,7 @@
 package schach;
 
 import game.Board;
-import game.GuiCalcs;
+import game.StartGame;
 import game.Zug;
 import figures.*;
 /**
@@ -12,7 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,9 +20,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
-
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -31,119 +31,49 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import game.AI;
-
-/**
- * Class for the Gui
- * @author Martin Stuwe 676421
- * @author Zeyi Sun
- * @author Richard Tank
- * @author Fin Niklas Tiedemann
- * group 23
- * it2
- */
 public class GuiMain extends Application {
 	/**
-	 * height of the screen 
+	 * method to launch GUI
 	 */
 	double screenHeight;
-	
-	/**
-	 * width of the screen
-	 */
 	double screenWidth;
-	
-	/**
-	 * main BorderPane of the Gui
-	 */
 	BorderPane border= new BorderPane();
-	
-	/**
-	 * check if rotate checkbox is ticked
-	 */
 	boolean rotate = false;
-	
-	/**
-	 * check if showCheck checkbox is ticked
-	 */
 	boolean showCheck = true;
-	
-	/**
-	 * check if showMove checkbox is ticked
-	 */
 	boolean showMove = true;
-	
-	/**
-	 * check if touchMove checkbox is ticked
-	 */
 	boolean touchMove = false;
-	
-	/**
-	 * check if figure has been clicked
-	 */
 	boolean clicked = false;
-	
-	/**
-	 * list to save the historie of the chess game
-	 */
 	ListView<String> historie = new ListView<String>();
 	
-	/**
-	 * calculator for the game
-	 */
-	GuiCalcs rechner = new GuiCalcs();
 	
-	/**
-	 * main-method for the game
-	 * @param args
-	 */
     public static void main(String[] args) {
         launch(args);
     }
     
-    /**
-     * set-method for rotate
-     * @param isSelected current state of checkbox
-     */
+    
     public void setRotate(boolean isSelected) {
     	rotate = isSelected;
     }
     
-    /**
-     * set-method for showCheck
-     * @param isSelected current state of checkbox
-     */
     public void setShowCheck(boolean isSelected) {
     	showCheck = isSelected;
     }
     
-    /**
-     * set-method for showMove
-     * @param isSelected current state of checkbox
-     */
     public void setShowMove(boolean isSelected) {
     	showMove = isSelected;
     }
     
-    /**
-     * set-method for touchMove
-     * @param isSelected current state of checkbox
-     */
     public void setTouchMove(boolean isSelected) {
     	touchMove = isSelected;
     }
-    
-    /**
-     * set-method for clicked
-     * @param click true if a figure has been clicked
-     */
     public void setClicked(boolean click) {
     	clicked = click;
     }
@@ -168,11 +98,6 @@ public class GuiMain extends Application {
         primaryStage.setScene(new Scene(root, 1600, 900));
         primaryStage.show();
     }
-    
-    /**
-     * stage to choose mode and options
-     * @param primaryStage main stage
-     */
     public void startOptions(Stage primaryStage) {
         primaryStage.setTitle("Options");
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -216,11 +141,6 @@ public class GuiMain extends Application {
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
     }
-    
-    /**
-     * stage for the main game
-     * @param primaryStage main stage
-     */
     public void startGame(Stage primaryStage) {
         primaryStage.setTitle("Chess");
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -241,24 +161,15 @@ public class GuiMain extends Application {
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
     }
-    
-    /**
-     * method to draw the center part of the gui including the main board
-     * @param brett board of the game
-     * @return board GridPane of the whole center part of the game
-     */
     public GridPane drawBoard (Board brett) {
         GridPane board = drawFeld(brett);     
-        
-        //check whose turn it is
+
         if(brett.getCurrentTurn() == 0) {
         	board.add(new Label ("  white to move"), 8, 0);
         }
         else if(brett.getCurrentTurn() == 1) {
         	board.add(new Label ("  black to move"), 8, 0);
         }
-        
-        // check if there is check
         if(Zug.checkCheck(brett) && showCheck) {
         	if(brett.whiteCheck) {
         		board.add(new Label ("  white is in check"), 8, 1);
@@ -268,8 +179,6 @@ public class GuiMain extends Application {
         	}
         	
         }
-        
-        // check if checkmate or stalemate and new popup if so
         if(!Zug.checkPossibleMoves(brett)) {
         	Stage window = new Stage();
         	window.setTitle("Game End");
@@ -297,12 +206,6 @@ public class GuiMain extends Application {
         return board;
     }
     
-    /**
-     * method to draw the top part (settings) of the gui
-     * @param brett board the game is on
-     * @param primaryStage main stage
-     * @return topHbox box including all settings 
-     */
     public HBox drawTop(Board brett, Stage primaryStage) {
     	HBox topHbox = new HBox();
         topHbox.setSpacing(screenHeight /20);
@@ -383,11 +286,6 @@ public class GuiMain extends Application {
         return topHbox;
     }
     
-    /**
-     * method to draw the right part of the gui inlcuding historie and beaten figures list
-     * @param brett board the game is on
-     * @return rightVbox VBox that inlcudes historie and beaten figures 
-     */
     public VBox drawRight(Board brett) {
     	 VBox rightVbox = new VBox();
          rightVbox.setSpacing(20);
@@ -395,16 +293,11 @@ public class GuiMain extends Application {
          rightVbox.getChildren().add(new Label("historie"));
          rightVbox.getChildren().add(historie);
          rightVbox.getChildren().add(new Label("beaten figures"));
-         rightVbox.getChildren().add(rechner.addBeaten(brett, screenHeight));
+         rightVbox.getChildren().add(addBeaten(brett));
          rightVbox.setPadding(new Insets(20,screenHeight/12,0,20));
          return rightVbox;
     }
     
-    /**
-     * method to draw the bottom part of the gui including labels a to h
-     * @param brett board the game is on
-     * @return bottomHbox with labels a to h
-     */
     public HBox drawBottom(Board brett) {
         //define Bottom
         HBox bottomHbox = new HBox();
@@ -434,11 +327,6 @@ public class GuiMain extends Application {
         
     }
     
-    /**
-     * method to draw the left part of the gui including labels 1 to 8
-     * @param brett board the game is on
-     * @return leftVbox with labels 1 to 8
-     */
     public VBox drawLeft(Board brett) {
     	 //define left 
         VBox leftVbox = new VBox();
@@ -467,12 +355,80 @@ public class GuiMain extends Application {
         return leftVbox;
     }
     
-    /**
-     * method to show possible moves of figures if clicked
-     * @param brett board the game is on
-     * @param a x axis position of the figure
-     * @param b y axis position of the figure
-     */
+    public Label getImage(Board brett, int i, int y) {
+    	Label image = new Label("");
+    	if(brett.getField(i, y).getColor()=="w") {
+    		image.setText(checkWhiteSymbols(brett.getField(i, y).getBoardVisual()));
+    	}
+    	else {
+    		image.setText(checkBlackSymbols(brett.getField(i, y).getBoardVisual()));
+    	}
+    	image.setScaleX(screenHeight/200);
+    	image.setScaleY(screenHeight/200);
+    	image.autosize();
+    	image.setTextAlignment(TextAlignment.CENTER);
+
+    	if(!clicked && touchMove || !touchMove) {
+        	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                	 setClicked(true);
+                    showPossibleMoves(brett,i,y);
+                 
+                }
+
+            	});
+        	
+        	}
+     
+    		return image;
+        }
+    
+    public String checkWhiteSymbols(String visual) {
+    	String white = "";
+    	if(visual=="P") {
+    		white="♙" ;
+    	}
+    	if(visual=="N") {
+    		white="♘" ;
+    	}
+    	if(visual=="B") {
+    		white="♗" ;
+    	}
+    	if(visual=="R") {
+    		white="♖" ;
+    	}
+    	if(visual=="Q") {
+    		white="♕" ;
+    	}
+    	if(visual=="K") {
+    		white="♔" ;
+    	}
+    	return white;
+    }
+    public String checkBlackSymbols(String visual) {
+    	String black = "";
+     	if(visual=="p") {
+    		black="♟" ;
+    	}
+    	if(visual=="n") {
+    		black="♞" ;
+    	}
+    	if(visual=="b") {
+    		black="♝" ;
+    	}
+    	if(visual=="r") {
+    		black="♜" ;
+    	}
+    	if(visual=="q") {
+    		black="♛" ;
+    	}
+    	if(visual=="k") {
+    		black="♚" ;
+    	}
+    	return black;
+    }
+    
     public void showPossibleMoves(Board brett, int a, int b){
     	GridPane possible = drawBoard(brett);
     	for(int i =0; i<8;i++) {
@@ -484,8 +440,6 @@ public class GuiMain extends Application {
             		rrow = (rrow-7)*-1;
             		rcol = (rcol-7)*-1;
             	}
-            	
-            	// making red or transparent  borders around possible field to move to
 				if(brett.getField(a, b) != null && brett.getField(a, b).hasPossibleMove(brett, a, b,"" +i+y)) {
 					Rectangle poss = new Rectangle(screenHeight /10.1,screenHeight /10.1);
 					
@@ -514,64 +468,84 @@ public class GuiMain extends Application {
     	border.setCenter(possible);
     }
     
-    /**
-     * method to convert input into valid chess notation and save it
-     * @param a x axis starting position
-     * @param b y axis starting position
-     * @param to x and y axis ending position as a String
-     */
+    public ListView<String> addBeaten(Board brett) {
+    	  ListView <String>beaten = new ListView<String>();
+          beaten.minHeight(screenHeight/4);
+          for(int i=0; i<brett.beaten.size();i++) {
+        		  beaten.getItems().add(checkWhiteSymbols(brett.beaten.get(i))+checkBlackSymbols(brett.beaten.get(i)));
+        	  
+
+          }
+          return beaten;
+
+    }
+    
     public void convertInputToHistorie(int a, int b, String to) {
     	String output ="";
     	
     	int to1=Character.getNumericValue(to.charAt(0));
 		int to2=Character.getNumericValue(to.charAt(1));
-		output = rechner.numberToString(a) + rechner.numberToNumber(b) + "-" + rechner.numberToString(to1) + rechner.numberToNumber(to2);
+		output = numberToString(a) + numberToNumber(b) + "-" + numberToString(to1) + numberToNumber(to2);
     	historie.getItems().add(output);
     }
     
-    /**
-     * method to show the symbol of the figure instead of their boardVisual
-     * @param brett board the game is on
-     * @param i x axis position of the figure
-     * @param y y axis position of the figure
-     * @return
-     */
-	public Label getImage(Board brett, int i, int y) {
-    	Label image = new Label("");
-    	if(brett.getField(i, y).getColor()=="w") {
-    		image.setText(rechner.checkWhiteSymbols(brett.getField(i, y).getBoardVisual()));
+    public int numberToNumber(int a) {
+    	if(a == 0) {
+    		a = 8;
     	}
-    	else {
-    		image.setText(rechner.checkBlackSymbols(brett.getField(i, y).getBoardVisual()));
+    	else if (a == 1) {
+    		a = 7;
     	}
-    	image.setScaleX(screenHeight/200);
-    	image.setScaleY(screenHeight/200);
-    	image.autosize();
-    	image.setTextAlignment(TextAlignment.CENTER);
-
-    	if(!clicked && touchMove || !touchMove) {
-        	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                	 setClicked(true);
-                    showPossibleMoves(brett,i,y);
-                 
-                }
-
-            	});
-        	
-        	}
-     
-    		return image;
-        } 
-   
-	/**
-	 * method to promote pawns by opening a new window 
-	 * and letting the user decide what figure to promote to
-	 * @param brett board the game is on
-	 * @param to1 x axis ending position of the move
-	 * @param to2 y axis ending position of the move
-	 */
+    	else if (a == 2) {
+    		a = 6;
+    	}
+    	else if (a == 3) {
+    		a = 5;
+    	}
+    	else if (a == 4) {
+    		a = 4;
+    	}
+    	else if (a == 5) {
+    		a = 3;
+    	}
+    	else if (a == 6) {
+    		a = 2;
+    	}
+    	else if (a == 7) {
+    		a = 1;
+    	}
+    	return a;
+    }
+    
+    public String numberToString(int a) {
+    	String b ="";
+    	if(a == 0) {
+    		b = "a";
+    	}
+    	else if (a == 1) {
+    		b = "b";
+    	}
+    	else if (a == 2) {
+    		b = "c";
+    	}
+    	else if (a == 3) {
+    		b = "d";
+    	}
+    	else if (a == 4) {
+    		b = "e";
+    	}
+    	else if (a == 5) {
+    		b = "f";
+    	}
+    	else if (a == 6) {
+    		b = "g";
+    	}
+    	else if (a == 7) {
+    		b = "h";
+    	}
+    	return b;
+    }
+    
     public void pawnPromo(Board brett, int to1, int to2) {
     	Stage window = new Stage();
     	window.setTitle("pawn promotion");
@@ -631,13 +605,7 @@ public class GuiMain extends Application {
   
     }
 
-	/**
-	 * method to move figures on the board
-	 * @param brett board the game is on
-	 * @param a x axis starting position of the move
-	 * @param b y axis starting position of the move
-	 * @param to x and y axis starting position of the move as a String
-	 */
+	
 	public void makeMove(Board brett, int a, int b, String to ) {
 		setClicked(false);
 		int to1=Character.getNumericValue(to.charAt(0));
@@ -653,12 +621,6 @@ public class GuiMain extends Application {
 		
 		
 	}
-	
-	/**
-	 * method to draw the chess pattern
-	 * @param brett board the game is on
-	 * @return board chess patterned GridPane
-	 */
 	public GridPane drawFeld(Board brett) {
         GridPane board = new GridPane();
 		final int size = 8 ;
