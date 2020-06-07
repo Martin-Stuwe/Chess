@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class StartGameTest {
-	@Test
+/*	@Test
 	public void testStarGameCommand() {
 		StartGame testGame = new StartGame();
 		Board board2 = new Board();
@@ -25,7 +25,7 @@ public class StartGameTest {
 		System.setIn(in);
 		testGame.PlayerVsPlayer();
 
-	}
+	}*/
 	@Test
 	public void testGetAndMakeMove() {
 		StartGame testGame = new StartGame();
