@@ -11,27 +11,30 @@ import schach.Console;
 
 public class AI {
 
-	public static List<Zug> possibleMoves = new ArrayList<Zug>();
-	public static List<Zug> enPossibleMoves = new ArrayList<Zug>();
-	public List<Integer> EnemyValue = new ArrayList<Integer>();
-	public List<Integer> AIValue = new ArrayList<Integer>();
-	public List<Integer> AILoss = new ArrayList<Integer>();
-	private static String convTurn;
+	public List<Zug> possibleMoves;
+	public List<Zug> enPossibleMoves ;
+	public List<Integer> EnemyValue ;
+	public List<Integer> AIValue ;
+	public List<Integer> AILoss ;
+	private String convTurn;
 	private int min;
-	private static int color;
+	private int color;
 	
 	
 	public AI(int color) {
 		this.color = color;
-		
-		
+		possibleMoves = new ArrayList<Zug>();
+		enPossibleMoves = new ArrayList<Zug>();
+		EnemyValue = new ArrayList<Integer>();
+		AIValue = new ArrayList<Integer>();
+		AILoss = new ArrayList<Integer>();
 	}
 	
 	
 	
-	public static void findPossMoves(Board board, int turn ) {
+	public void findPossMoves(Board board, int turn ) {
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
-		possibleMoves.clear();
+	
 		switch (turn) {
 		case 0:
 			convTurn = "w";
@@ -48,7 +51,7 @@ public class AI {
 								
 							}
 							Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
-							possibleMoves.add(zug);
+							possibleMoveList.add(zug);
 						}
 					}
 				}
@@ -65,6 +68,7 @@ public class AI {
 	
 	
 	public void Calculate(Board board) {
+		System.out.println("Calculate");
 		EnemyValue.removeAll(EnemyValue);
 
 
@@ -119,6 +123,7 @@ public class AI {
 		
 		for (int x=0; x<enPossibleMoves.size();x++) {
 		
+		if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
 			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Queen.class) {
 			
 				EnemyValue.set(z, EnemyValue.get(z)-10);
@@ -148,7 +153,7 @@ public class AI {
 				
 				EnemyValue.set(z, EnemyValue.get(z)-5);
 			}
-		}
+		}}
 					
 		board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
 		board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
