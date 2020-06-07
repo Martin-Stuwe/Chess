@@ -31,7 +31,7 @@ public class Main {
 		        StartGame.PlayerVsPlayer();
 				    }
 		    else {
-		    	
+		    	 
 		    	GuiMain.main(args); 
 		    }
     }
