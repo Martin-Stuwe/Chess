@@ -200,8 +200,7 @@ public class AI {
 	}
 	public int calculateFigure(Figures figure, String color) {
 		int value=0;
-		for (int x=0;x<8;x++) {
-			for (int y=0;y<8;y++) {
+	
 				if (figure!=null&&figure.getColor()!=color) {
 				
 					if (figure.getClass()==Bishop.class) {
@@ -213,25 +212,25 @@ public class AI {
 					}
 				
 					if (figure.getClass()==Knight.class) {
-						value=+3;
+						value=3;
 					}
 					
 					if (figure.getClass()==Pawn.class) {
-						value=+1;
+						value=1;
 					}
 					
 					if (figure.getClass()==Queen.class) {
-						value=+10;
+						value=10;
 					}
 					
 					if (figure.getClass()==Rook.class) {
-						value=+5;
+						value=5;
 					}
 					
 				}
-			}	
+				
 			
-		}
+		
 		return value;
 	}
 	
