@@ -129,32 +129,32 @@ public class AI {
 		if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
 			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Queen.class) {
 			
-				EnemyValue.set(z, EnemyValue.get(z)+10);
+				EnemyValue.set(z, EnemyValue.get(z)-10);
 			}
 		
 			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Bishop.class) {
 			
-				EnemyValue.set(z, EnemyValue.get(z)+3);
+				EnemyValue.set(z, EnemyValue.get(z)-3);
 			}
 			
 			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==King.class) {
 			
-				EnemyValue.set(z, EnemyValue.get(z)+5000);
+				EnemyValue.set(z, EnemyValue.get(z)-5000);
 			}
 		
 			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Knight.class) {
 				
-				EnemyValue.set(z, EnemyValue.get(z)+3);
+				EnemyValue.set(z, EnemyValue.get(z)-3);
 			}
 			
 			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Pawn.class) {
 				
-				EnemyValue.set(z, EnemyValue.get(z)+1);
+				EnemyValue.set(z, EnemyValue.get(z)-1);
 			}
 			
 			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Rook.class) {
 				
-				EnemyValue.set(z, EnemyValue.get(z)+5);
+				EnemyValue.set(z, EnemyValue.get(z)-5);
 			}
 		}}
 					
