@@ -4,9 +4,6 @@ import game.Board;
 import game.StartGame;
 import game.Zug;
 import figures.*;
-/**
- * no changes made yet
- */
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,41 +36,117 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import game.AI;
+
+/**
+ * Main Class
+ * @author Martin Stuwe 676421
+ * @author Zeyi Sun
+ * @author Richard Tank
+ * @author Fin Niklas Tiedemann
+ * group 23
+ * it2
+ */
+
 public class GuiMain extends Application {
 	/**
-	 * method to launch GUI
+	 * height of the screen
 	 */
 	double screenHeight;
+	
+	/**
+	 * width of the screen
+	 */
 	double screenWidth;
+	
+	/**
+	 * main BorderPane of the GUI
+	 */
 	BorderPane border= new BorderPane();
+	
+	/**
+	 * check if rotate checkbox is ticked
+	 */
 	boolean rotate = false;
+	
+	/**
+	 * check if showCheck checkbox is ticked
+	 */
 	boolean showCheck = true;
+	
+	/**
+	 * check if showMove checkbox is ticked
+	 */
 	boolean showMove = true;
+	
+	/**
+	 * check if touchMove checkboxis is ticked
+	 */
 	boolean touchMove = false;
+	
+	/**
+	 * check if figure has been clicked on
+	 */
 	boolean clicked = false;
+	
+	/**
+	 * ListView of all the moves played
+	 */
 	ListView<String> historie = new ListView<String>();
-	AI ki = new AI(1) ;
+	
+	/**
+	 * Ai of the game
+	 */
+	AI ki = new AI(1);
+	
+	/**
+	 * check if it's an Ai game
+	 */
 	boolean aiGame =false;
+	
+	/**
+	 * main-method for the game
+	 * @param args
+	 */
     public static void main(String[] args) {
         launch(args);
     }
     
-    
+    /**
+     * set-method for rotate
+     * @param isSelected current state of the rotate checkbox
+     */
     public void setRotate(boolean isSelected) {
     	rotate = isSelected;
     }
     
+    /**
+     * set-method for showCheck
+     * @param isSelected current state of the showCheck checkbox
+     */
     public void setShowCheck(boolean isSelected) {
     	showCheck = isSelected;
     }
     
+    /**
+     * set-method for showMove
+     * @param isSelected current state of the show checkbox
+     */
     public void setShowMove(boolean isSelected) {
     	showMove = isSelected;
     }
     
+    /**
+     * set-method for touchMove
+     * @param isSelected current state of the rotate checkbox
+     */
     public void setTouchMove(boolean isSelected) {
     	touchMove = isSelected;
     }
+    
+    /**
+     * set-method for clicked
+     * @param clicked true if something was clicked
+     */
     public void setClicked(boolean click) {
     	clicked = click;
     }
