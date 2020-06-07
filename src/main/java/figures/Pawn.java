@@ -177,8 +177,8 @@ public class Pawn extends Figures {
 	 * @return true if last move was double move
 	 */
 	public boolean checkStuff1(Board board, int x, int y) {
-		return this.pos1 != 8&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1  ||
-				this.pos1 != 0&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1;
+		return this.pos1 != 8&&x==pos1+1&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) ||
+				this.pos1 != 0&&x==pos1-1&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2);
 	}
 	
 	/**
@@ -189,8 +189,8 @@ public class Pawn extends Figures {
 	 * @return true if last move was double pawn move
 	 */
 	public boolean checkStuff2(Board board, int x, int y) {
-		return this.pos1 != 8&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2) &&x==pos1-1 || 
-				this.pos1 != 0&& board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) &&x==pos1+1 ;
+		return this.pos1 != 8&& x==pos1-1 && board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1-1, pos2)  || 
+				this.pos1 != 0&& x==pos1+1 && board.movedList.get(board.movedList.size()-1).getFigure()==board.getField(pos1+1, pos2) ;
 	}
 	
 	/**
