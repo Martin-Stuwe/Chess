@@ -127,35 +127,17 @@ public class AI {
 		for (int x=0; x<enPossibleMoves.size();x++) {
 		
 		if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
-			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Queen.class) {
 			
-				EnemyValue.set(z, EnemyValue.get(z)-10);
-			}
+			
+			int valuex=0;
+			
+			
+			int y = calculateFigure(board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2),board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getColor());
 		
-			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Bishop.class) {
-			
-				EnemyValue.set(z, EnemyValue.get(z)-3);
+			if (y>valuex) {
+				valuex=y;
 			}
-			
-			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==King.class) {
-			
-				EnemyValue.set(z, EnemyValue.get(z)-5000);
-			}
-		
-			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Knight.class) {
-				
-				EnemyValue.set(z, EnemyValue.get(z)-3);
-			}
-			
-			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Pawn.class) {
-				
-				EnemyValue.set(z, EnemyValue.get(z)-1);
-			}
-			
-			if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getClass()==Rook.class) {
-				
-				EnemyValue.set(z, EnemyValue.get(z)-5);
-			}
+			EnemyValue.set(z, EnemyValue.get(z)+valuex);
 		}}
 					
 		board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
@@ -208,6 +190,42 @@ public class AI {
 					
 					if (board.getField(x, y).getClass()==Rook.class) {
 						value=value+5;
+					}
+					
+				}
+			}	
+			
+		}
+		return value;
+	}
+	public int calculateFigure(Figures figure, String color) {
+		int value=0;
+		for (int x=0;x<8;x++) {
+			for (int y=0;y<8;y++) {
+				if (figure!=null&&figure.getColor()!=color) {
+				
+					if (figure.getClass()==Bishop.class) {
+						
+						value=3;
+					}
+					if (figure.getClass()==King.class) {
+						value=5000;
+					}
+				
+					if (figure.getClass()==Knight.class) {
+						value=+3;
+					}
+					
+					if (figure.getClass()==Pawn.class) {
+						value=+1;
+					}
+					
+					if (figure.getClass()==Queen.class) {
+						value=+10;
+					}
+					
+					if (figure.getClass()==Rook.class) {
+						value=+5;
 					}
 					
 				}
