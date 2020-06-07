@@ -147,7 +147,7 @@ public class AI {
 		board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
 		}
 		board.setCurrentTurn(1);
-		board = restBoard;
+		
 	}
 	
 
