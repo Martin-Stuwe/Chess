@@ -273,7 +273,7 @@ public class GuiMain extends Application {
         
         test.setOnAction(new EventHandler<ActionEvent>() {
        	 
-            @Override
+            @Override 
             public void handle(ActionEvent event) {
             	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
                 ki.findPossMoves(brett,ki.getColor());
