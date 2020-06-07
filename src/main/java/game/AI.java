@@ -19,6 +19,8 @@ public class AI {
 	private String convTurn;
 	private int min;
 	private int color;
+	private Figures restoreTo;
+	private Figures restoreFrom;
 	
 	
 	public AI(int color) {
@@ -52,14 +54,26 @@ public class AI {
 			for (int j=0;j<8;j++) {
 				for (int x=0;x<8;x++) {
 					for (int y=0;y<8;y++) {
-						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()&&Figures.hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
-							if(board.getField(x, y)!= null) {
-								
+						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()){
+							restoreFrom=board.getField(i, j);
+							if (board.getField(x,y)!=null){
+							restoreTo=board.getField(x, y);}
+							if (board.getField(x,y)==null) {
+								restoreTo=null;
 							}
+							if (board.getField(i, j).move(board,i,j,Integer.toString(x)+Integer.toString(y))) {
+							
 							Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
 							possibleMoveList.add(zug);
-							
-						}
+							board.setField(i, j, restoreFrom);
+							if (restoreTo!=null) {
+							board.setField(x, y,restoreTo);
+							}
+							if (restoreTo==null) {
+								board.positionen[x][y]=null;
+							}
+							board.setCurrentTurn(turn);
+						}}
 					}
 				}
 			}
