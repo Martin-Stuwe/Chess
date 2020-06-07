@@ -276,7 +276,7 @@ public class GuiMain extends Application {
             @Override
             public void handle(ActionEvent event) {
             	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
-                ki.findPossMoves(brett,1);
+                ki.findPossMoves(brett,ki.getColor());
                 ki.Calculate(brett);
                 ki.DoMinMove(brett);
                 drawBoard(brett);
