@@ -1,5 +1,6 @@
 package game;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,12 +12,59 @@ import schach.Console;
 public class AI {
 
 	public static List<Zug> possibleMoves = new ArrayList<Zug>();
-	public static List<Integer> EnemyValue = new ArrayList<Integer>();
+	public static List<Zug> enPossibleMoves = new ArrayList<Zug>();
+	public List<Integer> EnemyValue = new ArrayList<Integer>();
+	public List<Integer> AIValue = new ArrayList<Integer>();
+	public List<Integer> AILoss = new ArrayList<Integer>();
 	private static String convTurn;
-	private static int min;
-
+	private int min;
+	private static int color;
 	
-	public static void Calculate(Board board) {
+	
+	public AI(int color) {
+		this.color = color;
+		
+		
+	}
+	
+	
+	
+	public static void findPossMoves(Board board, int turn ) {
+		List<Zug> possibleMoveList = new ArrayList<Zug>();
+		possibleMoves.clear();
+		switch (turn) {
+		case 0:
+			convTurn = "w";
+		case 1:	
+			convTurn = "b";
+	}
+		
+		for (int i=0;i<8;i++) {
+			for (int j=0;j<8;j++) {
+				for (int x=0;x<8;x++) {
+					for (int y=0;y<8;y++) {
+						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()&&Figures.hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
+							if(board.getField(x, y)!= null) {
+								
+							}
+							Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
+							possibleMoves.add(zug);
+						}
+					}
+				}
+			}
+		}
+		if(turn == color) {
+			possibleMoves = possibleMoveList;
+		}
+		else {
+			enPossibleMoves = possibleMoveList;
+		}
+	}
+	
+	
+	
+	public void Calculate(Board board) {
 		EnemyValue.removeAll(EnemyValue);
 
 
@@ -34,11 +82,12 @@ public class AI {
 			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
 			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=null;
 			board.initializeBoard();
-		for (int x=0;x<8;x++) {
+			for (int x=0;x<8;x++) {
 				for (int y=0;y<8;y++) {
 					if (board.getField(x, y)!=null&&board.getField(x, y).getColor() != convTurn) {
 					
 						if (board.getField(x, y).getClass()==Bishop.class) {
+							
 						EnemyValue.set(z, EnemyValue.get(z)+3);
 						}
 						if (board.getField(x, y).getClass()==King.class) {
@@ -65,6 +114,13 @@ public class AI {
 				}	
 				
 			}
+		
+		findPossMoves(board, 0);
+		Zug seperator = new Zug(420);
+		
+		enPossibleMoves.add(seperator);
+		
+			
 		board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
 		board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
 		}
@@ -75,32 +131,57 @@ public class AI {
 
 	
 	
-	public static void findPossMoves(Board board) {
-		switch (board.getCurrentTurn()) {
+
+	public String convertTurn(int turn) {
+		switch (turn) {
 		case 0:
 			convTurn = "w";
 		case 1:	
 			convTurn = "b";
 	}
-		possibleMoves.removeAll(possibleMoves);
-		for (int i=0;i<8;i++) {
-			for (int j=0;j<8;j++) {
-				for (int x=0;x<8;x++) {
-					for (int y=0;y<8;y++) {
-						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()&&Figures.hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
-							Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
-							possibleMoves.add(zug);
-						}
-					}
-				}
-			}
-		}
+		return convTurn;
 	}
 	
 	
+	public int calculateValue(Board board) {
+		int value=0;
+		for (int x=0;x<8;x++) {
+			for (int y=0;y<8;y++) {
+				if (board.getField(x, y)!=null&&board.getField(x, y).getColor() != convTurn) {
+				
+					if (board.getField(x, y).getClass()==Bishop.class) {
+						
+						value=value+3;
+					}
+					if (board.getField(x, y).getClass()==King.class) {
+						value=value+5000;
+					}
+				
+					if (board.getField(x, y).getClass()==Knight.class) {
+						value=value+3;
+					}
+					
+					if (board.getField(x, y).getClass()==Pawn.class) {
+						value=value+1;
+					}
+					
+					if (board.getField(x, y).getClass()==Queen.class) {
+						value=value+10;
+					}
+					
+					if (board.getField(x, y).getClass()==Rook.class) {
+						value=value+5;
+					}
+					
+				}
+			}	
+			
+		}
+		return value;
+	}
 	
 	
-	public static void DoRndMove(Board board) {
+	public void DoRndMove(Board board) {
 		Random rnd= new Random();
 
 		Zug rndMove = possibleMoves.get(rnd.nextInt(possibleMoves.size()));	
@@ -114,7 +195,7 @@ public class AI {
 	
 	
 	
-	public static void DoMinMove(Board board) {
+	public void DoMinMove(Board board) {
 		List<Integer> sortedList = new ArrayList<>(EnemyValue);
 		Collections.sort(sortedList);
 		for (int x = 0; x<EnemyValue.size();x++) {
@@ -136,42 +217,4 @@ public class AI {
 		}
 	
 	}
-	
-	public static String ConvertSysInToConsole(int from1, int from2, int to1, int to2) {
-		String pos1new;
-		switch (from1) {
-		case 0:
-			pos1new ="a";
-			break;
-		case 1:
-			pos1new ="b";
-			break;
-		case 2:
-			pos1new ="c";
-			break;
-		case 3:
-			pos1new ="d";
-			break;
-		case 4:
-			pos1new ="e";
-			break;
-		case 5:
-			pos1new ="f";
-			break;
-		case 6:
-			pos1new ="g";
-			break;
-		case 7:
-			pos1new ="g";
-			break;
-		default:
-			pos1new="420";
-			return "420";
-		}
-		from2 =-1*(from2+8);
-		
-		return pos1new;
-		
-	}
-	
 }
