@@ -50,8 +50,8 @@ public class AI {
 		
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {
-				for (int x=0;x<7;x++) {
-					for (int y=0;y<7;y++) {
+				for (int x=0;x<8;x++) {
+					for (int y=0;y<8;y++) {
 						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()&&Figures.hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
 							if(board.getField(x, y)!= null) {
 								
