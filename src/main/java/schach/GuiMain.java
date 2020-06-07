@@ -52,7 +52,7 @@ public class GuiMain extends Application {
 	boolean touchMove = false;
 	boolean clicked = false;
 	ListView<String> historie = new ListView<String>();
-	
+	AI ki =new AI(1);
 	
     public static void main(String[] args) {
         launch(args);
@@ -267,9 +267,9 @@ public class GuiMain extends Application {
        	 
             @Override
             public void handle(ActionEvent event) {
-                AI.findPossMoves(brett);
-                AI.Calculate(brett);
-                AI.DoMinMove(brett);
+                ki.findPossMoves(brett,1);
+                ki.Calculate(brett);
+                ki.DoMinMove(brett);
                 drawBoard(brett);
                 
             }

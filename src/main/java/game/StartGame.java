@@ -244,17 +244,17 @@ public class StartGame {
 		Board board = new Board();
 		board.setStart();
 		board.initializeBoard();
-		
+		AI ki =new AI(1);
 		
 		while (true) {
 			System.out.println(board.getCurrentTurn());
 		getAndMakeMove(board);
-	
-		AI.findPossMoves(board);
-		AI.Calculate(board);
-		System.out.println(AI.possibleMoves);
-		System.out.println(AI.EnemyValue);
-		AI.DoMinMove(board);
+
+		ki.findPossMoves(board,1);
+		ki.Calculate(board);
+		System.out.println(ki.possibleMoves);
+		System.out.println(ki.EnemyValue);
+		ki.DoMinMove(board);
 		board.initializeBoard();
 		
 		//board.setCurrentTurn(0);
