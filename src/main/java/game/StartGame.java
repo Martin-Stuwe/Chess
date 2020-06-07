@@ -249,14 +249,14 @@ public class StartGame {
 		while (true) {
 			System.out.println(board.getCurrentTurn());
 		getAndMakeMove(board);
-
+		if(board.getCurrentTurn()==1) {
 		ki.findPossMoves(board,1);
 		ki.Calculate(board);
 		System.out.println(ki.possibleMoves);
 		System.out.println(ki.EnemyValue);
 		ki.DoMinMove(board);
 		board.initializeBoard();
-		
+		}
 		//board.setCurrentTurn(0);
 		}
 	}

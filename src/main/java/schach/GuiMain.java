@@ -52,8 +52,8 @@ public class GuiMain extends Application {
 	boolean touchMove = false;
 	boolean clicked = false;
 	ListView<String> historie = new ListView<String>();
-	AI ki =new AI(1);
-	
+	AI ki = new AI(1) ;
+	boolean aiGame =false;
     public static void main(String[] args) {
         launch(args);
     }
@@ -103,13 +103,7 @@ public class GuiMain extends Application {
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         Button btn = new Button();
         btn.setText("start game");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
  
-            @Override
-            public void handle(ActionEvent event) {
-            	startGame(primaryStage);
-            }
-        });
         
         RadioButton white = new RadioButton("white");
         white.setSelected(true);
@@ -126,7 +120,21 @@ public class GuiMain extends Application {
         pla.setToggleGroup(mode);
         ai.setToggleGroup(mode);
         HBox modebox = new HBox(100, pla, ai);
-        
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+            	if(ai.isSelected()&& white.isSelected()) {
+            		aiGame =true;
+            		ki.setColor(1);
+            	}
+            	else if(ai.isSelected()&& black.isSelected()) {
+            		aiGame=true;
+            		ki.setColor(0);
+            	}
+            	startGame(primaryStage);
+            }
+        });
         VBox option = new VBox();
         option.setSpacing(primaryScreenBounds.getHeight() /20);
         option.getChildren().add(colorbox);
@@ -267,11 +275,12 @@ public class GuiMain extends Application {
        	 
             @Override
             public void handle(ActionEvent event) {
+            	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
                 ki.findPossMoves(brett,1);
                 ki.Calculate(brett);
                 ki.DoMinMove(brett);
                 drawBoard(brett);
-                
+            	}
             }
         });
         
@@ -456,6 +465,7 @@ public class GuiMain extends Application {
 			            public void handle(MouseEvent event) {
 			            	
 			            	makeMove(brett,a,b,to );
+			            	
 			            }
 
 			        });

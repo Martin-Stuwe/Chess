@@ -30,8 +30,12 @@ public class AI {
 		AILoss = new ArrayList<Integer>();
 	}
 	
-	
-	
+	public void setColor(int i) {
+		this.color =i;
+	}
+	public int getColor() {
+		return color;
+	}
 	public void findPossMoves(Board board, int turn ) {
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
 	
@@ -85,7 +89,6 @@ public class AI {
 			Figures f = board.getField(possibleMoves.get(z).to1,possibleMoves.get(z).to2);
 			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
 			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=null;
-			board.initializeBoard();
 			for (int x=0;x<8;x++) {
 				for (int y=0;y<8;y++) {
 					if (board.getField(x, y)!=null&&board.getField(x, y).getColor() != convTurn) {
