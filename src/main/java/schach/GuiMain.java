@@ -1,6 +1,7 @@
 package schach;
 
 import game.Board;
+import game.GuiCalcs;
 import game.StartGame;
 import game.Zug;
 import figures.*;
@@ -94,6 +95,11 @@ public class GuiMain extends Application {
 	ListView<String> historie = new ListView<String>();
 	
 	/**
+	 *  calculator of the game
+	 */
+	GuiCalcs rechner = new GuiCalcs();
+	
+	/**
 	 * Ai of the game
 	 */
 	AI ki = new AI(1);
@@ -153,7 +159,10 @@ public class GuiMain extends Application {
     
     
     
-    @Override
+    /**
+     * startscreen of the game
+     * @param primaryStage main stage
+     */
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Startscreen");
         Button btn = new Button();
@@ -171,6 +180,11 @@ public class GuiMain extends Application {
         primaryStage.setScene(new Scene(root, 1600, 900));
         primaryStage.show();
     }
+    
+    /**
+     * stage to choose mode and options
+     * @param primaryStage main stage
+     */
     public void startOptions(Stage primaryStage) {
         primaryStage.setTitle("Options");
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -222,6 +236,11 @@ public class GuiMain extends Application {
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
     }
+    
+    /**
+     * stage for the main game
+     * @param primaryStage main stage
+     */
     public void startGame(Stage primaryStage) {
         primaryStage.setTitle("Chess");
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -242,15 +261,24 @@ public class GuiMain extends Application {
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
     }
+    
+    /**
+     * method to draw the center pat of the gui including the main board
+     * @param brett board of the game
+     * @return board GridPane of the whole cnter part of the game
+     */
     public GridPane drawBoard (Board brett) {
         GridPane board = drawFeld(brett);     
-
+        
+        // check whose turn it is
         if(brett.getCurrentTurn() == 0) {
         	board.add(new Label ("  white to move"), 8, 0);
         }
         else if(brett.getCurrentTurn() == 1) {
         	board.add(new Label ("  black to move"), 8, 0);
         }
+        
+        // check if there is check
         if(Zug.checkCheck(brett) && showCheck) {
         	if(brett.whiteCheck) {
         		board.add(new Label ("  white is in check"), 8, 1);
@@ -260,6 +288,8 @@ public class GuiMain extends Application {
         	}
         	
         }
+        
+        // check if checkmate or stalemate + new popup if so
         if(!Zug.checkPossibleMoves(brett)) {
         	Stage window = new Stage();
         	window.setTitle("Game End");
@@ -287,6 +317,12 @@ public class GuiMain extends Application {
         return board;
     }
     
+    /**
+     * method to draw top part (settings) of the gui
+     * @param brett board the game is on
+     * @param primaryStage main stage
+     * @return topHbox box including all settings
+     */
     public HBox drawTop(Board brett, Stage primaryStage) {
     	HBox topHbox = new HBox();
         topHbox.setSpacing(screenHeight /20);
@@ -368,6 +404,11 @@ public class GuiMain extends Application {
         return topHbox;
     }
     
+    /**
+     * method to draw right part of gui including historie and beaten figures list
+     * @param brett board the game is on
+     * @return rightVbox VBox that includes historie and beaten figures
+     */
     public VBox drawRight(Board brett) {
     	 VBox rightVbox = new VBox();
          rightVbox.setSpacing(20);
@@ -380,6 +421,11 @@ public class GuiMain extends Application {
          return rightVbox;
     }
     
+    /**
+     * method to draw the bottom part of the gui including labels a to h
+     * @param brett board the game is on
+     * @return bottomHbox with labels a to h
+     */
     public HBox drawBottom(Board brett) {
         //define Bottom
         HBox bottomHbox = new HBox();
@@ -409,6 +455,11 @@ public class GuiMain extends Application {
         
     }
     
+    /**
+     * method to draw the left part of the gui including labels 1 to 8
+     * @param brett board the game is on
+     * @return leftVbox with labels 1 to 8
+     */
     public VBox drawLeft(Board brett) {
     	 //define left 
         VBox leftVbox = new VBox();
@@ -437,13 +488,20 @@ public class GuiMain extends Application {
         return leftVbox;
     }
     
+    /**
+     * method to show the symbol of the figure 
+     * @param brett board the game is on
+     * @param i x axis position
+     * @param y y axis position
+     * @return image visual of the figure
+     */
     public Label getImage(Board brett, int i, int y) {
     	Label image = new Label("");
     	if(brett.getField(i, y).getColor()=="w") {
-    		image.setText(checkWhiteSymbols(brett.getField(i, y).getBoardVisual()));
+    		image.setText(rechner.checkWhiteSymbols(brett.getField(i, y).getBoardVisual()));
     	}
     	else {
-    		image.setText(checkBlackSymbols(brett.getField(i, y).getBoardVisual()));
+    		image.setText(rechner.checkBlackSymbols(brett.getField(i, y).getBoardVisual()));
     	}
     	image.setScaleX(screenHeight/200);
     	image.setScaleY(screenHeight/200);
@@ -466,50 +524,12 @@ public class GuiMain extends Application {
     		return image;
         }
     
-    public String checkWhiteSymbols(String visual) {
-    	String white = "";
-    	if(visual=="P") {
-    		white="♙" ;
-    	}
-    	if(visual=="N") {
-    		white="♘" ;
-    	}
-    	if(visual=="B") {
-    		white="♗" ;
-    	}
-    	if(visual=="R") {
-    		white="♖" ;
-    	}
-    	if(visual=="Q") {
-    		white="♕" ;
-    	}
-    	if(visual=="K") {
-    		white="♔" ;
-    	}
-    	return white;
-    }
-    public String checkBlackSymbols(String visual) {
-    	String black = "";
-     	if(visual=="p") {
-    		black="♟" ;
-    	}
-    	if(visual=="n") {
-    		black="♞" ;
-    	}
-    	if(visual=="b") {
-    		black="♝" ;
-    	}
-    	if(visual=="r") {
-    		black="♜" ;
-    	}
-    	if(visual=="q") {
-    		black="♛" ;
-    	}
-    	if(visual=="k") {
-    		black="♚" ;
-    	}
-    	return black;
-    }
+    /**
+     * method to show possible moves of figures
+     * @param brett board the game is on
+     * @param i x axis position
+     * @param y y axis position
+     */
     
     public void showPossibleMoves(Board brett, int a, int b){
     	GridPane possible = drawBoard(brett);
@@ -555,7 +575,7 @@ public class GuiMain extends Application {
     	  ListView <String>beaten = new ListView<String>();
           beaten.minHeight(screenHeight/4);
           for(int i=0; i<brett.beaten.size();i++) {
-        		  beaten.getItems().add(checkWhiteSymbols(brett.beaten.get(i))+checkBlackSymbols(brett.beaten.get(i)));
+        		  beaten.getItems().add(rechner.checkWhiteSymbols(brett.beaten.get(i))+rechner.checkBlackSymbols(brett.beaten.get(i)));
         	  
 
           }
@@ -563,72 +583,27 @@ public class GuiMain extends Application {
 
     }
     
+    /**
+     * method to convert input into valid chess notation and save it
+     * @param i x axis starting position
+     * @param y y axis starting position
+     * @param to x and y axis ending position
+     */
     public void convertInputToHistorie(int a, int b, String to) {
     	String output ="";
     	
     	int to1=Character.getNumericValue(to.charAt(0));
 		int to2=Character.getNumericValue(to.charAt(1));
-		output = numberToString(a) + numberToNumber(b) + "-" + numberToString(to1) + numberToNumber(to2);
+		output = rechner.numberToString(a) + rechner.numberToNumber(b) + "-" + rechner.numberToString(to1) + rechner.numberToNumber(to2);
     	historie.getItems().add(output);
     }
     
-    public int numberToNumber(int a) {
-    	if(a == 0) {
-    		a = 8;
-    	}
-    	else if (a == 1) {
-    		a = 7;
-    	}
-    	else if (a == 2) {
-    		a = 6;
-    	}
-    	else if (a == 3) {
-    		a = 5;
-    	}
-    	else if (a == 4) {
-    		a = 4;
-    	}
-    	else if (a == 5) {
-    		a = 3;
-    	}
-    	else if (a == 6) {
-    		a = 2;
-    	}
-    	else if (a == 7) {
-    		a = 1;
-    	}
-    	return a;
-    }
-    
-    public String numberToString(int a) {
-    	String b ="";
-    	if(a == 0) {
-    		b = "a";
-    	}
-    	else if (a == 1) {
-    		b = "b";
-    	}
-    	else if (a == 2) {
-    		b = "c";
-    	}
-    	else if (a == 3) {
-    		b = "d";
-    	}
-    	else if (a == 4) {
-    		b = "e";
-    	}
-    	else if (a == 5) {
-    		b = "f";
-    	}
-    	else if (a == 6) {
-    		b = "g";
-    	}
-    	else if (a == 7) {
-    		b = "h";
-    	}
-    	return b;
-    }
-    
+    /**
+     * method to open a window and let the user decide what a pawn should be promoted to
+     * @param brett board the game is on
+     * @param to1 x axis position
+     * @param to2 y axis position
+     */
     public void pawnPromo(Board brett, int to1, int to2) {
     	Stage window = new Stage();
     	window.setTitle("pawn promotion");
@@ -688,7 +663,13 @@ public class GuiMain extends Application {
   
     }
 
-	
+	/**
+	 * method to move figures on the board
+     * @param brett board the game is on
+     * @param i x axis starting position
+     * @param y y axis starting position
+	 * @param to x and y axis ending position
+	 */
 	public void makeMove(Board brett, int a, int b, String to ) {
 		setClicked(false);
 		int to1=Character.getNumericValue(to.charAt(0));
@@ -704,6 +685,12 @@ public class GuiMain extends Application {
 		
 		
 	}
+	
+	/**
+	 * method to draw chess pattern
+	 * @param brett board the game is on
+	 * @return board chess patterned GridPane
+	 */
 	public GridPane drawFeld(Board brett) {
         GridPane board = new GridPane();
 		final int size = 8 ;
