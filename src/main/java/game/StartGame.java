@@ -111,10 +111,7 @@ public class StartGame {
 	/**
 	 * method to show current state
 	 * @param board the board the move is on
-	 * @param From1 x axis starting position
-	 * @param From2 y axis starting position
-	 * @param To1 x axis position to move to
-	 * @param To2 y axis position to move to
+	 * @param pos the x and y positions of the the start and end position
 	 * @param console console input
 	 */
 	public static void convertAndMoveCheck(Board board, String pos, Console console){
@@ -238,7 +235,10 @@ public class StartGame {
 	
 		
 		// check if pawn is on last row
-
+	
+	/**
+	 * method to start use the AI in a player vs AI game
+	 */
 	public static void PlayerVsAI() {
 		
 		Board board = new Board();

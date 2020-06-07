@@ -110,6 +110,7 @@ public class Knight extends Figures {
 		
 		return validMove2(board,x ,y);
 	}
+	
 	/**
 	 * Second part of validmove() to check if current move is valid
 	 * @param board ,the board on which the move is tested on
@@ -118,7 +119,7 @@ public class Knight extends Figures {
 	 * @return true for valid move 
 	 * @return false for invalid move
 	 */
-		public boolean validMove2(Board board, int x, int y) {
+	public boolean validMove2(Board board, int x, int y) {
 		// top right
 		if(this.pos1==x+1&&this.pos2==y-2||this.pos1==x+2&&this.pos2==y-1)  {
 			
