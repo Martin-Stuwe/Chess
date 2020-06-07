@@ -125,8 +125,11 @@ public class AI {
 				
 			}
 		
-		findPossMoves(board, 0);
+		if (convTurn == "b") {
 		
+		findPossMoves(board, 0);
+		}
+		else {findPossMoves(board,1);}
 		for (int x=0; x<enPossibleMoves.size();x++) {
 		
 		if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
