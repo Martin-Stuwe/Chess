@@ -247,9 +247,8 @@ public class AI {
 		Zug rndMove = possibleMoves.get(rnd.nextInt(possibleMoves.size()));	
 		System.out.println(rnd.nextInt(possibleMoves.size()));
 		System.out.println(rndMove);
-		if(!board.getField(possibleMoves.get(min).from1,possibleMoves.get(min).from2).move(board,possibleMoves.get(min).from1,possibleMoves.get(min).from2,Integer.toString(possibleMoves.get(min).to1)+Integer.toString(possibleMoves.get(min).to2))) {
-			DoRndMove(board);
-		}
+		board.getField(possibleMoves.get(min).from1,possibleMoves.get(min).from2).move(board,possibleMoves.get(min).from1,possibleMoves.get(min).from2,Integer.toString(possibleMoves.get(min).to1)+Integer.toString(possibleMoves.get(min).to2));
+		
 		
 		GuiCalcs Test = new GuiCalcs();
         String from1 =Test.numberToString(possibleMoves.get(min).from1);
