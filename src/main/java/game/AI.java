@@ -247,7 +247,16 @@ public class AI {
 		if(!Figures.move(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2))) {
 			DoRndMove(board);
 		}
-
+		
+		GuiCalcs Test = new GuiCalcs();
+        String from1 =Test.numberToString(possibleMoves.get(min).from1);
+        String to1 =Test.numberToString(possibleMoves.get(min).to1);
+        int from2= Test.numberToNumber(possibleMoves.get(min).from2);
+        int to2= Test.numberToNumber(possibleMoves.get(min).to2);
+        System.out.println(from1+Integer.toString(from2));
+        System.out.println("TO");
+        System.out.println(to1+Integer.toString(to2));
+		
 	}
 	
 	
@@ -275,6 +284,14 @@ public class AI {
 			if(!Figures.move(board,possibleMoves.get(min).from1,possibleMoves.get(min).from2,Integer.toString(possibleMoves.get(min).to1)+Integer.toString(possibleMoves.get(min).to2))) {
 				DoRndMove(board);
 			}
+			GuiCalcs Test = new GuiCalcs();
+	        String from1 =Test.numberToString(possibleMoves.get(min).from1);
+	        String to1 =Test.numberToString(possibleMoves.get(min).to1);
+	        int from2= Test.numberToNumber(possibleMoves.get(min).from2);
+	        int to2= Test.numberToNumber(possibleMoves.get(min).to2);
+	        System.out.println(from1+Integer.toString(from2));
+	        System.out.println("TO");
+	        System.out.println(to1+Integer.toString(to2));
 		}
 	
 	}
