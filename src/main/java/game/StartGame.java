@@ -255,6 +255,7 @@ public class StartGame {
 		System.out.println(ki.possibleMoves);
 		System.out.println(ki.EnemyValue);
 		ki.DoMinMove(board);
+		Zug.checkCheck(board);
 		board.initializeBoard();
 		}
 		//board.setCurrentTurn(0);
