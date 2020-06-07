@@ -247,7 +247,7 @@ public class AI {
 		if(!Figures.move(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2))) {
 			DoRndMove(board);
 		}
-		return;
+
 	}
 	
 	
@@ -272,7 +272,9 @@ public class AI {
 			
 		}
 		else {
-			Figures.move(board,possibleMoves.get(min).from1,possibleMoves.get(min).from2,Integer.toString(possibleMoves.get(min).to1)+Integer.toString(possibleMoves.get(min).to2));
+			if(!Figures.move(board,possibleMoves.get(min).from1,possibleMoves.get(min).from2,Integer.toString(possibleMoves.get(min).to1)+Integer.toString(possibleMoves.get(min).to2))) {
+				DoRndMove(board);
+			}
 		}
 	
 	}
