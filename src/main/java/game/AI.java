@@ -58,6 +58,7 @@ public class AI {
 							}
 							Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
 							possibleMoveList.add(zug);
+							
 						}
 					}
 				}
