@@ -19,7 +19,7 @@ public class King extends Figures {
 	 *  the String shown on the board in the console
 	 */
 	private String boardVisual;
-	
+	StackTraceElement[] stackTraceElements;
 	/**
 	 * the x axis position of the king 
 	 */
@@ -121,7 +121,7 @@ public class King extends Figures {
 	 * @return false for invalid move
 	 */
 	public boolean validMove(Board board, int x, int y) {
-		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+		stackTraceElements = Thread.currentThread().getStackTrace();
 		StackTraceElement stackTraceElement = stackTraceElements[2];
 		if(stackTraceElement.getMethodName() == "move2"){
 			realMove =true;
