@@ -95,6 +95,11 @@ public class GuiMain extends Application {
 	ListView<String> historie = new ListView<String>();
 	
 	/**
+	 * ListView of all beaten figures
+	 */
+	ListView<String> beaten = new ListView<String>();
+	
+	/**
 	 *  calculator of the game
 	 */
 	GuiCalcs rechner = new GuiCalcs();
@@ -416,7 +421,7 @@ public class GuiMain extends Application {
          rightVbox.getChildren().add(new Label("historie"));
          rightVbox.getChildren().add(historie);
          rightVbox.getChildren().add(new Label("beaten figures"));
-         rightVbox.getChildren().add(addBeaten(brett));
+         rightVbox.getChildren().add(rechner.addBeaten(brett, screenHeight));
          rightVbox.setPadding(new Insets(20,screenHeight/12,0,20));
          return rightVbox;
     }
@@ -571,18 +576,7 @@ public class GuiMain extends Application {
     	border.setCenter(possible);
     }
     
-    public ListView<String> addBeaten(Board brett) {
-    	  ListView <String>beaten = new ListView<String>();
-          beaten.minHeight(screenHeight/4);
-          for(int i=0; i<brett.beaten.size();i++) {
-        		  beaten.getItems().add(rechner.checkWhiteSymbols(brett.beaten.get(i))+rechner.checkBlackSymbols(brett.beaten.get(i)));
-        	  
 
-          }
-          return beaten;
-
-    }
-    
     /**
      * method to convert input into valid chess notation and save it
      * @param i x axis starting position
