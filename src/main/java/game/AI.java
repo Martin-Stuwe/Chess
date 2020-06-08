@@ -289,6 +289,7 @@ public class AI {
         System.out.println(from1+Integer.toString(from2));
         System.out.println("TO");
         System.out.println(to1+Integer.toString(to2));
+        System.out.println("420");
 		
 	}
 	
@@ -304,19 +305,30 @@ public class AI {
 				min = x;
 			}
 		}
-
-
-				
+		System.out.println(sortedList);
+		System.out.println(min);
+		System.out.println(min);
+		System.out.println(sortedList.size());
 		if (sortedList.size()==0 ) {
 			
 			DoRndMove(board);
-			
+			 System.out.println("320");
 			
 		}
+		
 		else {
-			System.out.println(EnemyValue.get(0));
-			if(!board.getField(possibleMoves.get(min).from1,possibleMoves.get(min).from2).move(board,possibleMoves.get(min).from1,possibleMoves.get(min).from2,Integer.toString(possibleMoves.get(min).to1)+Integer.toString(possibleMoves.get(min).to2))) {
+			System.out.println(sortedList.get(sortedList.size()-1)==sortedList.get(0));
+			System.out.println("müssen gleich sein:");
+			System.out.println(sortedList.get(sortedList.size()-1));
+			System.out.println(sortedList.get(0));
+			
+			if(sortedList.get(sortedList.size()-1).equals(sortedList.get(0))) {
+				System.out.println("3");
 				DoRndMove(board);
+			}
+			else {
+				Zug minMove = possibleMoves.get(min);	
+				board.getField(minMove.from1, minMove.from2).move(board,minMove.from1,minMove.from2,Integer.toString(minMove.to1)+Integer.toString(minMove.to2));
 			}
 			GuiCalcs Test = new GuiCalcs();
 	        String from1 =Test.numberToString(possibleMoves.get(min).from1);
