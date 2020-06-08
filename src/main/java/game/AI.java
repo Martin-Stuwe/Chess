@@ -217,7 +217,7 @@ public class AI {
 
 		}
 	
-		board.setCurrentTurn(1);
+		board.setCurrentTurn(color);
 		
 	}
 	
