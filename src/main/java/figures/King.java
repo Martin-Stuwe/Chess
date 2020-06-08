@@ -236,7 +236,7 @@ public class King extends Figures {
 	 */
 	public boolean check2King(Board board, int x, int y) {
 		// possible king standard moves (first checking x axis)
-		return((this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x)&&(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y));
+		return(this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x)&&(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y);
 	}
 		
 		
