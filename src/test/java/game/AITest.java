@@ -35,8 +35,8 @@ public class AITest {
 		ki.Calculate(board);
 		assertNotEquals(0, ki.enPossibleMoves.size(), "enPossMoves2");
 	}
-	
-	@Test
+	 
+	@Test 
 	public void testConvertTurn() {
 		AI ki=new AI(1);
 		Board board= new Board();
