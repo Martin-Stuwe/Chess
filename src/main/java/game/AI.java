@@ -108,7 +108,7 @@ public class AI {
 						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()){
 							
 							checkPossMoves(board,Integer.toString(i)+Integer.toString(j)+Integer.toString(x)+Integer.toString(y),turn, possibleMoveList);
-							}
+						}
 					}
 				}
 			}
@@ -137,7 +137,8 @@ public class AI {
 		
 		restoreFrom=board.getField(i, j);
 		if (board.getField(x,y)!=null){
-		restoreTo=board.getField(x, y);}
+			restoreTo=board.getField(x, y);
+		}
 		if (board.getField(x,y)==null) {
 			restoreTo=null;
 		}	
@@ -146,9 +147,9 @@ public class AI {
 		}
 		if (board.getField(i, j).hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
 		
-		Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
-		possibleMoveList.add(zug);
-		board.setField(i, j, restoreFrom);
+			Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
+			possibleMoveList.add(zug);
+			board.setField(i, j, restoreFrom);
 		if (restoreTo!=null) {
 		board.setField(x, y,restoreTo);
 		}
@@ -164,7 +165,6 @@ public class AI {
 	 * @param board board the moves should take place on
 	 */
 	public void Calculate(Board board) {
-		System.out.println("Calculate");
 		EnemyValue.removeAll(EnemyValue);
 
 		switch (board.getCurrentTurn()) {
@@ -217,8 +217,8 @@ public class AI {
 		//}
 		//}
 					
-		board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
-		board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
+			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
+			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
 
 		}
 	
@@ -255,12 +255,11 @@ public class AI {
 		int value=0;
 		for (int x=0;x<8;x++) {
 			for (int y=0;y<8;y++) {
+				
 				value = value+calculateFigure(board.getField(x, y),convertTurn(board.getCurrentTurn()));
 					
-				}
-			}	
-			
-		
+			}
+		}	
 		return value;
 	}
 	
@@ -314,20 +313,7 @@ public class AI {
 		Random rnd= new Random();
 
 		Zug rndMove = possibleMoves.get(rnd.nextInt(possibleMoves.size()));	
-		System.out.println(rnd.nextInt(possibleMoves.size()));
-		System.out.println(rndMove);
 		board.getField(rndMove.from1, rndMove.from2).move(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2));
-		
-		
-		GuiCalcs Test = new GuiCalcs();
-        String from1 =Test.numberToString(possibleMoves.get(min).from1);
-        String to1 =Test.numberToString(possibleMoves.get(min).to1);
-        int from2= Test.numberToNumber(possibleMoves.get(min).from2);
-        int to2= Test.numberToNumber(possibleMoves.get(min).to2);
-        System.out.println(from1+Integer.toString(from2));
-        System.out.println("TO");
-        System.out.println(to1+Integer.toString(to2));
-        System.out.println("420");
 		
 	}
 	
@@ -346,22 +332,13 @@ public class AI {
 				min = x;
 			}
 		}
-		System.out.println(sortedList);
-		System.out.println(min);
-		System.out.println(min);
-		System.out.println(sortedList.size());
 		if (sortedList.size()==0 ) {
 			
 			DoRndMove(board);
-			 System.out.println("320");
-			
+			System.out.println("320");
 		}
 		
 		else {
-			System.out.println(sortedList.get(sortedList.size()-1)==sortedList.get(0));
-			System.out.println("müssen gleich sein:");
-			System.out.println(sortedList.get(sortedList.size()-1));
-			System.out.println(sortedList.get(0));
 			
 			if(sortedList.get(sortedList.size()-1).equals(sortedList.get(0))) {
 				System.out.println("3");
@@ -371,14 +348,6 @@ public class AI {
 				Zug minMove = possibleMoves.get(min);	
 				board.getField(minMove.from1, minMove.from2).move(board,minMove.from1,minMove.from2,Integer.toString(minMove.to1)+Integer.toString(minMove.to2));
 			}
-			GuiCalcs Test = new GuiCalcs();
-	        String from1 =Test.numberToString(possibleMoves.get(min).from1);
-	        String to1 =Test.numberToString(possibleMoves.get(min).to1);
-	        int from2= Test.numberToNumber(possibleMoves.get(min).from2);
-	        int to2= Test.numberToNumber(possibleMoves.get(min).to2);
-	        System.out.println(from1+Integer.toString(from2));
-	        System.out.println("TO");
-	        System.out.println(to1+Integer.toString(to2));
 		}
 	
 	}
