@@ -8,7 +8,15 @@ import java.util.Random;
 
 import figures.*;
 
-
+/**
+ * Class for the AI
+ * @author Martin Stuwe 676421
+ * @author Zeyi Sun
+ * @author Richard Tank
+ * @author Fin Niklas Tiedemann
+ * group 23
+ * it2
+ */
 public class AI {
 
 	/**
@@ -101,28 +109,7 @@ public class AI {
 					for (int y=0;y<8;y++) {
 						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()){
 							
-							restoreFrom=board.getField(i, j);
-							if (board.getField(x,y)!=null){
-							restoreTo=board.getField(x, y);}
-							if (board.getField(x,y)==null) {
-								restoreTo=null;
-							}	
-							if(turn!=color) {
-								board.setCurrentTurn(turn);
-							}
-							if (board.getField(i, j).hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
-							
-							Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
-							possibleMoveList.add(zug);
-							board.setField(i, j, restoreFrom);
-							if (restoreTo!=null) {
-							board.setField(x, y,restoreTo);
-							}
-							if (restoreTo==null) {
-								board.positionen[x][y]=null;
-							}
-							board.setCurrentTurn(color);
-						}
+							checkPossMoves(board,Integer.toString(i)+Integer.toString(j)+Integer.toString(x)+Integer.toString(y),turn, possibleMoveList);
 							}
 					}
 				}
@@ -136,6 +123,43 @@ public class AI {
 		}
 	}
 	
+	/**
+	 * method to check and restore possible moves
+	 * @param board board the moves should take place on
+	 * @param movePos String with each position for the move
+	 * @param turn the value for the move turn
+	 * @param possibleMoveList the list with each possible move
+	 */
+	public void checkPossMoves(Board board, String movePos, int turn,List<Zug> possibleMoveList )  {
+		
+		int i = Character.getNumericValue(movePos.charAt(0));
+		int j = Character.getNumericValue(movePos.charAt(1));	
+		int x = Character.getNumericValue(movePos.charAt(2));
+		int y = Character.getNumericValue(movePos.charAt(3));
+		
+		restoreFrom=board.getField(i, j);
+		if (board.getField(x,y)!=null){
+		restoreTo=board.getField(x, y);}
+		if (board.getField(x,y)==null) {
+			restoreTo=null;
+		}	
+		if(turn!=color) {
+			board.setCurrentTurn(turn);
+		}
+		if (board.getField(i, j).hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
+		
+		Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
+		possibleMoveList.add(zug);
+		board.setField(i, j, restoreFrom);
+		if (restoreTo!=null) {
+		board.setField(x, y,restoreTo);
+		}
+		if (restoreTo==null) {
+			board.positionen[x][y]=null;
+		}
+		board.setCurrentTurn(color);
+	}
+	}
 	
 	/**
 	 * method to evaluate the the board after every possible move
