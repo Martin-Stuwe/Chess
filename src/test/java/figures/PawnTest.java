@@ -2,13 +2,22 @@ package figures;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import game.Figures;
 import game.Zug;
 import game.Board;
-
+/**
+* Class for Pawn tests
+* @author Martin Stuwe 676421
+* @author Zeyi Sun
+* @author Richard Tank
+* @author Fin Niklas Tiedemann
+* group 23
+* it1
+*/
 public class PawnTest {
 	
-	
+	/**
+	* Test For Boardvisuals
+	*/
 	@Test
 	public void testBoardVisual () {
 		Pawn PW = new Pawn(3,2,"w");
@@ -19,7 +28,9 @@ public class PawnTest {
 		assertEquals(null, PQ.getBoardVisual(), "Falsche Farbe erkannt");
 
 	}
-	
+	/**
+	* Test For Positions
+	*/
 	@Test
 	public void testPos () {
 		Pawn PW = new Pawn(3,2,"w");
@@ -27,76 +38,163 @@ public class PawnTest {
 		assertEquals(1, PW.pos1, "Pos1 gesetzt und ausgelesen");
 		assertEquals(2, PW.pos2, "Pos2 gesetzt und ausgelesen");
 	}
+	/**
+	* Test For Color
+	*/
 	@Test
 	public void testColor () {
 		Pawn PW = new Pawn(3,2,"w");
 		assertEquals("w", PW.getColor(), "Farbe ausgelesen");
 	
 	}
+	/**
+	* Test For Type
+	*/
 	@Test
 	public void testType () {
 		Pawn PW = new Pawn(3,2,"w");
 		assertEquals(4, PW.getType(), "Type ausgelesen");
 	
 	}
+	/**
+	* Test For hasMoved
+	*/
 	@Test
 	public void testhasMoved () {
 		Pawn PW = new Pawn(3,2,"w");
-		assertEquals(false, PW.isHasMoved(), "hasMoved ausgelesen");
+		assertFalse( PW.isHasMoved(), "hasMoved ausgelesen");
 		PW.setHasMoved(true);
-		assertEquals(true, PW.isHasMoved(), "hasMoved gesetzt");
+		assertTrue( PW.isHasMoved(), "hasMoved gesetzt");
 	}
+	/**
+	* Test For valid moves 1
+	*/
 	@Test
-	public void testValidMoves () {
+	public void testValidMoves1 () {
 		Pawn PW = new Pawn(1,6,"w");
 		Pawn PB = new Pawn(2,1,"b");
 		Board board = new Board();
 		board.setStart();
 		board.setField(1,6,PW);
 		board.setField(2,1,PB);
-		assertEquals(false, PW.validMove(board, 9, 5), "Number out of Bounds");
-		assertEquals(false, PW.validMove(board, -1, 5), "Number out of Bounds");
-		assertEquals(false, PW.validMove(board, 5, 9), "Number out of Bounds");
-		assertEquals(false, PW.validMove(board, 5, -1), "Number out of Bounds");
-		assertEquals(false, PW.validMove(board, 4, 4), "Same Space");
-		assertEquals(false, PW.validMove(board, 7, 7), "Move too long");
-		assertEquals(false, PW.validMove(board, 2, 5), "Nothing to take1");
-		assertEquals(false, PW.validMove(board, 0, 5), "Nothing to take2");
-		assertEquals(false, PB.validMove(board, 1, 2), "Nothing to take3");
-		assertEquals(false, PB.validMove(board, 3, 2), "Nothing to take4");
+		assertFalse( PW.validMove(board, 9, 5), "Number out of Bounds");
+		assertFalse( PW.validMove(board, -1, 5), "Number out of Bounds");
+		assertFalse( PW.validMove(board, 5, 9), "Number out of Bounds");
+		assertFalse( PW.validMove(board, 5, -1), "Number out of Bounds");
+		assertFalse( PW.validMove(board, 4, 4), "Same Space");
+		assertFalse( PW.validMove(board, 7, 7), "Move too long");
+
+	}
+	/**
+	* Test For valid moves 2
+	*/
+	@Test
+	public void testValidMoves2 () {
+		Pawn PW = new Pawn(1,6,"w");
+		Pawn PB = new Pawn(2,1,"b");
+		Board board = new Board();
+		board.setStart();
+		board.setField(1,6,PW);
+		board.setField(2,1,PB);
+		assertFalse( PW.validMove(board, 2, 5), "Nothing to take1");
+		assertFalse( PW.validMove(board, 0, 5), "Nothing to take2");
+		assertFalse( PB.validMove(board, 1, 2), "Nothing to take3");
+		assertFalse( PB.validMove(board, 3, 2), "Nothing to take4");
+	}
+	/**
+	* Test For valid moves 3
+	*/
+	@Test
+	public void testValidMoves3 () {
+		Pawn PW = new Pawn(1,6,"w");
+		Pawn PB = new Pawn(2,1,"b");
+		Board board = new Board();
+		board.setStart();
+		board.setField(1,6,PW);
+		board.setField(2,1,PB);
 		board.setField(2,5,new Pawn(2,5,"b"));
 		board.setField(0,5,new Pawn(0,5,"b"));
 		board.setField(1,2,new Pawn(1,2,"w"));
 		board.setField(3,2,new Pawn(3,2,"w"));
-		assertEquals(true, PW.validMove(board, 2, 5), "take1");
-		assertEquals(true, PW.validMove(board, 0, 5), "take2");
-		assertEquals(true, PB.validMove(board, 1, 2), "take3");
-		assertEquals(true, PB.validMove(board, 3, 2), "take4");
+		assertTrue( PW.validMove(board, 2, 5), "take1");
+		assertTrue( PW.validMove(board, 0, 5), "take2");
+		assertTrue( PB.validMove(board, 1, 2), "take3");
+		assertTrue( PB.validMove(board, 3, 2), "take4");
+	}
+	/**
+	* Test For valid moves 4
+	*/
+	@Test
+	public void testValidMoves4 () {
+		Pawn PW = new Pawn(1,6,"w");
+		Pawn PB = new Pawn(2,1,"b");
+		Board board = new Board();
+		board.setStart();
+		board.setField(1,6,PW);
+		board.setField(2,1,PB);
 		board.setField(2,5,new Pawn(2,5,"w"));
 		board.setField(0,5,new Pawn(0,5,"w"));
 		board.setField(1,2,new Pawn(1,2,"b"));
 		board.setField(3,2,new Pawn(3,2,"b"));
-		assertEquals(false, PW.validMove(board, 2, 5), "wrong color to take1");
-		assertEquals(false, PW.validMove(board, 0, 5), "wrong color to take2");
-		assertEquals(false, PB.validMove(board, 1, 2), "wrong color to take3");
-		assertEquals(false, PB.validMove(board, 3, 2), "wrong color to take4");
+		assertFalse( PW.validMove(board, 2, 5), "wrong color to take1");
+		assertFalse( PW.validMove(board, 0, 5), "wrong color to take2");
+		assertFalse( PB.validMove(board, 1, 2), "wrong color to take3");
+		assertFalse( PB.validMove(board, 3, 2), "wrong color to take4");
+	}
+	/**
+	* Test For valid moves 5
+	*/
+	@Test
+	public void testValidMoves5 () {
+		Pawn PW = new Pawn(1,6,"w");
+		Pawn PB = new Pawn(2,1,"b");
+		Board board = new Board();
+		board.setStart();
+		board.setField(1,6,PW);
+		board.setField(2,1,PB);
 		
-		assertEquals(true, PW.validMove(board, 1, 5), "Normal w true");
-		assertEquals(true, PB.validMove(board, 2, 2), "Normal b true");
-		assertEquals(true, PW.validMove(board, 1, 4), "Double w true");
-		assertEquals(true, PB.validMove(board, 2, 3), "Double b true");
+		assertTrue( PW.validMove(board, 1, 5), "Normal w true");
+		assertTrue( PB.validMove(board, 2, 2), "Normal b true");
+		assertTrue( PW.validMove(board, 1, 4), "Double w true");
+		assertTrue( PB.validMove(board, 2, 3), "Double b true");
+	}
+	/**
+	* Test For valid moves 6
+	*/
+	@Test
+	public void testValidMoves6 () {
+		Pawn PW = new Pawn(1,6,"w");
+		Pawn PB = new Pawn(2,1,"b");
+		Board board = new Board();
+		board.setStart();
+		board.setField(1,6,PW);
+		board.setField(2,1,PB);
 		board.setField(2,3,new Pawn(2,3,"b"));
 		board.setField(1,4,new Pawn(1,4,"b"));
-		assertEquals(false, PW.validMove(board, 1, 4), "Double w false1");
-		assertEquals(false, PB.validMove(board, 2, 3), "Double b false1");
+		assertFalse( PW.validMove(board, 1, 4), "Double w false1");
+		assertFalse( PB.validMove(board, 2, 3), "Double b false1");
+	}
+	/**
+	* Test For valid moves 7
+	*/
+	@Test
+	public void testValidMoves7 () {
+		Pawn PW = new Pawn(1,6,"w");
+		Pawn PB = new Pawn(2,1,"b");
+		Board board = new Board();
+		board.setStart();
+		board.setField(1,6,PW);
+		board.setField(2,1,PB);
 		board.setField(2, 2,new Pawn(2,2,"b") );
 		board.setField(1, 5,new Pawn(1,5,"b") );
-		assertEquals(false, PW.validMove(board, 1, 5), "Normal w false");
-		assertEquals(false, PB.validMove(board, 2, 2), "Normal b false");
-		assertEquals(false, PW.validMove(board, 1, 4), "Double w false");
-		assertEquals(false, PB.validMove(board, 2, 3), "Double b false");
+		assertFalse( PW.validMove(board, 1, 5), "Normal w false");
+		assertFalse( PB.validMove(board, 2, 2), "Normal b false");
+		assertFalse( PW.validMove(board, 1, 4), "Double w false");
+		assertFalse( PB.validMove(board, 2, 3), "Double b false");
 	}
-	
+	/**
+	* Test For EnPassant
+	*/
 	@Test
 	public void testEnPassant() {
 		Pawn PW = new Pawn(6,3,"w");
@@ -112,24 +210,24 @@ public class PawnTest {
 		Zug zug1 = new Zug(sacPawnW,1,6,"14");  
 		board.movedList.add(zug1);
 		PB.realMove =true;
-		assertEquals(true, PB.validMove1(board, 1, 5), "En Passant b1 true");
+		assertTrue( PB.validMove1(board, 1, 5), "En Passant b1 true");
 		
 		board.setField(3,4,sacPawnW);
 		Zug zug2 = new Zug(sacPawnW,3,6,"34");  
 		board.movedList.add(zug2);
 		PB.realMove =true;
-		assertEquals(true, PB.validMove1(board, 3, 5), "En Passant b2 true");
+		assertTrue( PB.validMove1(board, 3, 5), "En Passant b2 true");
 		
 		board.setField(5,3,sacPawnB);
 		Zug zug3 = new Zug(sacPawnB,5,1,"53");  
 		board.movedList.add(zug3);
 		PW.realMove =true;
-		assertEquals(true, PW.validMove1(board, 5, 2), "En Passant w1 true");
+		assertTrue( PW.validMove1(board, 5, 2), "En Passant w1 true");
 		
 		board.setField(7,3,sacPawnB);
 		Zug zug4 = new Zug(sacPawnB,7,1,"73");  
 		board.movedList.add(zug4);
 		PW.realMove =true;
-		assertEquals(true, PW.validMove1(board, 7, 2), "En Passant w2 true");
+		assertTrue( PW.validMove1(board, 7, 2), "En Passant w2 true");
 	}
 }

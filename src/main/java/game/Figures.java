@@ -135,8 +135,7 @@ public class Figures {
 	 * @param board board on which the figure is moved on
 	 * @param pos1from x axis position where the figure is moved from
 	 * @param pos2from y axis position where the figure is moved from
-	 * @param pos1to x axis position where the figure is moved to
-	 * @param pos2to y axis position where the figure is moved to
+	 * @param posTo x and y axis position where the figure is moved to
 	 * @return true if figure has been moved
 	 */
 	public Boolean move(Board board, int pos1from, int pos2from,  String posTo) { 
@@ -176,8 +175,7 @@ public class Figures {
 	 * @param board the board the move is on
 	 * @param pos1from the x axis position of the starting field
 	 * @param pos2from the y axis position of the starting field
-	 * @param pos1to the x axis position of the field to move to
-	 * @param pos2to the y axis position of the field to move to
+	 * @param posTo the x and y axis position of the field to move to
 	 * @return false if move not valid, else go on to move22
 	 */
 	public static boolean move2(Board board, int pos1from, int pos2from, String posTo) { 
@@ -203,8 +201,7 @@ public class Figures {
 	 * @param board the board the move is on
 	 * @param pos1from the x axis position of the starting field
 	 * @param pos2from the y axis position of the starting field
-	 * @param pos1to the x axis position of the field to move to
-	 * @param pos2to the y axis position of the field to move to
+	 * @param posTo the x and y axis position of the field to move to
 	 * @return move3
 	 */
 	public static boolean move22(Board board, int pos1from, int pos2from, String posTo) { 
@@ -233,8 +230,7 @@ public class Figures {
 	 * @param board the board the move is on
 	 * @param pos1from the x axis position of the starting field
 	 * @param pos2from the y axis position of the starting field
-	 * @param pos1to the x axis position of the field to move to
-	 * @param pos2to the y axis position of the field to move to
+	 * @param posTo the x and y axis position of the field to move to
 	 * @return move4
 	 */
 	public static boolean move3(Board board,int pos1from, int pos2from,String posTo) { 
@@ -257,8 +253,7 @@ public class Figures {
 	 * @param board the board the move is on
 	 * @param pos1from the x axis position of the starting field
 	 * @param pos2from the y axis position of the starting field
-	 * @param pos1to the x axis position of the field to move to
-	 * @param pos2to the y axis position of the field to move to
+	 * @param posTo the x and y axis position of the field to move to
 	 * @return true if no check, false if black in check after the move or go on to check4
 	 */
 	public static boolean move4(Board board, int pos1from, int pos2from, String posTo) { 
@@ -298,8 +293,7 @@ public class Figures {
 	 * @param board the board the move is on
 	 * @param pos1from the x axis position of the starting field
 	 * @param pos2from the y axis position of the starting field
-	 * @param pos1to the x axis position of the field to move to
-	 * @param pos2to the y axis position of the field to move to
+	 * @param posTo the x and y axis position of the field to move to
 	 * @return true if move is valid
 	 */
 	public static boolean check4(Board board, String posTo, int pos1from, int pos2from) {
@@ -329,8 +323,7 @@ public class Figures {
 	 * @param board board on which the figure is on
 	 * @param pos1from x axis position where the figure is moved from
 	 * @param pos2from y axis position where the figure is moved from
-	 * @param pos1to x axis position where the figure is moved to
-	 * @param pos2to y axis position where the figure is moved to
+	 * @param To x and y axis position where the figure is moved to
 	 * @return true if figure has at least one possible move
 	 */
 	public Boolean hasPossibleMove(Board board, int pos1from, int pos2from, String To) {
@@ -385,8 +378,7 @@ public class Figures {
 	 * @param board the board the move is on
 	 * @param pos1from the x axis position of the starting field
 	 * @param pos2from the y axis position of the starting field
-	 * @param pos1to the x axis position of the field to move to
-	 * @param pos2to the y axis position of the field to move to
+	 * @param To the x and y axis position of the field to move to
 	 * @return true if no check
 	 */
 	public static Boolean hasPossibleMove2(Board board, int pos1from, int pos2from, String To) { 

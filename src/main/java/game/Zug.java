@@ -48,8 +48,7 @@ public class Zug {
 	 * @param figure figure that has been moved
 	 * @param from1 x axis position
 	 * @param from2 y axis position
-	 * @param to1 x axis position
-	 * @param to2 y axis position
+	 * @param to x and y axis position
 	 */
 	public Zug(Figures figure, int from1, int from2, String to) {  
 		this.figure = figure;
@@ -131,10 +130,7 @@ public class Zug {
 	
 	/**
 	 * method to check for check
-	 * @param i x axis position of the king
-	 * @param j x axis position of the other figures
-	 * @param k y axis position of the other figures
-	 * @param y y axis position of the king
+	 * @param num x and y axis position of the king and the other figure 
 	 * @return true if other figure has validMove to king's position
 	 */
 	public static boolean checkCheckCheck(Board board,String num) {
@@ -169,6 +165,7 @@ public class Zug {
 	
 	/**
 	 * check if current player has a possible move
+	 * @param board the board the game is on
 	 * @return true if current player has a possible move
 	 */
 	public static boolean checkPossibleMoves(Board board) {
@@ -193,6 +190,7 @@ public class Zug {
 	
 	/**
 	 * method to check for possible moves
+	 * @param board the game is on
 	 * @param i the x axis position of the king
 	 * @param y the y axis position of the king
 	 * @return true if figures have possible moves
@@ -218,6 +216,7 @@ public class Zug {
 	
 	/**
 	 * check if there is no checkmate possible anymore
+	 * @param board the game is on
 	 * @return true if no checkmate possible anymore
 	 */
 	public static boolean checkDraw(Board board) {
