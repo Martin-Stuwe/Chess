@@ -326,18 +326,20 @@ public class GuiMain extends Application {
      * @param brett board the game is on
      */
     public void aiMove(Board brett) {
+   
     	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
             
             ki.findPossMoves(brett,ki.getColor());
             ki.Calculate(brett);
             ki.DoMinMove(brett);
-            drawBoard(brett);}
+          
+            drawBoard(brett);
     		if (brett.movedList.size()!=0) {
     		int a = brett.movedList.get(brett.movedList.size()-1).getFrom1();
     		int b = brett.movedList.get(brett.movedList.size()-1).getFrom2();
     		String to  = Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo1())+Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo2());
     		convertInputToHistorie(a, b , to);
-    		}
+    		}}
     }
     /**
      * method to draw top part (settings) of the gui
