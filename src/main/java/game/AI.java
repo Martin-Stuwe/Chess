@@ -94,14 +94,7 @@ public class AI {
 	public void findPossMoves(Board board, int turn ) {
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
 	
-		switch (turn) {
-		case 0:
-			convTurn = "w";
-			break;
-		case 1:	
-			convTurn = "b";
-			break;
-		}
+		convTurn=convertTurn(turn);
 		 
 		for (int i=0;i<8;i++) {
 			for (int j=0;j<8;j++) {
