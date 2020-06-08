@@ -1,12 +1,21 @@
 package game;
 import schach.Console;
-import game.Board;
+
 import java.io.InputStream;
 import java.io.ByteArrayInputStream;
 import figures.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+/**
+* Class for Startgame tests
+* @author Martin Stuwe 676421
+* @author Zeyi Sun
+* @author Richard Tank
+* @author Fin Niklas Tiedemann
+* group 23
+* it1
+*/
 public class StartGameTest {
 /*	@Test
 	public void testStarGameCommand() {
@@ -26,6 +35,9 @@ public class StartGameTest {
 		testGame.PlayerVsPlayer();
 
 	}*/
+	/**
+	* Test For getAndMakeMove
+	*/
 	@Test
 	public void testGetAndMakeMove() {
 		StartGame testGame = new StartGame();
@@ -43,8 +55,12 @@ public class StartGameTest {
 		board2.setCurrentTurn(1);
 		InputStream in3= new ByteArrayInputStream ("beaten\r\n".getBytes());
 		System.setIn(in3);
+		assertEquals(null,board2.getField(0, 5));
 		//testGame.getAndMakeMove(board2);
 	}
+	/**
+	* Test For ConvertAndMove
+	*/
 	@Test
 	public void testConvertAndMove() {
 		StartGame testGame = new StartGame();
@@ -88,8 +104,11 @@ public class StartGameTest {
 		System.setIn(in6);
 		TC.open();
 		testGame.convertAndMove(board2, TC);
+		assertEquals(null,board2.getField(0, 3));
 	}
-	
+	/**
+	* Test For Pawnpromo
+	*/
 	@Test
 	public void testPawnPromotion() {
 		StartGame testGame = new StartGame();
@@ -101,7 +120,7 @@ public class StartGameTest {
 		TC.open();
 		board2.setField(2, 0, new Pawn(2,0,"w"));
 		testGame.pawnPromotion(2, 0, board2, TC);
-		
+		assertNotEquals(null,board2.getField(2, 0));
 		InputStream in2= new ByteArrayInputStream ("e2-e8R\r\n".getBytes());
 		System.setIn(in2);
 		TC.open();

@@ -2,9 +2,20 @@ package game;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import game.Board;
 import figures.*;
+/**
+* Class for Pawn tests
+* @author Martin Stuwe 676421
+* @author Zeyi Sun
+* @author Richard Tank
+* @author Fin Niklas Tiedemann
+* group 23
+* it1
+*/
 public class FiguresTest {
+	/**
+	* Test For Postitions
+	*/
 	@Test
 	public void testPositions() {
 		Figures ftest = new Figures();
@@ -12,55 +23,83 @@ public class FiguresTest {
 		assertEquals(1, ftest.getPos1(), "Pos 1 erfolgreich gesetzt");
 		assertEquals(2, ftest.getPos2(), "Pos 2 erfolgreich gesetzt");
 	}
+	/**
+	* Test For boardVisual
+	*/
 	@Test
 	public void testgetBoardVisual() {
 		Figures ftest = new Figures();
 		assertEquals(null, ftest.getBoardVisual(), "boardVisual = null");
 	}
+	/**
+	* Test For type
+	*/
 	@Test
 	public void testgetType() {
 		Figures ftest = new Figures();
 		assertEquals(0, ftest.getType(), "type = 0");
 	}
+	/**
+	* Test For color
+	*/
 	@Test
 	public void testgetColor() {
 		Figures ftest = new Figures();
 		assertEquals(null, ftest.getColor(), "color = null");
 	}
+	/**
+	* Test For hasMoved
+	*/
 	@Test
 	public void testHasMoved() {
 		Figures ftest = new Figures();
 		ftest.setHasMoved(true);
-		assertEquals(true, ftest.isHasMoved(), "hasMoved = true");
+		assertTrue( ftest.isHasMoved(), "hasMoved = true");
 	}
+	/**
+	* Test For validMove
+	*/
 	@Test
 	public void testValidMove() {
 		Figures ftest = new Figures();
 		ftest.setHasMoved(true);
-		assertEquals(false, ftest.validMove(new Board(),1,1), "valid Move = false");
+		assertFalse( ftest.validMove(new Board(),1,1), "valid Move = false");
 	}
+	/**
+	* Test For moves
+	*/
 	@Test
 	public void testMove() {
 		Board board = new Board();
 		board.setStart();
 		Rook rook = new Rook(4,4,"w");
 		board.setField(4, 4, rook);
-		assertEquals(true,board.getField(4, 4).move(board, 4, 4, "43"),"valid move rightturn");
-		assertEquals(false,board.getField(4, 3).move(board, 4, 3, "44"),"valid move wrong turn");
-		board.setCurrentTurn(0);
-		assertEquals(true,board.getField(4, 3).move(board, 4, 3, "41"),"valid move wrong turn");
-		assertEquals(false,board.getField(0, 1).move(board, 0, 1, "03"),"valid move");
 		
 		board.setStart();
 		Rook rookb = new Rook(4,4,"b");
 		board.setField(4, 4, rookb);
 		board.setCurrentTurn(1);
-		assertEquals(true,board.getField(4, 4).move(board, 4, 4, "43"),"valid move rightturn");
-		assertEquals(false,board.getField(4, 3).move(board, 4, 3, "44"),"valid move wrong turn");
+		assertTrue(board.getField(4, 4).move(board, 4, 4, "43"),"valid move rightturn");
+		assertFalse(board.getField(4, 3).move(board, 4, 3, "44"),"valid move wrong turn");
 		board.setCurrentTurn(1);
-		assertEquals(false,board.getField(4, 3).move(board, 4, 3, "74"),"invalid move");
+		assertFalse(board.getField(4, 3).move(board, 4, 3, "74"),"invalid move");
 		
-		assertEquals(true,board.getField(4, 3).move(board, 4, 3, "46"),"valid move");
-		assertEquals(false,board.getField(0, 6).move(board, 0, 6, "04"),"valid move");
+		assertTrue(board.getField(4, 3).move(board, 4, 3, "46"),"valid move");
+		assertFalse(board.getField(0, 6).move(board, 0, 6, "04"),"valid move");
+	}
+	/**
+	* Test For more moves
+	*/
+	@Test
+	public void testMove2() {
+		Board board = new Board();
+		board.setStart();
+		Rook rook = new Rook(4,4,"w");
+		board.setField(4, 4, rook);
+		assertTrue(board.getField(4, 4).move(board, 4, 4, "43"),"valid move rightturn");
+		assertFalse(board.getField(4, 3).move(board, 4, 3, "44"),"valid move wrong turn");
+		board.setCurrentTurn(0);
+		assertTrue(board.getField(4, 3).move(board, 4, 3, "41"),"valid move wrong turn");
+		assertFalse(board.getField(0, 1).move(board, 0, 1, "03"),"valid move");
 	}
 }
