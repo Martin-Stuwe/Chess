@@ -237,8 +237,10 @@ public class StartGame {
 		}
 	
 		
-		// check if pawn is on last row
-
+		
+	/**
+	 * method for PlayerVsAi gamemode
+	 */
 	public static void PlayerVsAI() {
 		
 		Board board = new Board();
