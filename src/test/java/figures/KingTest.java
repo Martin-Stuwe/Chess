@@ -2,12 +2,22 @@ package figures;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import game.Figures;
-import game.Board;
 
+import game.Board;
+/**
+* Class for King tests
+* @author Martin Stuwe 676421
+* @author Zeyi Sun
+* @author Richard Tank
+* @author Fin Niklas Tiedemann
+* group 23
+* it1
+*/
 public class KingTest {
 	
-	
+	/**
+	* Test For Boardvisuals
+	*/
 	@Test
 	public void testBoardVisual () {
 		King KW = new King(3,2,"w");
@@ -18,7 +28,9 @@ public class KingTest {
 		assertEquals(null, BQ.getBoardVisual(), "Falsche Farbe erkannt");
 
 	}
-	
+	/**
+	* Test For Positions
+	*/
 	@Test
 	public void testPos () {
 		King KW = new King(3,2,"w");
@@ -26,52 +38,79 @@ public class KingTest {
 		assertEquals(1, KW.pos1, "Pos1 gesetzt und ausgelesen");
 		assertEquals(2, KW.pos2, "Pos2 gesetzt und ausgelesen");
 	}
+	/**
+	* Test For Color
+	*/
 	@Test
 	public void testColor () {
 		King KW = new King(3,2,"w");
 		assertEquals("w", KW.getColor(), "Farbe ausgelesen");
 	
 	}
+	/**
+	* Test For hasMoved
+	*/
 	@Test
 	public void testhasMoved () {
 		King KW = new King(3,2,"w");
-		assertEquals(false, KW.isHasMoved(), "hasMoved ausgelesen");
+		assertFalse(KW.isHasMoved(), "hasMoved ausgelesen");
 		KW.setHasMoved(true);
-		assertEquals(true, KW.isHasMoved(), "hasMoved gesetzt");
+		assertTrue(KW.isHasMoved(), "hasMoved gesetzt");
 	}
+	/**
+	* Test For valid moves 1
+	*/
 	@Test
-	public void testValidMoves () {
+	public void testValidMoves1 () {
 		King KW = new King(4,4,"w");
 		Board board = new Board();
 		board.setStart();
 		board.setField(4,4,KW);
-		assertEquals(false, KW.validMove(board, 9, 5), "Number out of Bounds");
-		assertEquals(false, KW.validMove(board, -1, 5), "Number out of Bounds");
-		assertEquals(false, KW.validMove(board, 5, 9), "Number out of Bounds");
-		assertEquals(false, KW.validMove(board, 5, -1), "Number out of Bounds");
-		assertEquals(false, KW.validMove(board, 4, 4), "Same Space");
-		assertEquals(false, KW.validMove(board, 7, 7), "Move too long");
-		assertEquals(true, KW.validMove(board, 4, 3), "Move1 True");
-		assertEquals(true, KW.validMove(board, 4, 5), "Move2 True");
-		assertEquals(true, KW.validMove(board, 5, 3), "Move3 True");
-		assertEquals(true, KW.validMove(board, 5, 4), "Move4 True");
-		assertEquals(true, KW.validMove(board, 5, 5), "Move5 True");
-		assertEquals(true, KW.validMove(board, 3, 3), "Move6 True");
-		assertEquals(true, KW.validMove(board, 3, 4), "Move7 True");
-		assertEquals(true, KW.validMove(board, 3, 5), "Move8 True");
+		assertFalse( KW.validMove(board, 9, 5), "Number out of Bounds1");
+		assertFalse( KW.validMove(board, -1, 5), "Number out of Bounds2");
+		assertFalse( KW.validMove(board, 5, 9), "Number out of Bounds3");
+		assertFalse( KW.validMove(board, 5, -1), "Number out of Bounds4");
+		assertFalse(KW.validMove(board, 4, 4), "Same Space");
+
+	}
+	/**
+	* Test For valid moves 2
+	*/
+	@Test
+	public void testValidMoves2 () {
+		King KW = new King(4,4,"w");
+		Board board = new Board();
+		board.setStart();
+		board.setField(4,4,KW);
+
+		assertFalse(KW.validMove(board, 7, 7), "Move too long");
+		assertTrue( KW.validMove(board, 4, 3), "Move1 True");
 		board.setNull(4, 4);
 		board.setField(4, 7, KW);
-		assertEquals(false, KW.validMove(board, 6, 7), "RochadeS false");
-		assertEquals(false, KW.validMove(board, 2, 7), "RochadeL false");
+		assertFalse(KW.validMove(board, 6, 7), "RochadeS false");
+		assertFalse(KW.validMove(board, 2, 7), "RochadeL false");
 		board.setNull(5, 7);
 		board.setNull(6, 7);
-		assertEquals(true, KW.validMove(board, 6, 7), "RochadeS true");
+		assertTrue( KW.validMove(board, 6, 7), "RochadeS true");
+	
+	}
+	/**
+	* Test For valid moves 3
+	*/
+	@Test
+	public void testValidMoves3 () {
+		King KW = new King(4,4,"w");
+		Board board = new Board();
+		board.setStart();
+		board.setField(4,4,KW);
+
+		board.setField(4, 7, KW);
 		board.setNull(1, 7);
 		board.setNull(2, 7);
 		board.setNull(3, 7);
-		assertEquals(true, KW.validMove(board, 2, 7), "RochadeL true");
+		assertTrue( KW.validMove(board, 2, 7), "RochadeL true");
 		KW.setHasMoved(true);
-		assertEquals(false, KW.validMove(board, 6, 7), "RochadeS Moved");
-		assertEquals(false, KW.validMove(board, 2, 7), "RochadeL moved");
+		assertFalse( KW.validMove(board, 6, 7), "RochadeS Moved");
+		assertFalse( KW.validMove(board, 2, 7), "RochadeL moved");
 	}
 }
