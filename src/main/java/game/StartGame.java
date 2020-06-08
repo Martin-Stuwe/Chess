@@ -241,21 +241,19 @@ public class StartGame {
 	/**
 	 * method for PlayerVsAi gamemode
 	 */
-	public static void PlayerVsAI() {
+	public static void PlayerVsAI(int color) {
 		
 		Board board = new Board();
 		board.setStart();
 		board.initializeBoard();
-		AI ki =new AI(1);
+		AI ki =new AI(color);
 		
 		while (true) {
 			System.out.println(board.getCurrentTurn());
 		getAndMakeMove(board);
-		if(board.getCurrentTurn()==1) {
-		ki.findPossMoves(board,1);
+		if(board.getCurrentTurn()==color) {
+		ki.findPossMoves(board,color);
 		ki.Calculate(board);
-		System.out.println(ki.possibleMoves);
-		System.out.println(ki.EnemyValue);
 		ki.DoMinMove(board);
 		Zug.checkCheck(board);
 		board.initializeBoard();
