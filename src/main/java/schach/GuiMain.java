@@ -4,9 +4,7 @@ import game.Board;
 import game.GuiCalcs;
 import game.Zug;
 
-import java.util.concurrent.TimeUnit;
 
-import figures.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,6 +31,10 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import figures.Bishop;
+import figures.Knight;
+import figures.Queen;
+import figures.Rook;
 import game.AI;
 
 /**
@@ -315,15 +317,17 @@ public class GuiMain extends Application {
         border.setLeft(drawLeft(brett));
         border.setBottom(drawBottom(brett));
         border.setRight(drawRight(brett));
-        if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
-        
+        aiMove(brett);
+        return board;
+    }
+    public void aiMove(Board brett) {
+    	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
+            
             ki.findPossMoves(brett,ki.getColor());
             ki.Calculate(brett);
             ki.DoMinMove(brett);
             drawBoard(brett);}
-        return board;
     }
-    
     /**
      * method to draw top part (settings) of the gui
      * @param brett board the game is on
@@ -338,7 +342,7 @@ public class GuiMain extends Application {
         CheckBox check3 = new CheckBox("show being in check");
         CheckBox check4 = new CheckBox("touch-move rule");
         Button back = new Button("back to menu");
-        Button test = new Button("AI test");
+
        
         
         check2.setSelected(true);
