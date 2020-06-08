@@ -115,7 +115,7 @@ public class AI {
 			Figures f = board.getField(possibleMoves.get(z).to1,possibleMoves.get(z).to2);
 			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
 			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=null;
-			board.initializeBoard();
+			//board.initializeBoard();
 
 			for (int x=0;x<8;x++) {
 				for (int y=0;y<8;y++) {
