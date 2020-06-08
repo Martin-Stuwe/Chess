@@ -243,7 +243,7 @@ public class AI {
 		case 1:	
 			convTurn = "b";
 			break;
-	}
+		}
 		return convTurn;
 	}
 	
