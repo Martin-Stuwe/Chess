@@ -63,6 +63,7 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
+                <includeTests>true</includeTests>
                     <rulesets>
                         <ruleset>https://projects.isp.uni-luebeck.de/template/ruleset/-/raw/master/rules.xml</ruleset>
                     </rulesets>
