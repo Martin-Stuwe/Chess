@@ -23,6 +23,10 @@ public class AI {
 	private Figures restoreFrom;
 	
 	
+	/**
+	 * the AI constructor
+	 * @param The color chosen for the AI
+	 */
 	public AI(int color) {
 		this.color = color;
 		possibleMoves = new ArrayList<Zug>();
@@ -40,6 +44,13 @@ public class AI {
 	}
 	
 	
+	
+	
+	/**
+	 * method to find possible Moves for a side and save them in a list
+	 * @param board board the moves should take place on
+	 * @param turn the side to find possible moves for
+	 */
 	public void findPossMoves(Board board, int turn ) {
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
 	
@@ -94,7 +105,10 @@ public class AI {
 	}
 	
 	
-	
+	/**
+	 * method to evaluate the the board after every possible move
+	 * @param board board the moves should take place on
+	 */
 	public void Calculate(Board board) {
 		System.out.println("Calculate");
 		EnemyValue.removeAll(EnemyValue);
@@ -157,28 +171,28 @@ public class AI {
 				//convTurn = "b";
 				//break;
 		
-		//if (convTurn == "b") {
-		//findPossMoves(board, 0);
-		//}
+		if (convTurn == "b") {
+		findPossMoves(board, 0);
+		}
 		//else {
 			//findPossMoves(board,1);
 			//}
-		//for (int x=0; x<enPossibleMoves.size();x++) {
+		for (int x=0; x<enPossibleMoves.size();x++) {
 		
-		//if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
+		if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
 			
 			
-			//int valuex=0;
+			int valuex=0;
 			
 			
-			//int y = calculateFigure(board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2),board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getColor());
+			int y = calculateFigure(board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2),board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getColor());
 		
-			//if (y>valuex) {
-				//valuex=y;
-			//}
-			//EnemyValue.set(z, EnemyValue.get(z)+valuex);
-		//}
-		//}
+			if (y>valuex) {
+				valuex=y;
+			}
+			EnemyValue.set(z, EnemyValue.get(z)+valuex);
+		}
+		}
 					
 		board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
 		board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
@@ -192,7 +206,10 @@ public class AI {
 
 	
 	
-
+	/**
+	 * method to convert a turn into system variable 0|1
+	 * @param turn the turn to convert
+	 */
 	public String convertTurn(int turn) {
 		switch (turn) {
 		case 0:
@@ -206,6 +223,11 @@ public class AI {
 	}
 	
 	
+	
+	/**
+	 * method to evaluate the figures for the enemy
+	 * @param board board the moves should take place on
+	 */
 	public int calculateValue(Board board) {
 		int value=0;
 		for (int x=0;x<8;x++) {
@@ -242,6 +264,13 @@ public class AI {
 		}
 		return value;
 	}
+	
+	
+	/**
+	 * method to evaluate one single figure
+	 * @param figure the figure to evaluate
+	 * @param color the color from who's perspective to evaluate for
+	 */
 	public int calculateFigure(Figures figure, String color) {
 		int value=0;
 	
@@ -278,7 +307,10 @@ public class AI {
 		return value;
 	}
 	
-	
+	/**
+	 * method to move random
+	 * @param board board the moves should take place on
+	 */
 	public void DoRndMove(Board board) {
 		Random rnd= new Random();
 
@@ -303,7 +335,10 @@ public class AI {
 	
 	
 	
-	
+	/**
+	 * method to find do the least valued move if the is one
+	 * @param board board the moves should take place on
+	 */
 	public void DoMinMove(Board board) {
 		List<Integer> sortedList = new ArrayList<>(EnemyValue);
 		Collections.sort(sortedList);
