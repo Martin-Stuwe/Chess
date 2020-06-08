@@ -46,8 +46,10 @@ public class AI {
 		switch (turn) {
 		case 0:
 			convTurn = "w";
+			break;
 		case 1:	
 			convTurn = "b";
+			break;
 	}
 		 
 		for (int i=0;i<8;i++) {
@@ -55,12 +57,13 @@ public class AI {
 				for (int x=0;x<8;x++) {
 					for (int y=0;y<8;y++) {
 						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()){
+							
 							restoreFrom=board.getField(i, j);
 							if (board.getField(x,y)!=null){
 							restoreTo=board.getField(x, y);}
 							if (board.getField(x,y)==null) {
 								restoreTo=null;
-							}
+							}		
 							if (board.getField(i, j).move(board,i,j,Integer.toString(x)+Integer.toString(y))) {
 							
 							Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
@@ -98,8 +101,10 @@ public class AI {
 		switch (board.getCurrentTurn()) {
 			case 0:
 				convTurn = "w";
+				break;
 			case 1:	
 				convTurn = "b";
+				break;
 		}
 		
 		for (int z=0;z<possibleMoves.size();z++) {
@@ -141,10 +146,11 @@ public class AI {
 			}
 		
 		if (convTurn == "b") {
-		
 		findPossMoves(board, 0);
 		}
-		else {findPossMoves(board,1);}
+		else {
+			findPossMoves(board,1);
+			}
 		for (int x=0; x<enPossibleMoves.size();x++) {
 		
 		if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
@@ -176,8 +182,10 @@ public class AI {
 		switch (turn) {
 		case 0:
 			convTurn = "w";
+			break;
 		case 1:	
 			convTurn = "b";
+			break;
 	}
 		return convTurn;
 	}
