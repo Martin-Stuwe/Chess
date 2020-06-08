@@ -1,8 +1,10 @@
 package game;
 import org.junit.jupiter.api.Test;
 
+import figures.Rook;
+
 import static org.junit.jupiter.api.Assertions.*;
-import figures.*;
+
 /**
 * Class for Pawn tests
 * @author Martin Stuwe 676421

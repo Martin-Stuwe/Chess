@@ -2,7 +2,6 @@ package game;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.scene.control.ListView;
 import static org.junit.jupiter.api.Assertions.*;
 /**
 * Class for GUI calculation tests

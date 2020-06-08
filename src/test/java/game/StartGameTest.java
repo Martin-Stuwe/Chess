@@ -3,8 +3,10 @@ import schach.Console;
 
 import java.io.InputStream;
 import java.io.ByteArrayInputStream;
-import figures.*;
+
 import org.junit.jupiter.api.Test;
+
+import figures.Pawn;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**

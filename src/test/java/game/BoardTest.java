@@ -1,5 +1,6 @@
 package game;
-import figures.*;
+import figures.Queen;
+import figures.Rook;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
