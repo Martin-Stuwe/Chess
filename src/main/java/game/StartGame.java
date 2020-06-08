@@ -334,7 +334,7 @@ public class StartGame {
 	* Method to start the game
 	*/
 	public static void StartGameCommand() {
-		PlayerVsAI();
+		PlayerVsAI(1);
 		
 	}
 
