@@ -297,15 +297,16 @@ public class AI {
 			}
 		}
 
-		System.out.println(EnemyValue.get(0));
+
 				
-		if (sortedList.get(sortedList.size()-1).equals(sortedList.get(0))) {
+		if (sortedList.size()==0 ) {
 			
 			DoRndMove(board);
 			
 			
 		}
 		else {
+			System.out.println(EnemyValue.get(0));
 			if(!board.getField(possibleMoves.get(min).from1,possibleMoves.get(min).from2).move(board,possibleMoves.get(min).from1,possibleMoves.get(min).from2,Integer.toString(possibleMoves.get(min).to1)+Integer.toString(possibleMoves.get(min).to2))) {
 				DoRndMove(board);
 			}
