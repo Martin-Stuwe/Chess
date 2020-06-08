@@ -11,17 +11,50 @@ import schach.Console;
 
 public class AI {
 
+	/**
+	 * the possible Moves for the AI
+	 */
 	public List<Zug> possibleMoves;
-	public List<Zug> enPossibleMoves ;
+	
+	/**
+	 * the possible Moves for the Player
+	 */
+	public List<Zug> enPossibleMoves;
+	
+	/**
+	 * the players value after each AI move
+	 */
 	public List<Integer> EnemyValue ;
+	
+	/**
+	 * the value for the AI
+	 */
 	public List<Integer> AIValue ;
-	public List<Integer> AILoss ;
+
+	/**
+	 * the converted turn
+	 */
 	private String convTurn;
+	
+	/**
+	* the position for the min move
+	*/
 	private int min;
+	
+	/**
+	 * the color of the AI 
+	 */
 	private int color;
-	private Figures restoreTo;
+	
+	/**
+	 * the from figure to restore
+	 */
 	private Figures restoreFrom;
 	
+	/**
+	 * the to figure to restore
+	 */
+	private Figures restoreTo;
 	
 	/**
 	 * the AI constructor
@@ -33,7 +66,6 @@ public class AI {
 		enPossibleMoves = new ArrayList<Zug>();
 		EnemyValue = new ArrayList<Integer>();
 		AIValue = new ArrayList<Integer>();
-		AILoss = new ArrayList<Integer>();
 	}
 	
 	public void setColor(int i) {
