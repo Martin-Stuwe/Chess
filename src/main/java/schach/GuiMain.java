@@ -3,6 +3,9 @@ package schach;
 import game.Board;
 import game.GuiCalcs;
 import game.Zug;
+
+import java.util.concurrent.TimeUnit;
+
 import figures.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -312,7 +315,12 @@ public class GuiMain extends Application {
         border.setLeft(drawLeft(brett));
         border.setBottom(drawBottom(brett));
         border.setRight(drawRight(brett));
+        if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
         
+            ki.findPossMoves(brett,ki.getColor());
+            ki.Calculate(brett);
+            ki.DoMinMove(brett);
+            drawBoard(brett);}
         return board;
     }
     
@@ -379,25 +387,15 @@ public class GuiMain extends Application {
             }
         });
         
-        test.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override 
-            public void handle(ActionEvent event) {
-            	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
-                ki.findPossMoves(brett,ki.getColor());
-                ki.Calculate(brett);
-                ki.DoMinMove(brett);
-                drawBoard(brett);
-            	}
-            }
-        });
+  
+
         
         topHbox.getChildren().add(check1);
         topHbox.getChildren().add(check2);
         topHbox.getChildren().add(check3);
         topHbox.getChildren().add(check4);
         topHbox.getChildren().add(back);
-        topHbox.getChildren().add(test);
+
         
         topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
         return topHbox;
@@ -584,6 +582,7 @@ public class GuiMain extends Application {
 		int to2=Character.getNumericValue(to.charAt(1));
 		output = rechner.numberToString(a) + rechner.numberToNumber(b) + "-" + rechner.numberToString(to1) + rechner.numberToNumber(to2);
     	historie.getItems().add(output);
+    	
     }
     
     /**
