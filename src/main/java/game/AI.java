@@ -181,7 +181,7 @@ public class AI {
 			Figures f = board.getField(possibleMoves.get(z).to1,possibleMoves.get(z).to2);
 			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
 			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=null;
-			board.initializeBoard();
+			//board.initializeBoard();
 
 			EnemyValue.set(z, calculateValue(board));
 			//switch (color) {

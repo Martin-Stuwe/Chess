@@ -250,7 +250,7 @@ public class StartGame {
 		
 		while (true) {
 			System.out.println(board.getCurrentTurn());
-		getAndMakeMove(board);
+		
 		if(board.getCurrentTurn()==color) {
 		ki.findPossMoves(board,color);
 		ki.Calculate(board);
@@ -258,6 +258,7 @@ public class StartGame {
 		Zug.checkCheck(board);
 		board.initializeBoard();
 		}
+		getAndMakeMove(board);
 		//board.setCurrentTurn(0);
 		}
 	}
@@ -334,8 +335,36 @@ public class StartGame {
 	* Method to start the game
 	*/
 	public static void StartGameCommand() {
-		PlayerVsAI(1);
+		 int i = 0;
+	        System.out.print("choose color \n");
+	        Console player1color = new Console();
+	        player1color.open();
+	        while (!player1color.input.equals ("white") && !player1color.input.equals("black")) {
+	            System.out.println("You have to enter white or black \n");
+	            player1color.open();
+	        }
+	        if(player1color.input.equals("white")){
+	            i = 1;
+	        }
+	        else {
+	            i = 0;
+	        }
+	        System.out.print("type 1 for PlayerVsAi and 2 for PlayerVsPlayer \n");
+	        Console mode = new Console();
+	        mode.open();
+	        while (!player1color.input.equals ("1") && !player1color.input.equals("2")) {
+	            System.out.println("You have to enter 1 or 2 \n" );
+	            player1color.open();
+	        }
+	        if(mode.input.equals("1")) {
+	            PlayerVsAI(i);
+	        }
+	        else {
+	            PlayerVsPlayer();
+	        }
+	        
+	    } 
 		
-	}
+	
 
 }
