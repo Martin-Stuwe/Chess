@@ -77,12 +77,12 @@ public class PawnTest {
 		board.setStart();
 		board.setField(1,6,PW);
 		board.setField(2,1,PB);
-		assertFalse( PW.validMove(board, 9, 5), "Number out of Bounds");
-		assertFalse( PW.validMove(board, -1, 5), "Number out of Bounds");
-		assertFalse( PW.validMove(board, 5, 9), "Number out of Bounds");
-		assertFalse( PW.validMove(board, 5, -1), "Number out of Bounds");
+		assertFalse( PW.validMove(board, 9, 5), "Number out of Bounds1");
+		assertFalse( PW.validMove(board, -1, 5), "Number out of Bounds2");
+		assertFalse( PW.validMove(board, 5, 9), "Number out of Bounds3");
+		assertFalse( PW.validMove(board, 5, -1), "Number out of Bounds4");
 		assertFalse( PW.validMove(board, 4, 4), "Same Space");
-		assertFalse( PW.validMove(board, 7, 7), "Move too long");
+	
 
 	}
 	/**
@@ -96,6 +96,7 @@ public class PawnTest {
 		board.setStart();
 		board.setField(1,6,PW);
 		board.setField(2,1,PB);
+		assertFalse( PW.validMove(board, 7, 7), "Move too long");
 		assertFalse( PW.validMove(board, 2, 5), "Nothing to take1");
 		assertFalse( PW.validMove(board, 0, 5), "Nothing to take2");
 		assertFalse( PB.validMove(board, 1, 2), "Nothing to take3");

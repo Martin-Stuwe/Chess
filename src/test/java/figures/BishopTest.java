@@ -82,7 +82,7 @@ public class BishopTest {
 	*/
 	@Test
 	public void testValidMoves3 () {
-		Bishop BW = new Bishop(3,7,"w");
+	
 		Board board = new Board();
 		board.setStart();
 		
