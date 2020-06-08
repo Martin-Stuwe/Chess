@@ -63,8 +63,11 @@ public class AI {
 							restoreTo=board.getField(x, y);}
 							if (board.getField(x,y)==null) {
 								restoreTo=null;
-							}		
-							if (board.getField(i, j).move(board,i,j,Integer.toString(x)+Integer.toString(y))) {
+							}	
+							if(turn!=color) {
+								board.setCurrentTurn(turn);
+							}
+							if (board.getField(i, j).hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
 							
 							Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
 							possibleMoveList.add(zug);
@@ -75,7 +78,7 @@ public class AI {
 							if (restoreTo==null) {
 								board.positionen[x][y]=null;
 							}
-							board.setCurrentTurn(turn);
+							board.setCurrentTurn(color);
 						}
 							}
 					}
@@ -110,8 +113,7 @@ public class AI {
 		for (int z=0;z<possibleMoves.size();z++) {
 			EnemyValue.add(0);
 			Figures f = board.getField(possibleMoves.get(z).to1,possibleMoves.get(z).to2);
-			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
-			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=null;
+
 			for (int x=0;x<8;x++) {
 				for (int y=0;y<8;y++) {
 					if (board.getField(x, y)!=null&&board.getField(x, y).getColor() != convTurn) {
@@ -144,7 +146,14 @@ public class AI {
 				}	
 				
 			}
-		
+			switch (color) {
+			case 0:
+				convTurn = "w";
+				break;
+			case 1:	
+				convTurn = "b";
+				break;
+		}
 		if (convTurn == "b") {
 		findPossMoves(board, 0);
 		}
@@ -167,8 +176,7 @@ public class AI {
 			EnemyValue.set(z, EnemyValue.get(z)+valuex);
 		}}
 					
-		board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
-		board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
+
 		}
 		board.setCurrentTurn(1);
 		
