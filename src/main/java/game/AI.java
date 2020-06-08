@@ -257,36 +257,12 @@ public class AI {
 		int value=0;
 		for (int x=0;x<8;x++) {
 			for (int y=0;y<8;y++) {
-				if (board.getField(x, y)!=null&&board.getField(x, y).getColor() != convTurn) {
-				
-					if (board.getField(x, y).getClass()==Bishop.class) {
-						
-						value=value+3;
-					}
-					if (board.getField(x, y).getClass()==King.class) {
-						value=value+5000;
-					}
-				
-					if (board.getField(x, y).getClass()==Knight.class) {
-						value=value+3;
-					}
-					
-					if (board.getField(x, y).getClass()==Pawn.class) {
-						value=value+1;
-					}
-					
-					if (board.getField(x, y).getClass()==Queen.class) {
-						value=value+10;
-					}
-					
-					if (board.getField(x, y).getClass()==Rook.class) {
-						value=value+5;
-					}
+				value = value+calculateFigure(board.getField(x, y),convertTurn(board.getCurrentTurn()));
 					
 				}
 			}	
 			
-		}
+		
 		return value;
 	}
 	
