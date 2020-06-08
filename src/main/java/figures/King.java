@@ -223,13 +223,25 @@ public class King extends Figures {
 			}
 		}
 		
+		return check2King(board,x,y);
+	}
+		
+		
+	/**
+	 * checks for possible king standard moves (first checking x axis)
+	 * @param board the board the move is on
+	 * @param x the x axis position to move to
+	 * @param y the y axis position to move to
+	 * @return true if move is valid
+	 */
+	public boolean check2King(Board board, int x, int y) {
 		// possible king standard moves (first checking x axis)
-		else if((this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x)&&(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y)) {	
+		if((this.pos1 == x-1 || this.pos1 == x+1 ||this.pos1 == x)&&(this.pos2 == y-1 || this.pos2 == y+1 || this.pos2 == y)) {	
 					return true;
 			}
 				
-			return false;
-		}
+		return false;
+	}
 		
 		
 		/**
