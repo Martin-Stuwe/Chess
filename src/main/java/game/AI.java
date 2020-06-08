@@ -314,7 +314,7 @@ public class AI {
 
 		Zug rndMove = possibleMoves.get(rnd.nextInt(possibleMoves.size()));	
 		board.getField(rndMove.from1, rndMove.from2).move(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2));
-		
+		board.movedList.add(rndMove);
 	}
 	
 	
@@ -335,7 +335,7 @@ public class AI {
 		if (sortedList.size()==0 ) {
 			
 			DoRndMove(board);
-			System.out.println("320");
+			
 		}
 		
 		else {
@@ -343,12 +343,16 @@ public class AI {
 			if(sortedList.get(sortedList.size()-1).equals(sortedList.get(0))) {
 				System.out.println("3");
 				DoRndMove(board);
+				
 			}
 			else {
 				Zug minMove = possibleMoves.get(min);	
 				board.getField(minMove.from1, minMove.from2).move(board,minMove.from1,minMove.from2,Integer.toString(minMove.to1)+Integer.toString(minMove.to2));
+				board.movedList.add(minMove);
 			}
 		}
+		
+		
 	
 	}
 } 
