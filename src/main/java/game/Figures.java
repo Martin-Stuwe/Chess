@@ -333,7 +333,7 @@ public class Figures {
 	 * @param pos2to y axis position where the figure is moved to
 	 * @return true if figure has at least one possible move
 	 */
-	public static Boolean hasPossibleMove(Board board, int pos1from, int pos2from, String To) {
+	public Boolean hasPossibleMove(Board board, int pos1from, int pos2from, String To) {
 		int pos1to=Character.getNumericValue(To.charAt(0));
 		int pos2to=Character.getNumericValue(To.charAt(1));
 		

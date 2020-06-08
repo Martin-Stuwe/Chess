@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import figures.*;
-import schach.Console;
+
 
 public class AI {
 
@@ -145,8 +145,6 @@ public class AI {
 		System.out.println("Calculate");
 		EnemyValue.removeAll(EnemyValue);
 
-
-		Board restBoard = board;
 		switch (board.getCurrentTurn()) {
 			case 0:
 				convTurn = "w";
@@ -161,40 +159,9 @@ public class AI {
 			Figures f = board.getField(possibleMoves.get(z).to1,possibleMoves.get(z).to2);
 			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
 			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=null;
-			//board.initializeBoard();
+			board.initializeBoard();
 
-			for (int x=0;x<8;x++) {
-				for (int y=0;y<8;y++) {
-					if (board.getField(x, y)!=null&&board.getField(x, y).getColor() != convTurn) {
-					
-						if (board.getField(x, y).getClass()==Bishop.class) {
-							
-						EnemyValue.set(z, EnemyValue.get(z)+3);
-						}
-						if (board.getField(x, y).getClass()==King.class) {
-						EnemyValue.set(z, EnemyValue.get(z)+5000);
-						}
-					
-						if (board.getField(x, y).getClass()==Knight.class) {
-							EnemyValue.set(z, EnemyValue.get(z)+3);
-						}
-						
-						if (board.getField(x, y).getClass()==Pawn.class) {
-							EnemyValue.set(z, EnemyValue.get(z)+1);
-						}
-						
-						if (board.getField(x, y).getClass()==Queen.class) {
-							EnemyValue.set(z, EnemyValue.get(z)+10);
-						}
-						
-						if (board.getField(x, y).getClass()==Rook.class) {
-							EnemyValue.set(z, EnemyValue.get(z)+5);
-						}
-						
-					}
-				}	
-				
-			}
+			EnemyValue.set(z, calculateValue(board));
 			//switch (color) {
 			//case 0:
 				//convTurn = "w";
@@ -203,28 +170,30 @@ public class AI {
 				//convTurn = "b";
 				//break;
 		
-		if (convTurn == "b") {
-		findPossMoves(board, 0);
-		}
+		//if (convTurn == "b") {
+			//board.setCurrentTurn(0);
+		//findPossMoves(board, 0);
+		//board.setCurrentTurn(1);
+		//}
 		//else {
 			//findPossMoves(board,1);
 			//}
-		for (int x=0; x<enPossibleMoves.size();x++) {
+		//for (int x=0; x<enPossibleMoves.size();x++) {
 		
-		if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
+		//if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
 			
 			
-			int valuex=0;
+			//int valuex=0;
 			
 			
-			int y = calculateFigure(board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2),board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getColor());
+			//int y = calculateFigure(board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2),board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getColor());
 		
-			if (y>valuex) {
-				valuex=y;
-			}
-			EnemyValue.set(z, EnemyValue.get(z)+valuex);
-		}
-		}
+			//if (y>valuex) {
+				//valuex=y;
+			//}
+			//EnemyValue.set(z, EnemyValue.get(z)+valuex);
+		//}
+		//}
 					
 		board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
 		board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
