@@ -320,6 +320,11 @@ public class GuiMain extends Application {
         aiMove(brett);
         return board;
     }
+    
+    /**
+     * method for an ai move
+     * @param brett board the game is on
+     */
     public void aiMove(Board brett) {
     	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
             
