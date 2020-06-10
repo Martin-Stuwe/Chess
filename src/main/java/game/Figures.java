@@ -48,7 +48,7 @@ public class Figures {
 	 * save for ending position
 	 */
 	static Figures restoreTo;
-	
+	 
 	/**
 	* check if the figure has moved yet
 	*/
