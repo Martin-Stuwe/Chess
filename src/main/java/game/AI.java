@@ -184,38 +184,38 @@ public class AI {
 			//board.initializeBoard();
 
 			EnemyValue.set(z, calculateValue(board));
-			//switch (color) {
-			//case 0:
-				//convTurn = "w";
-				//break;
-			//case 1:	
-				//convTurn = "b";
-				//break;
+			switch (color) {
+			case 0:
+				convTurn = "w";
+				break;
+			case 1:	
+				convTurn = "b";
+				break;
+			}
+		if (convTurn == "b") {
+			board.setCurrentTurn(0);
+		findPossMoves(board, 0);
+		board.setCurrentTurn(1);
+		}
+		else {
+			findPossMoves(board,1);
+			}
+		for (int x=0; x<enPossibleMoves.size();x++) {
 		
-		//if (convTurn == "b") {
-			//board.setCurrentTurn(0);
-		//findPossMoves(board, 0);
-		//board.setCurrentTurn(1);
-		//}
-		//else {
-			//findPossMoves(board,1);
-			//}
-		//for (int x=0; x<enPossibleMoves.size();x++) {
+		if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
+			
+			
+			int valuex=0;
+			
+			
+			int y = calculateFigure(board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2),convTurn);
 		
-		//if (board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2)!=null){
-			
-			
-			//int valuex=0;
-			
-			
-			//int y = calculateFigure(board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2),board.getField(enPossibleMoves.get(x).to1,enPossibleMoves.get(x).to2).getColor());
-		
-			//if (y>valuex) {
-				//valuex=y;
-			//}
-			//EnemyValue.set(z, EnemyValue.get(z)+valuex);
-		//}
-		//}
+			if (y>valuex) {
+				valuex=y;
+			}
+			EnemyValue.set(z, EnemyValue.get(z)+valuex);
+		}
+		}
 					
 			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
 			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
