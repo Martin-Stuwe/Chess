@@ -1,4 +1,5 @@
 package game;
+import figures.Pawn;
 
 /**
  * Class for the chess Figures
@@ -139,8 +140,8 @@ public class Figures {
 	 * @return true if figure has been moved
 	 */
 	public Boolean move(Board board, int pos1from, int pos2from,  String posTo) { 
-		int pos1to=Integer.parseInt(String.valueOf(posTo.charAt(0)));
-		int pos2to=Integer.parseInt(String.valueOf(posTo.charAt(1)));
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		
 		System.out.println(posTo);
 		// saves starting position of figure
@@ -153,7 +154,7 @@ public class Figures {
 			System.out.println(unallowed);
 			return false;	
 		}
-		
+
 		// on white's turn, check if figure to be moved is white
 		if(board.getCurrentTurn()==0 && board.positionen[pos1from][pos2from].getColor() !="w") {
 			System.out.println(unallowed);
@@ -179,8 +180,8 @@ public class Figures {
 	 * @return false if move not valid, else go on to move22
 	 */
 	public static boolean move2(Board board, int pos1from, int pos2from, String posTo) { 
-		int pos1to=Integer.parseInt(String.valueOf(posTo.charAt(0)));
-		int pos2to=Integer.parseInt(String.valueOf(posTo.charAt(1)));
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// if move not valid
 		if(!board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to)) {
 			System.out.println(unallowed);
@@ -205,8 +206,8 @@ public class Figures {
 	 * @return move3
 	 */
 	public static boolean move22(Board board, int pos1from, int pos2from, String posTo) { 
-		int pos1to=Integer.parseInt(String.valueOf(posTo.charAt(0)));
-		int pos2to=Integer.parseInt(String.valueOf(posTo.charAt(1)));
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// color change and adding beaten black figures to the beaten list
 		if(board.getCurrentTurn()==0) {
 			if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1to][pos2to].getColor() == "b") {
@@ -234,8 +235,8 @@ public class Figures {
 	 * @return move4
 	 */
 	public static boolean move3(Board board,int pos1from, int pos2from,String posTo) { 
-		int pos1to=Integer.parseInt(String.valueOf(posTo.charAt(0)));
-		int pos2to=Integer.parseInt(String.valueOf(posTo.charAt(1)));
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// moving the figure
 		board.positionen[pos1to][pos2to] = board.getField(pos1from,pos2from);
 		
@@ -257,8 +258,8 @@ public class Figures {
 	 * @return true if no check, false if black in check after the move or go on to check4
 	 */
 	public static boolean move4(Board board, int pos1from, int pos2from, String posTo) { 
-		int pos1to=Integer.parseInt(String.valueOf(posTo.charAt(0)));
-		int pos2to=Integer.parseInt(String.valueOf(posTo.charAt(1)));
+		int pos1to=Character.getNumericValue(posTo.charAt(0));
+		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// check if you are in check after the move		
 		if(Zug.checkCheck(board)) {
 			
@@ -298,8 +299,8 @@ public class Figures {
 	 */
 	public static boolean check4(Board board, String posTo, int pos1from, int pos2from) {
 		 
-			int pos1to=Integer.parseInt(String.valueOf(posTo.charAt(0)));
-			int pos2to=Integer.parseInt(String.valueOf(posTo.charAt(1)));
+			int pos1to=Character.getNumericValue(posTo.charAt(0));
+			int pos2to=Character.getNumericValue(posTo.charAt(1));
 		// check if white is in check after the move and restoring the move if so
 		if(board.whiteCheck&&board.getCurrentTurn()==1) {
 					board.positionen[pos1to][pos2to] = restoreTo;
@@ -315,7 +316,6 @@ public class Figures {
 				System.out.println(unallowed);
 				return false;
 				}
-		
 		return true;
 	}
 	
@@ -328,8 +328,8 @@ public class Figures {
 	 * @return true if figure has at least one possible move
 	 */
 	public Boolean hasPossibleMove(Board board, int pos1from, int pos2from, String To) {
-		int pos1to=Integer.parseInt(String.valueOf(To.charAt(0)));
-		int pos2to=Integer.parseInt(String.valueOf(To.charAt(1)));
+		int pos1to=Character.getNumericValue(To.charAt(0));
+		int pos2to=Character.getNumericValue(To.charAt(1));
 		
 		// saves starting position of figure
 		restoreFrom=board.positionen[pos1from][pos2from];
@@ -351,15 +351,12 @@ public class Figures {
 		if(board.getCurrentTurn()==1 && board.positionen[pos1from][pos2from].getColor() !="b") {
 			return false;		
 		}
-	
+		
 		// check if figure is allowed to make certain move
 		if (!board.positionen[pos1from][pos2from].validMove(board,pos1to, pos2to)){
 			return false;
 		}
-		if (pos1from==6 && pos2from==1) {
-			System.out.println("yeeeeet für" +Integer.toString(pos1from)+Integer.toString(pos2from)+Integer.toString(pos1to)+Integer.toString(pos2to));
-			System.out.println(board.getField(pos1from, pos2from));
-			}
+		
 		// check if a same color figure is on the ending position
 		if(board.positionen[pos1to][pos2to]!= null && board.positionen[pos1from][pos2from].getColor() == board.positionen[pos1to][pos2to].getColor()) {
 			return false;
@@ -386,8 +383,8 @@ public class Figures {
 	 * @return true if no check
 	 */
 	public static Boolean hasPossibleMove2(Board board, int pos1from, int pos2from, String To) { 
-		int pos1to=Integer.parseInt(String.valueOf(To.charAt(0)));
-		int pos2to=Integer.parseInt(String.valueOf(To.charAt(1)));
+		int pos1to=Character.getNumericValue(To.charAt(0));
+		int pos2to=Character.getNumericValue(To.charAt(1));
 		// check if you are in check after the move	
 		Zug.checkCheck(board);
 		if(board.getCurrentTurn()==0 && board.whiteCheck ||board.getCurrentTurn()==1 && board.blackCheck ) {

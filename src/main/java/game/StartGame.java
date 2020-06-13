@@ -84,8 +84,8 @@ public class StartGame {
 	public static void convertAndMove2(Board board, Console console){
 		
 		// converting the user input into Strings
-		String From=board.ConvertMoveInput(board,console.input.charAt(0),Integer.parseInt(String.valueOf(console.input.charAt(1))));
-		String To = board.ConvertMoveInput(board,console.input.charAt(3),Integer.parseInt(String.valueOf(console.input.charAt(4))));
+		String From=board.ConvertMoveInput(board,console.input.charAt(0),Character.getNumericValue(console.input.charAt(1)));
+		String To = board.ConvertMoveInput(board,console.input.charAt(3),Character.getNumericValue(console.input.charAt(4)));
 		
 		// check if user input is valid (- as third character)
 		if (From =="420" || To =="420" || console.input.charAt(2)!='-' ){
@@ -252,18 +252,14 @@ public class StartGame {
 			System.out.println(board.getCurrentTurn());
 		
 		if(board.getCurrentTurn()==color) {
-			System.out.println("lol");
 		ki.findPossMoves(board,color);
 		ki.Calculate(board);
 		ki.DoMinMove(board);
 		Zug.checkCheck(board);
 		board.initializeBoard();
 		}
-		System.out.println(444);
 		getAndMakeMove(board);
-		System.out.println(board.getField(6, 1).hasPossibleMove(board,6,1, Integer.toString(5)+Integer.toString(4)));
 		//board.setCurrentTurn(0);
-		System.out.println(444);
 		}
 	}
 		
