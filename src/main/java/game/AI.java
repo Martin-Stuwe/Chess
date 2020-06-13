@@ -108,6 +108,7 @@ public class AI {
 						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()){
 							
 							checkPossMoves(board,Integer.toString(i)+Integer.toString(j)+Integer.toString(x)+Integer.toString(y),turn, possibleMoveList);
+		
 						}
 					}
 				}
@@ -130,34 +131,36 @@ public class AI {
 	 */
 	public void checkPossMoves(Board board, String movePos, int turn,List<Zug> possibleMoveList )  {
 		
-		int i = Character.getNumericValue(movePos.charAt(0));
-		int j = Character.getNumericValue(movePos.charAt(1));	
-		int x = Character.getNumericValue(movePos.charAt(2));
-		int y = Character.getNumericValue(movePos.charAt(3));
-		
-		restoreFrom=board.getField(i, j);
-		if (board.getField(x,y)!=null){
-			restoreTo=board.getField(x, y);
-		}
-		if (board.getField(x,y)==null) {
-			restoreTo=null;
-		}	
+		int i = Integer.parseInt(String.valueOf(movePos.charAt(0)));
+		int j = Integer.parseInt(String.valueOf(movePos.charAt(1)));
+		int x = Integer.parseInt(String.valueOf(movePos.charAt(2)));
+		int y = Integer.parseInt(String.valueOf(movePos.charAt(3)));
+		//restoreFrom=board.getField(i, j);
+		//if (board.getField(x,y)!=null){
+			//restoreTo=board.getField(x, y);
+		//}
+		//if (board.getField(x,y)==null) {
+			//restoreTo=null;
+		//}	
 		if(turn!=color) {
 			board.setCurrentTurn(turn);
 		}
-		if (board.getField(i, j).hasPossibleMove(board,i,j,Integer.toString(x)+Integer.toString(y))) {
-		
+		if(board.getField(i,j)!=null) {
+	
+	
+		if (board.getField(i, j).hasPossibleMove(board,i,j, Integer.toString(x)+Integer.toString(y))) {
+
 			Zug zug = new Zug(board.getField(i, j),i,j,Integer.toString(x)+Integer.toString(y));
 			possibleMoveList.add(zug);
-			board.setField(i, j, restoreFrom);
-		if (restoreTo!=null) {
-		board.setField(x, y,restoreTo);
-		}
-		if (restoreTo==null) {
-			board.positionen[x][y]=null;
-		}
-		board.setCurrentTurn(color);
-	}
+		//	board.setField(i, j, restoreFrom);
+	//	if (restoreTo!=null) {
+		//board.setField(x, y,restoreTo);
+		//}
+		//if (restoreTo==null) {
+		//	board.positionen[x][y]=null;
+		//}
+		//board.setCurrentTurn(color);
+	}	}
 	}
 	
 	/**
@@ -178,10 +181,14 @@ public class AI {
 		
 		for (int z=0;z<possibleMoves.size();z++) {
 			EnemyValue.add(0);
-			Figures f = board.getField(possibleMoves.get(z).to1,possibleMoves.get(z).to2);
+			Figures t = board.getField(possibleMoves.get(z).to1,possibleMoves.get(z).to2);
+			Figures f = board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
 			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2];
+			
 			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=null;
-			//board.initializeBoard();
+			
+			board.initializeBoard();
+			
 
 			EnemyValue.set(z, calculateValue(board));
 			switch (color) {
@@ -192,13 +199,14 @@ public class AI {
 				convTurn = "b";
 				break;
 			}
-		if (convTurn == "b") {
+		if (convTurn.contentEquals("b")) {
 			board.setCurrentTurn(0);
 		findPossMoves(board, 0);
 		board.setCurrentTurn(1);
 		}
 		else {
 			findPossMoves(board,1);
+			
 			}
 		for (int x=0; x<enPossibleMoves.size();x++) {
 		
@@ -217,10 +225,18 @@ public class AI {
 		}
 		}
 					
-			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2];
-			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=f;
-
+			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2]=f;
+			if (f!=null) {
+			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2].pos1=f.pos1;
+			board.positionen[possibleMoves.get(z).from1][possibleMoves.get(z).from2].pos2=f.pos2;
+			}
+			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2]=t;
+			if(t!=null) {
+			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2].pos1=t.pos1;
+			board.positionen[possibleMoves.get(z).to1][possibleMoves.get(z).to2].pos2=t.pos2;
+			}
 		}
+
 	
 		board.setCurrentTurn(color);
 		
@@ -325,6 +341,7 @@ public class AI {
 	 * @param board board the moves should take place on
 	 */
 	public void DoMinMove(Board board) {
+		min = 0;
 		List<Integer> sortedList = new ArrayList<>(EnemyValue);
 		Collections.sort(sortedList);
 		for (int x = 0; x<EnemyValue.size();x++) {
@@ -335,7 +352,8 @@ public class AI {
 		if (sortedList.size()==0 ) {
 			
 			DoRndMove(board);
-			
+		
+			return;
 		}
 		
 		else {
@@ -343,16 +361,29 @@ public class AI {
 			if(sortedList.get(sortedList.size()-1).equals(sortedList.get(0))) {
 				System.out.println("3");
 				DoRndMove(board);
-				
+		
+				return;
 			}
 			else {
+				System.out.println("XXXXXXXX");
+			
+				System.out.println("MinMoveENDEDANACH");
 				Zug minMove = possibleMoves.get(min);	
+				System.out.println(minMove);
+				System.out.println(minMove.from1);
+				System.out.println(minMove.from2);
+				System.out.println(minMove.to1);
+				System.out.println(minMove.to2);
+				System.out.println(Integer.toString(minMove.to1));
 				board.getField(minMove.from1, minMove.from2).move(board,minMove.from1,minMove.from2,Integer.toString(minMove.to1)+Integer.toString(minMove.to2));
 				board.movedList.add(minMove);
+				
+				return;
+				
 			}
 		}
-		
-		
 	
+		
+
 	}
 } 

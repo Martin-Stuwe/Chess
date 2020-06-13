@@ -107,7 +107,7 @@ public class Pawn extends Figures {
 	 * @return false for invalid move else go to validMove1
 	 */
 	public boolean validMove(Board board,int x, int y) {
-	
+		
 		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
 		StackTraceElement stackTraceElement = stackTraceElements[2];
 		if(stackTraceElement.getMethodName() == "move2"){
@@ -139,9 +139,12 @@ public class Pawn extends Figures {
 					if(realMove) {
 					board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
 					}
+				
 					return true; 
 				}
+				
 				return validmove2(board,x,y);
+				
 		}
 		
 		return validmove2(board,x,y);
@@ -161,8 +164,10 @@ public class Pawn extends Figures {
 				if(checkStuff2(board,x,y) ) {
 					if(realMove) {
 					board.setNull(board.movedList.get(board.movedList.size()-1).getTo1(),board.movedList.get(board.movedList.size()-1).getTo2());
-					} 
+					}
+					
 					return true; 
+					
 				}
 				return validmove3(board,x,y);			
 		}
@@ -209,6 +214,7 @@ public class Pawn extends Figures {
 		
 		// normal move black
 		else if(this.color =="b" && this.pos1 == x && this.pos2 == y-1) {
+			
 			return board.getField(x, this.pos2+1) == null;
 		}
 		
@@ -232,7 +238,9 @@ public class Pawn extends Figures {
 			else if(board.getField(x, this.pos2-2) != null) {
 				return false;
 			}			
+		
 				return true;
+				
 		}
 		return validmove4(board,x,y);
 	}
@@ -253,7 +261,7 @@ public class Pawn extends Figures {
 			else if(board.getField(x, this.pos2+2) != null) {
 				return false;
 			}
-			
+		
 				return true;
 			
 		}
@@ -272,6 +280,11 @@ public class Pawn extends Figures {
 		// take move black
 		if(this.color =="b" && this.pos1 == x+1 && this.pos2 == y-1 || this.color =="b" && this.pos1 == x-1 && this.pos2 == y-1) {
 			if(board.getField(x, y)!= null){
+				System.out.println("420yeeeet");
+				System.out.println(pos1);
+				System.out.println(pos2);
+				System.out.println(x);
+				System.out.println(y);
 				return board.getField(x, y).getColor()=="w";
 			}
 			else {
@@ -295,6 +308,7 @@ public class Pawn extends Figures {
 		
 		if(this.color =="w" && this.pos1 == x+1 && this.pos2 == y+1 || this.color =="w" && this.pos1 == x-1 && this.pos2 == y+1) {
 			if(board.getField(x, y)!= null){
+				System.out.println("yeeeeet für" +Integer.toString(pos1)+Integer.toString(pos2)+Integer.toString(x)+Integer.toString(y));
 				return board.getField(x, y).getColor()=="b";
 				
 			}

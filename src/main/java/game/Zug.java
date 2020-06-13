@@ -54,8 +54,8 @@ public class Zug {
 		this.figure = figure;
 		this.from1 = from1;
 		this.from2 = from2;
-		this.to1 = Character.getNumericValue(to.charAt(0));
-		this.to2 = Character.getNumericValue(to.charAt(1));	
+		this.to1 = Integer.parseInt(String.valueOf(to.charAt(0)));
+		this.to2 = Integer.parseInt(String.valueOf(to.charAt(1)));
 	}
 	
 	/**
@@ -134,10 +134,10 @@ public class Zug {
 	 * @return true if other figure has validMove to king's position
 	 */
 	public static boolean checkCheckCheck(Board board,String num) {
-		int i = Character.getNumericValue(num.charAt(0));
-		int j = Character.getNumericValue(num.charAt(1));	
-		int k = Character.getNumericValue(num.charAt(2));
-		int y = Character.getNumericValue(num.charAt(3));	
+		int i = Integer.parseInt(String.valueOf(num.charAt(0)));
+		int j = Integer.parseInt(String.valueOf(num.charAt(1)));
+		int k = Integer.parseInt(String.valueOf(num.charAt(2)));
+		int y = Integer.parseInt(String.valueOf(num.charAt(3)));
 		return board.positionen[k][j]!= null &&board.positionen[k][j].validMove(board, i, y) && board.positionen[k][j].getColor() != board.positionen[i][y].getColor();
 	}
 
