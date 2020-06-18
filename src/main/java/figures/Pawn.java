@@ -12,6 +12,8 @@ import game.Figures;
  * group 23
  * it1
  */
+
+
 public class Pawn extends Figures {
 	
 	/**
