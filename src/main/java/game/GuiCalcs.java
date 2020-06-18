@@ -1,5 +1,14 @@
 package game;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.scene.control.ListView;
 
 /**
@@ -155,6 +164,33 @@ public class GuiCalcs {
     		b = "h";
     	}
     	return b;
+    }
+    
+    public void makeSaveGui(ListView<String> historie){
+    	File file = new File("save.txt");
+    	
+    	
+    	try {
+			file.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
+    	ArrayList<String> test = new ArrayList<String>();
+    	for(int i = 0; i < historie.getItems().size(); i++) {
+    		test.add(historie.getItems().get(i).toString());
+    	}
+    	
+    	
+    	try {
+			Files.write(Paths.get("save.txt"), test, StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    	
     }
     
 }

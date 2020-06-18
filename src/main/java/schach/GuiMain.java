@@ -31,6 +31,9 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
 import figures.Bishop;
 import figures.Knight;
 import figures.Queen;
@@ -199,18 +202,50 @@ public class GuiMain extends Application {
         RadioButton white = new RadioButton("white");
         white.setSelected(true);
         RadioButton black = new RadioButton("black");
-        final ToggleGroup color = new ToggleGroup();
-        white.setToggleGroup(color);
-        black.setToggleGroup(color);
         HBox colorbox = new HBox(100, white, black);
         
         RadioButton pla = new RadioButton("player vs player");
         RadioButton ai = new RadioButton("player vs ai");
         pla.setSelected(true);
-        final ToggleGroup mode = new ToggleGroup();
-        pla.setToggleGroup(mode);
-        ai.setToggleGroup(mode);
         HBox modebox = new HBox(100, pla, ai);
+        
+        white.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+               white.setSelected(true);
+               black.setSelected(false);
+            }
+        });
+        
+        black.setOnAction(new EventHandler<ActionEvent>() {
+         	 
+            @Override
+            public void handle(ActionEvent event) {
+               black.setSelected(true);
+               white.setSelected(false);
+            }
+        });
+        
+        pla.setOnAction(new EventHandler<ActionEvent>() {
+         	 
+            @Override
+            public void handle(ActionEvent event) {
+               pla.setSelected(true);
+               ai.setSelected(false);
+            }
+        });
+        
+        ai.setOnAction(new EventHandler<ActionEvent>() {
+         	 
+            @Override
+            public void handle(ActionEvent event) {
+               ai.setSelected(true);
+               pla.setSelected(false);
+            }
+        });
+        
+        
         btn.setOnAction(new EventHandler<ActionEvent>() {
         	 
             @Override
@@ -222,6 +257,9 @@ public class GuiMain extends Application {
             	else if(ai.isSelected()&& black.isSelected()) {
             		aiGame=true;
             		ki.setColor(0);
+            	}
+            	else {
+            		aiGame=false;
             	}
             	startGame(primaryStage);
             }
@@ -355,6 +393,7 @@ public class GuiMain extends Application {
         CheckBox check3 = new CheckBox("show being in check");
         CheckBox check4 = new CheckBox("touch-move rule");
         Button back = new Button("back to menu");
+        Button testSave = new Button("save");
 
        
         
@@ -404,6 +443,16 @@ public class GuiMain extends Application {
             }
         });
         
+        testSave.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+         
+				rechner.makeSaveGui(historie);
+			
+            }
+        });
+        
   
 
         
@@ -412,6 +461,7 @@ public class GuiMain extends Application {
         topHbox.getChildren().add(check3);
         topHbox.getChildren().add(check4);
         topHbox.getChildren().add(back);
+        topHbox.getChildren().add(testSave);
 
         
         topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
