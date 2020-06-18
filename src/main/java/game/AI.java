@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+
 import figures.Bishop;
 import figures.King;
 import figures.Knight;

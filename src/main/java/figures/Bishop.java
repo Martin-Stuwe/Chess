@@ -13,6 +13,7 @@ import game.Board;
  * it1
  */
 
+
 public class Bishop extends Figures {
 	 
 	/**
