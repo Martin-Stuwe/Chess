@@ -1,5 +1,4 @@
 package game;
-import figures.Pawn;
 
 /**
  * Class for the chess Figures
@@ -154,7 +153,7 @@ public class Figures {
 			System.out.println(unallowed);
 			return false;	
 		}
-
+		
 		// on white's turn, check if figure to be moved is white
 		if(board.getCurrentTurn()==0 && board.positionen[pos1from][pos2from].getColor() !="w") {
 			System.out.println(unallowed);

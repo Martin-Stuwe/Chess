@@ -120,9 +120,6 @@ public class Pawn extends Figures {
 		if(x < 0 || x > 7 || y < 0 || y > 7) {
 			return false;
 		}
-		if(color.equals("b")&&y-pos2>2) {
-			return false;
-		}
 		
 		return validMove1(board,x,y);
 	}

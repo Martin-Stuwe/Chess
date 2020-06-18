@@ -200,9 +200,8 @@ public class Board {
 	 */
 	public void setField(int pos1, int pos2, Figures setTo) {
 		this.positionen[pos1][pos2] = setTo;
-		if (positionen[pos1][pos2]!=null){
 		this.positionen[pos1][pos2].setPos(pos1, pos2);
-	}}
+	}
 	
 	/**
 	 * emptying certain field on the board
