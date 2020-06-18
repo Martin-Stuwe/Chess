@@ -178,6 +178,8 @@ public class GuiCalcs {
 		}
     	
     	ArrayList<String> test = new ArrayList<String>();
+    	test.add(java.time.LocalDate.now().toString());
+    	test.add("---");
     	for(int i = 0; i < historie.getItems().size(); i++) {
     		test.add(historie.getItems().get(i).toString());
     	}
