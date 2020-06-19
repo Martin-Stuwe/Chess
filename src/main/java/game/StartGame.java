@@ -376,7 +376,6 @@ public class StartGame {
 	        else {
 	            PlayerVsPlayer();
 	        }
-	        
 	    } 
 		
 	public static void makeSaveConsole(Board board) {
