@@ -366,9 +366,9 @@ public class StartGame {
 	        System.out.print("type 1 for PlayerVsAi and 2 for PlayerVsPlayer \n");
 	        Console mode = new Console();
 	        mode.open();
-	        while (!player1color.input.equals ("1") && !player1color.input.equals("2")) {
+	        while (!mode.input.equals ("1") && !mode.input.equals("2")) {
 	            System.out.println("You have to enter 1 or 2 \n" );
-	            player1color.open();
+	            mode.open();
 	        }
 	        if(mode.input.equals("1")) {
 	            PlayerVsAI(i);
