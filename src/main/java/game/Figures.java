@@ -423,36 +423,36 @@ public class Figures {
 	return true;
 	}
 	
-	public Figures copy(Figures obj) {
+	public Figures copy() {
 		Figures copy=null;
 		
-		if(obj.getClass() == Bishop.class ) {
-			Bishop copyB = new Bishop(obj.getPos1(),obj.getPos2(),obj.getColor());
+		if(this.getClass() == Bishop.class ) {
+			Bishop copyB = new Bishop(this.getPos1(),this.getPos2(),this.getColor());
 			copy=copyB;
 		}
 		
-		if(obj.getClass() == King.class ) {
-			King copyB = new King(obj.getPos1(),obj.getPos2(),obj.getColor());
+		if(this.getClass() == King.class ) {
+			King copyB = new King(this.getPos1(),this.getPos2(),this.getColor());
 			copy=copyB;
 		}
 		
-		if(obj.getClass() == Knight.class ) {
-			Knight copyB = new Knight(obj.getPos1(),obj.getPos2(),obj.getColor());
+		if(this.getClass() == Knight.class ) {
+			Knight copyB = new Knight(this.getPos1(),this.getPos2(),this.getColor());
 			copy=copyB;
 		}
 		
-		if(obj.getClass() == Pawn.class ) {
-			Pawn copyB = new Pawn(obj.getPos1(),obj.getPos2(),obj.getColor());
+		if(this.getClass() == Pawn.class ) {
+			Pawn copyB = new Pawn(this.getPos1(),this.getPos2(),this.getColor());
 			copy=copyB;
 		}
 		
-		if(obj.getClass() == Queen.class ) {
-			Queen copyB = new Queen(obj.getPos1(),obj.getPos2(),obj.getColor());
+		if(this.getClass() == Queen.class ) {
+			Queen copyB = new Queen(this.getPos1(),this.getPos2(),this.getColor());
 			copy=copyB;
 		}
 		
-		if(obj.getClass() == Rook.class ) {
-			Rook copyB = new Rook(obj.getPos1(),obj.getPos2(),obj.getColor());
+		if(this.getClass() == Rook.class ) {
+			Rook copyB = new Rook(this.getPos1(),this.getPos2(),this.getColor());
 			copy=copyB;
 		}
 		
