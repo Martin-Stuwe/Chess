@@ -1,5 +1,12 @@
 package game;
 
+import figures.Bishop;
+import figures.King;
+import figures.Knight;
+import figures.Pawn;
+import figures.Queen;
+import figures.Rook;
+
 /**
  * Class for the chess Figures
  * @author Martin Stuwe 676421
@@ -414,6 +421,43 @@ public class Figures {
 			board.positionen[pos1from][pos2from].setPos(pos1from, pos2from);
 		}
 	return true;
+	}
+	
+	public Figures copy(Figures obj) {
+		Figures copy=null;
+		
+		if(obj.getClass() == Bishop.class ) {
+			Bishop copyB = new Bishop(obj.getPos1(),obj.getPos2(),obj.getColor());
+			copy=copyB;
+		}
+		
+		if(obj.getClass() == King.class ) {
+			King copyB = new King(obj.getPos1(),obj.getPos2(),obj.getColor());
+			copy=copyB;
+		}
+		
+		if(obj.getClass() == Knight.class ) {
+			Knight copyB = new Knight(obj.getPos1(),obj.getPos2(),obj.getColor());
+			copy=copyB;
+		}
+		
+		if(obj.getClass() == Pawn.class ) {
+			Pawn copyB = new Pawn(obj.getPos1(),obj.getPos2(),obj.getColor());
+			copy=copyB;
+		}
+		
+		if(obj.getClass() == Queen.class ) {
+			Queen copyB = new Queen(obj.getPos1(),obj.getPos2(),obj.getColor());
+			copy=copyB;
+		}
+		
+		if(obj.getClass() == Rook.class ) {
+			Rook copyB = new Rook(obj.getPos1(),obj.getPos2(),obj.getColor());
+			copy=copyB;
+		}
+		
+		
+		return copy;
 	}
 	
 }
