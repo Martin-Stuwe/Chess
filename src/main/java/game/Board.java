@@ -295,6 +295,40 @@ public class Board {
 		return CurrentTurn;
 	}
 	
+	public Figures copy(int posit1, int posit2) {
 	
+		
+		if(this.getField(posit1, posit2).getClass() == Bishop.class ) {
+			return new Bishop(posit1,posit2,this.getField(posit1, posit2).getColor());
+			
+		}
+		
+		if(this.getField(posit1, posit2).getClass() == King.class ) {
+			return new King(posit1,posit2,this.getField(posit1, posit2).getColor());
+			
+		}
+		if(this.getField(posit1, posit2).getClass() == Knight.class ) {
+			return new Knight(posit1,posit2,this.getField(posit1, posit2).getColor());
+			
+		}
+		
+		if(this.getField(posit1, posit2).getClass() == Pawn.class ) {
+			return new Pawn(posit1,posit2,this.getField(posit1, posit2).getColor());
+			
+		}
+		
+		if(this.getField(posit1, posit2).getClass() == Queen.class ) {
+			return new Queen(posit1,posit2,this.getField(posit1, posit2).getColor());
+			
+		}
+		
+		if(this.getField(posit1, posit2).getClass() == Rook.class ) {
+			return new Rook(posit1,posit2,this.getField(posit1, posit2).getColor());
+			
+		}
+		
+		
+		return null;
+	}
 
 }
