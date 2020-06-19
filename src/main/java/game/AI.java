@@ -110,6 +110,8 @@ public class AI {
 	public void findPossMoves(Board board, int turn ) {
 		Board COPY = boardCopy(board);
 		copy=COPY;
+		System.out.println(board.positionen.length);
+		System.out.println(copy.positionen.length);
 		copy.setCurrentTurn(board.getCurrentTurn());
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
 	
@@ -151,10 +153,10 @@ public class AI {
 		int y1 = Character.getNumericValue(movePos.charAt(3));
 		Figures restoreTo2 = board.getField(x1,y1);
 		Figures restoreFrom2=board.getField(i1, j1);
-		if (copy.getField(x1,y1)!=null){
+		if (board.getField(x1,y1)!=null){
 			restoreTo2=board.getField(x1, y1);
 		}
-		if (copy.getField(x1,y1)==null) {
+		if (board.getField(x1,y1)==null) {
 			restoreTo2=null;
 		}	
 		if(turn!=color) {
@@ -211,7 +213,7 @@ public class AI {
 			}
 		if (convTurn == "b") {
 			board.setCurrentTurn(0);
-		findPossMoves(board, 0);
+		findPossMoves2(board, 0);
 		System.out.println(this.enPossibleMoves);
 		//convTurn = "b";
 		//board.setCurrentTurn(1);
@@ -408,5 +410,72 @@ public class AI {
 		
 		
 	
+	}
+	
+	
+	public void findPossMoves2(Board board2, int turn ) {
+	
+		System.out.println(board2.positionen.length);
+		System.out.println(copy.positionen.length);
+		copy.setCurrentTurn(board2.getCurrentTurn());
+		List<Zug> possibleMoveList = new ArrayList<Zug>();
+	
+		convTurn=convertTurn(turn);
+		 
+		for (int i=0;i<8;i++) {
+			for (int j=0;j<8;j++) {
+				for (int x=0;x<8;x++) {
+					for (int y=0;y<8;y++) {
+						if(board2.getField(i, j)!=null&&convTurn==board2.getField(i, j).getColor()){
+							
+							checkPossMoves(board2,Integer.toString(i)+Integer.toString(j)+Integer.toString(x)+Integer.toString(y),turn, possibleMoveList);
+						}
+					}
+				}
+			}
+		}
+	
+			enPossibleMoves = possibleMoveList;
+		}
+		
+	
+	
+	/**
+	 * method to check and restore possible moves
+	 * @param board board the moves should take place on
+	 * @param movePos String with each position for the move
+	 * @param turn the value for the move turn
+	 * @param possibleMoveList the list with each possible move
+	 */
+	public void checkPossMoves2(Board board3, String movePos, int turn,List<Zug> possibleMoveList )  {
+		
+		int i1 = Character.getNumericValue(movePos.charAt(0));
+		int j1 = Character.getNumericValue(movePos.charAt(1));	
+		int x1 = Character.getNumericValue(movePos.charAt(2));
+		int y1 = Character.getNumericValue(movePos.charAt(3));
+		Figures restoreTo2 = board3.getField(x1,y1);
+		Figures restoreFrom2=board3.getField(i1, j1);
+		if (board3.getField(x1,y1)!=null){
+			restoreTo2=board3.getField(x1, y1);
+		}
+		if (board3.getField(x1,y1)==null) {
+			restoreTo2=null;
+		}	
+		if(turn!=color) {
+			board3.setCurrentTurn(turn);
+		}
+		if (board3.getField(i1, j1).hasPossibleMove(board3,i1,j1,Integer.toString(x1)+Integer.toString(y1))) {
+		
+			Zug zug = new Zug(board3.getField(i1, j1),i1,j1,Integer.toString(x1)+Integer.toString(y1));
+			possibleMoveList.add(zug);
+			board3.setField(i1, j1, restoreFrom2);
+		if (restoreTo2!=null) {
+			board3.setField(x1, y1,restoreTo2);
+		}
+		if (restoreTo2==null) {
+			board3.positionen[x1][y1]=null;
+		}
+		//board.setCurrentTurn(color);
+	}
 	}
 } 

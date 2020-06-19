@@ -295,6 +295,8 @@ public class Board {
 		return CurrentTurn;
 	}
 	
+	
+	
 	public Figures copy(int posit1, int posit2) {
 	
 		
