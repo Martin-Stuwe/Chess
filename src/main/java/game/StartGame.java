@@ -4,6 +4,14 @@ import schach.Console;
 import figures.Queen;
 import figures.Rook;
 import figures.Knight;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
 import figures.Bishop;
 /**
 * Class for the states of the game
@@ -49,8 +57,13 @@ public class StartGame {
 			// returns all beaten figures
 			if (playerMove.input.equals("beaten")){
 				board.initializeBoard();
-				System.out.println(board.Feld);
 				System.out.println(board.beaten);			
+				getAndMakeMove(board);
+			}
+			
+			if(playerMove.input.equals("save")) {
+				board.initializeBoard();
+				makeSaveConsole(board);
 				getAndMakeMove(board);
 			}
 			
@@ -366,6 +379,36 @@ public class StartGame {
 	        
 	    } 
 		
-	
+	public static void makeSaveConsole(Board board) {
+		File file = new File("save.txt");
+    	GuiCalcs rechner = new GuiCalcs();
+    	
+    	try {
+			file.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
+    	ArrayList<String> savegame = new ArrayList<String>();
+    	savegame.add(java.time.LocalDate.now().toString());
+    	savegame.add("---");
+    	for(int i = 0; i < board.movedList.size(); i++ ) {
+    		String n =  rechner.numberToString(board.movedList.get(i).from1) + 
+    					rechner.numberToNumber(board.movedList.get(i).from2) + "-"  +
+    					rechner.numberToString(board.movedList.get(i).to1) +
+    					rechner.numberToNumber(board.movedList.get(i).to2);
+    		savegame.add(n);
+    	}
+    	
+    	
+    	try {
+			Files.write(Paths.get("save.txt"), savegame, StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	System.out.println("saved");
+	}
 
 }
