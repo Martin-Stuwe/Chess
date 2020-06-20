@@ -94,7 +94,7 @@ public class GuiMain extends Application {
 	/**
 	 * ListView of all the moves played
 	 */
-	ListView<String> historie = new ListView<String>();
+	static ListView<String> historie = new ListView<String>();
 	
 	/**
 	 * ListView of all beaten figures
@@ -115,6 +115,8 @@ public class GuiMain extends Application {
 	 * check if it's an Ai game
 	 */
 	boolean aiGame =false;
+	
+	boolean saveGame = false;
 	
 	/**
 	 * main-method for the game
@@ -164,6 +166,11 @@ public class GuiMain extends Application {
     	clicked = click;
     }
     
+    public static ListView<String> getHistorie(){
+    	return historie;
+    }
+    
+ 
     
     
     /**
@@ -197,6 +204,8 @@ public class GuiMain extends Application {
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         Button btn = new Button();
         btn.setText("start game");
+        Button btn2 = new Button("load game");
+        HBox chobox = new HBox(100, btn, btn2);
  
         
         RadioButton white = new RadioButton("white");
@@ -245,6 +254,27 @@ public class GuiMain extends Application {
             }
         });
         
+        btn2.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+            	saveGame = true;
+           		if(ai.isSelected()&& white.isSelected()) {
+        		aiGame =true;
+        		ki.setColor(1);
+           		}
+           		
+           		else if(ai.isSelected()&& black.isSelected()) {
+           			aiGame=true;
+           			ki.setColor(0);
+           			}
+           		else {
+           			aiGame=false;
+           		}
+           		startGame(primaryStage);
+            }
+        });
+        
         
         btn.setOnAction(new EventHandler<ActionEvent>() {
         	 
@@ -268,7 +298,7 @@ public class GuiMain extends Application {
         option.setSpacing(primaryScreenBounds.getHeight() /20);
         option.getChildren().add(colorbox);
         option.getChildren().add(modebox);
-        option.getChildren().add(btn);
+        option.getChildren().add(chobox);
         option.setPadding(new Insets(primaryScreenBounds.getHeight() /3,primaryScreenBounds.getWidth() /3,primaryScreenBounds.getHeight() /3,primaryScreenBounds.getWidth() /3));
         
         StackPane root = new StackPane();
@@ -290,6 +320,11 @@ public class GuiMain extends Application {
         screenWidth =primaryScreenBounds.getWidth();
         Board brett = new Board();
         brett.setStart();
+        
+        if(saveGame) {
+        	rechner.loadGuiSave(brett);
+        	saveGame = false;
+        }
 
         //add elements to BorderPane
         border.setTop(drawTop(brett, primaryStage));

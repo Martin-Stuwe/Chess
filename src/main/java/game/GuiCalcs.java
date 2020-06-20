@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javafx.scene.control.ListView;
+import schach.GuiMain;
 
 /**
  * Class for the Gui calculations
@@ -166,6 +167,39 @@ public class GuiCalcs {
     	return b;
     }
     
+    public int backToNumber(char i) {
+    	int b = 0;
+    	if(i == 'a' || i == '8') {
+    		b = 0;
+    	}
+    	else if(i == 'b' || i == '7') {
+    		b = 1;
+    	}
+    	else if(i == 'c' || i == '6') {
+    		b = 2;
+    	}
+    	else if(i == 'd' || i == '5') {
+    		b = 3;
+    	}
+    	else if(i == 'e' || i == '4') {
+    		b = 4;
+    	}
+    	else if(i == 'f' || i == '3') {
+    		b = 5;
+    	}
+    	else if(i == 'g' || i == '2') {
+    		b = 6;
+    	}
+    	else if(i == 'h' || i == '1') {
+    		b = 7;
+    	}
+    	
+    	return b;
+    }
+      
+    
+    
+    
     public void makeSaveGui(ListView<String> historie){
     	File file = new File("save.txt");
     	
@@ -195,4 +229,37 @@ public class GuiCalcs {
     	
     }
     
+    public void loadGuiSave(Board board) {
+    	File test = new File("save.txt");
+    	if(test.exists()) {
+    		List<String> allLines = new ArrayList<String>();
+    		List<String> justMoves = new ArrayList<String>();
+    	
+    		try {
+    			allLines = Files.readAllLines(Paths.get("save.txt"), StandardCharsets.UTF_8);
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	
+    		for(int i = 0; i < allLines.size() ; i++) {
+    			justMoves.add(allLines.get(i));
+    			if(allLines.get(i).equals("---")) {
+    				justMoves.clear();
+    			}
+    		}
+    		System.out.println(justMoves);
+    		
+    		for(int i = 0; i < justMoves.size(); i++) {
+    			int from1 = backToNumber(justMoves.get(i).charAt(0));
+    			int from2 = backToNumber(justMoves.get(i).charAt(1));
+    			int to1 = backToNumber(justMoves.get(i).charAt(3));
+    			int to2 = backToNumber(justMoves.get(i).charAt(4));
+    			String to = "" + to1 + to2;
+    			board.getField(from1, from2).move(board, from1, from2, to);
+    			GuiMain.getHistorie().getItems().add(justMoves.get(i));
+       		}
+    		
+    	}
+    }
 }
