@@ -259,6 +259,7 @@ public class GuiMain extends Application {
             @Override
             public void handle(ActionEvent event) {
             	saveGame = true;
+            	rechner.setGui(true);
            		if(ai.isSelected()&& white.isSelected()) {
         		aiGame =true;
         		ki.setColor(1);

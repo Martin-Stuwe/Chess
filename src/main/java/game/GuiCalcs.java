@@ -22,6 +22,12 @@ import schach.GuiMain;
  * it2
  */
 public class GuiCalcs {
+	
+	static boolean guiActive = false;
+	
+	public void setGui(boolean set) {
+		guiActive = set;
+	}
 
     /**
      * method to change the board visual to a real figure picture
@@ -257,15 +263,11 @@ public class GuiCalcs {
     			int to2 = backToNumber(justMoves.get(i).charAt(4));
     			String to = "" + to1 + to2;
     			board.getField(from1, from2).move(board, from1, from2, to);
-    			try{
-    				GuiMain.getHistorie().getItems().add(justMoves.get(i));
+    			if (guiActive) {
+    			GuiMain.getHistorie().getItems().add(justMoves.get(i));
     			}
-    			catch (Exception e){
-    				e.printStackTrace();
-    			}
-    			
        		}
     		
     	}
     }
-}
+ }
