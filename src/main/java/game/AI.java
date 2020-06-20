@@ -359,15 +359,15 @@ public class AI {
 				min = x;
 			}
 		}
-		if (sortedList.size()==0 ) {
+		//if (sortedList.size()==0 ) {
 			
-			DoRndMove(board);
-			System.out.println("1. RNDmove");
-			possibleMoves.clear();
+			//DoRndMove(board);
+			//System.out.println("1. RNDmove");
+			//possibleMoves.clear();
 			
-		}
+		//}
 		
-		else {
+		//else {
 			
 			if(sortedList.get(sortedList.size()-1).equals(sortedList.get(0))) {
 				System.out.println("3");
@@ -397,7 +397,7 @@ public class AI {
 		
 		
 	
-	}
+	//}
 	
 	public void findPossMoves2(Board board2, int turn ) {
 		
