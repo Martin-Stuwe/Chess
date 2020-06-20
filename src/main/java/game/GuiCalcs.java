@@ -264,7 +264,6 @@ public class GuiCalcs {
     				e.printStackTrace();
     			}
     			
-    			
        		}
     		
     	}
