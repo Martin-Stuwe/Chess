@@ -258,6 +258,7 @@ public class GuiCalcs {
     			String to = "" + to1 + to2;
     			board.getField(from1, from2).move(board, from1, from2, to);
     			GuiMain.getHistorie().getItems().add(justMoves.get(i));
+    			
        		}
     		
     	}

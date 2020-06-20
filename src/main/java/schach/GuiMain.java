@@ -412,7 +412,8 @@ public class GuiMain extends Application {
     		int b = brett.movedList.get(brett.movedList.size()-1).getFrom2();
     		String to  = Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo1())+Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo2());
     		convertInputToHistorie(a, b , to);
-    		}}
+    		}
+    	}
     }
     /**
      * method to draw top part (settings) of the gui
