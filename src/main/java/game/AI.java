@@ -41,9 +41,19 @@ public class AI {
 	public List<Integer> EnemyValue ;
 	
 	/**
+	 * the players value after each AI move
+	 */
+	public List<Integer> EnemyValue2 ;
+	
+	/**
 	 * the value for the AI
 	 */
 	public List<Integer> AIValue ;
+	
+	/**
+	 * the value for the AI
+	 */
+	public List<Integer> AIValue2 ;
 
 	/**
 	 * the converted turn
@@ -168,6 +178,7 @@ public class AI {
 	 * @param board board the moves should take place on
 	 */
 	public void Calculate(Board board) {
+		
 		EnemyValue.removeAll(EnemyValue);
 
 		switch (board.getCurrentTurn()) {
@@ -212,20 +223,33 @@ public class AI {
 			}
 		for (int K=0; K<enPossibleMoves.size();K++) {
 		
-		if (board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2)!=null){
+		/**Figures restoreFromEn= board.getField(enPossibleMoves.get(K).from1, enPossibleMoves.get(K).from2);
+		Figures restoreToEn= board.getField(enPossibleMoves.get(K).to1, enPossibleMoves.get(K).to2);
+		board.positionen[enPossibleMoves.get(K).to1][enPossibleMoves.get(K).to2]=board.getField(enPossibleMoves.get(K).from1,enPossibleMoves.get(K).from2);
+		board.positionen[enPossibleMoves.get(K).from1][enPossibleMoves.get(K).from2]=null;
+		
+			EnemyValue2.add(calculateValueFor(board,0));
+			AIValue2.add(calculateValueFor(board,1));
+			
+			board.positionen[possibleMoves.get(E).from1][possibleMoves.get(E).from2]=restoreFromEn;
+			
+			board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=restoreToEn;
+			
+			//if (board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2)!=null){
 			
 			
-			int valuex=0;
+			//int valuex=0;
 			
-			int y4=1;
+			//int y4=1;
 			//int y4 = calculateFigure(board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2),board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2).getColor());
 			
-			if (y4>valuex) {
-				valuex=y4;
-			}
-			EnemyValue.set(E, EnemyValue.get(E)+valuex);
+			//if (y4>valuex) {
+			//	valuex=y4;
+			//}
+			//EnemyValue.set(E, EnemyValue.get(E)+valuex);
 		
-	}}
+	}**/
+		}
 		
 		enPossibleMoves = new ArrayList<Zug>(); ;
 			
@@ -272,6 +296,23 @@ public class AI {
 			for (int y=0;y<8;y++) {
 				
 				value = value+calculateFigure(board.getField(x, y),convertTurn(board.getCurrentTurn()));
+					
+			}
+		}	
+		return value;
+	}
+	
+	/**
+	 * method to evaluate the figures for the enemy
+	 * @param board board the moves should take place on
+	 */
+	public int calculateValueFor(Board board, int Color) {
+		String colorS = convertTurn(color);
+		int value=0;
+		for (int x=0;x<8;x++) {
+			for (int y=0;y<8;y++) {
+				
+				value = value+calculateFigure(board.getField(x, y),colorS);
 					
 			}
 		}	
@@ -341,7 +382,7 @@ public class AI {
 		
 		//System.out.println(Arrays.deepToString(board.positionen));
 		
-		//board.movedList.add(rndMove);
+		board.movedList.add(rndMove);
 		return;
 	}
 	
@@ -352,11 +393,11 @@ public class AI {
 	 * method to find do the least valued move if the is one
 	 * @param board board the moves should take place on
 	 */
-	public void DoMinMove(Board board) {
+	public void DoMaxMove(Board board) {
 		List<Integer> sortedList = new ArrayList<>(EnemyValue);
 		Collections.sort(sortedList);
 		for (int x = 0; x<EnemyValue.size();x++) {
-			if(EnemyValue.get(x)==sortedList.get(0)) {
+			if(EnemyValue.get(x)==sortedList.get(sortedList.size())) {
 				min = x;
 			}
 		}
