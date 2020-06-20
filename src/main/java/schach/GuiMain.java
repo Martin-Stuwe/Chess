@@ -404,7 +404,7 @@ public class GuiMain extends Application {
             
             ki.findPossMoves(brett,ki.getColor());
             ki.Calculate(brett);
-            ki.DoMaxMove(brett);
+            ki.DoMinMove(brett);
           
             drawBoard(brett);
     		if (brett.movedList.size()!=0) {

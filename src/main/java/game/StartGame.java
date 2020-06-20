@@ -268,7 +268,7 @@ public class StartGame {
 			//System.out.println(board.getField(4, 1).hasPossibleMove(board,4,1,Integer.toString(3)+Integer.toString(4)));
 		ki.findPossMoves(board,color);
 		ki.Calculate(board);
-		ki.DoMaxMove(board);
+		ki.DoMinMove(board);
 		Zug.checkCheck(board);
 		board.initializeBoard();
 		}
