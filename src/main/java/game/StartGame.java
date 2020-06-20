@@ -24,6 +24,8 @@ import figures.Bishop;
 */
 public class StartGame {
 	
+	static boolean saveGame = false;
+	
 	/**
 	 * Catches user input and uses convertAndMove to convert and make the move happen
 	 * @param board the actual Board object
@@ -255,10 +257,15 @@ public class StartGame {
 	 * method for PlayerVsAi gamemode
 	 */
 	public static void PlayerVsAI(int color) {
-		
+		GuiCalcs rechner = new GuiCalcs();
 		Board board = new Board();
 		board.setStart();
+
 		board.initializeBoard();
+		if(saveGame) {
+			rechner.loadGuiSave(board);
+			saveGame = false;
+		}
 		AI ki =new AI(color);
 		
 		while (true) {
@@ -282,69 +289,21 @@ public class StartGame {
 	* Method for PlayerVsPlayer Mode
 	*/
 	public static void PlayerVsPlayer() {
-	/*	System.out.println("Enter name of Player1");
-		Console player1name = new Console();
-		player1name.open();
-		System.out.println("Hello "+player1name.input);
-		System.out.println("Enter a color for Player 1 : white / black");
-		Console player1color = new Console();
-		player1color.open();
-		while (!player1color.input.equals ("white") && !player1color.input.equals("black")) {
-			System.out.println("You have to enter white or black");
-			player1color.open();
-		}
-		System.out.println(player1name.input+" chose "+player1color.input);
-		Player Player1 = new Player(player1name.input, player1color.input); 
-		System.out.println("Enter name of Player2");
-		Console player2name = new Console();
-		player2name.open();
-		System.out.println("Hello "+player2name.input);
-		System.out.println("Enter a color for Player 2 : white / black");
-		Console player2color = new Console();
-		player2color.open();
-		while (!player2color.input.equals ("white") && !player2color.input.equals("black")) {
-			System.out.println("You have to enter white or black");
-			player2color.open();
-		}
-		while (player2color.input.equals(player1color.input)) {
-			System.out.println(player1name.input+" already chose this color");
-			System.out.println("Enter a color for Player 2 : white / black");
-			player2color.open();
-		}
-		System.out.println(player2name.input+" is "+player2color.input);
-		Player Player2 = new Player(player2name.input, player2color.input);*/
-		//erst später
+		GuiCalcs rechner = new GuiCalcs();
 		Board board2 = new Board();
 		board2.setStart();
 		board2.initializeBoard();
-		
+		if(saveGame) {
+			rechner.loadGuiSave(board2);
+			saveGame = false;
+		}
 		
 		while(true) {
 		getAndMakeMove(board2);
 		}
 	}
 	
-	/*
-
-
-	public static void chooseMode() { 
-		System.out.println("Choose one of the modes \n 1) Versus Human \n Enter 1 for the PlayerVsPlayer Mode");
-		Console ChosenMode = new Console();
-		ChosenMode.open();
-		switch (ChosenMode.input) {
-			case "1":  
-				PlayerVsPlayer();
-				return; //return needs to be deleted later
-				
-			default: 
-				System.out.println("Wrong input");
-				chooseMode();
-				return; //return needs to be deleted later
-			}
-		
-	}
 	
-	*/
 	
 	/**
 	* Method to start the game
@@ -363,6 +322,16 @@ public class StartGame {
 	        }
 	        else {
 	            i = 0;
+	        }
+	        System.out.print("type 1 for starting a new game and 2 for loading a save game \n");
+	        Console save = new Console();
+	        save.open();
+	        while (!save.input.equals ("1") && !save.input.equals("2")) {
+	            System.out.println("You have to enter 1 or 2 \n" );
+	            save.open();
+	        }
+	        if(save.input.equals ("2")) {
+	        	saveGame = true;
 	        }
 	        System.out.print("type 1 for PlayerVsAi and 2 for PlayerVsPlayer \n");
 	        Console mode = new Console();

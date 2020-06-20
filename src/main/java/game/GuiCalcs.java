@@ -257,7 +257,13 @@ public class GuiCalcs {
     			int to2 = backToNumber(justMoves.get(i).charAt(4));
     			String to = "" + to1 + to2;
     			board.getField(from1, from2).move(board, from1, from2, to);
-    			GuiMain.getHistorie().getItems().add(justMoves.get(i));
+    			try{
+    				GuiMain.getHistorie().getItems().add(justMoves.get(i));
+    			}
+    			catch (Exception e){
+    				e.printStackTrace();
+    			}
+    			
     			
        		}
     		
