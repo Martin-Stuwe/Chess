@@ -272,6 +272,7 @@ public class StartGame {
 		Zug.checkCheck(board);
 		board.initializeBoard();
 		}
+		System.out.println(board.movedList);
 		getAndMakeMove(board);
 		//board.setCurrentTurn(0);
 		}

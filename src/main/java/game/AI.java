@@ -341,7 +341,8 @@ public class AI {
 		
 		//System.out.println(Arrays.deepToString(board.positionen));
 		
-		board.movedList.add(rndMove);
+		//board.movedList.add(rndMove);
+		return;
 	}
 	
 	
@@ -359,13 +360,14 @@ public class AI {
 				min = x;
 			}
 		}
-		//if (sortedList.size()==0 ) {
+		if (sortedList.size()==0 ) {
 			
-			//DoRndMove(board);
-			//System.out.println("1. RNDmove");
-			//possibleMoves.clear();
+			DoRndMove(board);
+			System.out.println("1. RNDmove");
+			possibleMoves.clear();
+			return;
 			
-		//}
+		}
 		
 		//else {
 			
@@ -374,6 +376,7 @@ public class AI {
 				DoRndMove(board);
 				System.out.println("2. RNDmove");
 				possibleMoves.clear();
+				return;
 				
 			}
 			else {
@@ -390,8 +393,10 @@ public class AI {
 
 				//System.out.println(Arrays.deepToString(board.positionen));
 				possibleMoves.clear();
+				//board.movedList.add(minMove);
+				return;
 				
-				board.movedList.add(minMove);
+				
 			}
 		}
 		
