@@ -60,17 +60,15 @@ public class AI {
 	 */
 	private int color;
 	
-	private Board copy;
-	
 	/**
 	 * the from figure to restore
 	 */
-	private Figures restoreFrom;
+	private static  Figures restoreFrom;
 	
 	/**
 	 * the to figure to restore
 	 */
-	private Figures restoreTo;
+	private static Figures restoreTo;
 	
 	/**
 	 * the AI constructor
@@ -92,15 +90,7 @@ public class AI {
 	}
 	
 	
-	public Board boardCopy(Board boardtocop) {
-		Board boardcopy= new Board();
-		for(int az = 0; az < 8; az++) {
-			for(int ax=0; ax< 0; ax++) {
-				boardcopy.setField(az, ax, boardtocop.copy(az, ax));
-			}
-		}
-		return boardcopy;
-	}
+	
 	
 	/**
 	 * method to find possible Moves for a side and save them in a list
@@ -108,22 +98,17 @@ public class AI {
 	 * @param turn the side to find possible moves for
 	 */
 	public void findPossMoves(Board board, int turn ) {
-		Board COPY = boardCopy(board);
-		copy=COPY;
-		System.out.println(board.positionen.length);
-		System.out.println(copy.positionen.length);
-		copy.setCurrentTurn(board.getCurrentTurn());
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
 	
 		convTurn=convertTurn(turn);
 		 
-		for (int i=0;i<8;i++) {
-			for (int j=0;j<8;j++) {
-				for (int x=0;x<8;x++) {
-					for (int y=0;y<8;y++) {
-						if(board.getField(i, j)!=null&&convTurn==board.getField(i, j).getColor()){
+		for (int i22=0;i22<8;i22++) {
+			for (int j22=0;j22<8;j22++) {
+				for (int x22=0;x22<8;x22++) {
+					for (int y22=0;y22<8;y22++) {
+						if(board.getField(i22, j22)!=null&&convTurn==board.getField(i22, j22).getColor()){
 							
-							checkPossMoves(board,Integer.toString(i)+Integer.toString(j)+Integer.toString(x)+Integer.toString(y),turn, possibleMoveList);
+							checkPossMoves(board,Integer.toString(i22)+Integer.toString(j22)+Integer.toString(x22)+Integer.toString(y22),turn, possibleMoveList);
 						}
 					}
 				}
@@ -135,7 +120,6 @@ public class AI {
 		else {
 			enPossibleMoves = possibleMoveList;
 		}
-		
 	}
 	
 	/**
@@ -147,11 +131,11 @@ public class AI {
 	 */
 	public void checkPossMoves(Board board, String movePos, int turn,List<Zug> possibleMoveList )  {
 		
-		int i1 = Character.getNumericValue(movePos.charAt(0));
-		int j1 = Character.getNumericValue(movePos.charAt(1));	
-		int x1 = Character.getNumericValue(movePos.charAt(2));
-		int y1 = Character.getNumericValue(movePos.charAt(3));
-		Figures restoreTo2 = board.getField(x1,y1);
+		int i1 = Integer.parseInt(String.valueOf(movePos.charAt(0)));
+		int j1 = Integer.parseInt(String.valueOf(movePos.charAt(1)));
+		int x1 = Integer.parseInt(String.valueOf(movePos.charAt(2)));
+		int y1 = Integer.parseInt(String.valueOf(movePos.charAt(3)));
+		/*Figures restoreTo2 = board.getField(x1,y1);
 		Figures restoreFrom2=board.getField(i1, j1);
 		if (board.getField(x1,y1)!=null){
 			restoreTo2=board.getField(x1, y1);
@@ -161,20 +145,22 @@ public class AI {
 		}	
 		if(turn!=color) {
 			board.setCurrentTurn(turn);
-		}
+		**/
 		if (board.getField(i1, j1).hasPossibleMove(board,i1,j1,Integer.toString(x1)+Integer.toString(y1))) {
 		
 			Zug zug = new Zug(board.getField(i1, j1),i1,j1,Integer.toString(x1)+Integer.toString(y1));
 			possibleMoveList.add(zug);
-			board.setField(i1, j1, restoreFrom2);
-		if (restoreTo2!=null) {
+			//board.setField(i1, j1, restoreFrom2);
+		
+		/**if (restoreTo2!=null) {
 			board.setField(x1, y1,restoreTo2);
 		}
+		
 		if (restoreTo2==null) {
 			board.positionen[x1][y1]=null;
 		}
-		//board.setCurrentTurn(color);
-	}
+			board.setCurrentTurn(color);
+	**/}
 	}
 	
 	/**
@@ -195,13 +181,15 @@ public class AI {
 		int savecolor = color;
 		for (int E=0;E<possibleMoves.size();E++) {
 			EnemyValue.add(0);
-			Figures f = board.getField(possibleMoves.get(E).to1,possibleMoves.get(E).to2);
-			Figures from = board.getField(possibleMoves.get(E).from1, possibleMoves.get(E).from2);
-			board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=from;
+			
+			
+			restoreTo = board.getField(possibleMoves.get(E).to1,possibleMoves.get(E).to2);
+			restoreFrom = board.getField(possibleMoves.get(E).from1, possibleMoves.get(E).from2);
+			board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=board.getField(possibleMoves.get(E).from1, possibleMoves.get(E).from2);
 			board.positionen[possibleMoves.get(E).from1][possibleMoves.get(E).from2]=null;
 			//board.initializeBoard();
 
-			EnemyValue.set(E, calculateValue(copy));
+			EnemyValue.set(E, calculateValue(board));
 			
 			switch (color) {
 			case 0:
@@ -212,26 +200,25 @@ public class AI {
 				break;
 			}
 		if (convTurn == "b") {
-			board.setCurrentTurn(0);
+		//board.setCurrentTurn(0);
 		findPossMoves2(board, 0);
-		System.out.println(this.enPossibleMoves);
 		//convTurn = "b";
 		//board.setCurrentTurn(1);
 		//board.setCurrentTurn(savecolor);
 		}
 		else {
-			//findPossMoves(board,1);
+			findPossMoves(board,1);
 			//board.setCurrentTurn(savecolor);
 			}
 		for (int K=0; K<enPossibleMoves.size();K++) {
 		
-		if (copy.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2)!=null){
+		if (board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2)!=null){
 			
 			
 			int valuex=0;
 			
-			
-			int y4 = calculateFigure(board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2),board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2).getColor());
+			int y4=1;
+			//int y4 = calculateFigure(board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2),board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2).getColor());
 			
 			if (y4>valuex) {
 				valuex=y4;
@@ -243,9 +230,9 @@ public class AI {
 		enPossibleMoves = new ArrayList<Zug>(); ;
 			
 					
-		board.positionen[possibleMoves.get(E).from1][possibleMoves.get(E).from2]=from;
+			board.positionen[possibleMoves.get(E).from1][possibleMoves.get(E).from2]=restoreFrom;
 			
-		board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=f;
+			board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=restoreTo;
 
 		}
 	
@@ -343,10 +330,10 @@ public class AI {
 		Zug rndMove = possibleMoves.get(rnd.nextInt(possibleMoves.size()));	
 		
 		System.out.println("Tried move: "+rndMove.from1 + rndMove.from2 + rndMove.to1 + rndMove.to2);
-		//System.out.println("hasPossMoveCheck: "+board.getField(rndMove.from1, rndMove.from2).hasPossibleMove(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2)));
+		System.out.println("hasPossMoveCheck: "+board.getField(rndMove.from1, rndMove.from2).hasPossibleMove(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2)));
 		
-		//System.out.println(board.getField(rndMove.from1, rndMove.from2));
-		//System.out.println(board.getField(rndMove.to1, rndMove.to2));
+		System.out.println(board.getField(rndMove.from1, rndMove.from2));
+		System.out.println(board.getField(rndMove.to1, rndMove.from2));
 		
 		board.getField(rndMove.from1, rndMove.from2).move(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2));
 		
@@ -412,12 +399,11 @@ public class AI {
 	
 	}
 	
-	
 	public void findPossMoves2(Board board2, int turn ) {
-	
+		
 		System.out.println(board2.positionen.length);
-		System.out.println(copy.positionen.length);
-		copy.setCurrentTurn(board2.getCurrentTurn());
+		//System.out.println(copy.positionen.length);
+		//copy.setCurrentTurn(board2.getCurrentTurn());
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
 	
 		convTurn=convertTurn(turn);
@@ -478,4 +464,5 @@ public class AI {
 		//board.setCurrentTurn(color);
 	}
 	}
+
 } 
