@@ -1,5 +1,6 @@
 package schach;
 
+import game.GuiCalcs;
 import game.StartGame;
 
 /**
@@ -31,7 +32,7 @@ public class Main {
 		        StartGame.PlayerVsPlayer();
 				    }
 		    else {
-		    	 
+		    	GuiCalcs.setGui(true);
 		    	GuiMain.main(args); 
 		    }
     }

@@ -25,7 +25,7 @@ public class GuiCalcs {
 	
 	static boolean guiActive = false;
 	
-	public void setGui(boolean set) {
+	public static void setGui(boolean set) {
 		guiActive = set;
 	}
 
@@ -264,6 +264,7 @@ public class GuiCalcs {
     			String to = "" + to1 + to2;
     			board.getField(from1, from2).move(board, from1, from2, to);
     			if (guiActive) {
+    				
     			GuiMain.getHistorie().getItems().add(justMoves.get(i));
     			}
        		}
