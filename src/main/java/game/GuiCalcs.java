@@ -22,9 +22,12 @@ import schach.GuiMain;
  * it2
  */
 public class GuiCalcs {
-	
+	private GuiMain gMain;
 	static boolean guiActive = false;
 	
+	public GuiCalcs(GuiMain main) {
+		gMain =main;
+	}
 	public static void setGui(boolean set) {
 		guiActive = set;
 	}
@@ -265,7 +268,7 @@ public class GuiCalcs {
     			board.getField(from1, from2).move(board, from1, from2, to);
     			if (guiActive) {
     				
-    			GuiMain.getHistorie().getItems().add(justMoves.get(i));
+    			gMain.getHistorie().getItems().add(justMoves.get(i));
     			}
        		}
     		

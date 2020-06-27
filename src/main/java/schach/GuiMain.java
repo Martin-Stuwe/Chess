@@ -94,7 +94,7 @@ public class GuiMain extends Application {
 	/**
 	 * ListView of all the moves played
 	 */
-	static ListView<String> historie = new ListView<String>();
+	ListView<String> historie = new ListView<String>();
 	
 	/**
 	 * ListView of all beaten figures
@@ -104,7 +104,7 @@ public class GuiMain extends Application {
 	/**
 	 *  calculator of the game
 	 */
-	GuiCalcs rechner = new GuiCalcs();
+	GuiCalcs rechner = new GuiCalcs(this);
 	
 	/**
 	 * Ai of the game
@@ -166,7 +166,7 @@ public class GuiMain extends Application {
     	clicked = click;
     }
     
-    public static ListView<String> getHistorie(){
+    public  ListView<String> getHistorie(){
     	return historie;
     }
     
@@ -178,6 +178,7 @@ public class GuiMain extends Application {
      * @param primaryStage main stage
      */
     public void start(Stage primaryStage) {
+    	rechner.setGui(true);
         primaryStage.setTitle("Startscreen");
         Button btn = new Button();
         btn.setText("new game");

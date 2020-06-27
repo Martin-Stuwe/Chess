@@ -32,7 +32,6 @@ public class Main {
 		        StartGame.PlayerVsPlayer();
 				    }
 		    else {
-		    	GuiCalcs.setGui(true);
 		    	GuiMain.main(args); 
 		    }
     }

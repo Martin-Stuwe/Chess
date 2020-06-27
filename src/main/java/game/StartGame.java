@@ -1,6 +1,7 @@
 package game;
 
 import schach.Console;
+import schach.GuiMain;
 import figures.Queen;
 import figures.Rook;
 import figures.Knight;
@@ -257,7 +258,7 @@ public class StartGame {
 	 * method for PlayerVsAi gamemode
 	 */
 	public static void PlayerVsAI(int color) {
-		GuiCalcs rechner = new GuiCalcs();
+		GuiCalcs rechner = new GuiCalcs(new GuiMain() );
 		Board board = new Board();
 		board.setStart();
 
@@ -289,7 +290,7 @@ public class StartGame {
 	* Method for PlayerVsPlayer Mode
 	*/
 	public static void PlayerVsPlayer() {
-		GuiCalcs rechner = new GuiCalcs();
+		GuiCalcs rechner = new GuiCalcs(new GuiMain());
 		Board board2 = new Board();
 		board2.setStart();
 		board2.initializeBoard();
@@ -350,7 +351,7 @@ public class StartGame {
 		
 	public static void makeSaveConsole(Board board) {
 		File file = new File("save.txt");
-    	GuiCalcs rechner = new GuiCalcs();
+    	GuiCalcs rechner = new GuiCalcs(new GuiMain());
     	
     	try {
 			file.createNewFile();
