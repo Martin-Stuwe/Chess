@@ -140,7 +140,7 @@ public class GuiView {
         screenHeight =primaryScreenBounds.getHeight();
         screenWidth =primaryScreenBounds.getWidth();
      
-        brett.setStart();
+        
         
 
 

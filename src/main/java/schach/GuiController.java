@@ -67,7 +67,7 @@ public class GuiController {
 	/**
 	 * ListView of all the moves played
 	 */
-	ListView<String> historie = new ListView<String>();
+	// ListView<String> historie = new ListView<String>();
 	
 	/**
 	 * ListView of all beaten figures
@@ -92,6 +92,8 @@ public class GuiController {
 	boolean saveGame = false;
 	
 	GuiView gv = new GuiView(this);
+	
+	
 	
 	
 	  /**
@@ -134,9 +136,9 @@ public class GuiController {
     	clicked = click;
     }
     
-    public  ListView<String> getHistorie(){
+  /*  public  ListView<String> getHistorie(){
     	return historie;
-    }
+    }*/
     
     
 	public void start(Stage primaryStage) {
@@ -244,16 +246,16 @@ public class GuiController {
 	}
 	
 	public void startPlay(Stage primaryStage) {
-		Board brett = gv.getBrett();
-		GridPane board = gv.getBoard();
+		gv.brett = new Board();
+		gv.brett.setStart();
 		
         if(saveGame) {
-        	rechner.loadGuiSave(brett);
-        	for(int i = 0; i < brett.movedList.size();i++) {
-        			char from1 = (char) (brett.movedList.get(i).getFrom1());
-        			char from2 = (char) (brett.movedList.get(i).getFrom2());
-        			char to1 = (char) (brett.movedList.get(i).getTo1());
-        			char to2 = (char) (brett.movedList.get(i).getTo2());
+        	rechner.loadGuiSave(gv.brett);
+        	for(int i = 0; i < gv.brett.movedList.size();i++) {
+        			char from1 = (char) (gv.brett.movedList.get(i).getFrom1());
+        			char from2 = (char) (gv.brett.movedList.get(i).getFrom2());
+        			char to1 = (char) (gv.brett.movedList.get(i).getTo1());
+        			char to2 = (char) (gv.brett.movedList.get(i).getTo2());
         			gv.historie.getItems().add(rechner.numberToString(from1) + rechner.numberToNumber(from2)
         			+ "-" +rechner.numberToString(to1) + rechner.numberToNumber(to2));
         			
@@ -263,22 +265,22 @@ public class GuiController {
 		
 		gv.drawBoard();
 		setTop(primaryStage);
-		if(Zug.checkCheck(brett) && showCheck) {
-        	if(brett.whiteCheck) {
-        		board.add(new Label ("  white is in check"), 8, 1);
+		if(Zug.checkCheck(gv.brett) && showCheck) {
+        	if(gv.brett.whiteCheck) {
+        		gv.board.add(new Label ("  white is in check"), 8, 1);
         	}
-        	else if(brett.blackCheck) {
-        		board.add(new Label ("  black is in check"), 8, 1);
+        	else if(gv.brett.blackCheck) {
+        		gv.board.add(new Label ("  black is in check"), 8, 1);
         	}
         	
         }
-	      if(!Zug.checkPossibleMoves(brett)) {
+	      if(!Zug.checkPossibleMoves(gv.brett)) {
 	        	Stage window = new Stage();
 	        	window.setTitle("Game End");
 	            window.initModality(Modality.APPLICATION_MODAL);
 	           
 	            HBox box = new HBox();
-	            if(Zug.checkCheck(brett)) {
+	            if(Zug.checkCheck(gv.brett)) {
 	            	box.getChildren().add(new Label("Checkmate"));
 	            }
 	            else {
@@ -362,8 +364,11 @@ public class GuiController {
         	 
             @Override
             public void handle(ActionEvent event) {
-                start(primaryStage);
-                historie.getItems().clear();
+               
+                gv.historie.getItems().clear();
+            	start(primaryStage);
+                
+                
             }
         });
         
@@ -372,7 +377,7 @@ public class GuiController {
             @Override
             public void handle(ActionEvent event) {
          
-				rechner.makeSaveGui(historie);
+				rechner.makeSaveGui(gv.historie);
 			
             }
         });
