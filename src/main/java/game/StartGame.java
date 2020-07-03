@@ -265,6 +265,7 @@ public class StartGame {
 		board.initializeBoard();
 		if(saveGame) {
 			rechner.loadGuiSave(board);
+			board.initializeBoard();
 			saveGame = false;
 		}
 		AI ki =new AI(color);
@@ -296,6 +297,7 @@ public class StartGame {
 		board2.initializeBoard();
 		if(saveGame) {
 			rechner.loadGuiSave(board2);
+			board2.initializeBoard();
 			saveGame = false;
 		}
 		
