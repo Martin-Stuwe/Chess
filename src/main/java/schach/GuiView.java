@@ -142,19 +142,7 @@ public class GuiView {
      
         brett.setStart();
         
-        if(saveGame) {
-        	rechner.loadGuiSave(brett);
-        	for(int i = 0; i < brett.movedList.size();i++) {
-        			char from1 = (char) (brett.movedList.get(i).getFrom1());
-        			char from2 = (char) (brett.movedList.get(i).getFrom2());
-        			char to1 = (char) (brett.movedList.get(i).getTo1());
-        			char to2 = (char) (brett.movedList.get(i).getTo2());
-        			historie.getItems().add(rechner.numberToString(from1) + rechner.numberToNumber(from2)
-        			+ "-" +rechner.numberToString(to1) + rechner.numberToNumber(to2));
-        			
-        	}
-        	saveGame = false;
-        }
+
 
         //add elements to BorderPane
         border.setTop(drawTop(brett, primaryStage));

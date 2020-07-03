@@ -202,7 +202,7 @@ public class GuiController {
 	            @Override
 	            public void handle(ActionEvent event) {
 	            	saveGame = true;
-	            	rechner.setGui(true);
+	            	
 	           		if(ai.isSelected()&& white.isSelected()) {
 	        		aiGame =true;
 	        		ki.setColor(1);
@@ -246,6 +246,21 @@ public class GuiController {
 	public void startPlay(Stage primaryStage) {
 		Board brett = gv.getBrett();
 		GridPane board = gv.getBoard();
+		
+        if(saveGame) {
+        	rechner.loadGuiSave(brett);
+        	for(int i = 0; i < brett.movedList.size();i++) {
+        			char from1 = (char) (brett.movedList.get(i).getFrom1());
+        			char from2 = (char) (brett.movedList.get(i).getFrom2());
+        			char to1 = (char) (brett.movedList.get(i).getTo1());
+        			char to2 = (char) (brett.movedList.get(i).getTo2());
+        			gv.historie.getItems().add(rechner.numberToString(from1) + rechner.numberToNumber(from2)
+        			+ "-" +rechner.numberToString(to1) + rechner.numberToNumber(to2));
+        			
+        	}
+        	saveGame = false;
+        }
+		
 		gv.drawBoard();
 		if(Zug.checkCheck(brett) && showCheck) {
         	if(brett.whiteCheck) {
