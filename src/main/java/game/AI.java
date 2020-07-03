@@ -233,10 +233,10 @@ public class AI {
 		System.out.println("Test");
 		System.out.println(board.getField(enPossibleMoves.get(K).from1,enPossibleMoves.get(K).from2));
 		if (board.getField(enPossibleMoves.get(K).from1,enPossibleMoves.get(K).from2)!=null){
-			//Figures restoreFromEn= board.getField(enPossibleMoves.get(K).from1, enPossibleMoves.get(K).from2);
-			//Figures restoreToEn= board.getField(enPossibleMoves.get(K).to1, enPossibleMoves.get(K).to2);
-			//board.positionen[enPossibleMoves.get(K).to1][enPossibleMoves.get(K).to2]=board.getField(enPossibleMoves.get(K).from1,enPossibleMoves.get(K).from2);
-			//board.positionen[enPossibleMoves.get(K).from1][enPossibleMoves.get(K).from2]=null;
+			Figures restoreFromEn= board.copy(enPossibleMoves.get(K).from1, enPossibleMoves.get(K).from2);
+			Figures restoreToEn= board.copy(enPossibleMoves.get(K).to1, enPossibleMoves.get(K).to2);
+			board.positionen[enPossibleMoves.get(K).to1][enPossibleMoves.get(K).to2]=board.getField(enPossibleMoves.get(K).from1,enPossibleMoves.get(K).from2);
+			board.positionen[enPossibleMoves.get(K).from1][enPossibleMoves.get(K).from2]=null;
 			
 				//EnemyValue2.add(calculateValueFor(board,0));
 				//AIValue2.add(calculateValueFor(board,1));
@@ -248,9 +248,9 @@ public class AI {
 			List<Zug> AImove2 = findPossMoves2(board,0);
 			System.out.println("Second AI Move would be"+ AImove2);
 				
-				//board.positionen[possibleMoves.get(E).from1][possibleMoves.get(E).from2]=restoreFromEn;
+				board.positionen[possibleMoves.get(E).from1][possibleMoves.get(E).from2]=restoreFromEn;
 				
-				//board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=restoreToEn;
+				board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=restoreToEn;
 				
 			
 			int valuex=0;
