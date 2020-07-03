@@ -248,6 +248,15 @@ public class GuiController {
 	public void startPlay(Stage primaryStage) {
 		gv.brett = new Board();
 		gv.brett.setStart();
+		primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
+		     gv.setScreenHeigt(primaryStage.getHeight());
+		     gv.drawBoard();
+		});
+
+		primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
+			gv.setScreenHeigt(primaryStage.getHeight());
+			 gv.drawBoard();
+		});
 		
         if(saveGame) {
         	rechner.loadGuiSave(gv.brett);
