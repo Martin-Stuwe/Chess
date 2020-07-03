@@ -538,7 +538,7 @@ public class AI {
 		 bestMove= null;
 		this.desiredDepth=desiredDepth;
 		 int bewertung = max(board,desiredDepth,
-		                     -100000000, 1000000000);
+		                     100000000, -1000000000);
 		 if (bestMove == null)
 		    System.out.println("Matt/Patt");
 		 else
