@@ -70,6 +70,10 @@ public class AI {
 	 */
 	private static Figures restoreTo;
 	
+	private int desiredDepth;
+	
+	private Zug bestMove;
+	
 	/**
 	 * the AI constructor
 	 * @param The color chosen for the AI
@@ -248,8 +252,12 @@ public class AI {
 			
 			board.initializeBoard();
 				
+
+			int valuex=calculateValueFor(board,0)-calculateValueFor(board,1);
+		
+			
 			//board.setCurrentTurn(0);
-			//List<Zug> AImove2 = findPossMoves2(board,0);
+			List<Zug> AImove2 = findPossMoves2(board,0);
 			//board.setCurrentTurn(1);
 			//System.out.println("Second AI Move would be"+ AImove2);
 				
@@ -258,16 +266,10 @@ public class AI {
 				board.positionen[enPossibleMoves.get(K).to1][enPossibleMoves.get(K).to2]=restoreToEn;
 				
 			
-			int valuex=0;
-			
-			int y4=1;
+		
 			//int y4 = calculateFigure(board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2),board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2).getColor());
 			
-			if (y4>valuex) {
-				valuex=y4;
-			}
-			EnemyValue.set(E, EnemyValue.get(E)+valuex);
-		
+
 	}}
 		
 		enPossibleMoves = new ArrayList<Zug>(); ;
@@ -327,6 +329,7 @@ public class AI {
 	 */
 	public int calculateValueFor(Board board, int Color) {
 		String colorS = convertTurn(color);
+	
 		int value=0;
 		for (int x=0;x<8;x++) {
 			for (int y=0;y<8;y++) {
@@ -334,7 +337,8 @@ public class AI {
 				value = value+calculateFigure(board.getField(x, y),colorS);
 					
 			}
-		}	
+		}
+		
 		return value;
 	}
 
@@ -529,4 +533,86 @@ public class AI {
 	}
 	}
 
+	public void lookAhead(Board board, int desiredDepth, int color) {
+		this.color=color;
+		 bestMove= null;
+		this.desiredDepth=desiredDepth;
+		 int bewertung = max(board,desiredDepth,
+		                     -100000000, 1000000000);
+		 if (bestMove == null)
+		    System.out.println("Matt/Patt");
+		 else
+		    board.getField(bestMove.from1, bestMove.from2).move(board, bestMove.from1,bestMove.from2, Integer.toString(bestMove.to1)+Integer.toString(bestMove.to2));
+		
+	}
+	 int max(Board board, int tiefe, int alpha, int beta) {
+		 List<Zug> AImoves;
+		 AImoves=findPossMoves2(board,color);
+	    if (tiefe == 0 || AImoves.size()==0) {
+	       return calculateValueFor(board,0)-calculateValueFor(board,1);
+	    }
+	    int maxWert = alpha;
+	    for (Zug move: AImoves){
+	    	Figures restoreFromEn= board.copy(move.from1, move.from2);
+			Figures restoreToEn=null;
+			if (board.getField(move.to1, move.to2)!=null) {
+				restoreToEn= board.copy(move.to1, move.to2);
+			}
+			
+			board.positionen[move.to1][move.to2]=board.getField(move.from1,move.from2);
+			board.positionen[move.from1][move.from2]=null;
+			board.initializeBoard();
+			int wert = min(board,tiefe-1,
+	                      maxWert, beta);
+
+			board.positionen[move.from1][move.from2]=restoreFromEn;
+			
+			board.positionen[move.to1][move.to2]=restoreToEn;
+			
+			
+	       if (wert > maxWert) {
+	          maxWert = wert;
+	          if (tiefe == desiredDepth)
+	             bestMove = move;
+	          if (maxWert >= beta)
+	             break;
+	       }
+	    }
+	    return maxWert;
+	 }
+	 
+	 
+	 
+	 int min(Board board,int tiefe,int alpha, int beta) {
+		 List<Zug> PlayerMoves;
+		 PlayerMoves=findPossMoves2(board,1);
+	    if (tiefe == 0 || PlayerMoves.size()==0)
+	    	return calculateValueFor(board,0)-calculateValueFor(board,1);
+	    int minWert = beta;
+	   PlayerMoves = findPossMoves2(board,1);
+	    for  (Zug PlayerMove: PlayerMoves) {
+	      	Figures restoreFromPl= board.copy(PlayerMove.from1, PlayerMove.from2);
+	    			Figures restoreToPl=null;
+	    			if (board.getField(PlayerMove.to1, PlayerMove.to2)!=null) {
+	    				restoreToPl= board.copy(PlayerMove.to1, PlayerMove.to2);
+	    			}
+	    			
+	    			board.positionen[PlayerMove.to1][PlayerMove.to2]=board.getField(PlayerMove.from1,PlayerMove.from2);
+	    			board.positionen[PlayerMove.from1][PlayerMove.from2]=null;
+
+	       int wert = max(board,tiefe-1, alpha, minWert);
+	       
+	       board.positionen[PlayerMove.from1][PlayerMove.from2]=restoreFromPl;
+			
+			board.positionen[PlayerMove.to1][PlayerMove.to2]=restoreToPl;
+	       if (wert < minWert) {
+	          minWert = wert;
+	          if (minWert <= alpha)
+	             break;
+	       }
+	    }
+	    return minWert;
+	 }
+	 
+	
 } 
