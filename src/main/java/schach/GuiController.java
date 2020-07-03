@@ -262,6 +262,7 @@ public class GuiController {
         }
 		
 		gv.drawBoard();
+		setTop(primaryStage);
 		if(Zug.checkCheck(brett) && showCheck) {
         	if(brett.whiteCheck) {
         		board.add(new Label ("  white is in check"), 8, 1);
