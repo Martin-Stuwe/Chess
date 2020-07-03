@@ -189,8 +189,8 @@ public class AI {
 			System.out.println(possibleMoves.size());
 			
 			
-			restoreTo = board.getField(possibleMoves.get(E).to1,possibleMoves.get(E).to2);
-			restoreFrom = board.getField(possibleMoves.get(E).from1, possibleMoves.get(E).from2);
+			restoreTo = board.copy(possibleMoves.get(E).to1,possibleMoves.get(E).to2);
+			restoreFrom = board.copy(possibleMoves.get(E).from1, possibleMoves.get(E).from2);
 			board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=board.getField(possibleMoves.get(E).from1, possibleMoves.get(E).from2);
 			board.positionen[possibleMoves.get(E).from1][possibleMoves.get(E).from2]=null;
 			//board.initializeBoard();

@@ -299,7 +299,9 @@ public class Board {
 	
 	public Figures copy(int posit1, int posit2) {
 	
-		
+		if (this.getField(posit1, posit2)==null) {
+			return null;
+		}
 		if(this.getField(posit1, posit2).getClass() == Bishop.class ) {
 			return new Bishop(posit1,posit2,this.getField(posit1, posit2).getColor());
 			
