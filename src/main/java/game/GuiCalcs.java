@@ -264,10 +264,7 @@ public class GuiCalcs {
     			int to2 = backToNumber(justMoves.get(i).charAt(4));
     			String to = "" + to1 + to2;
     			board.getField(from1, from2).move(board, from1, from2, to);
-    			if (guiActive) {
-    				
-    			//gMain.getHistorie().getItems().add(justMoves.get(i));
-    			}
+    			
        		}
     		
     	}
