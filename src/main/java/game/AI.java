@@ -335,34 +335,35 @@ public class AI {
 			for (int y=0;y<8;y++) {
 				
 				value = value+calculateFigure(board.getField(x, y),colorS);
+				
 				if (board.positionen[x][y] != null &&board.positionen[x][y].getColor()==colorS) {
-				
-				if (x == 1||y == 1) {
-					value=value+1;
-				}
-				if (x == 2||y == 2) {
-					value=value+2;
-				}
-				
-				if (x == 3||y == 3) {
-					value=value+4;
-				}
-				
-				if (x == 4||y == 4) {
-					value=value+4;
-				}
-				
-				if (x == 5||y == 5) {
-					value=value+3;
-				}
-				
-				if (x == 6||y == 6) {
-					value=value+2;
-				}
-				
-				if (x==7||y == 7) {
-					value=value+1;
-				}
+					
+					if (x == 1||y == 1) {
+						value=value+1;
+					}
+					if (x == 2||y == 2) {
+						value=value+2;
+					}
+					
+					if (x == 3||y == 3) {
+						value=value+4;
+					}
+					
+					if (x == 4||y == 4) {
+						value=value+4;
+					}
+					
+					if (x == 5||y == 5) {
+						value=value+3;
+					}
+					
+					if (x == 6||y == 6) {
+						value=value+2;
+					}
+					
+					if (x==7||y == 7) {
+						value=value+1;
+					}
 				}
 			}
 		}
