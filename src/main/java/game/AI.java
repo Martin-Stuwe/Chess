@@ -575,12 +575,13 @@ public class AI {
 		this.desiredDepth=desiredDepth;
 		 int bewertung = max(board,desiredDepth,
 		                     -100000000, 1000000000);
-		 if (bestMove == null)
+		 if (bestMove == null) {
 		    System.out.println("Matt/Patt");
-		 else
+		 }
+		 else {
 			 board.setCurrentTurn(1);
-		    board.getField(bestMove.from1, bestMove.from2).move(board, bestMove.from1,bestMove.from2, Integer.toString(bestMove.to1)+Integer.toString(bestMove.to2));
-		
+			 board.getField(bestMove.from1, bestMove.from2).move(board, bestMove.from1,bestMove.from2, Integer.toString(bestMove.to1)+Integer.toString(bestMove.to2));
+		 }
 	}
 	 int max(Board board, int tiefe, int alpha, int beta) {
 		 List<Zug> AImoves;
