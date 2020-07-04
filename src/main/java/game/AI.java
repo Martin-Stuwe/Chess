@@ -328,7 +328,7 @@ public class AI {
 	 * @param board board the moves should take place on
 	 */
 	public int calculateValueFor(Board board, int Color) {
-		String colorS = convertTurn(color);
+		String colorS = convertTurn(Color);
 	
 		int value=0;
 		for (int x=0;x<8;x++) {
@@ -348,39 +348,39 @@ public class AI {
 	 * @param color the color from who's perspective to evaluate for
 	 */
 	public int calculateFigure(Figures figure, String color) {
-		int value=0;
+		int valuez=0;
 	
-				if (figure!=null&&figure.getColor()!=color) {
+				if (figure!=null&&figure.getColor()==color) {
 				
 					if (figure.getClass()==Bishop.class) {
 						
-						value=3;
+						valuez=3;
 					}
 					if (figure.getClass()==King.class) {
-						value=5000;
+						valuez=5000;
 					}
 				
 					if (figure.getClass()==Knight.class) {
-						value=3;
+						valuez=3;
 					}
 					
 					if (figure.getClass()==Pawn.class) {
-						value=1;
+						valuez=1;
 					}
 					
 					if (figure.getClass()==Queen.class) {
-						value=10;
+						valuez=10;
 					}
 					
 					if (figure.getClass()==Rook.class) {
-						value=5;
+						valuez=5;
 					}
 					
 				}
 				
 			
 		
-		return value;
+		return valuez;
 	}
 	
 	/**
@@ -538,10 +538,11 @@ public class AI {
 		 bestMove= null;
 		this.desiredDepth=desiredDepth;
 		 int bewertung = max(board,desiredDepth,
-		                     100000000, -1000000000);
+		                     -100000000, 1000000000);
 		 if (bestMove == null)
 		    System.out.println("Matt/Patt");
 		 else
+			 board.setCurrentTurn(1);
 		    board.getField(bestMove.from1, bestMove.from2).move(board, bestMove.from1,bestMove.from2, Integer.toString(bestMove.to1)+Integer.toString(bestMove.to2));
 		
 	}
@@ -549,7 +550,13 @@ public class AI {
 		 List<Zug> AImoves;
 		 AImoves=findPossMoves2(board,color);
 	    if (tiefe == 0 || AImoves.size()==0) {
-	       return calculateValueFor(board,0)-calculateValueFor(board,1);
+	    	
+	    			int einsV=calculateValueFor(board,1);
+	    			int zweiV=calculateValueFor(board,0);
+	    			System.out.println(einsV);
+	    			System.out.println(zweiV);
+	    	System.out.println(einsV-zweiV);
+	       return calculateValueFor(board,1)-calculateValueFor(board,0);
 	    }
 	    int maxWert = alpha;
 	    for (Zug move: AImoves){
@@ -585,11 +592,14 @@ public class AI {
 	 
 	 int min(Board board,int tiefe,int alpha, int beta) {
 		 List<Zug> PlayerMoves;
-		 PlayerMoves=findPossMoves2(board,1);
-	    if (tiefe == 0 || PlayerMoves.size()==0)
-	    	return calculateValueFor(board,0)-calculateValueFor(board,1);
+		 board.setCurrentTurn(0);
+		 PlayerMoves=findPossMoves2(board,0);
+	    if (tiefe == 0 || PlayerMoves.size()==1) {
+	    	System.out.println(calculateValueFor(board,1)-calculateValueFor(board,0));
+	    	return calculateValueFor(board,1)-calculateValueFor(board,0);
+	    }
 	    int minWert = beta;
-	   PlayerMoves = findPossMoves2(board,1);
+	   board.setCurrentTurn(0);
 	    for  (Zug PlayerMove: PlayerMoves) {
 	      	Figures restoreFromPl= board.copy(PlayerMove.from1, PlayerMove.from2);
 	    			Figures restoreToPl=null;
