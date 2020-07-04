@@ -31,6 +31,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import java.lang.Math;
 
 public class GuiController {
 	/**
@@ -253,12 +254,12 @@ public class GuiController {
 		gv.brett = new Board();
 		gv.brett.setStart();
 		primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
-		     gv.setScreenHeigt(primaryStage.getHeight());
+		     gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
 		     gv.drawBoard();
 		});
 
 		primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
-			gv.setScreenHeigt(primaryStage.getHeight());
+			gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
 			 gv.drawBoard();
 		});
 		

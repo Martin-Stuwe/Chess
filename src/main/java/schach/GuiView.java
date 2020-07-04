@@ -11,7 +11,7 @@ import game.Zug;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
+import javafx.geometry.Insets;import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -59,10 +59,12 @@ public class GuiView {
 	public GridPane getBoard() {
 		return board;
 	}
-	public void setScreenHeigt(double newHeight) {
+	public void setScreenHeight(double newHeight) {
 		this.screenHeight = newHeight;
 	}
-	
+	public void setScreenWidth(double newHeight) {
+		this.screenWidth = newHeight;
+	}
 	
 	public GuiView(GuiController guiC) {
 		this.gc = guiC;
@@ -73,7 +75,7 @@ public class GuiView {
      * @param primaryStage main stage
      */
 	public void start(Stage primaryStage) {
-
+		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         primaryStage.setTitle("Startscreen");
         Button ngBtn = new Button();
         ngBtn.setText("new game");
@@ -81,7 +83,9 @@ public class GuiView {
         
         StackPane root = new StackPane();
         root.getChildren().add(ngBtn);
-        primaryStage.setScene(new Scene(root, 1600, 900));
+        primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
+        primaryStage.setX(primaryScreenBounds.getMinX());
+        primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
 	}
 	  /**
@@ -145,7 +149,7 @@ public class GuiView {
 
 
         //add elements to BorderPane
-        border.setTop(drawTop(brett, primaryStage));
+        border.setTop(drawTop(brett));
         drawBoard();
 
         
@@ -154,6 +158,8 @@ public class GuiView {
         primaryStage.setScene(new Scene(root, screenWidth, screenHeight));
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(850);
         primaryStage.show();
     }
     /**
@@ -172,15 +178,15 @@ public class GuiView {
         	board.add(new Label ("  black to move"), 8, 0);
         }
         
-        // check if there is check
+ 
         
-        
-        // check if checkmate or stalemate + new popup if so
-  
+
+
         border.setCenter(board);
         border.setLeft(drawLeft(brett));
         border.setBottom(drawBottom(brett));
         border.setRight(drawRight(brett));
+        border.getTop().minHeight(screenHeight/10);
         gc.aiMove(brett);
         return board;
     }
@@ -192,9 +198,10 @@ public class GuiView {
      * @param primaryStage main stage
      * @return topHbox box including all settings
      */
-    public HBox drawTop(Board brett, Stage primaryStage) {
+    public HBox drawTop(Board brett) {
     	HBox topHbox = new HBox();
         topHbox.setSpacing(screenHeight /20);
+        topHbox.setMinHeight(screenHeight/10);
         CheckBox check1 = new CheckBox("rotate board");
         CheckBox check2 = new CheckBox("show moves");
         CheckBox check3 = new CheckBox("show being in check");
@@ -202,7 +209,6 @@ public class GuiView {
         Button back = new Button("back to menu");
         Button testSave = new Button("save");
 
-       
         
         check2.setSelected(true);
         check3.setSelected(true);
@@ -226,9 +232,8 @@ public class GuiView {
         topHbox.getChildren().add(check4);
         topHbox.getChildren().add(back);
         topHbox.getChildren().add(testSave);
-
         
-        topHbox.setPadding(new Insets(screenHeight/20,screenHeight/10,screenHeight/20,screenHeight/4));
+        topHbox.setPadding(new Insets(50,50,0,50));
         return topHbox;
     }
     
@@ -245,7 +250,8 @@ public class GuiView {
          rightVbox.getChildren().add(historie);
          rightVbox.getChildren().add(new Label("beaten figures"));
          rightVbox.getChildren().add(rechner.addBeaten(brett, screenHeight));
-         rightVbox.setPadding(new Insets(20,screenHeight/12,0,20));
+         rightVbox.setPadding(new Insets(screenHeight/50,screenHeight/12,0,screenHeight/50));
+         rightVbox.setMinHeight(screenHeight/10 *8);
          return rightVbox;
     }
     
@@ -257,28 +263,44 @@ public class GuiView {
     public HBox drawBottom(Board brett) {
         //define Bottom
         HBox bottomHbox = new HBox();
-        bottomHbox.setSpacing(screenHeight/10.5);
+        Label eight = new Label("h");
+        eight.setMinWidth(screenHeight/10);
+        Label seven = new Label("g");
+        seven.setMinWidth(screenHeight/10);
+        Label six = new Label("f");
+        six.setMinWidth(screenHeight/10);
+        Label five = new Label("e");
+        five.setMinWidth(screenHeight/10);
+        Label four = new Label("d");
+        four.setMinWidth(screenHeight/10);
+        Label three = new Label("c");
+        three.setMinWidth(screenHeight/10);
+        Label two = new Label("b");
+        two.setMinWidth(screenHeight/10);
+        Label one = new Label("a");
+        one.setMinWidth(screenHeight/10);
         if(!gc.rotate || brett.getCurrentTurn()==0) {
-        	bottomHbox.getChildren().add(new Label("a"));
-        	bottomHbox.getChildren().add(new Label("b"));
-        	bottomHbox.getChildren().add(new Label("c"));
-        	bottomHbox.getChildren().add(new Label("d"));
-        	bottomHbox.getChildren().add(new Label("e"));
-        	bottomHbox.getChildren().add(new Label("f"));
-        	bottomHbox.getChildren().add(new Label("g"));
-        	bottomHbox.getChildren().add(new Label("h"));
+        	bottomHbox.getChildren().add(one);
+        	bottomHbox.getChildren().add(two);
+        	bottomHbox.getChildren().add(three);
+        	bottomHbox.getChildren().add(four);
+        	bottomHbox.getChildren().add(five);
+        	bottomHbox.getChildren().add(six);
+        	bottomHbox.getChildren().add(seven);
+        	bottomHbox.getChildren().add(eight);
         }
         else {
-        	bottomHbox.getChildren().add(new Label("h"));
-        	bottomHbox.getChildren().add(new Label("g"));
-        	bottomHbox.getChildren().add(new Label("f"));
-        	bottomHbox.getChildren().add(new Label("e"));
-        	bottomHbox.getChildren().add(new Label("d"));
-        	bottomHbox.getChildren().add(new Label("c"));
-        	bottomHbox.getChildren().add(new Label("b"));
-        	bottomHbox.getChildren().add(new Label("a"));
+        	bottomHbox.getChildren().add(eight);
+        	bottomHbox.getChildren().add(seven);
+        	bottomHbox.getChildren().add(six);
+        	bottomHbox.getChildren().add(five);
+        	bottomHbox.getChildren().add(four);
+        	bottomHbox.getChildren().add(three);
+        	bottomHbox.getChildren().add(two);
+        	bottomHbox.getChildren().add(one);
         }
-        bottomHbox.setPadding(new Insets(0,0,screenHeight/10 -20,screenHeight/12));
+        bottomHbox.setPadding(new Insets(0,0,screenHeight/10 -screenHeight/54,screenHeight/16));
+        bottomHbox.setMinHeight(screenHeight/10);
         return bottomHbox;
         
     }
@@ -291,28 +313,46 @@ public class GuiView {
     public VBox drawLeft(Board brett) {
     	 //define left 
         VBox leftVbox = new VBox();
-        leftVbox.setSpacing(screenHeight /12);
+        leftVbox.setPadding(new Insets(0,screenHeight/200,0,screenHeight/200));
+        leftVbox.setMinHeight(screenHeight/10 *8);
+        leftVbox.setMaxHeight(screenHeight/10 *8);
+        Label eight = new Label("8");
+        eight.setMinHeight(screenHeight/10);
+        Label seven = new Label("7");
+        seven.setMinHeight(screenHeight/10);
+        Label six = new Label("6");
+        six.setMinHeight(screenHeight/10);
+        Label five = new Label("5");
+        five.setMinHeight(screenHeight/10);
+        Label four = new Label("4");
+        four.setMinHeight(screenHeight/10);
+        Label three = new Label("3");
+        three.setMinHeight(screenHeight/10);
+        Label two = new Label("2");
+        two.setMinHeight(screenHeight/10);
+        Label one = new Label("1");
+        one.setMinHeight(screenHeight/10);
         if(!gc.rotate || brett.getCurrentTurn()==0) {
-        	leftVbox.getChildren().add(new Label("8"));
-        	leftVbox.getChildren().add(new Label("7"));
-        	leftVbox.getChildren().add(new Label("6"));
-        	leftVbox.getChildren().add(new Label("5"));
-        	leftVbox.getChildren().add(new Label("4"));
-        	leftVbox.getChildren().add(new Label("3"));
-        	leftVbox.getChildren().add(new Label("2"));
-        	leftVbox.getChildren().add(new Label("1"));
+        	leftVbox.getChildren().add(eight);
+        	leftVbox.getChildren().add(seven);
+        	leftVbox.getChildren().add(six);
+        	leftVbox.getChildren().add(five);
+        	leftVbox.getChildren().add(four);
+        	leftVbox.getChildren().add(three);
+        	leftVbox.getChildren().add(two);
+        	leftVbox.getChildren().add(one);
         }
         else {
-            leftVbox.getChildren().add(new Label("1"));
-            leftVbox.getChildren().add(new Label("2"));
-            leftVbox.getChildren().add(new Label("3"));
-            leftVbox.getChildren().add(new Label("4"));
-            leftVbox.getChildren().add(new Label("5"));
-            leftVbox.getChildren().add(new Label("6"));
-            leftVbox.getChildren().add(new Label("7"));
-            leftVbox.getChildren().add(new Label("8"));
+            leftVbox.getChildren().add(one);
+            leftVbox.getChildren().add(two);
+            leftVbox.getChildren().add(three);
+            leftVbox.getChildren().add(four);
+            leftVbox.getChildren().add(five);
+            leftVbox.getChildren().add(six);
+            leftVbox.getChildren().add(seven);
+            leftVbox.getChildren().add(eight);
         }
-        leftVbox.setPadding(new Insets(screenHeight /20,20,0,20));
+    
         return leftVbox;
     }
     
