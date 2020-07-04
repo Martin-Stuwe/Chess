@@ -152,9 +152,9 @@ public class GuiController {
 		RadioButton ai = (RadioButton) primaryStage.getScene().lookup("#ai");
 		Button btn = (Button) primaryStage.getScene().lookup("#start");
 		Button btn2 = (Button) primaryStage.getScene().lookup("#load");
-		CheckBox enableTime = (CheckBox) primaryStage.getScene().lookup("enableTime");
-		TextField whiteTime = (TextField) primaryStage.getScene().lookup("whiteTime");
-		TextField blackTime = (TextField) primaryStage.getScene().lookup("blackTime");
+		CheckBox enableTime = (CheckBox) primaryStage.getScene().lookup("#enable");
+		TextField whiteTime = (TextField) primaryStage.getScene().lookup("#whTi");
+		TextField blackTime = (TextField) primaryStage.getScene().lookup("#blTi");
 		
 		 white.setOnAction(new EventHandler<ActionEvent>() {
           	 
@@ -192,6 +192,8 @@ public class GuiController {
 	            }
 	        });
 	        
+	      
+	        
 	        btn2.setOnAction(new EventHandler<ActionEvent>() {
 	        	 
 	            @Override
@@ -201,7 +203,7 @@ public class GuiController {
 	            	if(enableTime.isSelected()) {
 	            		try {
 			        		gv.clock.timeWhite = Integer.parseInt(whiteTime.getText());
-			        		gv.clock.timeBlack = Integer.parseInt(black.getText());
+			        		gv.clock.timeBlack = Integer.parseInt(blackTime.getText());
 			        		gv.clock.active = true;
 			        	}
 			        	catch(NumberFormatException e){
@@ -235,7 +237,7 @@ public class GuiController {
 	            	if(enableTime.isSelected()) {
 	            		try {
 			        		gv.clock.timeWhite = Integer.parseInt(whiteTime.getText());
-			        		gv.clock.timeBlack = Integer.parseInt(black.getText());
+			        		gv.clock.timeBlack = Integer.parseInt(blackTime.getText());
 			        		gv.clock.active = true;
 			        	}
 			        	catch(NumberFormatException e){
@@ -292,19 +294,28 @@ public class GuiController {
 		startAi();
 		
 	      
-	      /* TEST 
-	      Time clock = new Time(300,300);
 	      
-	      Timeline clockUpdate = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+	
+	      
+	    Timeline clockUpdate = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 			
-	    	  public void handle(ActionEvent event) {
-	    		  clock.updateTime(gv.brett);
-	    		  System.out.println("white: " + clock.timeWhite + " black: " + clock.timeBlack);
-	    	  }
+	    	public void handle(ActionEvent event) {
+	    		Label whiteLa = (Label) primaryStage.getScene().lookup("#whiteLa");
+	    		Label blackLa = (Label) primaryStage.getScene().lookup("#blackLa");
+	    		gv.clock.updateTime(gv.brett);
+	    		whiteLa.setText(" white time: " + gv.clock.timeWhite);
+	    		blackLa.setText(" black time: " + gv.clock.timeBlack);
+	    	   
+	    	      	if(gv.clock.timeWhite <= 0 || gv.clock.timeBlack <= 0) {
+	    	      		
+	    	    	 
+	    	      	}
+	    		  
+	    		 }
 	      }));
 	      clockUpdate.setCycleCount(Timeline.INDEFINITE);
 	      clockUpdate.play();
-	      */
+	      
 	}
 	
 	  /**

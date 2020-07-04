@@ -122,12 +122,12 @@ public class GuiView {
         pla.setSelected(true);
         HBox modebox = new HBox(100, pla, ai);
         
-        CheckBox enableTime = new CheckBox("enable time (standard = 600)");
+        CheckBox enableTime = new CheckBox("enable time");
         enableTime.setId("enable");
         TextField whiteTime = new TextField();
-        whiteTime.setId("whiteTime");
+        whiteTime.setId("whTi");
         TextField blackTime = new TextField();
-        blackTime.setId("blackTime");
+        blackTime.setId("blTi");
         HBox timebox = new HBox(100, enableTime, whiteTime, blackTime);
         
        
@@ -191,8 +191,12 @@ public class GuiView {
         	board.add(new Label ("  black to move"), 8, 0);
         }
         
- 
-        
+        Label whiteLa = new Label(" white time: " + clock.timeWhite);
+        Label blackLa = new Label(" black time: " + clock.timeBlack);
+        whiteLa.setId("whiteLa");
+        blackLa.setId("blackLa");
+        board.add(whiteLa, 8, 4);
+        board.add(blackLa, 8, 3);
 
 
         border.setCenter(board);
@@ -464,4 +468,6 @@ public class GuiView {
         }
         return board;
 	}
+	
+
 }
