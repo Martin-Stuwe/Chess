@@ -335,7 +335,35 @@ public class AI {
 			for (int y=0;y<8;y++) {
 				
 				value = value+calculateFigure(board.getField(x, y),colorS);
-					
+				if (board.positionen[x][y] != null &&board.positionen[x][y].getColor()==colorS) {
+				
+				if (x == 1||y == 1) {
+					value=value+1;
+				}
+				if (x == 2||y == 2) {
+					value=value+2;
+				}
+				
+				if (x == 3||y == 3) {
+					value=value+4;
+				}
+				
+				if (x == 4||y == 4) {
+					value=value+4;
+				}
+				
+				if (x == 5||y == 5) {
+					value=value+3;
+				}
+				
+				if (x == 6||y == 6) {
+					value=value+2;
+				}
+				
+				if (x==7||y == 7) {
+					value=value+1;
+				}
+				}
 			}
 		}
 		
@@ -350,34 +378,9 @@ public class AI {
 	public int calculateFigure(Figures figure, String color) {
 		int valuez=0;
 		int multiply;
-		if (figure != null) {
-		if (figure.pos1 == 1||figure.pos2 == 1) {
-			valuez=valuez+1;
-		}
-		if (figure.pos1 == 2||figure.pos2 == 2) {
-			valuez=valuez+2;
-		}
-		
-		if (figure.pos1 == 3||figure.pos2 == 3) {
-			valuez=valuez+4;
-		}
-		
-		if (figure.pos1 == 4||figure.pos2 == 4) {
-			valuez=valuez+4;
-		}
-		
-		if (figure.pos1 == 5||figure.pos2 == 5) {
-			valuez=valuez+3;
-		}
-		
-		if (figure.pos1 == 6||figure.pos2 == 6) {
-			valuez=valuez+2;
-		}
-		
-		if (figure.pos1==7||figure.pos2 == 7) {
-			valuez=valuez+1;
-		}
-		}
+	
+	
+	
 		
 	
 		
@@ -386,27 +389,27 @@ public class AI {
 				
 					if (figure.getClass()==Bishop.class) {
 						
-						valuez=3;
+						valuez=valuez+3;
 					}
 					if (figure.getClass()==King.class) {
-						valuez=5000;
+						valuez=valuez+5000;
 					}
 				
 					if (figure.getClass()==Knight.class) {
-						valuez=3;
+						valuez=valuez+3;
 					}
 					
 					if (figure.getClass()==Pawn.class) {
 						
-						valuez=1;
+						valuez=valuez+1;
 					}
 					
 					if (figure.getClass()==Queen.class) {
-						valuez=10;
+						valuez=valuez+10;
 					}
 					
 					if (figure.getClass()==Rook.class) {
-						valuez=5;
+						valuez=valuez+5;
 					}
 					
 				}
@@ -600,10 +603,11 @@ public class AI {
 			
 			board.positionen[move.to1][move.to2]=board.getField(move.from1,move.from2);
 			board.positionen[move.from1][move.from2]=null;
+			move.getFigure().setPos(move.to1, move.to2);
 			board.initializeBoard();
 			int wert = min(board,tiefe-1,
 	                      maxWert, beta);
-
+			move.getFigure().setPos(move.from1, move.from2);
 			board.positionen[move.from1][move.from2]=restoreFromEn;
 			
 			board.positionen[move.to1][move.to2]=restoreToEn;
@@ -641,9 +645,11 @@ public class AI {
 	    			
 	    			board.positionen[PlayerMove.to1][PlayerMove.to2]=board.getField(PlayerMove.from1,PlayerMove.from2);
 	    			board.positionen[PlayerMove.from1][PlayerMove.from2]=null;
+	    			PlayerMove.getFigure().setPos(PlayerMove.to1, PlayerMove.to2);
 	    			board.setCurrentTurn(1);
 	       int wert = max(board,tiefe-1, alpha, minWert);
 	       board.setCurrentTurn(1);
+	       PlayerMove.getFigure().setPos(PlayerMove.from1, PlayerMove.from2);
 	       board.positionen[PlayerMove.from1][PlayerMove.from2]=restoreFromPl;
 			
 			board.positionen[PlayerMove.to1][PlayerMove.to2]=restoreToPl;
