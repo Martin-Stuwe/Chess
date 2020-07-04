@@ -1,4 +1,9 @@
 .root{
-		-fx-background: rgb(210,180,140);
+	-fx-background: rgb(210,180,140);
+	-fx-font-family:"Courier New";
 		
+}
+
+#ngBtn{
+	-fx-font-family:"Times New Roman";
 }

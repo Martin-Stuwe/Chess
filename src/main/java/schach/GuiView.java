@@ -90,6 +90,7 @@ public class GuiView {
         primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
+        primaryStage.getScene().getStylesheets().add("style.css");
         primaryStage.show();
 	}
 	  /**
@@ -142,6 +143,7 @@ public class GuiView {
         StackPane root = new StackPane();
         root.getChildren().add(option);
         primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
+        primaryStage.getScene().getStylesheets().add("style.css");
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
@@ -169,6 +171,7 @@ public class GuiView {
         StackPane root = new StackPane();
         root.getChildren().add(border);
         primaryStage.setScene(new Scene(root, screenWidth, screenHeight));
+        primaryStage.getScene().getStylesheets().add("style.css");
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.setMinHeight(600);
