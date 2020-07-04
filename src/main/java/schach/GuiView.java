@@ -187,6 +187,8 @@ public class GuiView {
         border.setBottom(drawBottom(brett));
         border.setRight(drawRight(brett));
         border.getTop().minHeight(screenHeight/10);
+        System.out.println("helo");
+       
         gc.aiMove(brett);
         return board;
     }
@@ -315,7 +317,6 @@ public class GuiView {
         VBox leftVbox = new VBox();
         leftVbox.setPadding(new Insets(0,screenHeight/200,0,screenHeight/200));
         leftVbox.setMinHeight(screenHeight/10 *8);
-        leftVbox.setMaxHeight(screenHeight/10 *8);
         Label eight = new Label("8");
         eight.setMinHeight(screenHeight/10);
         Label seven = new Label("7");

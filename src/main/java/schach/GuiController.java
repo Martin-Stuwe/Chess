@@ -34,15 +34,6 @@ import javafx.util.Duration;
 import java.lang.Math;
 
 public class GuiController {
-	/**
-	 * height of the screen
-	 */
-	double screenHeight;
-	
-	/**
-	 * width of the screen
-	 */
-	double screenWidth;
 
 	/**
 	 * check if rotate checkbox is ticked
@@ -68,17 +59,7 @@ public class GuiController {
 	 * check if figure has been clicked on
 	 */
 	boolean clicked = false;
-	
-	/**
-	 * ListView of all the moves played
-	 */
-	// ListView<String> historie = new ListView<String>();
-	
-	/**
-	 * ListView of all beaten figures
-	 */
-	ListView<String> beaten = new ListView<String>();
-	
+
 	/**
 	 *  calculator of the game
 	 */
@@ -330,6 +311,7 @@ public class GuiController {
 	public void aiMove(Board brett) {
 		   
     	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
+ 
             
             ki.findPossMoves(brett,ki.getColor());
             ki.Calculate(brett);
@@ -552,7 +534,6 @@ public class GuiController {
 	        });
 			}
 			gv.drawBoard();
-			
-			
+
 		}
 }
