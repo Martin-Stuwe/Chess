@@ -615,12 +615,14 @@ public class AI {
 			
 			
 	       if (wert > maxWert) {
-	          maxWert = wert;
-	          if (tiefe == desiredDepth)
+	          maxWert = wert; 
+	          if (tiefe == desiredDepth) { 
 	             bestMove = move;
-	          if (maxWert >= beta)
-	             break;
-	       }
+	          }
+	          if (maxWert >= beta) {
+	        	  System.out.println("=====================CUT=============");
+	             break; 
+	       }}
 	    }
 	    return maxWert;
 	 }
@@ -656,10 +658,11 @@ public class AI {
 			board.positionen[PlayerMove.to1][PlayerMove.to2]=restoreToPl;
 	       if (wert < minWert) {
 	          minWert = wert;
-	          if (minWert <= alpha)
+	          if (minWert <= alpha) {
+	        	  System.out.println("=====================CUT=============");
 	             break;
 	       }
-	    }
+	    }}
 	    return minWert;
 	 }
 	 
