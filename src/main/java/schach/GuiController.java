@@ -297,12 +297,12 @@ public class GuiController {
 		gv.brett.setStart();
 		primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
 		     gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
-		     gv.drawBoard();
+		    // gv.drawBoard();
 		});
 
 		primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
 			gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
-			 gv.drawBoard();
+			// gv.drawBoard();
 		});
 		
         if(saveGame) {
@@ -383,7 +383,7 @@ public class GuiController {
     	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
  
             
-    		ki.lookAhead(gv.brett,2,ki.getColor());
+    		ki.lookAhead(gv.brett,3,ki.getColor());
           
            
     		
