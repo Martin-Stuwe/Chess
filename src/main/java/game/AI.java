@@ -594,7 +594,7 @@ public class AI {
 		 List<Zug> PlayerMoves;
 		 board.setCurrentTurn(0);
 		 PlayerMoves=findPossMoves2(board,0);
-	    if (tiefe == 0 || PlayerMoves.size()==1) {
+	    if (tiefe == 0 || PlayerMoves.size()==0) {
 	    	System.out.println(calculateValueFor(board,1)-calculateValueFor(board,0));
 	    	return calculateValueFor(board,1)-calculateValueFor(board,0);
 	    }
@@ -609,9 +609,9 @@ public class AI {
 	    			
 	    			board.positionen[PlayerMove.to1][PlayerMove.to2]=board.getField(PlayerMove.from1,PlayerMove.from2);
 	    			board.positionen[PlayerMove.from1][PlayerMove.from2]=null;
-
+	    			board.setCurrentTurn(1);
 	       int wert = max(board,tiefe-1, alpha, minWert);
-	       
+	       board.setCurrentTurn(1);
 	       board.positionen[PlayerMove.from1][PlayerMove.from2]=restoreFromPl;
 			
 			board.positionen[PlayerMove.to1][PlayerMove.to2]=restoreToPl;
