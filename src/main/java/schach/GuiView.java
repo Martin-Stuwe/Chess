@@ -7,6 +7,7 @@ import figures.Rook;
 import game.AI;
 import game.Board;
 import game.GuiCalcs;
+import game.Time;
 import game.Zug;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -52,6 +54,8 @@ public class GuiView {
     GuiCalcs rechner = new GuiCalcs();
     GuiController gc;
  	Stage window = new Stage();
+ 	public Time clock = new Time(0,0);
+ 	
     public Board getBrett() {
     	return brett;
     }
@@ -118,13 +122,22 @@ public class GuiView {
         pla.setSelected(true);
         HBox modebox = new HBox(100, pla, ai);
         
+        CheckBox enableTime = new CheckBox("enable time");
+        enableTime.setId("enable");
+        TextField whiteTime = new TextField();
+        whiteTime.setId("whiteTime");
+        TextField blackTime = new TextField();
+        blackTime.setId("blackTime");
+        HBox timebox = new HBox(100, enableTime, whiteTime, blackTime);
+        
        
         VBox option = new VBox();
         option.setSpacing(primaryScreenBounds.getHeight() /20);
         option.getChildren().add(colorbox);
         option.getChildren().add(modebox);
+        option.getChildren().add(timebox);
         option.getChildren().add(chobox);
-        option.setPadding(new Insets(primaryScreenBounds.getHeight() /3,primaryScreenBounds.getWidth() /3,primaryScreenBounds.getHeight() /3,primaryScreenBounds.getWidth() /3));
+        option.setPadding(new Insets(primaryScreenBounds.getHeight() /4,primaryScreenBounds.getWidth() /4,primaryScreenBounds.getHeight() /4,primaryScreenBounds.getWidth() /4));
         
         StackPane root = new StackPane();
         root.getChildren().add(option);

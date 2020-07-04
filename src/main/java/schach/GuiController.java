@@ -21,6 +21,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -151,6 +152,9 @@ public class GuiController {
 		RadioButton ai = (RadioButton) primaryStage.getScene().lookup("#ai");
 		Button btn = (Button) primaryStage.getScene().lookup("#start");
 		Button btn2 = (Button) primaryStage.getScene().lookup("#load");
+		CheckBox enableTime = (CheckBox) primaryStage.getScene().lookup("enableTime");
+		TextField whiteTime = (TextField) primaryStage.getScene().lookup("whiteTime");
+		TextField blackTime = (TextField) primaryStage.getScene().lookup("blackTime");
 		
 		 white.setOnAction(new EventHandler<ActionEvent>() {
           	 
