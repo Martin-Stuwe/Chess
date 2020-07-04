@@ -29,7 +29,7 @@ public class StartGame {
 	
 	static boolean saveGame = false;
 	
-	static Time clock = new Time(0,0);
+	static Time clock = new Time(600,600);
 	
 	/**
 	 * Catches user input and uses convertAndMove to convert and make the move happen
@@ -176,8 +176,9 @@ public class StartGame {
 				}
 				
 			}
-			
+			if(clock.active) {
 			System.out.println("white time left: " + clock.timeWhite + " | black time left: " + clock.timeBlack);
+			}
 		}
 	}
 	
@@ -274,7 +275,7 @@ public class StartGame {
 			saveGame = false;
 		}
 		AI ki =new AI(color);
-		clock.active = true;
+		
 		Timer t = new Timer();
 		long i = 1000;
 		t.scheduleAtFixedRate(new TimerTask() {
@@ -307,7 +308,9 @@ public class StartGame {
 				ki.lookAhead(board,2,color);
 				Zug.checkCheck(board);
 				board.initializeBoard();
+				if(clock.active) {
 				System.out.println("white time left: " + clock.timeWhite + " | black time left: " + clock.timeBlack);
+				}
 			}
 			System.out.println(board.movedList);
 			getAndMakeMove(board);
@@ -329,7 +332,7 @@ public class StartGame {
 			saveGame = false;
 		}
 		
-		clock.active = true;
+		
 		Timer t = new Timer();
 		long i = 1000;
 		t.scheduleAtFixedRate(new TimerTask() {
@@ -402,6 +405,7 @@ public class StartGame {
 	        }
 	        
 	        if(clockInput.input.equals("1")) {
+	        	clock.active = true;
 	        	System.out.println("first type in the amount of seconds for white");
 	        	Console white = new Console();
 	        	white.open();
