@@ -11,6 +11,7 @@ import game.Time;
 import game.Zug;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -32,6 +33,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.lang.Math;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GuiController {
 
@@ -260,6 +263,7 @@ public class GuiController {
 		
 		gv.drawBoard();
 		setTop(primaryStage);
+		startAi();
 		if(Zug.checkCheck(gv.brett) && showCheck) {
         	if(gv.brett.whiteCheck) {
         		gv.board.add(new Label ("  white is in check"), 8, 1);
@@ -317,15 +321,23 @@ public class GuiController {
             ki.Calculate(brett);
             ki.DoMinMove(brett);
           
-            gv.drawBoard();
-    		if (brett.movedList.size()!=0) {
-    		int a = brett.movedList.get(brett.movedList.size()-1).getFrom1();
-    		int b = brett.movedList.get(brett.movedList.size()-1).getFrom2();
-    		String to  = Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo1())+Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo2());
-    		gv.historie.getItems().add(rechner.convertInputToHistorie(a, b , to));
+           
+    		
+    		Platform.runLater(new Runnable() {
+    		      @Override
+    		      public void run() {
+    		         //Update your GUI here
+    		    	  gv.drawBoard();
+    		    		if (brett.movedList.size()!=0) {
+    		    		int a = brett.movedList.get(brett.movedList.size()-1).getFrom1();
+    		    		int b = brett.movedList.get(brett.movedList.size()-1).getFrom2();
+    		    		String to  = Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo1())+Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo2());
+    		    		gv.historie.getItems().add(rechner.convertInputToHistorie(a, b , to));}
+    		      }
+    		  });
     		}
     	}
-    }
+    
 
 	public void setTop(Stage primaryStage) {
 	    CheckBox check1 = (CheckBox) primaryStage.getScene().lookup("#check1");
@@ -426,7 +438,7 @@ public class GuiController {
      * @param y y axis position
      */	
 	  public void showPossibleMoves(Board brett, int a, int b){
-	    	GridPane possible = gv.drawBoard();
+	    	GridPane possible = gv.board;
 	    	for(int i =0; i<8;i++) {
 				for(int y =0; y<8;y++) {
 					String to = ""+i+y;
@@ -536,4 +548,20 @@ public class GuiController {
 			gv.drawBoard();
 
 		}
-}
+
+
+	public void startAi() {
+		Timer t = new Timer();
+		long i = 1000;
+		t.scheduleAtFixedRate(new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				aiMove(gv.brett);
+			
+			}
+			
+		}, i, i);
+	}
+	}

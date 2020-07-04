@@ -167,7 +167,7 @@ public class GuiView {
      * @param brett board of the game
      * @return board GridPane of the whole cnter part of the game
      */
-    public GridPane drawBoard() {
+    public void  drawBoard() {
     	board = drawFeld(brett);     
         
         // check whose turn it is
@@ -187,10 +187,10 @@ public class GuiView {
         border.setBottom(drawBottom(brett));
         border.setRight(drawRight(brett));
         border.getTop().minHeight(screenHeight/10);
-        System.out.println("helo");
-       
-        gc.aiMove(brett);
-        return board;
+
+
+        
+      //  return board;
     }
     
     
