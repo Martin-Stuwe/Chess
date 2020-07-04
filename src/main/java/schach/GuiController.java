@@ -203,12 +203,21 @@ public class GuiController {
 	            	if(enableTime.isSelected()) {
 	            		try {
 			        		gv.clock.timeWhite = Integer.parseInt(whiteTime.getText());
-			        		gv.clock.timeBlack = Integer.parseInt(blackTime.getText());
-			        		gv.clock.active = true;
+			        		
+			        		
 			        	}
 			        	catch(NumberFormatException e){
 			        		
 			        	}
+	            		
+	            		try {
+	            			gv.clock.timeBlack = Integer.parseInt(blackTime.getText());
+	            		}
+	            		catch(NumberFormatException e) {
+	            			
+	            		}
+	            		
+	            		gv.clock.active = true;
 	            	}
 	            	
 	           		if(ai.isSelected()&& white.isSelected()) {
@@ -237,12 +246,21 @@ public class GuiController {
 	            	if(enableTime.isSelected()) {
 	            		try {
 			        		gv.clock.timeWhite = Integer.parseInt(whiteTime.getText());
-			        		gv.clock.timeBlack = Integer.parseInt(blackTime.getText());
-			        		gv.clock.active = true;
+			        		
+			        		
 			        	}
 			        	catch(NumberFormatException e){
 			        		
 			        	}
+	            		
+	            		try {
+	            			gv.clock.timeBlack = Integer.parseInt(blackTime.getText());
+	            		}
+	            		catch(NumberFormatException e) {
+	            			
+	            		}
+	            		
+	            		gv.clock.active = true;
 	            	}
 	            	if(ai.isSelected()&& white.isSelected()) {
 	            		aiGame =true;
