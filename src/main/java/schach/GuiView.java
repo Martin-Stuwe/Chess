@@ -167,7 +167,7 @@ public class GuiView {
      * @param brett board of the game
      * @return board GridPane of the whole cnter part of the game
      */
-    public void  drawBoard() {
+    public GridPane drawBoard() {
     	board = drawFeld(brett);     
         
         // check whose turn it is
@@ -190,7 +190,7 @@ public class GuiView {
 
 
         
-      //  return board;
+     return board;
     }
     
     

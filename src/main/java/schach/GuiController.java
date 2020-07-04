@@ -438,7 +438,7 @@ public class GuiController {
      * @param y y axis position
      */	
 	  public void showPossibleMoves(Board brett, int a, int b){
-	    	GridPane possible = gv.board;
+	    	GridPane possible = gv.drawBoard();
 	    	for(int i =0; i<8;i++) {
 				for(int y =0; y<8;y++) {
 					String to = ""+i+y;
@@ -553,8 +553,7 @@ public class GuiController {
 	public void startAi() {
 		Timer t = new Timer();
 		long i = 1000;
-		t.scheduleAtFixedRate(new TimerTask() {
-
+		t.scheduleAtFixedRate(new TimerTask() {		
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
