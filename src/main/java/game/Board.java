@@ -60,6 +60,7 @@ public class Board {
 	 */
 	public  boolean whiteCheck;
 	
+
 	
 	/**
 	 * integer to store whose turn it is currently
@@ -182,6 +183,15 @@ public class Board {
 		}
 	}
 	
+	public void setBoard(Figures[][] boardState) {
+		for(int i =0; i<8;i++) {
+			for(int y =0; y<8;y++) {
+			
+					this.positionen[i][y] = boardState[i][y];
+				
+			}
+			}
+	}
 	/**
 	 * get-method for certain fields on the board
 	 * @param pos1 x axis position on the board
@@ -335,5 +345,5 @@ public class Board {
 		return null;
 	}
 	
-
+	
 }
