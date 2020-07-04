@@ -414,10 +414,11 @@ public class GuiController {
 	public Label getImage(Board brett, int i, int y) {
     	Label image = gv.drawImage(brett, i, y);
     
-    	if(!clicked && touchMove || !touchMove) {
+    	if(!clicked && touchMove &&gv.brett.getCurrentTurn()!=ki.getColor()|| !touchMove&&gv.brett.getCurrentTurn()!=ki.getColor()) {
         	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
+                	
                 	 setClicked(true);
                 	 showPossibleMoves(brett,i,y);
                  
