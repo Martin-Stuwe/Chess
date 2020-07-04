@@ -588,6 +588,7 @@ public class AI {
 		 AImoves=findPossMoves2(board,color);
 	    if (tiefe == 0 || AImoves.size()==0) {
 	    	
+	    	
 	    			int einsV=calculateValueFor(board,1);
 	    			int zweiV=calculateValueFor(board,0);
 	    			System.out.println(einsV);
