@@ -349,7 +349,39 @@ public class AI {
 	 */
 	public int calculateFigure(Figures figure, String color) {
 		int valuez=0;
+		int multiply;
+		if (figure != null) {
+		if (figure.pos1 == 1||figure.pos2 == 1) {
+			valuez=valuez+1;
+		}
+		if (figure.pos1 == 2||figure.pos2 == 2) {
+			valuez=valuez+2;
+		}
+		
+		if (figure.pos1 == 3||figure.pos2 == 3) {
+			valuez=valuez+4;
+		}
+		
+		if (figure.pos1 == 4||figure.pos2 == 4) {
+			valuez=valuez+4;
+		}
+		
+		if (figure.pos1 == 5||figure.pos2 == 5) {
+			valuez=valuez+3;
+		}
+		
+		if (figure.pos1 == 6||figure.pos2 == 6) {
+			valuez=valuez+2;
+		}
+		
+		if (figure.pos1==7||figure.pos2 == 7) {
+			valuez=valuez+1;
+		}
+		}
+		
 	
+		
+		
 				if (figure!=null&&figure.getColor()==color) {
 				
 					if (figure.getClass()==Bishop.class) {
@@ -365,6 +397,7 @@ public class AI {
 					}
 					
 					if (figure.getClass()==Pawn.class) {
+						
 						valuez=1;
 					}
 					
@@ -382,7 +415,6 @@ public class AI {
 		
 		return valuez;
 	}
-	
 	/**
 	 * method to move random
 	 * @param board board the moves should take place on
