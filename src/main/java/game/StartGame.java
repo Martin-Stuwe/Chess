@@ -58,7 +58,7 @@ public class StartGame {
 			
 			// exiting the game
 			if (playerMove.input.equals("exit")){
-				return;	
+		        StartGame.StartGameCommand();
 			}
 			
 			// returns all beaten figures
@@ -307,6 +307,7 @@ public class StartGame {
 				ki.lookAhead(board,2,color);
 				Zug.checkCheck(board);
 				board.initializeBoard();
+				System.out.println("white time left: " + clock.timeWhite + " | black time left: " + clock.timeBlack);
 			}
 			System.out.println(board.movedList);
 			getAndMakeMove(board);
@@ -369,7 +370,7 @@ public class StartGame {
 	        Console player1color = new Console();
 	        player1color.open();
 	        while (!player1color.input.equals ("white") && !player1color.input.equals("black")) {
-	            System.out.println("You have to enter white or black \n");
+	            System.out.println("You have to enter white or black");
 	            player1color.open();
 	        }
 	        if(player1color.input.equals("white")){
@@ -380,7 +381,7 @@ public class StartGame {
 	        }
 	        
 	        
-	        System.out.print("type 1 for starting a new game and 2 for loading a save game \n");
+	        System.out.println("type 1 for starting a new game and 2 for loading a save game");
 	        Console save = new Console();
 	        save.open();
 	        while (!save.input.equals ("1") && !save.input.equals("2")) {
@@ -449,11 +450,11 @@ public class StartGame {
 	        }
 	        
 	        
-	        System.out.print("type 1 for PlayerVsAi and 2 for PlayerVsPlayer \n");
+	        System.out.println("type 1 for PlayerVsAi and 2 for PlayerVsPlayer");
 	        Console mode = new Console();
 	        mode.open();
 	        while (!mode.input.equals ("1") && !mode.input.equals("2")) {
-	            System.out.println("You have to enter 1 or 2 \n" );
+	            System.out.println("You have to enter 1 or 2" );
 	            mode.open();
 	        }
 	        if(mode.input.equals("1")) {
