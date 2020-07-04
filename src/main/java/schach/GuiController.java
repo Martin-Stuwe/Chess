@@ -313,11 +313,14 @@ public class GuiController {
 		
 	      
 	      
-	
+	      
 	      
 	    Timeline clockUpdate = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 			
 	    	public void handle(ActionEvent event) {
+	    		if(gv.clock.timeWhite > 0 && gv.clock.timeBlack > 0) {
+	   	    	
+	   	     
 	    		Label whiteLa = (Label) primaryStage.getScene().lookup("#whiteLa");
 	    		Label blackLa = (Label) primaryStage.getScene().lookup("#blackLa");
 	    		gv.clock.updateTime(gv.brett);
@@ -325,14 +328,37 @@ public class GuiController {
 	    		blackLa.setText(" black time: " + gv.clock.timeBlack);
 	    	   
 	    	      	if(gv.clock.timeWhite <= 0 || gv.clock.timeBlack <= 0) {
-	    	      		
+	    	      		Stage window = new Stage();
+			        	window.setTitle("Game End");
+			            window.initModality(Modality.APPLICATION_MODAL);
+			           
+			            HBox box = new HBox();
+			            if(gv.clock.timeWhite <= 0) {
+			            	box.getChildren().add(new Label("white loss due time"));
+			            }
+			            else {
+			            	box.getChildren().add(new Label("black loss due time"));
+			            }
+			            
+			         
+			            StackPane root = new StackPane();
+			            root.getChildren().add(box);
+			            window.setScene(new Scene(root, 200,200));
+			            window.show();
 	    	    	 
 	    	      	}
 	    		  
 	    		 }
+	    	}
 	      }));
-	      clockUpdate.setCycleCount(Timeline.INDEFINITE);
-	      clockUpdate.play();
+	    
+	    if(gv.clock.timeWhite > 0 && gv.clock.timeBlack > 0) {
+	    	clockUpdate.setCycleCount(Timeline.INDEFINITE);
+		    clockUpdate.play();
+	     }
+	    
+	     
+
 	      
 	}
 	
