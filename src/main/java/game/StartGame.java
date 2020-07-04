@@ -12,6 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import figures.Bishop;
 /**
@@ -26,6 +28,8 @@ import figures.Bishop;
 public class StartGame {
 	
 	static boolean saveGame = false;
+	
+	static Time clock = new Time(0,0);
 	
 	/**
 	 * Catches user input and uses convertAndMove to convert and make the move happen
@@ -172,7 +176,8 @@ public class StartGame {
 				}
 				
 			}
-		
+			
+			System.out.println("white time left: " + clock.timeWhite + " | black time left: " + clock.timeBlack);
 		}
 	}
 	
@@ -269,19 +274,43 @@ public class StartGame {
 			saveGame = false;
 		}
 		AI ki =new AI(color);
+		clock.active = true;
+		Timer t = new Timer();
+		long i = 1000;
+		t.scheduleAtFixedRate(new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				clock.updateTime(board);
+				if(clock.timeWhite <= 0) {
+					System.out.println("white lost on time");
+					clock.active = false;
+					t.cancel();
+				}
+				if(clock.timeBlack <= 0) {
+					System.out.println("black lost on time");
+					clock.active = false;
+					t.cancel();
+				}
+			}
+			
+		}, i, i);
+		
+		
 		
 		while (true) {
 			System.out.println(board.getCurrentTurn());
 		
-		if(board.getCurrentTurn()==color) {
-			//System.out.println(board.getField(4, 1).hasPossibleMove(board,4,1,Integer.toString(3)+Integer.toString(4)));
-		ki.lookAhead(board,2,color);
-		Zug.checkCheck(board);
-		board.initializeBoard();
-		}
-		System.out.println(board.movedList);
-		getAndMakeMove(board);
-		//board.setCurrentTurn(0);
+			if(board.getCurrentTurn()==color) {
+				//System.out.println(board.getField(4, 1).hasPossibleMove(board,4,1,Integer.toString(3)+Integer.toString(4)));
+				ki.lookAhead(board,2,color);
+				Zug.checkCheck(board);
+				board.initializeBoard();
+			}
+			System.out.println(board.movedList);
+			getAndMakeMove(board);
+			//board.setCurrentTurn(0);
 		}
 	}
 		
@@ -298,6 +327,31 @@ public class StartGame {
 			board2.initializeBoard();
 			saveGame = false;
 		}
+		
+		clock.active = true;
+		Timer t = new Timer();
+		long i = 1000;
+		t.scheduleAtFixedRate(new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				clock.updateTime(board2);
+				if(clock.timeWhite <= 0) {
+					System.out.println("white lost on time");
+					clock.active = false;
+					t.cancel();
+				}
+				if(clock.timeBlack <= 0) {
+					System.out.println("black lost on time");
+					clock.active = false;
+					t.cancel();
+				}
+			}
+			
+		}, i, i);
+		
+		
 		
 		while(true) {
 		getAndMakeMove(board2);
@@ -324,16 +378,77 @@ public class StartGame {
 	        else {
 	            i = 0;
 	        }
+	        
+	        
 	        System.out.print("type 1 for starting a new game and 2 for loading a save game \n");
 	        Console save = new Console();
 	        save.open();
 	        while (!save.input.equals ("1") && !save.input.equals("2")) {
-	            System.out.println("You have to enter 1 or 2 \n" );
+	            System.out.println("You have to enter 1 or 2" );
 	            save.open();
 	        }
 	        if(save.input.equals ("2")) {
 	        	saveGame = true;
 	        }
+	        
+	        
+	        System.out.println("type 1 if you want to play with a chess clock, 2 if not");
+	        Console clockInput = new Console();
+	        clockInput.open();
+	        while (!clockInput.input.equals ("1") && !clockInput.input.equals("2")) {
+	            System.out.println("You have to enter 1 or 2" );
+	            clockInput.open();
+	        }
+	        
+	        if(clockInput.input.equals("1")) {
+	        	System.out.println("first type in the amount of seconds for white");
+	        	Console white = new Console();
+	        	white.open();
+	        	int wh = 0;
+	        	try {
+	        		wh = Integer.parseInt(white.input);
+	        	}
+	        	catch(NumberFormatException e){
+	        		
+	        	}
+	        	while(wh <= 0){
+	        		System.out.println("first type in the amount of seconds for white");
+	        		white.open();
+	        		try {
+		        		wh = Integer.parseInt(white.input);
+		        	}
+		        	catch(NumberFormatException e){
+		        		
+		        	}
+	        	}
+	        	
+	        	clock.timeWhite = wh;
+	        	
+	        	System.out.println("now type in the amount of seconds for black");
+	        	Console black = new Console();
+	        	black.open();
+	        	int bl = 0;
+	        	try {
+	        		bl = Integer.parseInt(black.input);
+	        	}
+	        	catch(NumberFormatException e){
+	        		
+	        	}
+	        	while(bl <= 0){
+	        		System.out.println("now type in the amount of seconds for black");
+	        		black.open();
+	        		try {
+		        		bl = Integer.parseInt(black.input);
+		        	}
+		        	catch(NumberFormatException e){
+		        		
+		        	}
+	        	}
+	        	
+	        	clock.timeBlack = bl;
+	        }
+	        
+	        
 	        System.out.print("type 1 for PlayerVsAi and 2 for PlayerVsPlayer \n");
 	        Console mode = new Console();
 	        mode.open();

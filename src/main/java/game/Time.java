@@ -16,7 +16,7 @@ public class Time {
 	}
 	
 	public void updateTime(Board brett) {
-		if((this.timeWhite > 0 || this.timeBlack > 0)&& this.active) {
+		if((this.timeWhite > 0 || timeBlack > 0)&& this.active) {
 			if(brett.getCurrentTurn() == 0) {
 				timeWhite = timeWhite - 1;
 			}
