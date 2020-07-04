@@ -43,7 +43,7 @@ public class GuiView {
 	/**
 	 * ListView of all the moves played
 	 */
-	ListView<String> historie = new ListView<String>();
+	ListView<Label> historie = new ListView<Label>();
 	
     Board brett = new Board();
     GridPane board = new GridPane();
@@ -366,11 +366,12 @@ public class GuiView {
      */
     public void convertInputToHistorie(int a, int b, String to) {
     	String output ="";
-    	
+    	Label test = new Label();
     	int to1=Character.getNumericValue(to.charAt(0));
 		int to2=Character.getNumericValue(to.charAt(1));
 		output = rechner.numberToString(a) + rechner.numberToNumber(b) + "-" + rechner.numberToString(to1) + rechner.numberToNumber(to2);
-    	historie.getItems().add(output);
+    	test.setText(output);
+		historie.getItems().add(test);
     	
     }
     

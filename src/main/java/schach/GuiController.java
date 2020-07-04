@@ -270,8 +270,8 @@ public class GuiController {
         			char from2 = (char) (gv.brett.movedList.get(i).getFrom2());
         			char to1 = (char) (gv.brett.movedList.get(i).getTo1());
         			char to2 = (char) (gv.brett.movedList.get(i).getTo2());
-        			gv.historie.getItems().add(rechner.numberToString(from1) + rechner.numberToNumber(from2)
-        			+ "-" +rechner.numberToString(to1) + rechner.numberToNumber(to2));
+        		//	gv.historie.getItems().add(rechner.numberToString(from1) + rechner.numberToNumber(from2)
+        		//	+ "-" +rechner.numberToString(to1) + rechner.numberToNumber(to2));
         			
         	}
         	saveGame = false;
@@ -398,14 +398,14 @@ public class GuiController {
                 
             }
         });
-        
+          
         testSave.setOnAction(new EventHandler<ActionEvent>() {
           	 
             @Override
             public void handle(ActionEvent event) {
          
 				rechner.makeSaveGui(gv.historie);
-			
+		
             }
         });
 	}

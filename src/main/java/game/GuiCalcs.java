@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import schach.GuiMain;
 
@@ -207,7 +208,7 @@ public class GuiCalcs {
     
     
     
-    public void makeSaveGui(ListView<String> historie){
+    public void makeSaveGui(ListView<Label> historie){
     	File file = new File("save.txt");
     	
     	
@@ -222,7 +223,7 @@ public class GuiCalcs {
     	test.add(java.time.LocalDate.now().toString());
     	test.add("---");
     	for(int i = 0; i < historie.getItems().size(); i++) {
-    		test.add(historie.getItems().get(i).toString());
+    		test.add(historie.getItems().get(i).getText());
     	}
     	
     	
