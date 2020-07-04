@@ -325,7 +325,9 @@ public class GuiController {
             @Override
             public void handle(ActionEvent event) {
                 setRotate(check1.isSelected());
-               // gv.drawBoard();
+                if(!aiGame) {
+               gv.drawBoard();
+                }
             }
         });
         check2.setOnAction(new EventHandler<ActionEvent>() {
@@ -341,7 +343,9 @@ public class GuiController {
             @Override
             public void handle(ActionEvent event) {
                setShowCheck(check3.isSelected());
-             // gv.drawBoard();
+               if(!aiGame) {
+                   gv.drawBoard();
+                    }
             }
         });
         
