@@ -364,16 +364,6 @@ public class GuiView {
      * @param y y axis starting position
      * @param to x and y axis ending position
      */
-    public void convertInputToHistorie(int a, int b, String to) {
-    	String output ="";
-    	Label test = new Label();
-    	int to1=Character.getNumericValue(to.charAt(0));
-		int to2=Character.getNumericValue(to.charAt(1));
-		output = rechner.numberToString(a) + rechner.numberToNumber(b) + "-" + rechner.numberToString(to1) + rechner.numberToNumber(to2);
-    	test.setText(output);
-		historie.getItems().add(test);
-    	
-    }
     
     /**
      * method to open a window and let the user decide what a pawn should be promoted to

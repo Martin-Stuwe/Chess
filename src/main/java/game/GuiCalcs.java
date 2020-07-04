@@ -270,4 +270,17 @@ public class GuiCalcs {
     		
     	}
     }
- }
+ 
+
+public Label convertInputToHistorie(int a, int b, String to) {
+	String output ="";
+	Label test = new Label();
+	int to1=Character.getNumericValue(to.charAt(0));
+	int to2=Character.getNumericValue(to.charAt(1));
+	output = numberToString(a) + numberToNumber(b) + "-" + numberToString(to1) + numberToNumber(to2);
+	test.setText(output);
+	return test;
+
+	
+}
+}

@@ -340,7 +340,7 @@ public class GuiController {
     		int a = brett.movedList.get(brett.movedList.size()-1).getFrom1();
     		int b = brett.movedList.get(brett.movedList.size()-1).getFrom2();
     		String to  = Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo1())+Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo2());
-    		gv.convertInputToHistorie(a, b , to);
+    		gv.historie.getItems().add(rechner.convertInputToHistorie(a, b , to));
     		}
     	}
     }
@@ -496,8 +496,18 @@ public class GuiController {
 			int to2=Character.getNumericValue(to.charAt(1));
 
 			brett.getField(a, b).move(brett, a, b, to);
-			gv.convertInputToHistorie(a, b , to);
-			
+			Label zug = rechner.convertInputToHistorie(a, b , to);
+			int zugnr =gv.historie.getItems().size()+1;
+			zug.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	            @Override
+	            public void handle(MouseEvent event) {
+	            	
+	            	System.out.println("Load Zug"+zugnr);
+	            	
+	            }
+
+	        });
+			gv.historie.getItems().add(zug);
 			if(brett.getField(to1, to2)!= null&&brett.getField(to1, to2).getType()==4 && (brett.getField(to1, to2).getColor()=="w"&& to2==0 ||brett.getField(to1, to2).getColor()=="b"&& to2==7  )) {
 			gv.pawnPromo();
 			Button queen = (Button) gv.window.getScene().lookup("#queen");
