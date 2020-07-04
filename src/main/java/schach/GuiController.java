@@ -2,6 +2,7 @@ package schach;
 
 import figures.Bishop;
 import figures.Knight;
+import figures.Pawn;
 import figures.Queen;
 import figures.Rook;
 import game.AI;
@@ -285,6 +286,10 @@ public class GuiController {
 		
 		Figures[][] figuren = gv.brett.movedList.get(k).getBoardState();
 		gv.brett.setBoard(figuren);
+		int z = gv.historie.getItems().size()-1;
+		for (int i = z;i>k; i--) {
+			gv.historie.getItems().remove(i);
+		}
 	}
 	
 	public void startPlay(Stage primaryStage) {
