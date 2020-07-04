@@ -176,6 +176,7 @@ public class StartGame {
 				}
 				
 			}
+			
 			if(clock.active) {
 			System.out.println("white time left: " + clock.timeWhite + " | black time left: " + clock.timeBlack);
 			}
