@@ -264,34 +264,7 @@ public class GuiController {
 		gv.drawBoard();
 		setTop(primaryStage);
 		startAi();
-		if(Zug.checkCheck(gv.brett) && showCheck) {
-        	if(gv.brett.whiteCheck) {
-        		gv.board.add(new Label ("  white is in check"), 8, 1);
-        	}
-        	else if(gv.brett.blackCheck) {
-        		gv.board.add(new Label ("  black is in check"), 8, 1);
-        	}
-        	
-        }
-	      if(!Zug.checkPossibleMoves(gv.brett)) {
-	        	Stage window = new Stage();
-	        	window.setTitle("Game End");
-	            window.initModality(Modality.APPLICATION_MODAL);
-	           
-	            HBox box = new HBox();
-	            if(Zug.checkCheck(gv.brett)) {
-	            	box.getChildren().add(new Label("Checkmate"));
-	            }
-	            else {
-	            	box.getChildren().add(new Label("Stalemate"));
-	            }
-	            
-	         
-	            StackPane root = new StackPane();
-	            root.getChildren().add(box);
-	            window.setScene(new Scene(root, 200,200));
-	            window.show();
-	        }
+		
 	      
 	      /* TEST 
 	      Time clock = new Time(300,300);
@@ -352,7 +325,7 @@ public class GuiController {
             @Override
             public void handle(ActionEvent event) {
                 setRotate(check1.isSelected());
-                gv.drawBoard();
+               // gv.drawBoard();
             }
         });
         check2.setOnAction(new EventHandler<ActionEvent>() {
@@ -368,7 +341,7 @@ public class GuiController {
             @Override
             public void handle(ActionEvent event) {
                setShowCheck(check3.isSelected());
-              gv.drawBoard();
+             // gv.drawBoard();
             }
         });
         
@@ -413,8 +386,10 @@ public class GuiController {
      */
 	public Label getImage(Board brett, int i, int y) {
     	Label image = gv.drawImage(brett, i, y);
-    
-    	if(!clicked && touchMove &&gv.brett.getCurrentTurn()!=ki.getColor()|| !touchMove&&gv.brett.getCurrentTurn()!=ki.getColor()) {
+    	if(aiGame&&gv.brett.getCurrentTurn()==ki.getColor()) {
+    		
+    	}
+    	else if(!clicked && touchMove || !touchMove) {
         	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -553,13 +528,46 @@ public class GuiController {
 
 	public void startAi() {
 		Timer t = new Timer();
-		long i = 1000;
+		long i = 500;
 		t.scheduleAtFixedRate(new TimerTask() {		
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				aiMove(gv.brett);
-			
+				
+				Platform.runLater(new Runnable() {
+	    		      @Override
+	    		      public void run() {
+				if(Zug.checkCheck(gv.brett) && showCheck) {
+		        	if(gv.brett.whiteCheck) {
+		        		gv.board.add(new Label ("  white is in check"), 8, 1);
+		        	}
+		        	else if(gv.brett.blackCheck) {
+		        		gv.board.add(new Label ("  black is in check"), 8, 1);
+		        	}
+		        	
+		        }
+			      if(!Zug.checkPossibleMoves(gv.brett)) {
+			        	Stage window = new Stage();
+			        	window.setTitle("Game End");
+			            window.initModality(Modality.APPLICATION_MODAL);
+			           
+			            HBox box = new HBox();
+			            if(Zug.checkCheck(gv.brett)) {
+			            	box.getChildren().add(new Label("Checkmate"));
+			            }
+			            else {
+			            	box.getChildren().add(new Label("Stalemate"));
+			            }
+			            
+			         
+			            StackPane root = new StackPane();
+			            root.getChildren().add(box);
+			            window.setScene(new Scene(root, 200,200));
+			            window.show();
+			        }
+	    		      }
+	    		  });
 			}
 			
 		}, i, i);
