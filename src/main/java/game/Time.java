@@ -24,5 +24,9 @@ public class Time {
 				timeBlack = timeBlack - 1;
 			}
 		}
+		if(this.timeWhite == 0 || this.timeBlack == 0) {
+			this.active = false;
+		}
+		
 	}
 }
