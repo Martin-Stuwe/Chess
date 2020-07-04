@@ -383,9 +383,7 @@ public class GuiController {
     	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
  
             
-            ki.findPossMoves(brett,ki.getColor());
-            ki.Calculate(brett);
-            ki.DoMinMove(brett);
+    		ki.lookAhead(gv.brett,2,ki.getColor());
           
            
     		
