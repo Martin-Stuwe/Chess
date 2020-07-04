@@ -6,6 +6,7 @@ import figures.Queen;
 import figures.Rook;
 import game.AI;
 import game.Board;
+import game.Figures;
 import game.GuiCalcs;
 import game.Time;
 import game.Zug;
@@ -280,6 +281,12 @@ public class GuiController {
 		
 	}
 	
+	public void loadBoardState(int k) {
+		
+		Figures[][] figuren = gv.brett.movedList.get(k).getBoardState();
+		gv.brett.setBoard(figuren);
+	}
+	
 	public void startPlay(Stage primaryStage) {
 		gv.brett = new Board();
 		gv.brett.setStart();
@@ -552,11 +559,12 @@ public class GuiController {
 
 			brett.getField(a, b).move(brett, a, b, to);
 			Label zug = rechner.convertInputToHistorie(a, b , to);
-			int zugnr =gv.historie.getItems().size()+1;
+			int zugnr =gv.historie.getItems().size();
 			zug.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent event) {
-	            	
+	            	loadBoardState(zugnr);
+	            	gv.drawBoard();
 	            	System.out.println("Load Zug"+zugnr);
 	            	
 	            }
@@ -607,6 +615,7 @@ public class GuiController {
 	        });
 			}
 			gv.drawBoard();
+			
 
 		}
 

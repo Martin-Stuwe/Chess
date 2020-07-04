@@ -41,7 +41,7 @@ public class Zug {
 	 */
 	int to2;
 	
-
+	public Figures[][] boardState = new Figures[8][8];
 	
 	/**
 	 * constructor for a zug object
@@ -101,6 +101,20 @@ public class Zug {
 	 * checks if a player is in check
 	 * @return true if a player is in check
 	 */
+	public void setBoardState(Board board) {
+		for(int i =0; i<8;i++) {
+			for(int y =0; y<8;y++) {
+				
+				this.boardState[i][y]= board.getField(i, y);
+			}
+			
+		} 
+	}
+	
+	public Figures[][] getBoardState(){
+		return this.boardState;
+	}
+	
 	public static boolean checkCheck(Board board) {
 		board.whiteCheck=false;
 		board.blackCheck=false;
