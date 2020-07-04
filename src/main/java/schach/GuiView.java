@@ -54,7 +54,7 @@ public class GuiView {
     GuiCalcs rechner = new GuiCalcs();
     GuiController gc;
  	Stage window = new Stage();
- 	public Time clock = new Time(0,0);
+ 	public Time clock = new Time(600,600);
  	
     public Board getBrett() {
     	return brett;
@@ -122,7 +122,7 @@ public class GuiView {
         pla.setSelected(true);
         HBox modebox = new HBox(100, pla, ai);
         
-        CheckBox enableTime = new CheckBox("enable time");
+        CheckBox enableTime = new CheckBox("enable time (standard = 600)");
         enableTime.setId("enable");
         TextField whiteTime = new TextField();
         whiteTime.setId("whiteTime");

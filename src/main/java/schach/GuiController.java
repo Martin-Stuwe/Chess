@@ -198,6 +198,17 @@ public class GuiController {
 	            public void handle(ActionEvent event) {
 	            	saveGame = true;
 	            	
+	            	if(enableTime.isSelected()) {
+	            		try {
+			        		gv.clock.timeWhite = Integer.parseInt(whiteTime.getText());
+			        		gv.clock.timeBlack = Integer.parseInt(black.getText());
+			        		gv.clock.active = true;
+			        	}
+			        	catch(NumberFormatException e){
+			        		
+			        	}
+	            	}
+	            	
 	           		if(ai.isSelected()&& white.isSelected()) {
 	        		aiGame =true;
 	        		ki.setColor(1);
@@ -220,6 +231,17 @@ public class GuiController {
 	        	 
 	            @Override
 	            public void handle(ActionEvent event) {
+	            	
+	            	if(enableTime.isSelected()) {
+	            		try {
+			        		gv.clock.timeWhite = Integer.parseInt(whiteTime.getText());
+			        		gv.clock.timeBlack = Integer.parseInt(black.getText());
+			        		gv.clock.active = true;
+			        	}
+			        	catch(NumberFormatException e){
+			        		
+			        	}
+	            	}
 	            	if(ai.isSelected()&& white.isSelected()) {
 	            		aiGame =true;
 	            		ki.setColor(1);
