@@ -7,7 +7,10 @@ import figures.Rook;
 import game.AI;
 import game.Board;
 import game.GuiCalcs;
+import game.Time;
 import game.Zug;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -27,6 +30,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class GuiController {
 	/**
@@ -302,7 +306,20 @@ public class GuiController {
 	            window.setScene(new Scene(root, 200,200));
 	            window.show();
 	        }
-		
+	      
+	      /* TEST 
+	      Time clock = new Time(300,300);
+	      
+	      Timeline clockUpdate = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+			
+	    	  public void handle(ActionEvent event) {
+	    		  clock.updateTime(gv.brett);
+	    		  System.out.println("white: " + clock.timeWhite + " black: " + clock.timeBlack);
+	    	  }
+	      }));
+	      clockUpdate.setCycleCount(Timeline.INDEFINITE);
+	      clockUpdate.play();
+	      */
 	}
 	
 	  /**
