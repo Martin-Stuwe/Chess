@@ -254,7 +254,6 @@ public class GuiController {
 	            		catch(NumberFormatException e) {
 	            			gv.clock.timeBlack = 600;
 	            		}
-	            		
 	            		gv.clock.active = true;
 	            	}
 	            	if(ai.isSelected()&& white.isSelected()) {
