@@ -370,7 +370,10 @@ public class GuiController {
 		}
 	}
 	
-	
+	/**
+	 * method to redo a turn
+	 * @param k number of undone turn to return to
+	 */
 	public void redoTurns(int k) {
 		for(int i=0;i<k;i++) {
 			int z = undoneTurns.size();
@@ -411,16 +414,7 @@ public class GuiController {
 		
         if(saveGame) {
         	rechner.loadGuiSave(gv.brett);
-        	for(int i = 0; i < gv.brett.movedList.size();i++) {
-        			char from1 = (char) (gv.brett.movedList.get(i).getFrom1());
-        			char from2 = (char) (gv.brett.movedList.get(i).getFrom2());
-        			char to1 = (char) (gv.brett.movedList.get(i).getTo1());
-        			char to2 = (char) (gv.brett.movedList.get(i).getTo2());
-        		//	gv.historie.getItems().add(rechner.numberToString(from1) + rechner.numberToNumber(from2)
-        		//	+ "-" +rechner.numberToString(to1) + rechner.numberToNumber(to2));
-        			
-        	}
-        	saveGame = false;
+            saveGame = false;
         }
 		
 		gv.drawBoard();
@@ -433,6 +427,9 @@ public class GuiController {
 	      
 	    Timeline clockUpdate = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 			
+	    	/**
+	    	 * method to update the time in GUI
+	    	 */
 	    	public void handle(ActionEvent event) {
 	    		if(gv.clock.timeWhite > 0 && gv.clock.timeBlack > 0) {
 	   	    	
@@ -626,10 +623,7 @@ public class GuiController {
      */
 	public Label getImage(Board brett, int i, int y) {
     	Label image = gv.drawImage(brett, i, y);
-    	if(aiGame&&gv.brett.getCurrentTurn()==ki.getColor()) {
-    		
-    	}
-    	else if(!gameParameters.get(0) && gameParameters.get(3) || !gameParameters.get(3)) {
+    	if(!gameParameters.get(0) && gameParameters.get(3) || !gameParameters.get(3)) {
         	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -762,7 +756,9 @@ public class GuiController {
 		
 	  }
 
-
+	/**
+	 * method to start the Ai
+	 */
 	public void startAi() {
 		Timer t = new Timer();
 		long i = 500;
