@@ -37,7 +37,7 @@ public class Knight extends Figures {
 	/**
 	 * array to evaluate the knight position
 	 */
-	private int [] knightTable = {
+	private static int [] knightTable = {
       -50,-40,-30,-30,-30,-30,-40,-50,
       -40,-20,  0,  0,  0,  0,-20,-40,
       -30,  0, 10, 15, 15, 10,  0,-30,
@@ -84,8 +84,9 @@ public class Knight extends Figures {
 	 * get method for knightTable
 	 * @return knightTable
 	 */
-	public int[] getTable() {
-		return knightTable;
+	public static int[] getTable() {
+		int[] knightTableCopy=knightTable.clone();
+		return knightTableCopy;
 	}
 	
 	/**

@@ -44,7 +44,7 @@ public class Bishop extends Figures {
 	/**
 	 * array to evaluate the bishop position
 	 */
-	private int [] bishopTable = {
+	private static int [] bishopTable = {
             -20,-10,-10,-10,-10,-10,-10,-20,
             -10,  0,  0,  0,  0,  0,  0,-10,
             -10,  0,  5, 10, 10,  5,  0,-10,
@@ -110,8 +110,9 @@ public class Bishop extends Figures {
 	 * get method for bishopTable
 	 * @return bishopTable
 	 */
-	public int[] getTable() {
-		return this.bishopTable;
+	public static int[] getTable() {
+		int [] bishopTableCopy=bishopTable.clone();
+		return bishopTableCopy;
 	}
 	
 	

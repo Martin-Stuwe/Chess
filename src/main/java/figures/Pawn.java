@@ -44,7 +44,7 @@ public class Pawn extends Figures {
 	/**
 	 * array to evaluate the pawn position
 	 */ 
-    private int [] pawnTable = {
+    private static int [] pawnTable = {
             0,  0,  0,  0,  0,  0,  0,  0,
             50, 50, 50, 50, 50, 50, 50, 50,
             10, 10, 20, 30, 30, 20, 10, 10,
@@ -72,7 +72,8 @@ public class Pawn extends Figures {
 	 * get method for pawnTable
 	 * @return pawnTable
 	 */
-	public int[] getTable() {
+	public static int[] getTable() {
+		int[] pawnTableCopy=pawnTable.clone();
 		return pawnTable;
 	}
 	/**

@@ -44,7 +44,7 @@ public class Rook extends Figures {
 	/**
 	 * array to evaluate the rook position
 	 */
-    private int [] rookTable = {
+    private static int [] rookTable = {
           0,  0,  0,  0,  0,  0,  0,  0,
           5, 10, 10, 10, 10, 10, 10,  5,
          -5,  0,  0,  0,  0,  0,  0, -5,
@@ -103,8 +103,9 @@ public class Rook extends Figures {
 	 * get method for rookTable
 	 * @return rookTable
 	 */
-	public int[] getTable() {
-		return rookTable;
+	public static int[] getTable() {
+		int [] rookTableCopy=rookTable.clone();
+		return rookTableCopy;
 	}
 	
 	/**
