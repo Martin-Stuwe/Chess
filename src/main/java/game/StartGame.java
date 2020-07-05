@@ -426,6 +426,7 @@ public class StartGame {
 	} 
 	
 	
+	
 	/**
 	* Method with the further start game algorithm
 	*/
