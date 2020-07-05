@@ -32,6 +32,9 @@ public class ConsoleTest {
 		assertEquals("Test" , TC.input.toString(), "Input Erfolgreich");
 		} 
 	
+	/**
+	* Test for user Input
+	*/
 	@Test
 	public void testCheckUserInput(){
 		Board board2 = new Board();
@@ -43,6 +46,9 @@ public class ConsoleTest {
 		Console.checkUserInput(TC, board2);
 	}
 	
+	/**
+	* Test For Move Conversion
+	*/
 	@Test
 	public void testConvertAndMove() {
 		Board board2 = new Board();
