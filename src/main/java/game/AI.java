@@ -393,27 +393,27 @@ public class AI {
 				
 					if (figure.getClass()==Bishop.class) {
 						
-						valuez=valuez+3;
+						valuez=valuez+30;
 					}
 					if (figure.getClass()==King.class) {
 						valuez=valuez+5000;
 					}
 				
 					if (figure.getClass()==Knight.class) {
-						valuez=valuez+3;
+						valuez=valuez+30;
 					}
 					
 					if (figure.getClass()==Pawn.class) {
 						
-						valuez=valuez+1;
-					}
-					
-					if (figure.getClass()==Queen.class) {
 						valuez=valuez+10;
 					}
 					
+					if (figure.getClass()==Queen.class) {
+						valuez=valuez+100;
+					}
+					
 					if (figure.getClass()==Rook.class) {
-						valuez=valuez+5;
+						valuez=valuez+50;
 					}
 					
 				}

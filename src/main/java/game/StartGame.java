@@ -306,7 +306,7 @@ public class StartGame {
 		
 			if(board.getCurrentTurn()==color) {
 				//System.out.println(board.getField(4, 1).hasPossibleMove(board,4,1,Integer.toString(3)+Integer.toString(4)));
-				ki.lookAhead(board,2,color);
+				ki.lookAhead(board,5,color);
 				Zug.checkCheck(board);
 				board.initializeBoard();
 				if(clock.active) {
