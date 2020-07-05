@@ -273,7 +273,7 @@ public class GuiView {
         border.setBottom(drawBottom(brett));
         border.setRight(drawRight(brett));
         border.getTop().minHeight(screenHeight/10);
-
+        if(!gc.aiTurn && brett.movedList.size()>0) {
         if(Zug.checkCheck(brett) && gc.gameParameters.get(1)) {
         	if(brett.whiteCheck) {
         		board.add(new Label ("  white is in check"), 8, 1);
@@ -309,7 +309,7 @@ public class GuiView {
 	            window.show();
 	        }
 		      
-		  
+        } 
         
      return board;
     }
