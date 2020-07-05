@@ -529,33 +529,40 @@ public class StartGame {
 	        		e.printStackTrace();
 	        	}
         	}
-        	
-        	clock.timeWhite = wh;
-        	
-        	System.out.println("now type in the amount of seconds for black");
-        	Console black = new Console();
-        	black.open();
-        	int bl = 0;
-        	try {
-        		bl = Integer.parseInt(black.input);
-        	}
-        	catch(NumberFormatException e){
-        		e.printStackTrace();
-        	}
-        	
-        	while(bl <= 0){
-        		System.out.println("now type in the amount of seconds for black");
-        		black.open();
-        		try {
-	        		bl = Integer.parseInt(black.input);
-	        	}
-	        	catch(NumberFormatException e){
-	        		e.printStackTrace();
-	        	}
-        	}
-        	
-        	clock.timeBlack = bl;
+        	timeQuestionPartTwo(wh);
+
         }
+	}
+	
+	/**
+	 * second part of method to check if time is wanted
+	 */
+	public static void timeQuestionPartTwo(int wh) {
+	clock.timeWhite = wh;
+	
+	System.out.println("now type in the amount of seconds for black");
+	Console black = new Console();
+	black.open();
+	int bl = 0;
+	try {
+		bl = Integer.parseInt(black.input);
+	}
+	catch(NumberFormatException e){
+		e.printStackTrace();
+	}
+	
+	while(bl <= 0){
+		System.out.println("now type in the amount of seconds for black");
+		black.open();
+		try {
+    		bl = Integer.parseInt(black.input);
+    	}
+    	catch(NumberFormatException e){
+    		e.printStackTrace();
+    	}
+	}
+	
+	clock.timeBlack = bl;
 	}
 	
 	/**
