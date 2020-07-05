@@ -44,6 +44,7 @@ public class StartGame {
 	
 	static boolean aiChosen=false;
 	static List<Zug>undoneTurns = new ArrayList<Zug>();
+	
 	/**
 	 * Catches user input and uses convertAndMove to convert and make the move happen
 	 * @param board the actual Board object
@@ -68,33 +69,41 @@ public class StartGame {
 			
 			Console playerMove = new Console();
 			playerMove.open();
-			
-			// exiting the game
-			if (playerMove.input.equals("exit")){
-		        StartGame.StartGameCommand();
-			}
-			
-			// returns all beaten figures
-			if (playerMove.input.equals("beaten")){
-				board.initializeBoard();
-				System.out.println(board.beaten);			
-				getAndMakeMove(board);
-			}
-			
-			if(playerMove.input.equals("save")) {
-				board.initializeBoard();
-				makeSaveConsole(board);
-				getAndMakeMove(board);
-			}
-			if(playerMove.input.equals("undo")&&board.movedList.size()>0) {
-				undoMove(board);
-				}
-			if(playerMove.input.equals("redo")&&undoneTurns.size()>0) {
-				redoMove(board);
-				
-			}
+			checkUserInput(playerMove, board);
+
 			convertAndMove(board,playerMove);
 		
+	}
+	
+	/**
+	 * Method to read and react on user input
+	 * @param console the console object with the users input
+	 * @param board the actual Board object
+	 */
+	public static void checkUserInput(Console console, Board board) {
+				if (console.input.equals("exit")){
+			        StartGame.StartGameCommand();
+				}
+				
+				// returns all beaten figures
+				if (console.input.equals("beaten")){
+					board.initializeBoard();
+					System.out.println(board.beaten);			
+					getAndMakeMove(board);
+				}
+				
+				if(console.input.equals("save")) {
+					board.initializeBoard();
+					makeSaveConsole(board);
+					getAndMakeMove(board);
+				}
+				if(console.input.equals("undo")&&board.movedList.size()>0) {
+					undoMove(board);
+					}
+				if(console.input.equals("redo")&&undoneTurns.size()>0) {
+					redoMove(board);
+					
+				}
 	}
 	
 	/**
