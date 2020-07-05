@@ -116,5 +116,16 @@ public class AITest {
 		ki.DoRndMove(board2);
 		assertNotEquals(board.positionen,board2.positionen,"moved");
 	}
+	
+	/**
+	* Test For min moves
+	*/
+	@Test
+	public void testmin() {
+		AI ki=new AI(1);
+		Board board= new Board();
+		board.setStart();
+		assertEquals(ki.min(board, 1, -500000, 500000),5040,"min Value");
+	}
 
 }
