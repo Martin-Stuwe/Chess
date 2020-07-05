@@ -49,7 +49,7 @@ public class Board {
 	 * List with all previous moves
 	 */
 	public List<Zug> movedList = new ArrayList<Zug>();
-	
+
 	/**
 	 * check if black is in check
 	 */

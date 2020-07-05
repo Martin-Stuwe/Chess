@@ -24,27 +24,7 @@ import figures.Rook;
  * it2
  */
 public class AI {
-
-	/**
-	 * the possible Moves for the AI
-	 */
-	public List<Zug> possibleMoves;
 	
-	/**
-	 * the possible Moves for the Player
-	 */
-	public List<Zug> enPossibleMoves;
-	
-	/**
-	 * the players value after each AI move
-	 */
-	public List<Integer> EnemyValue ;
-	
-	/**
-	 * the value for the AI
-	 */
-	public List<Integer> AIValue ;
-
 	/**
 	 * the converted turn
 	 */
@@ -62,16 +42,14 @@ public class AI {
 	private Zug bestMove;
 	private int recently;
 	
+	public List<Zug> possibleMoves = new ArrayList<Zug>();
+	
 	/**
 	 * the AI constructor
 	 * @param The color chosen for the AI
 	 */
 	public AI(int color) {
 		this.color = color;
-		possibleMoves = new ArrayList<Zug>();
-		enPossibleMoves = new ArrayList<Zug>();
-		EnemyValue = new ArrayList<Integer>();
-		AIValue = new ArrayList<Integer>();
 	}
 	
 	public void setColor(int i) {
@@ -98,17 +76,7 @@ public class AI {
 		int j1 = Integer.parseInt(String.valueOf(movePos.charAt(1)));
 		int x1 = Integer.parseInt(String.valueOf(movePos.charAt(2)));
 		int y1 = Integer.parseInt(String.valueOf(movePos.charAt(3)));
-		/*Figures restoreTo2 = board.getField(x1,y1);
-		Figures restoreFrom2=board.getField(i1, j1);
-		if (board.getField(x1,y1)!=null){
-			restoreTo2=board.getField(x1, y1);
-		}
-		if (board.getField(x1,y1)==null) {
-			restoreTo2=null;
-		}	
-		if(turn!=color) {
-			board.setCurrentTurn(turn);
-		**/
+
 		if (board.getField(i1, j1).hasPossibleMove(board,i1,j1,Integer.toString(x1)+Integer.toString(y1))) {
 		
 			Zug zug = new Zug(board.getField(i1, j1),i1,j1,Integer.toString(x1)+Integer.toString(y1));
@@ -119,20 +87,12 @@ public class AI {
 			else {
 				possibleMoveList.add(possibleMoveList.size(),zug);
 			}
-			//board.setField(i1, j1, restoreFrom2);
-		
-		/**if (restoreTo2!=null) {
-			board.setField(x1, y1,restoreTo2);
 		}
-		
-		if (restoreTo2==null) {
-			board.positionen[x1][y1]=null;
-		}
-			board.setCurrentTurn(color);
-	**/}
 	
 	}
-	public void findPossMoves(Board board, int turn ) {
+
+
+	public void findPossMovesRnd(Board board, int turn ) {
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
 	
 		convTurn=convertTurn(turn);
@@ -154,7 +114,6 @@ public class AI {
 	
 	}
 
-	
 
 	
 	
@@ -290,7 +249,7 @@ public class AI {
 	 */
 	public void DoRndMove(Board board) {
 		Random rnd= new Random();
-
+	
 		Zug rndMove = possibleMoves.get(rnd.nextInt(possibleMoves.size()));	
 		
 		System.out.println("Tried move: "+rndMove.from1 + rndMove.from2 + rndMove.to1 + rndMove.to2);
@@ -310,12 +269,6 @@ public class AI {
 	}
 	
 	
-	
-	
-		
-		
-	
-	//}
 	
 	public List<Zug> findPossMoves2(Board board2, int turn ) {
 		
@@ -350,21 +303,19 @@ public class AI {
 			
 			}
 		for (int iterate2 = this.recently;iterate2 < possibleMoveList.size()-1;iterate2++) {
-		moveListNotRec.add(
-				new Zug (possibleMoveList.get(iterate2).getFigure(),possibleMoveList.get(iterate2).getFrom1(),possibleMoveList.get(iterate2).getFrom2(),
-						Integer.toString(possibleMoveList.get(iterate2).getTo1())+Integer.toString(possibleMoveList.get(iterate2).getTo2()))
-						);
-		
+			moveListNotRec.add(new Zug (possibleMoveList.get(iterate2).getFigure(),possibleMoveList.get(iterate2).getFrom1(),possibleMoveList.get(iterate2).getFrom2(),
+						Integer.toString(possibleMoveList.get(iterate2).getTo1())+Integer.toString(possibleMoveList.get(iterate2).getTo2())));
 		}
 		Collections.shuffle(moveListNotRec);
 		
 		
 		
-			possibleMoveList.removeAll(possibleMoveList);
-			possibleMoveList.addAll(moveListRec);
-			possibleMoveList.addAll(moveListNotRec);
-			return possibleMoveList;
-		}
+		possibleMoveList.removeAll(possibleMoveList);
+		possibleMoveList.addAll(moveListRec);
+		possibleMoveList.addAll(moveListNotRec);
+		
+		return possibleMoveList;
+	}
 		
 	
 	
