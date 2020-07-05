@@ -40,7 +40,10 @@ public class Bishop extends Figures {
 	 */
 	private boolean emptySpaces;
 	
-	protected static int [] bishopPrecedence = {
+	/**
+	 * array to evaluate the bishop position
+	 */
+	protected static int [] bishopTable = {
             -20,-10,-10,-10,-10,-10,-10,-20,
             -10,  0,  0,  0,  0,  0,  0,-10,
             -10,  0,  5, 10, 10,  5,  0,-10,
@@ -102,8 +105,12 @@ public class Bishop extends Figures {
 		return color;
 	}
 	
+	/**
+	 * get method for bishopTable
+	 * @return bishopTable
+	 */
 	public static int[] getTable() {
-		return bishopPrecedence;
+		return bishopTable;
 	}
 	
 	
