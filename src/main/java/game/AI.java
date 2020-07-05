@@ -409,7 +409,7 @@ public class AI {
 	 */
 	 int max(Board board, int depth, int alpha, int beta) {
 		 List<Zug> AImoves;
-		 this.recently=0;
+		 //this.recently=0;
 		 AImoves=findPossMovesAI(board,color);
 	    if (depth == 0 || AImoves.size()==0) {
 	    	
