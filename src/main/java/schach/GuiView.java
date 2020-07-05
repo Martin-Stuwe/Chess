@@ -289,8 +289,10 @@ public class GuiView {
         CheckBox check4 = new CheckBox("touch-move rule");
         Button back = new Button("back to menu");
         Button testSave = new Button("save");
-
-        
+        Button undo = new Button("undo");
+        Button redo = new Button("redo");
+        undo.setId("undo");
+        redo.setId("redo");
         check2.setSelected(true);
         check3.setSelected(true);
         
@@ -311,6 +313,8 @@ public class GuiView {
         topHbox.getChildren().add(check2);
         topHbox.getChildren().add(check3);
         topHbox.getChildren().add(check4);
+        topHbox.getChildren().add(undo);
+        topHbox.getChildren().add(redo);
         topHbox.getChildren().add(back);
         topHbox.getChildren().add(testSave);
         

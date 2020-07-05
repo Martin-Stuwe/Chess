@@ -465,8 +465,40 @@ public class GuiController {
         CheckBox check3 = (CheckBox) primaryStage.getScene().lookup("#check3");
         CheckBox check4 = (CheckBox) primaryStage.getScene().lookup("#check4");
         Button back = (Button) primaryStage.getScene().lookup("#back");
+        Button undo = (Button) primaryStage.getScene().lookup("#undo");
+        Button redo = (Button) primaryStage.getScene().lookup("#redo");
         Button testSave = (Button) primaryStage.getScene().lookup("#save");
 		
+        undo.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+               
+                if(!aiTurn&& gv.brett.movedList.size()>0) {
+                	int n = 1;
+                	if(aiGame) {
+                		n=2;
+                	}
+                	loadBoardState(gv.brett.movedList.size()-1-n);
+                	gv.drawBoard();
+                }
+                
+                
+            }
+        });
+        redo.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+               
+
+                if(!aiTurn&& undoneTurns.size()>0) {
+                	redoTurns(1);
+                	gv.drawBoard();
+                }
+                
+            }
+        });
 		check1.setOnAction(new EventHandler<ActionEvent>() {
 	       	 
             @Override
