@@ -54,6 +54,7 @@ public class AICalcs {
 	         return valnew;
 	     }
 	 
+	 
 		/**
 		* Method to evaluate the current position based for King, Queen and Knight
 		* @param figure the figure to evaluate
