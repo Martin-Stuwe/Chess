@@ -277,7 +277,7 @@ public class GuiController {
 	
 		Figures[][] figuren = gv.brett.movedList.get(k).getBoardState();
 		gv.brett.setBoard(figuren,gv.brett.movedList.get(k).getTurn());
-		int z = gv.historie.getItems().size()-1;
+		int z = gv.brett.movedList.size()-1;
 		for (int i = z;i>k; i--) {
 			undoneTurns.add(gv.brett.movedList.get(i));
 			gv.brett.movedList.remove(i);
@@ -286,15 +286,35 @@ public class GuiController {
 		addUndoneTurnsToHistorie();
 	}
 	public void addUndoneTurnsToHistorie() {
+		gv.historie.getItems().clear();
+		int k = gv.brett.movedList.size();
+		for(int i=0;i<k;i++) {
+			int n= i;
+			Zug current = gv.brett.movedList.get(i);
+			Label zug = rechner.convertInputToHistorie(current.getFrom1(), current.getFrom2(),""+current.getTo1()+current.getTo2());
+			zug.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	            @Override
+	            public void handle(MouseEvent event) {
+	            	loadBoardState(n);
+	            	gv.drawBoard();
+	            	System.out.println("Load Zug"+n);
+	            	
+	            }
+
+	        });
+			gv.historie.getItems().add(zug);
+		}
 		int z = undoneTurns.size();
+
 		for (int i = z;i>0; i--) {
 			Label undone =rechner.convertInputToHistorie(undoneTurns.get(i-1).getFrom1(), undoneTurns.get(i-1).getFrom2(),""+undoneTurns.get(i-1).getTo1()+undoneTurns.get(i-1).getTo2());
 			undone.setTextFill(Color.LIGHTGREY);
+			int n=z-i+1;
 			undone.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent event) {
-	            
-	            	System.out.println("ReLoad Zug Temp");
+	             redoTurns(n);
+	            	System.out.println("ReLoad Züge"+n);
 	            	
 	            	
 	            }
@@ -302,6 +322,20 @@ public class GuiController {
 	        });
 			gv.historie.getItems().add(undone);
 		}
+	}
+	
+	public void redoTurns(int k) {
+		for(int i=0;i<k;i++) {
+			int z = undoneTurns.size();
+			Figures[][] figuren = undoneTurns.get(z-1).getBoardState();
+			gv.brett.setBoard(figuren, undoneTurns.get(z-1).getTurn());
+			gv.brett.movedList.add(undoneTurns.get(z-1));
+			undoneTurns.remove(z-1);
+			
+		}
+		addUndoneTurnsToHistorie();
+		gv.drawBoard();
+		
 	}
 	public void startPlay(Stage primaryStage) {
 		gv.brett = new Board();
