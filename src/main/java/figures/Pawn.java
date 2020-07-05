@@ -74,7 +74,7 @@ public class Pawn extends Figures {
 	 */
 	public static int[] getTable() {
 		int[] pawnTableCopy=pawnTable.clone();
-		return pawnTable;
+		return pawnTableCopy;
 	}
 	/**
 	 * get-method of boardVisual
