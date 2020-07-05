@@ -90,7 +90,14 @@ public class AI {
 		}
 	
 	}
-
+	
+	/**
+	 * method to find possible randomized Moves for the AI
+	 * @param board board the moves should take place on
+	 * @param movePos String with each position for the move
+	 * @param turn the value for the move turn
+	 * @param possibleMoveList the list with each possible move
+	 */
 	public void findPossMovesRnd(Board board, int turn ) {
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
 	
@@ -208,8 +215,7 @@ public class AI {
 	 */
 	public int calculateFigure(Figures figure, String color) {
 		int valuez=0;
-		int multiply;	
-				if (figure!=null&&figure.getColor()==color) {
+		if (figure!=null&&figure.getColor()==color) {
 				
 					if (figure.getClass()==Bishop.class) {
 						
@@ -236,7 +242,7 @@ public class AI {
 						valuez=valuez+50;
 					}
 					
-				}
+		}
 				
 			
 		
@@ -268,8 +274,13 @@ public class AI {
 	}
 	
 	
-	
-	public List<Zug> findPossMoves2(Board board2, int turn ) {
+	/**
+	 * method to find possible Moves for the AI minmax with alpha beta pruning
+	 * @param board2 board the moves should be simulated on
+	 * @param turn the value for the move turn
+	 * @return possibleMoveList the possible Moves
+	 */	
+	public List<Zug> findPossMovesAI(Board board2, int turn ) {
 		
 		System.out.println(board2.positionen.length);
 		//System.out.println(copy.positionen.length);
@@ -369,20 +380,19 @@ public class AI {
 	public void lookAhead(Board board, int desiredDepth, int color) {
 		
 		this.color=color;
-		 bestMove= null;
+		bestMove= null;
 		this.desiredDepth=desiredDepth;
-		 int bewertung = max(board,desiredDepth,
+		max(board,desiredDepth,
 		                     -100000000, 1000000000);
-		 if (bestMove == null) {
+		if (bestMove == null) {
 		    System.out.println("Matt/Patt");
 		    this.recently=0;
 		 }
-		 else {
-			 board.setCurrentTurn(1);
-			 this.recently=0;
-			 board.getField(bestMove.from1, bestMove.from2).move(board, bestMove.from1,bestMove.from2, Integer.toString(bestMove.to1)+Integer.toString(bestMove.to2));
-			 
-		 }
+		else {
+			board.setCurrentTurn(1);
+			this.recently=0;
+				board.getField(bestMove.from1, bestMove.from2).move(board, bestMove.from1,bestMove.from2, Integer.toString(bestMove.to1)+Integer.toString(bestMove.to2)); 
+		}
 	}
 	
 	
@@ -399,7 +409,7 @@ public class AI {
 	 int max(Board board, int depth, int alpha, int beta) {
 		 List<Zug> AImoves;
 		 this.recently=0;
-		 AImoves=findPossMoves2(board,color);
+		 AImoves=findPossMovesAI(board,color);
 	    if (depth == 0 || AImoves.size()==0) {
 	    	
 	    	
@@ -456,7 +466,7 @@ public class AI {
 		 List<Zug> PlayerMoves;
 		 board.setCurrentTurn(0);
 		 this.recently=0;
-		 PlayerMoves=findPossMoves2(board,0);
+		 PlayerMoves=findPossMovesAI(board,0);
 	    if (depth == 0 || PlayerMoves.size()==0) {
 	    	System.out.println(calculateValueFor(board,1)-calculateValueFor(board,0));
 	    	return (calculateValueFor(board,1)-calculateValueFor(board,0))*10;
@@ -533,42 +543,53 @@ public class AI {
 	        		val -= (330 + (figures.Bishop.getTable()[8 + (8* y) - (1 +x)]));
 	        	}
 	        	break;
-	
-	
-	         case "Knight":
-	        	 
-	        	if(figure.getColor()=="w") {
-	        		val += (320 + (figures.Knight.getTable()[8*(7 - y) + x]));
-	        	}
-	        	if(figure.getColor()=="b") {
-	        		val -= (320 + (figures.Knight.getTable()[8 + (8* y) - (1 +x)]));
-	        	}
-	        	
-	           break;
-	
-	
-	         case "Queen":
-	        	 if(figure.getColor()=="w") {	     
-	        		 val += (900 + (figures.Queen.getTable()[8*(7 - y) + x])); 
-	        	 }
-	        	 if(figure.getColor()=="b") {	
-	        		 val -= (900 + (figures.Queen.getTable()[8 + (8* y) - (1 +x)]));
-	        	 }
-	           break;
-	
-	
-	         case "King":
-	        	 if(figure.getColor()=="w") {
-	        		 val += (20000 + (figures.King.getTable()[8*(7 - y) + x])); 
-	        	 }
-	        	 if(figure.getColor()=="b") {	
-	        		 val -= (20000 + (figures.King.getTable()[8 + (8* y) - (1 +x)]));
-	        	 }
-	           break;
-
-	       }
+	         }
+	         val = positionEvalKQK(name,x,y,figure.getColor(),val);
 	         return val;
 	     }
+	 
+	/**
+	* Method to evaluate the current position based for King, Queen and Knight
+	* @param figure the figure to evaluate
+	* @param x the x position on the board
+	* @param y the y position on the board
+	* @return val the value based on the position
+	*/	 
+	 public int positionEvalKQK(String name, int x, int y, String color, int val) {
+		 switch(name) {
+		 	case "Knight":
+    	 
+	    	if(color=="w") {
+	    		val += (320 + (figures.Knight.getTable()[8*(7 - y) + x]));
+	    	}
+	    	if(color=="b") {
+	    		val -= (320 + (figures.Knight.getTable()[8 + (8* y) - (1 +x)]));
+	    	}
+	    	
+	       break;
+	
+	
+	     case "Queen":
+	    	 if(color=="w") {	     
+	    		 val += (900 + (figures.Queen.getTable()[8*(7 - y) + x])); 
+	    	 }
+	    	 if(color=="b") {	
+	    		 val -= (900 + (figures.Queen.getTable()[8 + (8* y) - (1 +x)]));
+	    	 }
+	       break;
+	
+	
+	     case "King":
+	    	 if(color=="w") {
+	    		 val += (20000 + (figures.King.getTable()[8*(7 - y) + x])); 
+	    	 }
+	    	 if(color=="b") {	
+	    		 val -= (20000 + (figures.King.getTable()[8 + (8* y) - (1 +x)]));
+	    	 }
+	       break;
+		 }
+       return val;
+   }
         
 }
 
