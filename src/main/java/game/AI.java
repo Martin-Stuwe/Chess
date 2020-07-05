@@ -185,33 +185,34 @@ public class AI {
 	 * @param x the position to evaluate
 	 */
 	public int calculatePosValue(int x,int value) {
+	int add=0;
 	if (x == 1) {
-		value=value+1;
+		add=1;
 	}
 	if (x == 2) {
-		value=value+2;
+		add=2;
 	}
 	
 	if (x == 3) {
-		value=value+4;
+		add=4;
 	}
 	
 	if (x == 4) {
-		value=value+4;
+		add=4;
 	}
 	
 	if (x == 5) {
-		value=value+3;
+		add=3;
 	}
 	
 	if (x == 6) {
-		value=value+2;
+		add=2;
 	}
 	
 	if (x==7) {
-		value=value+1;
+		add=1;
 	}
-	return value;
+	return value=add+value;
 	}
 
 	/**
@@ -512,6 +513,7 @@ public class AI {
 	 public int positionEval(Figures figure, int x, int y) {
 	         String name = figure.getClass().toString();
 	         int val=0;
+	         int valnew=0;
 	         switch(name) {
 	         case "Pawn":
 	        	 
@@ -534,8 +536,8 @@ public class AI {
 		        }
 		        break;
 	         }
-	         val = positionEvalBK(name,x,y,figure.getColor(),val);
-	         return val;
+	         valnew = positionEvalBK(name,x,y,figure.getColor(),val);
+	         return valnew;
 	     }
 		/**
 		* Method to evaluate the current position based for King, Queen and Knight
@@ -578,29 +580,30 @@ public class AI {
 	* @return val the value based on the position
 	*/	 
 	 public int positionEvalQK(String name, int x, int y, String color, int val) {
+		 int valnew=0;
 		 switch(name) {
 	
 	
 	     case "Queen":
 	    	 if(color=="w") {	     
-	    		 val += 900 + figures.Queen.getTable()[8*(7 - y) + x]; 
+	    		 valnew += 900 + figures.Queen.getTable()[8*(7 - y) + x]; 
 	    	 }
 	    	 if(color=="b") {	
-	    		 val -= 900 + figures.Queen.getTable()[8 + (8* y) - (1 +x)];
+	    		 valnew -= 900 + figures.Queen.getTable()[8 + (8* y) - (1 +x)];
 	    	 }
 	       break;
 	
 	
 	     case "King":
 	    	 if(color=="w") {
-	    		 val += 20000 + figures.King.getTable()[8*(7 - y) + x]; 
+	    		 valnew += 20000 + figures.King.getTable()[8*(7 - y) + x]; 
 	    	 }
 	    	 if(color=="b") {	
-	    		 val -= 20000 + figures.King.getTable()[8 + (8* y) - (1 +x)];
+	    		 valnew -= 20000 + figures.King.getTable()[8 + (8* y) - (1 +x)];
 	    	 }
 	       break;
 		 }
-       return val;
+       return val=val+valnew;
    }
         
 }
