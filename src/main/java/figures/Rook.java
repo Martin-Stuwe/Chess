@@ -41,7 +41,9 @@ public class Rook extends Figures {
 	
 	private boolean emptySpaces;
 	
-
+	/**
+	 * array to evaluate the rook position
+	 */
     protected static int [] rookTable = {
           0,  0,  0,  0,  0,  0,  0,  0,
           5, 10, 10, 10, 10, 10, 10,  5,
@@ -97,6 +99,10 @@ public class Rook extends Figures {
 			
 	}
 	
+	/**
+	 * get method for rookTable
+	 * @return rookTable
+	 */
 	public static int[] getTable() {
 		return rookTable;
 	}

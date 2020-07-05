@@ -79,6 +79,10 @@ public class Queen extends Figures {
 			
 	}
 	
+	/**
+	 * get method for queenTable
+	 * @return queenTable
+	 */
 	public static int[] getTable() {
 		return queenTable;
 	}

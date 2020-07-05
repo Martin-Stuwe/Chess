@@ -41,7 +41,9 @@ public class Pawn extends Figures {
 	 */
 	boolean realMove;
 	
-	 
+	/**
+	 * array to evaluate the pawn position
+	 */ 
     protected static int [] pawnTable = {
             0,  0,  0,  0,  0,  0,  0,  0,
             50, 50, 50, 50, 50, 50, 50, 50,
@@ -65,6 +67,11 @@ public class Pawn extends Figures {
 		this.type = 4;
 	}
 	
+	
+	/**
+	 * get method for pawnTable
+	 * @return pawnTable
+	 */
 	public static int[] getTable() {
 		return pawnTable;
 	}

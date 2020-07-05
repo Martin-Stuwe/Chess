@@ -34,7 +34,9 @@ public class Knight extends Figures {
 	 */
 	private String color;
     
-	// Placement Precedence for all Knights
+	/**
+	 * array to evaluate the knight position
+	 */
 	protected static int [] knightTable = {
       -50,-40,-30,-30,-30,-30,-40,-50,
       -40,-20,  0,  0,  0,  0,-20,-40,
@@ -78,6 +80,10 @@ public class Knight extends Figures {
 			
 	}
 	
+	/**
+	 * get method for knightTable
+	 * @return knightTable
+	 */
 	public static int[] getTable() {
 		return knightTable;
 	}

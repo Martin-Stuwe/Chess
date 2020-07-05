@@ -87,7 +87,7 @@ public class AICalcs {
 			    	break;
 			 }
 			 val2 = positionEvalQK(name,x,y,color,val2);
-			 return val2;
+			 return val2=val+val2;
 		 }
 			
 		 
@@ -122,7 +122,7 @@ public class AICalcs {
 			    	 }
 			       break;
 				 }
-		       return val=val+valnew;
+		       return valnew=val+valnew;
 		   }
 
 }
