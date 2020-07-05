@@ -429,6 +429,7 @@ public class StartGame {
 	}
 	
 	clock.timeBlack = bl;
+	
 	}
 	
 	/**
