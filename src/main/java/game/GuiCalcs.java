@@ -6,12 +6,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import schach.GuiMain;
+
 
 /**
  * Class for the Gui calculations
@@ -289,19 +288,21 @@ public class GuiCalcs {
     			e.printStackTrace();
     		}
     		
-    		for(int i = 0; i < allLines.size() ; i++) {
-    			justMoves.add(allLines.get(i));
-    			if(allLines.get(i).equals("---")) {
+    		
+    		
+    		for (String s: allLines) {
+    			justMoves.add(s);
+    			if(s.equals("---")) {
     				justMoves.clear();
     			}
     		}
-    		System.out.println(justMoves);
+    			
     		
-    		for(int i = 0; i < justMoves.size(); i++) {
-    			int from1 = backToNumber(justMoves.get(i).charAt(0));
-    			int from2 = backToNumber(justMoves.get(i).charAt(1));
-    			int to1 = backToNumber(justMoves.get(i).charAt(3));
-    			int to2 = backToNumber(justMoves.get(i).charAt(4));
+    		for(String s: justMoves) {
+    			int from1 = backToNumber(s.charAt(0));
+    			int from2 = backToNumber(s.charAt(1));
+    			int to1 = backToNumber(s.charAt(3));
+    			int to2 = backToNumber(s.charAt(4));
     			String to = "" + to1 + to2;
     			board.getField(from1, from2).move(board, from1, from2, to);
     			
