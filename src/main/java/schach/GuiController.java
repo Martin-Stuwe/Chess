@@ -546,7 +546,8 @@ public class GuiController {
         	 
             @Override
             public void handle(ActionEvent event) {
-               
+            	gv.clock.timeWhite = 0;
+            	gv.clock.timeBlack = 0;
                 gv.historie.getItems().clear();
             	start(primaryStage);
                 
