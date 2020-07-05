@@ -327,6 +327,7 @@ public class StartGame {
 		
 			if(board.getCurrentTurn()==color) {
 				if (depth==1&&isStart==1) {
+					
 					ki.findPossMovesRnd(board, color);
 					ki.DoRndMove(board);
 				}

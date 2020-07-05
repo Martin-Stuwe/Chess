@@ -91,7 +91,6 @@ public class AI {
 	
 	}
 
-
 	public void findPossMovesRnd(Board board, int turn ) {
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
 	
