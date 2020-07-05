@@ -268,16 +268,15 @@ public class GuiView {
         border.setRight(drawRight(brett));
         border.getTop().minHeight(screenHeight/10);
         if(!gc.aiTurn && brett.movedList.size()>0) {
-        if(Zug.checkCheck(brett) && gc.gameParameters.get(1)) {
-        	if(brett.whiteCheck) {
+        
+        	if(Zug.checkCheck(brett) && gc.gameParameters.get(1) && brett.whiteCheck) {
         		board.add(new Label ("  white is in check"), 8, 1);
         	}
-        	else if(brett.blackCheck) {
+        	else if(Zug.checkCheck(brett) && gc.gameParameters.get(1) && brett.blackCheck ) {
         		board.add(new Label ("  black is in check"), 8, 1);
         	}
         	
-        }
-	      if(!Zug.checkPossibleMoves(brett)) {
+            if(!Zug.checkPossibleMoves(brett)) {
 	        	Stage window = new Stage();
 	        	window.setTitle("Game End");
 	            window.initModality(Modality.APPLICATION_MODAL);
