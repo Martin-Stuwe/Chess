@@ -63,8 +63,9 @@ public class GuiController {
 	
 	GuiView gv = new GuiView(this);
 	
+	public List<Zug>undoneTurns = new ArrayList<Zug>();
 	/**
-	 * List of Parameters 0=rotate , 1=showCheck, 2=showMove, 3=touchMove, 4=clicked, 5=aiGame, 6=saveGame
+	 * List of Game Parameters 0=rotate , 1=showCheck, 2=showMove, 3=touchMove, 4=clicked, 5=aiGame, 6=saveGame
 	 */
 	public List<Boolean>gameParameters = new ArrayList<Boolean>();
 	
@@ -273,15 +274,34 @@ public class GuiController {
 	}
 	
 	public void loadBoardState(int k) {
-		
+	
 		Figures[][] figuren = gv.brett.movedList.get(k).getBoardState();
 		gv.brett.setBoard(figuren,gv.brett.movedList.get(k).getTurn());
 		int z = gv.historie.getItems().size()-1;
 		for (int i = z;i>k; i--) {
+			undoneTurns.add(gv.brett.movedList.get(i));
+			gv.brett.movedList.remove(i);
 			gv.historie.getItems().remove(i);
 		}
+		addUndoneTurnsToHistorie();
 	}
-	
+	public void addUndoneTurnsToHistorie() {
+		int z = undoneTurns.size();
+		for (int i = z;i>0; i--) {
+			Label undone =rechner.convertInputToHistorie(undoneTurns.get(i-1).getFrom1(), undoneTurns.get(i-1).getFrom2(),""+undoneTurns.get(i-1).getTo1()+undoneTurns.get(i-1).getTo2());
+			undone.setTextFill(Color.LIGHTGREY);
+			undone.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	            @Override
+	            public void handle(MouseEvent event) {
+	            
+	            	System.out.println("ReLoad Zug Temp");
+	            	
+	            }
+
+	        });
+			gv.historie.getItems().add(undone);
+		}
+	}
 	public void startPlay(Stage primaryStage) {
 		gv.brett = new Board();
 		gv.brett.setStart();
