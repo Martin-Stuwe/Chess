@@ -1,7 +1,6 @@
 package game;
 
 import schach.Console;
-import schach.GuiMain;
 import figures.Queen;
 import figures.Rook;
 import figures.Knight;
@@ -413,7 +412,11 @@ public class StartGame {
 	            PlayerVsPlayer();
 	        }
 	    } 
-		
+	
+	/**
+	 * method to make a save in the console
+	 * @param board Board the game is on
+	 */
 	public static void makeSaveConsole(Board board) {
 		File file = new File("save.txt");
     	GuiCalcs rechner = new GuiCalcs();
@@ -468,7 +471,7 @@ public class StartGame {
         		wh = Integer.parseInt(white.input);
         	}
         	catch(NumberFormatException e){
-        		
+        		e.printStackTrace();
         	}
         	while(wh <= 0){
         		System.out.println("first type in the amount of seconds for white");
@@ -477,7 +480,7 @@ public class StartGame {
 	        		wh = Integer.parseInt(white.input);
 	        	}
 	        	catch(NumberFormatException e){
-	        		
+	        		e.printStackTrace();
 	        	}
         	}
         	
@@ -491,7 +494,7 @@ public class StartGame {
         		bl = Integer.parseInt(black.input);
         	}
         	catch(NumberFormatException e){
-        		
+        		e.printStackTrace();
         	}
         	while(bl <= 0){
         		System.out.println("now type in the amount of seconds for black");
@@ -500,7 +503,7 @@ public class StartGame {
 	        		bl = Integer.parseInt(black.input);
 	        	}
 	        	catch(NumberFormatException e){
-	        		
+	        		e.printStackTrace();
 	        	}
         	}
         	
