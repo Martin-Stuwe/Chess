@@ -22,12 +22,12 @@ public class AICalcs {
 	* @param figure the figure to evaluate
 	* @param x the x position on the board
 	* @param y the y position on the board
-	* @return val the value based on the position
+	* @return value the value based on the position
 	*/
 	 public static int positionEval(Figures figure, int x, int y) {
 	         String name = figure.getClass().toString();
 	         int val=0;
-	         int valnew=0;
+	         int value=0;
 	         switch(name) {
 	         case "Pawn":
 	        	 
@@ -50,8 +50,8 @@ public class AICalcs {
 		        }
 		        break;
 	         }
-	         valnew = positionEvalBK(name,x,y,figure.getColor(),val);
-	         return valnew;
+	         value = val +positionEvalBK(name,x,y,figure.getColor());
+	         return value;
 	     }
 	 
 	 
@@ -60,10 +60,10 @@ public class AICalcs {
 		* @param figure the figure to evaluate
 		* @param x the x position on the board
 		* @param y the y position on the board
-		* @return val the value based on the position
+		* @return val2 the value based on the position
 		*/	 
-		 public static int positionEvalBK(String name, int x, int y, String color, int val) {
-			 int val2=val;
+		 public static int positionEvalBK(String name, int x, int y, String color) {
+			 int val2=0;
 			 switch(name) {
 		       case "Bishop":
 		        	 
@@ -86,8 +86,8 @@ public class AICalcs {
 		    	
 			    	break;
 			 }
-			 val2 = positionEvalQK(name,x,y,color,val2);
-			 return val2=val+val2;
+			 val2 = val2+ positionEvalQK(name,x,y,color);
+			 return val2;
 		 }
 			
 		 
@@ -96,9 +96,9 @@ public class AICalcs {
 		  * @param figure the figure to evaluate
 		  * @param x the x position on the board
 		  * @param y the y position on the board
-		  * @return val the value based on the position
+		  * @return valnew the value based on the position
 		  */	 
-		 public static int positionEvalQK(String name, int x, int y, String color, int val) {
+		 public static int positionEvalQK(String name, int x, int y, String color) {
 			 int valnew=0;
 			 switch(name) {
 			
@@ -122,7 +122,7 @@ public class AICalcs {
 			    	 }
 			       break;
 				 }
-		       return valnew=val+valnew;
+		       return valnew;
 		   }
 
 }
