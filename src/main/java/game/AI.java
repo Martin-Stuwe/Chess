@@ -170,8 +170,7 @@ public class AI {
 				value = value+calculateFigure(board.getField(x, y),colorS);
 				if (board.positionen[x][y]!=null&&board.positionen[x][y].getColor()==colorS) {
 				value = value+AICalcs.positionEval(board.getField(x, y),x,y);
-				value = value + calculatePosValue(x,value);
-				value = value + calculatePosValue(y,value);
+		
 				}
 				
 			}
@@ -180,40 +179,6 @@ public class AI {
 		return value;
 	}
 	
-	/**
-	 * method to evaluate the figures position
-	 * @param x the position to evaluate
-	 */
-	public int calculatePosValue(int x,int value) {
-	int add=0;
-	if (x == 1) {
-		add=1;
-	}
-	if (x == 2) {
-		add=2;
-	}
-	
-	if (x == 3) {
-		add=4;
-	}
-	
-	if (x == 4) {
-		add=4;
-	}
-	
-	if (x == 5) {
-		add=3;
-	}
-	
-	if (x == 6) {
-		add=2;
-	}
-	
-	if (x==7) {
-		add=1;
-	}
-	return value=add+value;
-	}
 
 	/**
 	 * method to evaluate one single figure
@@ -409,7 +374,7 @@ public class AI {
 	 */
 	 int max(Board board, int depth, int alpha, int beta) {
 		 List<Zug> AImoves;
-		 //this.recently=0;
+		 this.recently=0;
 		 AImoves=findPossMovesAI(board,color);
 	    if (depth == 0 || AImoves.size()==0) {
 	    	
@@ -466,7 +431,7 @@ public class AI {
 	 int min(Board board,int depth,int alpha, int beta) {
 		 List<Zug> PlayerMoves;
 		 board.setCurrentTurn(0);
-		 this.recently=0;
+		this.recently=0;
 		 PlayerMoves=findPossMovesAI(board,0);
 	    if (depth == 0 || PlayerMoves.size()==0) {
 	    	System.out.println(calculateValueFor(board,1)-calculateValueFor(board,0));
