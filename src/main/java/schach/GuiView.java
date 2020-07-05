@@ -253,20 +253,8 @@ public class GuiView {
     public GridPane drawBoard() {
     	board = drawFeld(brett);     
         
-        // check whose turn it is
-        if(brett.getCurrentTurn() == 0) {
-        	board.add(new Label ("  white to move"), 8, 0);
-        }
-        else if(brett.getCurrentTurn() == 1) {
-        	board.add(new Label ("  black to move"), 8, 0);
-        }
         
-        Label whiteLa = new Label(" white time: " + clock.timeWhite);
-        Label blackLa = new Label(" black time: " + clock.timeBlack);
-        whiteLa.setId("whiteLa");
-        blackLa.setId("blackLa");
-        board.add(whiteLa, 8, 4);
-        board.add(blackLa, 8, 3);
+    	addInfo();
 
 
         border.setCenter(board);
@@ -578,5 +566,23 @@ public class GuiView {
         return board;
 	}
 	
+	/**
+	 * method to add current time's and whose turn it is
+	 */
+	public void addInfo() {
+        if(brett.getCurrentTurn() == 0) {
+        	board.add(new Label ("  white to move"), 8, 0);
+        }
+        else if(brett.getCurrentTurn() == 1) {
+        	board.add(new Label ("  black to move"), 8, 0);
+        }
+        
+        Label whiteLa = new Label(" white time: " + clock.timeWhite);
+        Label blackLa = new Label(" black time: " + clock.timeBlack);
+        whiteLa.setId("whiteLa");
+        blackLa.setId("blackLa");
+        board.add(whiteLa, 8, 4);
+        board.add(blackLa, 8, 3);
+	}
 
 }
