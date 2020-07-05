@@ -183,6 +183,10 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * method to set the board to a specific state
+	 * @param boardState Figures Array with all positions of all figures
+	 */
 	public void setBoard(Figures[][] boardState) {
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
@@ -306,7 +310,12 @@ public class Board {
 	}
 	
 	
-	
+	/**
+	 * method to copy a figure from the board
+	 * @param posit1 x axis position of the field to copy from
+	 * @param posit2 y axis position of the field to copy from
+	 * @return Figure that is on the field
+	 */
 	public Figures copy(int posit1, int posit2) {
 	
 		if (this.getField(posit1, posit2)==null) {
