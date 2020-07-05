@@ -64,6 +64,7 @@ public class GuiController {
 	GuiView gv = new GuiView(this);
 	
 	public List<Zug>undoneTurns = new ArrayList<Zug>();
+	boolean aiTurn=false;
 	/**
 	 * List of Game Parameters 0=rotate , 1=showCheck, 2=showMove, 3=touchMove, 4=clicked, 5=aiGame, 6=saveGame
 	 */
@@ -295,10 +296,11 @@ public class GuiController {
 			zug.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent event) {
+	            	if(!aiTurn) {
 	            	loadBoardState(n);
 	            	gv.drawBoard();
 	            	System.out.println("Load Zug"+n);
-	            	
+	            	}
 	            }
 
 	        });
@@ -313,10 +315,11 @@ public class GuiController {
 			undone.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent event) {
+	            	if(!aiTurn) {
 	             redoTurns(n);
 	            	System.out.println("ReLoad Züge"+n);
 	            	
-	            	
+	            	}
 	            }
 
 	        });
@@ -342,12 +345,17 @@ public class GuiController {
 		gv.brett.setStart();
 		primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
 		     gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
-		    // gv.drawBoard();
+		     if(!aiTurn) {
+		     gv.drawBoard();
+		     }
+		     
 		});
 
 		primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
 			gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
-			// gv.drawBoard();
+			 if(!aiTurn) {
+			     gv.drawBoard();
+			     }
 		});
 		
         if(saveGame) {
@@ -426,7 +434,7 @@ public class GuiController {
 	public void aiMove(Board brett) {
 		   
     	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
- 
+    		aiTurn=true;
             
     		ki.lookAhead(gv.brett,3,ki.getColor());
           
@@ -442,6 +450,7 @@ public class GuiController {
     		    		int b = brett.movedList.get(brett.movedList.size()-1).getFrom2();
     		    		String to  = Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo1())+Integer.toString(brett.movedList.get(brett.movedList.size()-1).getTo2());
     		    		gv.historie.getItems().add(rechner.convertInputToHistorie(a, b , to));}
+    		    		aiTurn =false;
     		      }
     		  });
     		}
@@ -461,7 +470,7 @@ public class GuiController {
             @Override
             public void handle(ActionEvent event) {
                 setRotate(check1.isSelected());
-                if(!aiGame) {
+                if(!aiTurn) {
                gv.drawBoard();
                 }
             }
@@ -479,7 +488,7 @@ public class GuiController {
             @Override
             public void handle(ActionEvent event) {
                setShowCheck(check3.isSelected());
-               if(!aiGame) {
+               if(!aiTurn) {
                    gv.drawBoard();
                     }
             }
@@ -613,19 +622,7 @@ public class GuiController {
 				undoneTurns.clear();
 			}
 			brett.getField(a, b).move(brett, a, b, to);
-			Label zug = rechner.convertInputToHistorie(a, b , to);
-			int zugnr =gv.historie.getItems().size();
-			zug.setOnMouseClicked(new EventHandler<MouseEvent>() {
-	            @Override
-	            public void handle(MouseEvent event) {
-	            	loadBoardState(zugnr);
-	            	gv.drawBoard();
-	            	System.out.println("Load Zug"+zugnr);
-	            	
-	            }
-
-	        });
-			gv.historie.getItems().add(zug);
+			addUndoneTurnsToHistorie();
 			if(brett.getField(to1, to2)!= null&&brett.getField(to1, to2).getType()==4 && (brett.getField(to1, to2).getColor()=="w"&& to2==0 ||brett.getField(to1, to2).getColor()=="b"&& to2==7  )) {
 			gv.pawnPromo();
 			Button queen = (Button) gv.window.getScene().lookup("#queen");
@@ -684,7 +681,7 @@ public class GuiController {
 				// TODO Auto-generated method stub
 				aiMove(gv.brett);
 				
-				Platform.runLater(new Runnable() {
+			/*	Platform.runLater(new Runnable() {
 	    		      @Override
 	    		      public void run() {
 				if(Zug.checkCheck(gv.brett) && gameParameters.get(1)) {
@@ -722,8 +719,8 @@ public class GuiController {
 			        }
 	    		      }
 	    		  });
+			*/
 			}
-			
 		}, i, i);
 		
 		
