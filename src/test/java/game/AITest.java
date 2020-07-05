@@ -29,10 +29,10 @@ public class AITest {
 		AI ki=new AI(1);
 		Board board= new Board();
 		board.setStart();
-		ki.findPossMoves(board, 1);
+		ki.findPossMovesAI(board, 1);
 		assertEquals(0, ki.possibleMoves.size(), "possMoves1");
 		board.setCurrentTurn(1);
-		ki.findPossMoves(board, 1);
+		ki.findPossMovesAI(board, 1);
 		assertNotEquals(0, ki.possibleMoves.size(), "possMoves2");
 	}
 	/**
@@ -45,7 +45,7 @@ public class AITest {
 		board.setStart();
 
 		board.setCurrentTurn(1);
-		ki.findPossMoves(board, 1);
+		ki.findPossMovesAI(board, 1);
 		assertEquals(0, ki.enPossibleMoves.size(), "enPossMoves1");
 		ki.Calculate(board);
 		//assertNotEquals(0, ki.enPossibleMoves.size(), "enPossMoves2");
@@ -111,7 +111,7 @@ public class AITest {
 		board.setStart();
 		board2.setStart();
 		board2.setCurrentTurn(1);
-		ki.findPossMoves(board2, 1);
+		ki.findPossMovesAI(board2, 1);
 		ki.DoRndMove(board2);
 		assertNotEquals(board.positionen,board2.positionen,"moved");
 	}
@@ -126,7 +126,7 @@ public class AITest {
 		board.setStart();
 		board2.setStart();
 		board2.setCurrentTurn(1);
-		ki.findPossMoves(board2, 1);
+		ki.findPossMovesAI(board2, 1);
 		ki.DoMinMove(board2);
 		assertNotEquals(board.positionen,board2.positionen,"moved");
 		ki.EnemyValue.add(1);
