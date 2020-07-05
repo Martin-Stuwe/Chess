@@ -62,7 +62,7 @@ public class GuiController {
 	boolean saveGame = false;
 	
 	GuiView gv = new GuiView(this);
-	
+	int depth;
 	public List<Zug>undoneTurns = new ArrayList<Zug>();
 	boolean aiTurn=false;
 	/**
@@ -201,14 +201,14 @@ public class GuiController {
 			        		
 			        	}
 			        	catch(NumberFormatException e){
-			        		
+			        		gv.clock.timeWhite = 600;
 			        	}
 	            		
 	            		try {
 	            			gv.clock.timeBlack = Integer.parseInt(blackTime.getText());
 	            		}
 	            		catch(NumberFormatException e) {
-	            			
+	            			gv.clock.timeBlack = 600;
 	            		}
 	            		
 	            		gv.clock.active = true;
@@ -226,6 +226,7 @@ public class GuiController {
 	           		else {
 	           			aiGame=false;
 	           		}
+	           		changeDepth(primaryStage);
 	           		gv.startGame(primaryStage, saveGame);
 	           		startPlay(primaryStage);
 	            }
@@ -244,14 +245,14 @@ public class GuiController {
 			        		
 			        	}
 			        	catch(NumberFormatException e){
-			        		
+			        		gv.clock.timeWhite = 600;
 			        	}
 	            		
 	            		try {
 	            			gv.clock.timeBlack = Integer.parseInt(blackTime.getText());
 	            		}
 	            		catch(NumberFormatException e) {
-	            			
+	            			gv.clock.timeBlack = 600;
 	            		}
 	            		
 	            		gv.clock.active = true;
@@ -267,6 +268,7 @@ public class GuiController {
 	            	else {
 	            		aiGame=false;
 	            	}
+	            	changeDepth(primaryStage);
 	            	gv.startGame(primaryStage, saveGame);
 	            	startPlay(primaryStage);
 	            }
@@ -438,7 +440,7 @@ public class GuiController {
     	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
     		aiTurn=true;
             
-    		ki.lookAhead(gv.brett,3,ki.getColor());
+    		ki.lookAhead(gv.brett,depth,ki.getColor());
           
            
     		
@@ -763,4 +765,17 @@ public class GuiController {
 		
 		
 	}
+	
+	public void changeDepth(Stage primaryStage) {
+		RadioButton ai = (RadioButton) primaryStage.getScene().lookup("#ai");
+		TextField aiDepth = (TextField) primaryStage.getScene().lookup("#depth");
+		if(ai.isSelected()) {
+			try {
+				depth = Integer.parseInt(aiDepth.getText());
+			}
+			catch(NumberFormatException e) {
+				depth = 1;
+			}
+		}
 	}
+}
