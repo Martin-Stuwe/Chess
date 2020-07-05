@@ -169,7 +169,7 @@ public class AI {
 				
 				value = value+calculateFigure(board.getField(x, y),colorS);
 				if (board.positionen[x][y]!=null&&board.positionen[x][y].getColor()==colorS) {
-				value = value+positionEval(board.getField(x, y),x,y);
+				value = value+AICalcs.positionEval(board.getField(x, y),x,y);
 				value = value + calculatePosValue(x,value);
 				value = value + calculatePosValue(y,value);
 				}
@@ -503,108 +503,7 @@ public class AI {
 	 
 
 
-	/**
-	* Method to evaluate the current position based on the figure type
-	* @param figure the figure to evaluate
-	* @param x the x position on the board
-	* @param y the y position on the board
-	* @return val the value based on the position
-	*/
-	 public int positionEval(Figures figure, int x, int y) {
-	         String name = figure.getClass().toString();
-	         int val=0;
-	         int valnew=0;
-	         switch(name) {
-	         case "Pawn":
-	        	 
-		          if(figure.getColor()=="w") {
-		        	  val += 100 + Pawn.getTable()[8*(7 - y) + x]; 
-		          }
-		          if(figure.getColor()=="b") {
-		        	  val -= 100 + Pawn.getTable()[8 + (8* y) - (1 +x)];
-		           }
-		           break;
-	
-	         case "Rook":
-	        	 
-		        if(figure.getColor()=="w") {
-		           val += 500 + Rook.getTable()[8*(7 - y) + x]; 
-		        	 }
-		        if(figure.getColor()=="b") {
-		        	val -= 500 + Rook.getTable()[8 + (8* y) - (1 +x)];
-		        
-		        }
-		        break;
-	         }
-	         valnew = positionEvalBK(name,x,y,figure.getColor(),val);
-	         return valnew;
-	     }
-		/**
-		* Method to evaluate the current position based for King, Queen and Knight
-		* @param figure the figure to evaluate
-		* @param x the x position on the board
-		* @param y the y position on the board
-		* @return val the value based on the position
-		*/	 
-		 public int positionEvalBK(String name, int x, int y, String color, int val) {
-			 switch(name) {
-		       case "Bishop":
-		        	 
-		    	   if(color=="w") {
-		        		 val += 330 + Bishop.getTable()[8*(7 - y) + x]; 
-		        	}
-		        	if(color=="b") {
-		        		val -= 330 + Bishop.getTable()[8 + (8* y) - (1 +x)];
-		        	}
-		        	break;
-			 
-				 	case "Knight":
-		    	 
-			    	if(color=="w") {
-			    		val += 320 + figures.Knight.getTable()[8*(7 - y) + x];
-			    	}
-			    	if(color=="b") {
-			    		val -= 320 + figures.Knight.getTable()[8 + (8* y) - (1 +x)];
-			    	}
-		    	
-			    	break;
-			 }
-			 val = positionEvalQK(name,x,y,color,val);
-			 return val;
-		 }
-	/**
-	* Method to evaluate the current position based for King, Queen and Knight
-	* @param figure the figure to evaluate
-	* @param x the x position on the board
-	* @param y the y position on the board
-	* @return val the value based on the position
-	*/	 
-	 public int positionEvalQK(String name, int x, int y, String color, int val) {
-		 int valnew=0;
-		 switch(name) {
-	
-	
-	     case "Queen":
-	    	 if(color=="w") {	     
-	    		 valnew += 900 + figures.Queen.getTable()[8*(7 - y) + x]; 
-	    	 }
-	    	 if(color=="b") {	
-	    		 valnew -= 900 + figures.Queen.getTable()[8 + (8* y) - (1 +x)];
-	    	 }
-	       break;
-	
-	
-	     case "King":
-	    	 if(color=="w") {
-	    		 valnew += 20000 + figures.King.getTable()[8*(7 - y) + x]; 
-	    	 }
-	    	 if(color=="b") {	
-	    		 valnew -= 20000 + figures.King.getTable()[8 + (8* y) - (1 +x)];
-	    	 }
-	       break;
-		 }
-       return val=val+valnew;
-   }
+
         
 }
 
