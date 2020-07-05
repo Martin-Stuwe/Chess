@@ -42,6 +42,7 @@ public class StartGame {
 	 */
 	static int depth = 3;
 	
+	static boolean aiChosen=false;
 	static List<Zug>undoneTurns = new ArrayList<Zug>();
 	/**
 	 * Catches user input and uses convertAndMove to convert and make the move happen
@@ -86,19 +87,10 @@ public class StartGame {
 				getAndMakeMove(board);
 			}
 			if(playerMove.input.equals("undo")&&board.movedList.size()>0) {
-				undoneTurns.add(board.movedList.get(board.movedList.size()-1));
-				board.movedList.remove(board.movedList.size()-1);
-				if(board.movedList.size()>0) {
-				board.setBoard(board.movedList.get(board.movedList.size()-1).getBoardState(),board.movedList.get(board.movedList.size()-1).getTurn());
-				}
-				else {
-					board.setStart();
-				}
+				undoMove(board);
 				}
 			if(playerMove.input.equals("redo")&&undoneTurns.size()>0) {
-				board.movedList.add(undoneTurns.get(undoneTurns.size()-1));
-				board.setBoard(undoneTurns.get(undoneTurns.size()-1).getBoardState(), undoneTurns.get(undoneTurns.size()-1).getTurn());
-				undoneTurns.remove(undoneTurns.size()-1);
+				redoMove(board);
 				
 			}
 			convertAndMove(board,playerMove);
@@ -293,7 +285,7 @@ public class StartGame {
 	 */
 	public static void PlayerVsAI(int color) {
 		inputAiDepth();
-		
+		aiChosen=true;
 		GuiCalcs rechner = new GuiCalcs();
 		Board board = new Board();
 		board.setStart();
@@ -565,5 +557,34 @@ public class StartGame {
     		e.printStackTrace();
     	}
 	}
-
+	public static void undoMove(Board board) {
+		int n =1;
+		if(aiChosen) {
+			n=2;
+		}
+		for(int i=0;i<n;i++) {
+			
+			undoneTurns.add(board.movedList.get(board.movedList.size()-1));
+			board.movedList.remove(board.movedList.size()-1);
+			if(board.movedList.size()>0) {
+			board.setBoard(board.movedList.get(board.movedList.size()-1).getBoardState(),board.movedList.get(board.movedList.size()-1).getTurn());
+			}
+			else {
+				board.setStart();
+			}
+		}
+	}
+	
+	public static void redoMove(Board board) {
+		int n =1;
+		if(aiChosen) {
+			n=2;
+		}
+		for(int i=0;i<n;i++) {
+			
+			board.movedList.add(undoneTurns.get(undoneTurns.size()-1));
+			board.setBoard(undoneTurns.get(undoneTurns.size()-1).getBoardState(), undoneTurns.get(undoneTurns.size()-1).getTurn());
+			undoneTurns.remove(undoneTurns.size()-1);
+		}
+	}
 }
