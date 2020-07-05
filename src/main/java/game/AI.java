@@ -335,6 +335,9 @@ public class AI {
 			for (int y=0;y<8;y++) {
 				
 				value = value+calculateFigure(board.getField(x, y),colorS);
+				if (board.positionen[x][y]!=null&&board.positionen[x][y].getColor()==colorS) {
+				value = value+positionEval(board.getField(x, y),x,y);
+				}
 				
 				if (board.positionen[x][y] != null &&board.positionen[x][y].getColor()==colorS) {
 					
@@ -668,5 +671,140 @@ public class AI {
 	    return minWert;
 	 }
 	 
+	 
+     protected static int [] pawnTable = {
+             0,  0,  0,  0,  0,  0,  0,  0,
+             50, 50, 50, 50, 50, 50, 50, 50,
+             10, 10, 20, 30, 30, 20, 10, 10,
+             5,  5, 10, 25, 25, 10,  5,  5,
+             0,  0,  0, 20, 20,  0,  0,  0,
+             5, -5,-10,  0,  0,-10, -5,  5,
+             5, 10, 10,-20,-20, 10, 10,  5,
+             0,  0,  0,  0,  0,  0,  0,  0 };
+
+           // Placement Precedence for all Knights
+         protected static int [] knightTable = {
+             -50,-40,-30,-30,-30,-30,-40,-50,
+             -40,-20,  0,  0,  0,  0,-20,-40,
+             -30,  0, 10, 15, 15, 10,  0,-30,
+             -30,  5, 15, 20, 20, 15,  5,-30,
+             -30,  0, 15, 20, 20, 15,  0,-30,
+             -30,  5, 10, 15, 15, 10,  5,-30,
+             -40,-20,  0,  5,  5,  0,-20,-40,
+             -50,-40,-30,-30,-30,-30,-40,-50 };
+
+         protected static int [] bishopPrecedence = {
+             -20,-10,-10,-10,-10,-10,-10,-20,
+             -10,  0,  0,  0,  0,  0,  0,-10,
+             -10,  0,  5, 10, 10,  5,  0,-10,
+             -10,  5,  5, 10, 10,  5,  5,-10,
+             -10,  0, 10, 10, 10, 10,  0,-10,
+             -10, 10, 10, 10, 10, 10, 10,-10,
+             -10,  5,  0,  0,  0,  0,  5,-10,
+             -20,-10,-10,-10,-10,-10,-10,-20 };
+
+         protected static int [] rookTable = {
+               0,  0,  0,  0,  0,  0,  0,  0,
+               5, 10, 10, 10, 10, 10, 10,  5,
+              -5,  0,  0,  0,  0,  0,  0, -5,
+              -5,  0,  0,  0,  0,  0,  0, -5,
+              -5,  0,  0,  0,  0,  0,  0, -5,
+              -5,  0,  0,  0,  0,  0,  0, -5,
+              -5,  0,  0,  0,  0,  0,  0, -5,
+               0,  0,  0,  5,  5,  0,  0,  0 };
+           
+         protected static int [] queenTable = {
+             -20,-10,-10, -5, -5,-10,-10,-20,
+             -10,  0,  0,  0,  0,  0,  0,-10,
+             -10,  0,  5,  5,  5,  5,  0,-10,
+              -5,  0,  5,  5,  5,  5,  0, -5,
+               0,  0,  5,  5,  5,  5,  0, -5,
+             -10,  5,  5,  5,  5,  5,  0,-10,
+             -10,  0,  5,  0,  0,  0,  0,-10,
+             -20,-10,-10, -5, -5,-10,-10,-20 };
+
+         protected static int [] kingTable = {
+             -30,-40,-40,-50,-50,-40,-40,-30,
+             -30,-40,-40,-50,-50,-40,-40,-30,
+             -30,-40,-40,-50,-50,-40,-40,-30,
+             -30,-40,-40,-50,-50,-40,-40,-30,
+             -20,-30,-30,-40,-40,-30,-30,-20,
+             -10,-20,-20,-20,-20,-20,-20,-10,
+              20, 20,  0,  0,  0,  0, 20, 20,
+              20, 30, 10,  0,  0, 10, 30, 20 };
+
+        public int positionEval(Figures figure, int x, int y) {
+         String name = figure.getClass().toString()+figure.getColor();
+         int val=0;
+         switch(name) {
+         case "Pawnw":
+          
+           val = (100 + (pawnTable[8*(7 - y) + x])); 
+           break;
+
+         case "Pawnb":
+           
+           val -= (100 + (pawnTable[8 + (8* y) - (1 +x)]));
+           break;
+
+
+         case "Rookw":
+           
+           val += (500 + (rookTable[8*(7 - y) + x])); 
+           break;
+
+         case "Rookb":
+           
+           val -= (500 + (rookTable[8 + (8* y) - (1 +x)]));
+           break;
+
+
+         case "Bishopw":
+           
+           val += (330 + (rookTable[8*(7 - y) + x])); 
+           break;
+
+         case "Bishopb":
+           
+           val -= (330 + (rookTable[8 + (8* y) - (1 +x)]));
+           break;
+
+
+         case "Knightw":
+           
+           val += (320 + (knightTable[8*(7 - y) + x])); 
+           break;
+
+         case "Knightb":
+           
+           val -= (320 + (knightTable[8 + (8* y) - (1 +x)]));
+           break;
+
+
+         case "Queenw":
+           
+           val += (900 + (queenTable[8*(7 - y) + x])); 
+           break;
+
+         case "Queenb":
+           
+           val -= (900 + (queenTable[8 + (8* y) - (1 +x)]));
+           break;
+
+
+         case "Kingw":
+           
+           val += (20000 + (kingTable[8*(7 - y) + x])); 
+           break;
+
+         case "Kingb":
+           
+           val -= (20000 + (kingTable[8 + (8* y) - (1 +x)]));
+           break;
+       }
+         return val;
+     }
+        
+}
+
 	
-} 
