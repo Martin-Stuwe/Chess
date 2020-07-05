@@ -60,7 +60,7 @@ public class AI {
 	private int desiredDepth;
 	
 	private Zug bestMove;
-	
+	private int recently;
 	
 	/**
 	 * the AI constructor
@@ -112,7 +112,13 @@ public class AI {
 		if (board.getField(i1, j1).hasPossibleMove(board,i1,j1,Integer.toString(x1)+Integer.toString(y1))) {
 		
 			Zug zug = new Zug(board.getField(i1, j1),i1,j1,Integer.toString(x1)+Integer.toString(y1));
-			possibleMoveList.add(zug);
+			if(board.movedList.size()>1&&board.movedList.get(board.movedList.size()-2).getTo1()==i1&&board.movedList.get(board.movedList.size()-2).getTo2()==j1) {
+				this.recently = recently +1; 	
+				possibleMoveList.add(0,zug);
+			}
+			else {
+				possibleMoveList.add(possibleMoveList.size(),zug);
+			}
 			//board.setField(i1, j1, restoreFrom2);
 		
 		/**if (restoreTo2!=null) {
@@ -222,14 +228,7 @@ public class AI {
 	 */
 	public int calculateFigure(Figures figure, String color) {
 		int valuez=0;
-		int multiply;
-	
-	
-	
-		
-	
-		
-		
+		int multiply;	
 				if (figure!=null&&figure.getColor()==color) {
 				
 					if (figure.getClass()==Bishop.class) {
@@ -312,12 +311,36 @@ public class AI {
 						if(board2.getField(i, j)!=null&&convTurn==board2.getField(i, j).getColor()){
 							
 							checkPossMoves(board2,Integer.toString(i)+Integer.toString(j)+Integer.toString(x)+Integer.toString(y),turn, possibleMoveList);
+						
+						
 						}
 					}
 				}
 			}
 		}
-			Collections.shuffle(possibleMoveList);
+		List<Zug> moveListRec = new ArrayList<Zug>();
+		List<Zug> moveListNotRec = new ArrayList<Zug>();
+		for (int iterate = 0 ;iterate< recently-1;iterate++) {
+			moveListRec.add(
+					new Zug (possibleMoveList.get(iterate).getFigure(),possibleMoveList.get(iterate).getFrom1(),possibleMoveList.get(iterate).getFrom2(),
+							Integer.toString(possibleMoveList.get(iterate).getTo1())+Integer.toString(possibleMoveList.get(iterate).getTo2()))
+							);
+			
+			}
+		for (int iterate2 = this.recently;iterate2 < possibleMoveList.size()-1;iterate2++) {
+		moveListNotRec.add(
+				new Zug (possibleMoveList.get(iterate2).getFigure(),possibleMoveList.get(iterate2).getFrom1(),possibleMoveList.get(iterate2).getFrom2(),
+						Integer.toString(possibleMoveList.get(iterate2).getTo1())+Integer.toString(possibleMoveList.get(iterate2).getTo2()))
+						);
+		
+		}
+		Collections.shuffle(moveListNotRec);
+		
+		
+		
+			possibleMoveList.removeAll(possibleMoveList);
+			possibleMoveList.addAll(moveListRec);
+			possibleMoveList.addAll(moveListNotRec);
 			return possibleMoveList;
 		}
 		
