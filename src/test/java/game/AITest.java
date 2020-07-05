@@ -61,6 +61,20 @@ public class AITest {
 		assertEquals(5039, ki.calculateValue(board), "remove Pawn -> value -1");
 
 	}
+	
+	/**
+	* Test For Calculate ValueFor
+	*/
+	@Test
+	public void testCalculateValueFor() {
+		AI ki=new AI(1);
+		Board board= new Board();
+		board.setStart();
+		assertEquals(5040, ki.calculateValueFor(board,0), "Start value black");
+		assertEquals(5040, ki.calculateValueFor(board,1), "Start value white");
+
+	}
+	
 	/**
 	* Test For Figure Value 1
 	*/

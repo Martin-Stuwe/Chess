@@ -228,12 +228,7 @@ public class AI {
 		Random rnd= new Random();
 	
 		Zug rndMove = possibleMoves.get(rnd.nextInt(possibleMoves.size()));	
-		
-		System.out.println("Tried move: "+rndMove.from1 + rndMove.from2 + rndMove.to1 + rndMove.to2);
-		System.out.println("hasPossMoveCheck: "+board.getField(rndMove.from1, rndMove.from2).hasPossibleMove(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2)));
-		
-		System.out.println(board.getField(rndMove.from1, rndMove.from2));
-		System.out.println(board.getField(rndMove.to1, rndMove.from2));
+
 		
 		board.getField(rndMove.from1, rndMove.from2).move(board,rndMove.from1,rndMove.from2,Integer.toString(rndMove.to1)+Integer.toString(rndMove.to2));
 		
@@ -248,7 +243,7 @@ public class AI {
 	 */	
 	public List<Zug> findPossMovesAI(Board board2, int turn ) {
 		
-		System.out.println(board2.positionen.length);
+
 		//System.out.println(copy.positionen.length);
 		//copy.setCurrentTurn(board2.getCurrentTurn());
 		List<Zug> possibleMoveList = new ArrayList<Zug>();
