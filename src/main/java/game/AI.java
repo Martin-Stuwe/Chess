@@ -317,7 +317,7 @@ public class AI {
 				}
 			}
 		}
-	
+			Collections.shuffle(possibleMoveList);
 			return possibleMoveList;
 		}
 		
