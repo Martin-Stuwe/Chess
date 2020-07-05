@@ -327,12 +327,14 @@ public class GuiController {
 	 * method to load the historie after moves have been undone
 	 */
 	public void addUndoneTurnsToHistorie() {
+
 		gv.historie.getItems().clear();
 		int k = gv.brett.movedList.size();
 		for(int i=0;i<k;i++) {
 			int n= i;
 			Zug current = gv.brett.movedList.get(i);
 			Label zug = rechner.convertInputToHistorie(current.getFrom1(), current.getFrom2(),""+current.getTo1()+current.getTo2());
+
 			zug.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent event) {
@@ -344,6 +346,7 @@ public class GuiController {
 	            }
 
 	        });
+			
 			gv.historie.getItems().add(zug);
 		}
 		int z = undoneTurns.size();
@@ -769,45 +772,7 @@ public class GuiController {
 				// TODO Auto-generated method stub
 				aiMove(gv.brett);
 				
-			/*	Platform.runLater(new Runnable() {
-	    		      @Override
-	    		      public void run() {
-				if(Zug.checkCheck(gv.brett) && gameParameters.get(1)) {
-		        	if(gv.brett.whiteCheck) {
-		        		gv.board.add(new Label ("  white is in check"), 8, 1);
-		        	}
-		        	else if(gv.brett.blackCheck) {
-		        		gv.board.add(new Label ("  black is in check"), 8, 1);
-		        	}
-		        	
-		        }
-			      if(!Zug.checkPossibleMoves(gv.brett)) {
-			        	Stage window = new Stage();
-			        	window.setTitle("Game End");
-			            window.initModality(Modality.APPLICATION_MODAL);
-			           
-			            HBox box = new HBox();
-			            Label checkmate = new Label("Checkmate");
-			            Label stalemate = new Label("Stalemate");
-			            checkmate.setId("checkmate");
-			            stalemate.setId("stalemate");
-			            if(Zug.checkCheck(gv.brett)) {
-			            	box.getChildren().add(checkmate);
-			            }
-			            else {
-			            	box.getChildren().add(stalemate);
-			            }
-			            
-			         
-			            StackPane root = new StackPane();
-			            root.getChildren().add(box);
-			            window.setScene(new Scene(root, 200,200));
-			            window.getScene().getStylesheets().add("style.css");
-			            window.show();
-			        }
-	    		      }
-	    		  });
-			*/
+
 			}
 		}, i, i);
 		
