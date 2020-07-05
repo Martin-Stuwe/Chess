@@ -47,29 +47,87 @@ public class GuiView {
 	 */
 	ListView<Label> historie = new ListView<Label>();
 	
+	/**
+	 * board of the game in the GUI
+	 */
     Board brett = new Board();
+    
+    /**
+     * GridPane with the fields of the board
+     */
     GridPane board = new GridPane();
+    
+    /**
+     * current screenHeight
+     */
     double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
+    
+    /**
+     * current screenWidht
+     */
     double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+    
+    /**
+     * GuiCalcs object for calculating
+     */
     GuiCalcs rechner = new GuiCalcs();
+    
+    /**
+     * GuiController of GuiView
+     */
     GuiController gc;
+    
+    /**
+     * window object for popups etc
+     */
  	Stage window = new Stage();
+ 	
+ 	/**
+ 	 * clock object of GuiView
+ 	 */
  	public Time clock = new Time(600,600);
  	
+ 	/**
+ 	 * String for the stylesheet
+ 	 */
+ 	String sty = "style.css";
+ 	
+ 	/**
+ 	 * get-method of brett
+ 	 * @return brett board of the GUI game
+ 	 */
     public Board getBrett() {
     	return brett;
     }
-   
+    
+    /**
+     * get-method of board
+     * @return board GridPane of the board
+     */
 	public GridPane getBoard() {
 		return board;
 	}
+	
+	/**
+	 * get-method of the screenHeight
+	 * @param newHeight height of the screen
+	 */
 	public void setScreenHeight(double newHeight) {
 		this.screenHeight = newHeight;
 	}
+	
+	/**
+	 * get-method of the screenWidth
+	 * @param newHeight width of the screen
+	 */
 	public void setScreenWidth(double newHeight) {
 		this.screenWidth = newHeight;
 	}
 	
+	/**
+	 * set-method of gc
+	 * @param guiC new GuiController
+	 */
 	public GuiView(GuiController guiC) {
 		this.gc = guiC;
 	}
@@ -90,7 +148,7 @@ public class GuiView {
         primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
-        primaryStage.getScene().getStylesheets().add("style.css");
+        primaryStage.getScene().getStylesheets().add(sty);
         primaryStage.show();
 	}
 	  /**
@@ -143,7 +201,7 @@ public class GuiView {
         StackPane root = new StackPane();
         root.getChildren().add(option);
         primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
-        primaryStage.getScene().getStylesheets().add("style.css");
+        primaryStage.getScene().getStylesheets().add(sty);
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
@@ -171,7 +229,7 @@ public class GuiView {
         StackPane root = new StackPane();
         root.getChildren().add(border);
         primaryStage.setScene(new Scene(root, screenWidth, screenHeight));
-        primaryStage.getScene().getStylesheets().add("style.css");
+        primaryStage.getScene().getStylesheets().add(sty);
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.setMinHeight(600);
@@ -376,16 +434,8 @@ public class GuiView {
     
         return leftVbox;
     }
-    
- 
 
-    /**
-     * method to convert input into valid chess notation and save it
-     * @param i x axis starting position
-     * @param y y axis starting position
-     * @param to x and y axis ending position
-     */
-    
+       
     /**
      * method to open a window and let the user decide what a pawn should be promoted to
      * @param brett board the game is on
@@ -412,12 +462,19 @@ public class GuiView {
         StackPane root = new StackPane();
         root.getChildren().add(box);
         window.setScene(new Scene(root, 200,200));
-        window.getScene().getStylesheets().add("style.css");
+        window.getScene().getStylesheets().add(sty);
         window.show();
         
   
     }
-
+    
+    /**
+     * method to draw the Images of the chess pieces
+     * @param brett board the game is on
+     * @param i x axis position
+     * @param y y axis position
+     * @return image Label of the figure
+     */
     public Label drawImage(Board brett, int i, int y) {
     	Label image = new Label("");
     	if(brett.getField(i, y).getColor()=="w") {
