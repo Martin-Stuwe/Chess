@@ -2,7 +2,6 @@ package game;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -171,7 +170,8 @@ public class AI {
 				value = value+calculateFigure(board.getField(x, y),colorS);
 				if (board.positionen[x][y]!=null&&board.positionen[x][y].getColor()==colorS) {
 				value = value+positionEval(board.getField(x, y),x,y);
-				value = value + calculatePosValue(x,y,value);
+				value = value + calculatePosValue(x,value);
+				value = value + calculatePosValue(y,value);
 				}
 				
 			}
@@ -181,31 +181,31 @@ public class AI {
 	}
 	
 	
-	public int calculatePosValue(int x,int y,int value) {
-	if (x == 1||y == 1) {
+	public int calculatePosValue(int x,int value) {
+	if (x == 1) {
 		value=value+1;
 	}
-	if (x == 2||y == 2) {
+	if (x == 2) {
 		value=value+2;
 	}
 	
-	if (x == 3||y == 3) {
+	if (x == 3) {
 		value=value+4;
 	}
 	
-	if (x == 4||y == 4) {
+	if (x == 4) {
 		value=value+4;
 	}
 	
-	if (x == 5||y == 5) {
+	if (x == 5) {
 		value=value+3;
 	}
 	
-	if (x == 6||y == 6) {
+	if (x == 6) {
 		value=value+2;
 	}
 	
-	if (x==7||y == 7) {
+	if (x==7) {
 		value=value+1;
 	}
 	return value;
@@ -519,20 +519,20 @@ public class AI {
 	         case "Pawn":
 	        	 
 		          if(figure.getColor()=="w") {
-		        	  val += (100 + (figures.Pawn.getTable()[8*(7 - y) + x])); 
+		        	  val += 100 + Pawn.getTable()[8*(7 - y) + x]; 
 		          }
 		          if(figure.getColor()=="b") {
-		        	  val -= (100 + (figures.Pawn.getTable()[8 + (8* y) - (1 +x)]));
+		        	  val -= 100 + Pawn.getTable()[8 + (8* y) - (1 +x)];
 		           }
 		           break;
 	
 	         case "Rook":
 	        	 
 		        if(figure.getColor()=="w") {
-		           val += (500 + (figures.Rook.getTable()[8*(7 - y) + x])); 
+		           val += 500 + Rook.getTable()[8*(7 - y) + x]; 
 		        	 }
 		        if(figure.getColor()=="b") {
-		        	val -= (500 + (figures.Rook.getTable()[8 + (8* y) - (1 +x)]));
+		        	val -= 500 + Rook.getTable()[8 + (8* y) - (1 +x)];
 		        
 		        }
 		        break;
@@ -540,10 +540,10 @@ public class AI {
 	         case "Bishop":
 	        	 
 	        	if(figure.getColor()=="w") {
-	        		 val += (330 + (figures.Bishop.getTable()[8*(7 - y) + x])); 
+	        		 val += 330 + Bishop.getTable()[8*(7 - y) + x]; 
 	        	}
 	        	if(figure.getColor()=="b") {
-	        		val -= (330 + (figures.Bishop.getTable()[8 + (8* y) - (1 +x)]));
+	        		val -= 330 + Bishop.getTable()[8 + (8* y) - (1 +x)];
 	        	}
 	        	break;
 	         }
@@ -563,10 +563,10 @@ public class AI {
 		 	case "Knight":
     	 
 	    	if(color=="w") {
-	    		val += (320 + (figures.Knight.getTable()[8*(7 - y) + x]));
+	    		val += 320 + figures.Knight.getTable()[8*(7 - y) + x];
 	    	}
 	    	if(color=="b") {
-	    		val -= (320 + (figures.Knight.getTable()[8 + (8* y) - (1 +x)]));
+	    		val -= 320 + figures.Knight.getTable()[8 + (8* y) - (1 +x)];
 	    	}
 	    	
 	       break;
@@ -574,20 +574,20 @@ public class AI {
 	
 	     case "Queen":
 	    	 if(color=="w") {	     
-	    		 val += (900 + (figures.Queen.getTable()[8*(7 - y) + x])); 
+	    		 val += 900 + figures.Queen.getTable()[8*(7 - y) + x]; 
 	    	 }
 	    	 if(color=="b") {	
-	    		 val -= (900 + (figures.Queen.getTable()[8 + (8* y) - (1 +x)]));
+	    		 val -= 900 + figures.Queen.getTable()[8 + (8* y) - (1 +x)];
 	    	 }
 	       break;
 	
 	
 	     case "King":
 	    	 if(color=="w") {
-	    		 val += (20000 + (figures.King.getTable()[8*(7 - y) + x])); 
+	    		 val += 20000 + figures.King.getTable()[8*(7 - y) + x]; 
 	    	 }
 	    	 if(color=="b") {	
-	    		 val -= (20000 + (figures.King.getTable()[8 + (8* y) - (1 +x)]));
+	    		 val -= 20000 + figures.King.getTable()[8 + (8* y) - (1 +x)];
 	    	 }
 	       break;
 		 }
