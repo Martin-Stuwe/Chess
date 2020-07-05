@@ -35,21 +35,8 @@ public class AITest {
 		ki.findPossMovesAI(board, 1);
 		assertNotEquals(0, ki.possibleMoves.size(), "possMoves2");
 	}
-	/**
-	* Test For Calculate
-	*/
-	@Test
-	public void testCalculate() {
-		AI ki=new AI(1);
-		Board board= new Board();
-		board.setStart();
 
-		board.setCurrentTurn(1);
-		ki.findPossMovesAI(board, 1);
-		assertEquals(0, ki.enPossibleMoves.size(), "enPossMoves1");
-		ki.Calculate(board);
-		//assertNotEquals(0, ki.enPossibleMoves.size(), "enPossMoves2");
-	}
+	
 	/**
 	* Test For ConvertTurn
 	*/
@@ -115,22 +102,5 @@ public class AITest {
 		ki.DoRndMove(board2);
 		assertNotEquals(board.positionen,board2.positionen,"moved");
 	}
-	/**
-	* Test For "optimizez" moves
-	*/
-	@Test
-	public void testDoMinMove() {
-		AI ki=new AI(1);
-		Board board= new Board();
-		Board board2= new Board();
-		board.setStart();
-		board2.setStart();
-		board2.setCurrentTurn(1);
-		ki.findPossMovesAI(board2, 1);
-		ki.DoMinMove(board2);
-		assertNotEquals(board.positionen,board2.positionen,"moved");
-		ki.EnemyValue.add(1);
-		ki.DoMinMove(board2);
-		assertNotEquals(board.positionen,board2.positionen,"moved2");
-	}
+
 }
