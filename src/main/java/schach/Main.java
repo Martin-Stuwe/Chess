@@ -1,6 +1,5 @@
 package schach;
 
-import game.GuiCalcs;
 import game.StartGame;
 
 /**
