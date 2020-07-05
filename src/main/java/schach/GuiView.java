@@ -576,7 +576,6 @@ public class GuiView {
         else if(brett.getCurrentTurn() == 1) {
         	board.add(new Label ("  black to move"), 8, 0);
         }
-        
         Label whiteLa = new Label(" white time: " + clock.timeWhite);
         Label blackLa = new Label(" black time: " + clock.timeBlack);
         whiteLa.setId("whiteLa");
