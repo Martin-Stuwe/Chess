@@ -275,37 +275,39 @@ public class GuiView {
         	}
         	
         }
-	      if(!gc.aiTurn && brett.movedList.size()>0&&!Zug.checkPossibleMoves(brett)) {
-	        	Stage window = new Stage();
-	        	window.setTitle("Game End");
-	            window.initModality(Modality.APPLICATION_MODAL);
-	           
-	            HBox box = new HBox();
-	            Label checkmate = new Label("Checkmate");
-	            Label stalemate = new Label("Stalemate");
-	            checkmate.setId("checkmate");
-	            stalemate.setId("stalemate");
-	      
-	            if(Zug.checkCheck(brett)) {
-	            	box.getChildren().add(checkmate);
-	            }
-	            else {
-	            	box.getChildren().add(stalemate);
-	            }
-	            
-	         
-	            StackPane root = new StackPane();
-	            root.getChildren().add(box);
-	            window.setScene(new Scene(root, 200,200));
-	            window.getScene().getStylesheets().add("style.css");
-	            window.show();
-	        }
+	  drawBoardCondition();
 		      
          
         
      return board;
     }
-    
+    public void drawBoardCondition() {
+	    if(!gc.aiTurn && brett.movedList.size()>0&&!Zug.checkPossibleMoves(brett)) {
+	    	Stage window = new Stage();
+	    	window.setTitle("Game End");
+	        window.initModality(Modality.APPLICATION_MODAL);
+	       
+	        HBox box = new HBox();
+	        Label checkmate = new Label("Checkmate");
+	        Label stalemate = new Label("Stalemate");
+	        checkmate.setId("checkmate");
+	        stalemate.setId("stalemate");
+	  
+	        if(Zug.checkCheck(brett)) {
+	        	box.getChildren().add(checkmate);
+	        }
+	        else {
+	        	box.getChildren().add(stalemate);
+	        }
+	        
+	     
+	        StackPane root = new StackPane();
+	        root.getChildren().add(box);
+	        window.setScene(new Scene(root, 200,200));
+	        window.getScene().getStylesheets().add("style.css");
+	        window.show();
+	    }
+    }
     
     /**
      * method to draw top part (settings) of the gui
