@@ -30,6 +30,12 @@ public class GuiCalcs {
 	static boolean guiActive = false;
 	
 	/**
+	 * String for the path to the save file
+	 */
+	String saveTe = "save.txt";
+	
+	
+	/**
 	 * set-method for guiActive
 	 * @param set true if active
 	 */
@@ -37,7 +43,7 @@ public class GuiCalcs {
 		guiActive = set;
 	}
 	
-	String saveTe = "save.txt";
+
 
     /**
      * method to change the board visual to a real figure picture
@@ -192,18 +198,18 @@ public class GuiCalcs {
     	int b = 10;
     	if(i == 'a' || i == '8') {
     		b = 0;
+    		return b;
     	}
     	else if(i == 'b' || i == '7') {
     		b = 1;
+    		return b;
     	}
     	else if(i == 'c' || i == '6') {
     		b = 2;
+    		return b;
     	}
     	else if(i == 'd' || i == '5') {
     		b = 3;
-    	}
-
-    	if(b != 10) {
     		return b;
     	}
     	return backToNumber2(i);
