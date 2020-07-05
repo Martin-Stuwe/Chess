@@ -27,6 +27,7 @@ import figures.Bishop;
 */
 public class StartGame {
 	
+	
 	/**
 	 * check if loading a save file is wanted
 	 */
