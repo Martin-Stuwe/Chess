@@ -355,7 +355,7 @@ public class AI {
 		    this.recently=0;
 		 }
 		else {
-			board.setCurrentTurn(1);
+			board.setCurrentTurn(color);
 			this.recently=0;
 				board.getField(bestMove.from1, bestMove.from2).move(board, bestMove.from1,bestMove.from2, Integer.toString(bestMove.to1)+Integer.toString(bestMove.to2)); 
 		}
@@ -384,7 +384,7 @@ public class AI {
 	    			System.out.println(einsV);
 	    			System.out.println(zweiV);
 	    	System.out.println(einsV-zweiV);
-	       return (calculateValueFor(board,1)-calculateValueFor(board,0))*10;
+	       return (calculateValueFor(board,this.color)-calculateValueFor(board,1-this.color))*10;
 	    }
 	    int maxWert = alpha;
 	    for (Zug move: AImoves){
@@ -430,15 +430,15 @@ public class AI {
 	*/
 	 int min(Board board,int depth,int alpha, int beta) {
 		 List<Zug> PlayerMoves;
-		 board.setCurrentTurn(0);
+		 board.setCurrentTurn(1-this.color);
 		this.recently=0;
-		 PlayerMoves=findPossMovesAI(board,0);
+		 PlayerMoves=findPossMovesAI(board,1-color);
 	    if (depth == 0 || PlayerMoves.size()==0) {
-	    	System.out.println(calculateValueFor(board,1)-calculateValueFor(board,0));
-	    	return (calculateValueFor(board,1)-calculateValueFor(board,0))*10;
+	    	System.out.println(calculateValueFor(board,this.color)-calculateValueFor(board,1-this.color));
+	    	return (calculateValueFor(board,this.color)-calculateValueFor(board,1-this.color))*10;
 	    }
 	    int minWert = beta;
-	   board.setCurrentTurn(0);
+	   board.setCurrentTurn(1-this.color);
 	    for  (Zug PlayerMove: PlayerMoves) {
 	      	Figures restoreFromPl= board.copy(PlayerMove.from1, PlayerMove.from2);
 	    			Figures restoreToPl=null;
@@ -449,9 +449,9 @@ public class AI {
 	    			board.positionen[PlayerMove.to1][PlayerMove.to2]=board.getField(PlayerMove.from1,PlayerMove.from2);
 	    			board.positionen[PlayerMove.from1][PlayerMove.from2]=null;
 	    			PlayerMove.getFigure().setPos(PlayerMove.to1, PlayerMove.to2);
-	    			board.setCurrentTurn(1);
+	    			board.setCurrentTurn(color);
 	       int wert = max(board,depth-1, alpha, minWert);
-	       board.setCurrentTurn(1);
+	       board.setCurrentTurn(color);
 	       PlayerMove.getFigure().setPos(PlayerMove.from1, PlayerMove.from2);
 	       board.positionen[PlayerMove.from1][PlayerMove.from2]=restoreFromPl;
 			
