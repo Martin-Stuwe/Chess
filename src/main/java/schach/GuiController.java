@@ -667,7 +667,6 @@ public class GuiController {
 			            window.setScene(new Scene(root, 200,200));
 			            window.getScene().getStylesheets().add("style.css");
 			            window.show();
-			            
 			        }
 	    		      }
 	    		  });
