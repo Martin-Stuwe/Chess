@@ -36,7 +36,7 @@ public class StartGame {
 	/**
 	 * clock of the console game
 	 */
-	static Time clock = new Time(600,600);
+	static Time clock = new Time(0,0);
 	
 	/**
 	 * depth of the ai
@@ -383,7 +383,7 @@ public class StartGame {
         		wh = Integer.parseInt(white.input);
         	}
         	catch(NumberFormatException e){
-        		e.printStackTrace();
+        		wh = 600;
         	}
         	while(wh <= 0){
         		System.out.println("first type in the amount of seconds for white");
@@ -392,7 +392,7 @@ public class StartGame {
 	        		wh = Integer.parseInt(white.input);
 	        	}
 	        	catch(NumberFormatException e){
-	        		e.printStackTrace();
+	        		wh = 600;
 	        	}
         	}
         	timeQuestionPartTwo(wh);
@@ -414,7 +414,7 @@ public class StartGame {
 		bl = Integer.parseInt(black.input);
 	}
 	catch(NumberFormatException e){
-		e.printStackTrace();
+		bl = 600;
 	}
 	
 	while(bl <= 0){
@@ -424,7 +424,7 @@ public class StartGame {
     		bl = Integer.parseInt(black.input);
     	}
     	catch(NumberFormatException e){
-    		e.printStackTrace();
+    		bl = 600;
     	}
 	}
 	
