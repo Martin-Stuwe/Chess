@@ -412,6 +412,7 @@ public class GuiView {
         StackPane root = new StackPane();
         root.getChildren().add(box);
         window.setScene(new Scene(root, 200,200));
+        window.getScene().getStylesheets().add("style.css");
         window.show();
         
   

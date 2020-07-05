@@ -1,9 +1,121 @@
+/* basic main configuration */
 .root{
 	-fx-background: rgb(210,180,140);
 	-fx-font-family:"Courier New";
 		
 }
 
+/*****start*****/
+
+/* button to get into the options menu */
 #ngBtn{
 	-fx-font-family:"Times New Roman";
+}
+
+/*****start options*****/
+
+/* white and black Radio Button */
+#white{
+	
+}
+
+#black{
+	
+}
+
+/* playerVsplayer and playerVsAi Radio Button */
+#pla{
+	
+}
+
+#ai{
+	
+}
+
+/* enable time checkbox and textfields for the time */
+#enable{
+	
+}
+
+#whTi{
+	
+}
+
+#blTi{
+	
+}
+
+/* start and load button to start the game */
+#start{
+	
+}
+
+#load{
+	
+}
+
+
+/*****start game*****/
+
+/* drawTop */
+#check1{
+	
+}
+
+#check2{
+	
+}
+
+#check3{
+	
+}
+
+#check4{
+	
+}
+
+#save{
+	
+}
+
+#back{
+	
+}
+
+/* drawBoard */
+
+#whiteLa{
+	
+}
+
+#blackLa{
+	
+}
+
+/*****pawnPromo*****/
+
+#queen{
+	
+}
+
+#rook{
+	
+}
+
+#knight{
+	
+}
+
+#bishop{
+	
+}
+
+/*****Stalemate/Checkmate*****/
+
+#stalemate{
+	
+}
+
+#checkmate{
+	
 }

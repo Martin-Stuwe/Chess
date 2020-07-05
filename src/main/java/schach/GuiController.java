@@ -650,23 +650,31 @@ public class GuiController {
 			            window.initModality(Modality.APPLICATION_MODAL);
 			           
 			            HBox box = new HBox();
+			            Label checkmate = new Label("Checkmate");
+			            Label stalemate = new Label("Stalemate");
+			            checkmate.setId("checkmate");
+			            stalemate.setId("stalemate");
 			            if(Zug.checkCheck(gv.brett)) {
-			            	box.getChildren().add(new Label("Checkmate"));
+			            	box.getChildren().add(checkmate);
 			            }
 			            else {
-			            	box.getChildren().add(new Label("Stalemate"));
+			            	box.getChildren().add(stalemate);
 			            }
 			            
 			         
 			            StackPane root = new StackPane();
 			            root.getChildren().add(box);
 			            window.setScene(new Scene(root, 200,200));
+			            window.getScene().getStylesheets().add("style.css");
 			            window.show();
+			            
 			        }
 	    		      }
 	    		  });
 			}
 			
 		}, i, i);
+		
+		
 	}
 	}
