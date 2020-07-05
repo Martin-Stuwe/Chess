@@ -35,7 +35,7 @@ public class Queen extends Figures {
 	private String color;
 	
     
-  protected static int [] queenTable = {
+	private int [] queenTable = {
       -20,-10,-10, -5, -5,-10,-10,-20,
       -10,  0,  0,  0,  0,  0,  0,-10,
       -10,  0,  5,  5,  5,  5,  0,-10,
@@ -83,7 +83,7 @@ public class Queen extends Figures {
 	 * get method for queenTable
 	 * @return queenTable
 	 */
-	public static int[] getTable() {
+	public int[] getTable() {
 		return queenTable;
 	}
 	

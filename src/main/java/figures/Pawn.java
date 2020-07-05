@@ -44,7 +44,7 @@ public class Pawn extends Figures {
 	/**
 	 * array to evaluate the pawn position
 	 */ 
-    protected static int [] pawnTable = {
+    private int [] pawnTable = {
             0,  0,  0,  0,  0,  0,  0,  0,
             50, 50, 50, 50, 50, 50, 50, 50,
             10, 10, 20, 30, 30, 20, 10, 10,
@@ -72,7 +72,7 @@ public class Pawn extends Figures {
 	 * get method for pawnTable
 	 * @return pawnTable
 	 */
-	public static int[] getTable() {
+	public int[] getTable() {
 		return pawnTable;
 	}
 	/**

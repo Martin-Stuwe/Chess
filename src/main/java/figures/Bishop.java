@@ -35,6 +35,7 @@ public class Bishop extends Figures {
 	 * the color of the bishop
 	 */
 	private String color;
+	
 	/**
 	 * the color of the bishop
 	 */
@@ -43,7 +44,7 @@ public class Bishop extends Figures {
 	/**
 	 * array to evaluate the bishop position
 	 */
-	protected static int [] bishopTable = {
+	private int [] bishopTable = {
             -20,-10,-10,-10,-10,-10,-10,-20,
             -10,  0,  0,  0,  0,  0,  0,-10,
             -10,  0,  5, 10, 10,  5,  0,-10,
@@ -109,8 +110,8 @@ public class Bishop extends Figures {
 	 * get method for bishopTable
 	 * @return bishopTable
 	 */
-	public static int[] getTable() {
-		return bishopTable;
+	public int[] getTable() {
+		return this.bishopTable;
 	}
 	
 	

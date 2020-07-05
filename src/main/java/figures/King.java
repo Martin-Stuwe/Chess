@@ -53,7 +53,7 @@ public class King extends Figures {
 	/**
 	 * array to evaluate the king position
 	 */
-    protected static int [] kingTable = {
+    private int [] kingTable = {
         -30,-40,-40,-50,-50,-40,-40,-30,
         -30,-40,-40,-50,-50,-40,-40,-30,
         -30,-40,-40,-50,-50,-40,-40,-30,
@@ -103,7 +103,7 @@ public class King extends Figures {
 	 * get method for kingTable
 	 * @return kingTable
 	 */
-	public static int[] getTable() {
+	public int[] getTable() {
 		return kingTable;
 	}
 	
