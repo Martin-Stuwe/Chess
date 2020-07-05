@@ -26,9 +26,20 @@ import figures.Bishop;
 */
 public class StartGame {
 	
+	/**
+	 * check if loading a save file is wanted
+	 */
 	static boolean saveGame = false;
 	
+	/**
+	 * clock of the console game
+	 */
 	static Time clock = new Time(600,600);
+	
+	/**
+	 * depth of the ai
+	 */
+	static int depth = 3;
 	
 	/**
 	 * Catches user input and uses convertAndMove to convert and make the move happen
@@ -264,6 +275,8 @@ public class StartGame {
 	 * method for PlayerVsAi gamemode
 	 */
 	public static void PlayerVsAI(int color) {
+		inputAiDepth();
+		
 		GuiCalcs rechner = new GuiCalcs();
 		Board board = new Board();
 		board.setStart();
@@ -305,7 +318,7 @@ public class StartGame {
 		
 			if(board.getCurrentTurn()==color) {
 				
-				ki.lookAhead(board,3,color);
+				ki.lookAhead(board,depth,color);
 				Zug.checkCheck(board);
 				board.initializeBoard();
 				if(clock.active) {
@@ -510,6 +523,24 @@ public class StartGame {
         	
         	clock.timeBlack = bl;
         }
+	}
+	
+	/**
+	 * method to ask for specific Ai depth
+	 */
+	public static void inputAiDepth() {
+		System.out.println("type in AI depth (recommended/standard if no or wrong input 3)");
+		Console dep = new Console();
+		dep.open();
+		
+		try {
+			if(Integer.parseInt(dep.input)> 0) {
+				depth = Integer.parseInt(dep.input);
+			}
+    	}
+    	catch(NumberFormatException e){
+    		e.printStackTrace();
+    	}
 	}
 
 }
