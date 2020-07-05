@@ -174,6 +174,10 @@ public class GuiView {
         
 
     }
+	 /**
+     * stage to choose mode and options continued
+     * @param primaryStage main stage , primaryScreenBounds dimensions of the screen, colorbox box for the choice of color, chobox box for start/load game
+     */
 	public void startOptions2(Stage primaryStage, Rectangle2D primaryScreenBounds, HBox colorbox, HBox chobox) {
 		
 		RadioButton pla = new RadioButton("player vs player");
@@ -261,8 +265,8 @@ public class GuiView {
         border.setBottom(drawBottom(brett));
         border.setRight(drawRight(brett));
         border.getTop().minHeight(screenHeight/10);
-        if(!gc.aiTurn && brett.movedList.size()>0) {
-        if(Zug.checkCheck(brett) && gc.gameParameters.get(1)) {
+
+        if(!gc.aiTurn && brett.movedList.size()>0&&Zug.checkCheck(brett) && gc.gameParameters.get(1)) {
         	if(brett.whiteCheck) {
         		board.add(new Label ("  white is in check"), 8, 1);
         	}
@@ -271,7 +275,7 @@ public class GuiView {
         	}
         	
         }
-	      if(!Zug.checkPossibleMoves(brett)) {
+	      if(!gc.aiTurn && brett.movedList.size()>0&&!Zug.checkPossibleMoves(brett)) {
 	        	Stage window = new Stage();
 	        	window.setTitle("Game End");
 	            window.initModality(Modality.APPLICATION_MODAL);
@@ -297,7 +301,7 @@ public class GuiView {
 	            window.show();
 	        }
 		      
-        } 
+         
         
      return board;
     }
