@@ -424,9 +424,11 @@ public class AI {
 		 board.setCurrentTurn(1-this.color);
 		this.recently=0;
 		 PlayerMoves=findPossMovesAI(board,1-color);
+		 
 	    if (depth == 0 || PlayerMoves.size()==0) {
 	    	return (calculateValueFor(board,this.color)-calculateValueFor(board,1-this.color))*10;
 	    }
+	    
 	    int minWert = beta;
 	   board.setCurrentTurn(1-this.color);
 	    for  (Zug PlayerMove: PlayerMoves) {
