@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -41,6 +42,7 @@ public class StartGame {
 	 */
 	static int depth = 3;
 	
+	static List<Zug>undoneTurns = new ArrayList<Zug>();
 	/**
 	 * Catches user input and uses convertAndMove to convert and make the move happen
 	 * @param board the actual Board object
@@ -83,7 +85,22 @@ public class StartGame {
 				makeSaveConsole(board);
 				getAndMakeMove(board);
 			}
-			
+			if(playerMove.input.equals("undo")&&board.movedList.size()>0) {
+				undoneTurns.add(board.movedList.get(board.movedList.size()-1));
+				board.movedList.remove(board.movedList.size()-1);
+				if(board.movedList.size()>0) {
+				board.setBoard(board.movedList.get(board.movedList.size()-1).getBoardState(),board.movedList.get(board.movedList.size()-1).getTurn());
+				}
+				else {
+					board.setStart();
+				}
+				}
+			if(playerMove.input.equals("redo")&&undoneTurns.size()>0) {
+				board.movedList.add(undoneTurns.get(undoneTurns.size()-1));
+				board.setBoard(undoneTurns.get(undoneTurns.size()-1).getBoardState(), undoneTurns.get(undoneTurns.size()-1).getTurn());
+				undoneTurns.remove(undoneTurns.size()-1);
+				
+			}
 			convertAndMove(board,playerMove);
 		
 	}
