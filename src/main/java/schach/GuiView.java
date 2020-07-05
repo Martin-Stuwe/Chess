@@ -85,7 +85,7 @@ public class GuiView {
  	/**
  	 * clock object of GuiView
  	 */
- 	public Time clock = new Time(600,600);
+ 	public Time clock = new Time(0,0);
  	
  	/**
  	 * String for the stylesheet
@@ -167,6 +167,7 @@ public class GuiView {
         HBox chobox = new HBox(100, btn, btn2);
  
         
+        
         RadioButton white = new RadioButton("white");
         white.setId("white");
         white.setSelected(true);
@@ -179,17 +180,23 @@ public class GuiView {
         RadioButton ai = new RadioButton("player vs ai");
         ai.setId("ai");
         pla.setSelected(true);
-        HBox modebox = new HBox(100, pla, ai);
+        TextField depth = new TextField();
+        depth.setId("depth");
+        depth.setPromptText("ai depth > 0");
+        HBox modebox = new HBox(100, pla, ai, depth);
+        
         
         CheckBox enableTime = new CheckBox("enable time");
         enableTime.setId("enable");
         TextField whiteTime = new TextField();
         whiteTime.setId("whTi");
+        whiteTime.setPromptText("white in s");
         TextField blackTime = new TextField();
         blackTime.setId("blTi");
+        blackTime.setPromptText("black in s");
         HBox timebox = new HBox(100, enableTime, whiteTime, blackTime);
         
-       
+             
         VBox option = new VBox();
         option.setSpacing(primaryScreenBounds.getHeight() /20);
         option.getChildren().add(colorbox);
