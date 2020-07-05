@@ -195,7 +195,6 @@ public class StartGame {
 			
 		}, i, i);
 		
-		
 		int isStart=1;
 		while (true) {
 			System.out.println(board.getCurrentTurn());

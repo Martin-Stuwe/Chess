@@ -141,6 +141,7 @@ public class AITest {
 		ki.max(board, 1, -500000, 500000);
 		assertEquals(ki.min(board, 1, -500000, 500000),5040,"min Value");
 	}
+
 	
 	/**
 	* Test For max moves
