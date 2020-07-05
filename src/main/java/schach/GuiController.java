@@ -2,14 +2,12 @@ package schach;
 
 import figures.Bishop;
 import figures.Knight;
-import figures.Pawn;
 import figures.Queen;
 import figures.Rook;
 import game.AI;
 import game.Board;
 import game.Figures;
 import game.GuiCalcs;
-import game.Time;
 import game.Zug;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -18,20 +16,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBase;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -41,6 +35,15 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Controller class of the GUI game
+ * @author Martin Stuwe 676421
+ * @author Zeyi Sun
+ * @author Richard Tank
+ * @author Fin Niklas Tiedemann
+ * group 23
+ * it3
+ */
 public class GuiController {
 
 	
@@ -59,27 +62,50 @@ public class GuiController {
 	 */
 	boolean aiGame =false;
 	
+	/**
+	 * check if a game is to be loaded
+	 */
 	boolean saveGame = false;
 	
+	/**
+	 * shown GUI in the programm
+	 */
 	GuiView gv = new GuiView(this);
+	
+	/**
+	 * Ai depth 
+	 */
 	int depth;
+	
+	/**
+	 * list of undone Turns
+	 */
 	public List<Zug>undoneTurns = new ArrayList<Zug>();
+	
+	/**
+	 * check if it's Ai's turn
+	 */
 	boolean aiTurn=false;
+	
+	
 	/**
 	 * List of Game Parameters 0=rotate , 1=showCheck, 2=showMove, 3=touchMove, 4=clicked, 5=aiGame, 6=saveGame
 	 */
 	public List<Boolean>gameParameters = new ArrayList<Boolean>();
 	
-	  public void setGameParameters() {
-	    	gameParameters.add(false);
-	    	gameParameters.add(true);
-	    	gameParameters.add(true);
-	    	gameParameters.add(false);
-	    	gameParameters.add(false);
-	    	gameParameters.add(false);
-	    	gameParameters.add(false);
-	    	gameParameters.add(false);
-	    }
+	/**
+	 * set start options of the options you have while playing the game
+	 */
+	public void setGameParameters() {
+	    gameParameters.add(false);
+	    gameParameters.add(true);
+	    gameParameters.add(true);
+	    gameParameters.add(false);
+	    gameParameters.add(false);
+	    gameParameters.add(false);
+	    gameParameters.add(false);
+	    gameParameters.add(false);
+	   }
 	  /**
      * set-method for rotate
      * @param isSelected current state of the rotate checkbox
@@ -120,11 +146,12 @@ public class GuiController {
     	gameParameters.set(4, click);
     }
     
-  /*  public  ListView<String> getHistorie(){
-    	return historie;
-    }*/
+
     
-    
+    /**
+     * Starting stage of the game
+     * @param primaryStage main stage of the game
+     */
 	public void start(Stage primaryStage) {
     	gv.start(primaryStage);
     	Button btn = (Button) primaryStage.getScene().lookup("#ngBtn");
@@ -135,10 +162,14 @@ public class GuiController {
                gv.startOptions(primaryStage);
                setOptions(primaryStage);
             }
-        });;
+        });
 
 	}
 	
+	/**
+	 * option screen of the game
+	 * @param primaryStage main stage of the game
+	 */
 	public void setOptions(Stage primaryStage) {
 		RadioButton white = (RadioButton) primaryStage.getScene().lookup("#white");
 		RadioButton black = (RadioButton) primaryStage.getScene().lookup("#black");
@@ -275,6 +306,10 @@ public class GuiController {
 		
 	}
 	
+	/**
+	 * method to load the specific Bbard state
+	 * @param k
+	 */
 	public void loadBoardState(int k) {
 	
 		Figures[][] figuren = gv.brett.movedList.get(k).getBoardState();
@@ -287,6 +322,10 @@ public class GuiController {
 		}
 		addUndoneTurnsToHistorie();
 	}
+	
+	/**
+	 * method to load the historie after moves have been undone
+	 */
 	public void addUndoneTurnsToHistorie() {
 		gv.historie.getItems().clear();
 		int k = gv.brett.movedList.size();
@@ -328,6 +367,7 @@ public class GuiController {
 		}
 	}
 	
+	
 	public void redoTurns(int k) {
 		for(int i=0;i<k;i++) {
 			int z = undoneTurns.size();
@@ -341,6 +381,11 @@ public class GuiController {
 		gv.drawBoard();
 		
 	}
+	
+	/**
+	 * game screen of the game
+	 * @param primaryStage main stage of the game
+	 */
 	public void startPlay(Stage primaryStage) {
 		gv.brett = new Board();
 		gv.brett.setStart();
@@ -459,7 +504,10 @@ public class GuiController {
     		}
     	}
     
-
+	/**
+	 * method to place view Elements in the upper part of the game screen
+	 * @param primaryStage main stage of the game
+	 */
 	public void setTop(Stage primaryStage) {
 	    CheckBox check1 = (CheckBox) primaryStage.getScene().lookup("#check1");
         CheckBox check2 = (CheckBox) primaryStage.getScene().lookup("#check2");
@@ -766,6 +814,10 @@ public class GuiController {
 		
 	}
 	
+	/**
+	 * method to change the depth of the ai
+	 * @param primaryStage main stage of the game
+	 */
 	public void changeDepth(Stage primaryStage) {
 		RadioButton ai = (RadioButton) primaryStage.getScene().lookup("#ai");
 		TextField aiDepth = (TextField) primaryStage.getScene().lookup("#depth");
