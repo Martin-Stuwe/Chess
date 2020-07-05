@@ -351,7 +351,6 @@ public class AI {
 		max(board,desiredDepth,
 		                     -100000000, 1000000000);
 		if (bestMove == null) {
-		    System.out.println("Matt/Patt");
 		    this.recently=0;
 		 }
 		else {
@@ -377,13 +376,6 @@ public class AI {
 		 this.recently=0;
 		 AImoves=findPossMovesAI(board,color);
 	    if (depth == 0 || AImoves.size()==0) {
-	    	
-	    	
-	    			int einsV=calculateValueFor(board,1);
-	    			int zweiV=calculateValueFor(board,0);
-	    			System.out.println(einsV);
-	    			System.out.println(zweiV);
-	    	System.out.println(einsV-zweiV);
 	       return (calculateValueFor(board,this.color)-calculateValueFor(board,1-this.color))*10;
 	    }
 	    int maxWert = alpha;
@@ -412,7 +404,6 @@ public class AI {
 	             bestMove = move;
 	          }
 	          if (maxWert >= beta) {
-	        	  System.out.println("=====================CUT=============");
 	             break; 
 	       }}
 	    }
@@ -434,7 +425,6 @@ public class AI {
 		this.recently=0;
 		 PlayerMoves=findPossMovesAI(board,1-color);
 	    if (depth == 0 || PlayerMoves.size()==0) {
-	    	System.out.println(calculateValueFor(board,this.color)-calculateValueFor(board,1-this.color));
 	    	return (calculateValueFor(board,this.color)-calculateValueFor(board,1-this.color))*10;
 	    }
 	    int minWert = beta;
@@ -459,7 +449,6 @@ public class AI {
 	       if (wert < minWert) {
 	          minWert = wert;
 	          if (minWert <= alpha) {
-	        	  System.out.println("=====================CUT=============");
 	             break;
 	       }
 	    }}
