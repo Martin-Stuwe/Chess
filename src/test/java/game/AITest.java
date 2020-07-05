@@ -141,5 +141,19 @@ public class AITest {
 		ki.max(board, 1, -500000, 500000);
 		assertEquals(ki.min(board, 1, -500000, 500000),5040,"min Value");
 	}
+	
+	/**
+	* Test For max moves
+	*/
+	@Test
+	public void testlookAhead() {
+		AI ki=new AI(1);
+		Board board= new Board();
+		board.setStart();
+		Board board2= new Board();
+		board2.setStart();
+		ki.lookAhead(board, 1, 1);
+		assertNotEquals(board,board2,"moved figure");
+	}
 
 }

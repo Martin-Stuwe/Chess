@@ -216,7 +216,6 @@ public class StartGame {
 				System.out.println("white time left: " + clock.timeWhite + " | black time left: " + clock.timeBlack);
 				}
 			}
-			System.out.println(board.movedList);
 			getAndMakeMove(board);
 			//board.setCurrentTurn(0);
 		}
