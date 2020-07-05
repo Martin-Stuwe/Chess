@@ -571,6 +571,13 @@ public class GuiController {
 			int to1=Character.getNumericValue(to.charAt(0));
 			int to2=Character.getNumericValue(to.charAt(1));
 
+			if(undoneTurns.size()>0) {
+				int k = undoneTurns.size();
+				for(int i=k;i>0;i--) {
+					gv.historie.getItems().remove(gv.historie.getItems().size()-1);
+				}
+				undoneTurns.clear();
+			}
 			brett.getField(a, b).move(brett, a, b, to);
 			Label zug = rechner.convertInputToHistorie(a, b , to);
 			int zugnr =gv.historie.getItems().size();
@@ -630,8 +637,8 @@ public class GuiController {
 			}
 			gv.drawBoard();
 			
-
-		}
+		
+	  }
 
 
 	public void startAi() {
