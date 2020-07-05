@@ -49,30 +49,18 @@ public class AI {
 	 * the converted turn
 	 */
 	private String convTurn;
-	
-	/**
-	* the position for the min move
-	*/
-	private int min;
+
 	
 	/**
 	 * the color of the AI 
 	 */
 	private int color;
 	
-	/**
-	 * the from figure to restore
-	 */
-	private static  Figures restoreFrom;
-	
-	/**
-	 * the to figure to restore
-	 */
-	private static Figures restoreTo;
-	
+
 	private int desiredDepth;
 	
 	private Zug bestMove;
+	
 	
 	/**
 	 * the AI constructor
@@ -95,36 +83,7 @@ public class AI {
 	
 	
 	
-	
-	/**
-	 * method to find possible Moves for a side and save them in a list
-	 * @param board board the moves should take place on
-	 * @param turn the side to find possible moves for
-	 */
-	public void findPossMoves(Board board, int turn ) {
-		List<Zug> possibleMoveList = new ArrayList<Zug>();
-	
-		convTurn=convertTurn(turn);
-		 
-		for (int i22=0;i22<8;i22++) {
-			for (int j22=0;j22<8;j22++) {
-				for (int x22=0;x22<8;x22++) {
-					for (int y22=0;y22<8;y22++) {
-						if(board.getField(i22, j22)!=null&&convTurn==board.getField(i22, j22).getColor()){
-							
-							checkPossMoves(board,Integer.toString(i22)+Integer.toString(j22)+Integer.toString(x22)+Integer.toString(y22),turn, possibleMoveList);
-						}
-					}
-				}
-			}
-		}
-		if(turn==color) {
-			possibleMoves = possibleMoveList;
-		}
-		else {
-			enPossibleMoves = possibleMoveList;
-		}
-	}
+
 	
 	/**
 	 * method to check and restore possible moves
@@ -165,125 +124,7 @@ public class AI {
 		}
 			board.setCurrentTurn(color);
 	**/}
-	}
 	
-	/**
-	 * method to evaluate the the board after every possible move
-	 * @param board board the moves should take place on
-	 */
-	public void Calculate(Board board) {
-		EnemyValue.removeAll(EnemyValue);
-
-		switch (board.getCurrentTurn()) {
-			case 0:
-				convTurn = "w";
-				break;
-			case 1:	
-				convTurn = "b";
-				break;
-		}
-		int savecolor = color;
-		System.out.println("Test3");
-		
-		
-		
-		
-		for (int E=0;E<possibleMoves.size();E++) {
-			EnemyValue.add(0);
-			System.out.println(possibleMoves.size());
-			
-			
-			restoreTo = board.copy(possibleMoves.get(E).to1,possibleMoves.get(E).to2);
-			restoreFrom = board.copy(possibleMoves.get(E).from1, possibleMoves.get(E).from2);
-			board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=board.getField(possibleMoves.get(E).from1, possibleMoves.get(E).from2);
-			board.positionen[possibleMoves.get(E).from1][possibleMoves.get(E).from2]=null;
-			//board.initializeBoard();
-
-			EnemyValue.set(E, calculateValue(board));
-			
-			switch (color) {
-			case 0:
-				convTurn = "w";
-				break;
-			case 1:	
-				convTurn = "b";
-				break;
-			}
-			
-			System.out.println("test4");
-			
-			
-		
-		if (convTurn == "b") {
-		
-		board.setCurrentTurn(0);
-		enPossibleMoves=findPossMoves2(board, 0);
-		//convTurn = "b";
-		//board.setCurrentTurn(1);
-		//board.setCurrentTurn(savecolor);
-		
-		}
-		else {
-			enPossibleMoves= findPossMoves2(board,1);
-			//board.setCurrentTurn(savecolor);
-		}
-	
-	
-		
-		
-		
-		System.out.println("Size is "+ enPossibleMoves.size());
-		for (int K=0; K<enPossibleMoves.size();K++) {
-		System.out.println("Test");
-		System.out.println(board.getField(enPossibleMoves.get(K).from1,enPossibleMoves.get(K).from2));
-		if (board.getField(enPossibleMoves.get(K).from1,enPossibleMoves.get(K).from2)!=null){
-			Figures restoreFromEn= board.copy(enPossibleMoves.get(K).from1, enPossibleMoves.get(K).from2);
-			Figures restoreToEn=null;
-			if (board.getField(enPossibleMoves.get(K).to1, enPossibleMoves.get(K).to2)!=null) {
-				restoreToEn= board.copy(enPossibleMoves.get(K).to1, enPossibleMoves.get(K).to2);
-			}
-			
-			board.positionen[enPossibleMoves.get(K).to1][enPossibleMoves.get(K).to2]=board.getField(enPossibleMoves.get(K).from1,enPossibleMoves.get(K).from2);
-			board.positionen[enPossibleMoves.get(K).from1][enPossibleMoves.get(K).from2]=null;
-			
-				//EnemyValue2.add(calculateValueFor(board,0));
-				//AIValue2.add(calculateValueFor(board,1));
-			
-			
-			board.initializeBoard();
-				
-
-			int valuex=calculateValueFor(board,0)-calculateValueFor(board,1);
-		
-			
-			//board.setCurrentTurn(0);
-			List<Zug> AImove2 = findPossMoves2(board,0);
-			//board.setCurrentTurn(1);
-			//System.out.println("Second AI Move would be"+ AImove2);
-				
-				board.positionen[enPossibleMoves.get(K).from1][enPossibleMoves.get(K).from2]=restoreFromEn;
-				
-				board.positionen[enPossibleMoves.get(K).to1][enPossibleMoves.get(K).to2]=restoreToEn;
-				
-			
-		
-			//int y4 = calculateFigure(board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2),board.getField(enPossibleMoves.get(K).to1,enPossibleMoves.get(K).to2).getColor());
-			
-
-	}}
-		
-		enPossibleMoves = new ArrayList<Zug>(); ;
-			
-					
-			board.positionen[possibleMoves.get(E).from1][possibleMoves.get(E).from2]=restoreFrom;
-			
-			board.positionen[possibleMoves.get(E).to1][possibleMoves.get(E).to2]=restoreTo;
-
-		}
-	
-		board.setCurrentTurn(savecolor);
-		
-		
 	}
 	
 
@@ -450,57 +291,6 @@ public class AI {
 	
 	
 	
-	/**
-	 * method to find do the least valued move if the is one
-	 * @param board board the moves should take place on
-	 */
-	public void DoMinMove(Board board) {
-		List<Integer> sortedList = new ArrayList<>(EnemyValue);
-		Collections.sort(sortedList);
-		for (int x = 0; x<EnemyValue.size();x++) {
-			if(EnemyValue.get(x)==sortedList.get(0)) {
-				min = x;
-			}
-		}
-		if (sortedList.size()==0 ) {
-			
-			DoRndMove(board);
-			System.out.println("1. RNDmove");
-			possibleMoves.clear();
-			return;
-			
-		}
-		
-		//else {
-			
-			if(sortedList.get(sortedList.size()-1).equals(sortedList.get(0))) {
-				System.out.println("3");
-				DoRndMove(board);
-				System.out.println("2. RNDmove");
-				possibleMoves.clear();
-				return;
-				
-			}
-			else {
-				Zug minMove = possibleMoves.get(min);	
-				
-				System.out.println("Tried move: "+minMove.from1 + minMove.from2 + minMove.to1 + minMove.to2);
-				System.out.println("hasPossMoveCheck: "+board.getField(minMove.from1, minMove.from2).hasPossibleMove(board,minMove.from1,minMove.from2,Integer.toString(minMove.to1)+Integer.toString(minMove.to2)));
-				
-				System.out.println(board.getField(minMove.from1, minMove.from2));
-				System.out.println(board.getField(minMove.to1, minMove.from2));
-				
-				board.getField(minMove.from1, minMove.from2).move(board,minMove.from1,minMove.from2,Integer.toString(minMove.to1)+Integer.toString(minMove.to2));
-				
-
-				//System.out.println(Arrays.deepToString(board.positionen));
-				possibleMoves.clear();
-				//board.movedList.add(minMove);
-				return;
-				
-				
-			}
-		}
 		
 		
 	
