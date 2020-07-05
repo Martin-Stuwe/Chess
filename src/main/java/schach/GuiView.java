@@ -63,10 +63,6 @@ public class GuiView {
      */
     double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
     
-    /**
-     * current screenWidht
-     */
-    double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
     
     /**
      * GuiCalcs object for calculating
@@ -78,14 +74,20 @@ public class GuiView {
      */
     GuiController gc;
     
-
+    /**
+     * window object for popups etc
+     */
+ 	Stage window = new Stage();
  	
  	/**
  	 * clock object of GuiView
  	 */
  	public Time clock = new Time(0,0);
  	
-
+ 	/**
+ 	 * String for the stylesheet
+ 	 */
+ 	String sty = "style.css";
  	
  	/**
  	 * get-method of brett
@@ -115,9 +117,7 @@ public class GuiView {
 	 * get-method of the screenWidth
 	 * @param newHeight width of the screen
 	 */
-	public void setScreenWidth(double newHeight) {
-		this.screenWidth = newHeight;
-	}
+
 	
 	/**
 	 * set-method of gc
@@ -132,7 +132,6 @@ public class GuiView {
      * @param primaryStage main stage
      */
 	public void start(Stage primaryStage) {
-	 	String sty = "style.css";
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         primaryStage.setTitle("Startscreen");
         Button ngBtn = new Button();
@@ -176,7 +175,7 @@ public class GuiView {
 
     }
 	public void startOptions2(Stage primaryStage, Rectangle2D primaryScreenBounds, HBox colorbox, HBox chobox) {
-	 	String styl = "style.css";
+		
 		RadioButton pla = new RadioButton("player vs player");
 	    pla.setId("pla");
 	    RadioButton ai = new RadioButton("player vs ai");
@@ -210,7 +209,7 @@ public class GuiView {
     StackPane root = new StackPane();
     root.getChildren().add(option);
     primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
-    primaryStage.getScene().getStylesheets().add(styl);
+    primaryStage.getScene().getStylesheets().add(sty);
     primaryStage.setX(primaryScreenBounds.getMinX());
     primaryStage.setY(primaryScreenBounds.getMinY());
     primaryStage.show();
@@ -220,12 +219,11 @@ public class GuiView {
      * @param primaryStage main stage
      */
     public void startGame(Stage primaryStage, boolean saveGame) {
-     	String style = "style.css";
     	gc.setGameParameters();
         primaryStage.setTitle("Chess");
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         screenHeight =primaryScreenBounds.getHeight();
-        screenWidth =primaryScreenBounds.getWidth();
+        double screenWidth =primaryScreenBounds.getWidth();
      
         
         
@@ -239,7 +237,7 @@ public class GuiView {
         StackPane root = new StackPane();
         root.getChildren().add(border);
         primaryStage.setScene(new Scene(root, screenWidth, screenHeight));
-        primaryStage.getScene().getStylesheets().add(style);
+        primaryStage.getScene().getStylesheets().add(sty);
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.setMinHeight(600);
@@ -264,15 +262,16 @@ public class GuiView {
         border.setRight(drawRight(brett));
         border.getTop().minHeight(screenHeight/10);
         if(!gc.aiTurn && brett.movedList.size()>0) {
-        
-        	if(Zug.checkCheck(brett) && gc.gameParameters.get(1) && brett.whiteCheck) {
+        if(Zug.checkCheck(brett) && gc.gameParameters.get(1)) {
+        	if(brett.whiteCheck) {
         		board.add(new Label ("  white is in check"), 8, 1);
         	}
-        	else if(Zug.checkCheck(brett) && gc.gameParameters.get(1) && brett.blackCheck ) {
+        	else if(brett.blackCheck) {
         		board.add(new Label ("  black is in check"), 8, 1);
         	}
         	
-            if(!Zug.checkPossibleMoves(brett)) {
+        }
+	      if(!Zug.checkPossibleMoves(brett)) {
 	        	Stage window = new Stage();
 	        	window.setTitle("Game End");
 	            window.initModality(Modality.APPLICATION_MODAL);
@@ -479,8 +478,7 @@ public class GuiView {
      * @param to2 y axis position
      */
     public void pawnPromo() {
-     	String styles = "style.css";
-     	Stage window = new Stage();
+  
     	window.setTitle("pawn promotion");
         window.initModality(Modality.APPLICATION_MODAL);
         Button queen = new Button("♕/♛");
@@ -499,7 +497,7 @@ public class GuiView {
         StackPane root = new StackPane();
         root.getChildren().add(box);
         window.setScene(new Scene(root, 200,200));
-        window.getScene().getStylesheets().add(styles);
+        window.getScene().getStylesheets().add(sty);
         window.show();
         
   
