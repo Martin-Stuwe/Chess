@@ -30,12 +30,20 @@ public class GuiCalcs {
 	static boolean guiActive = false;
 	
 	/**
+	 * String for the path to the save file
+	 */
+	String saveTe = "save.txt";
+	
+	
+	/**
 	 * set-method for guiActive
 	 * @param set true if active
 	 */
 	public static void setGui(boolean set) {
 		guiActive = set;
 	}
+	
+
 
     /**
      * method to change the board visual to a real figure picture
@@ -187,20 +195,34 @@ public class GuiCalcs {
      * @return b the converted char that is now an Integer
      */
     public int backToNumber(char i) {
-    	int b = 0;
+    	int b = 10;
     	if(i == 'a' || i == '8') {
     		b = 0;
+    		return b;
     	}
     	else if(i == 'b' || i == '7') {
     		b = 1;
+    		return b;
     	}
     	else if(i == 'c' || i == '6') {
     		b = 2;
+    		return b;
     	}
     	else if(i == 'd' || i == '5') {
     		b = 3;
+    		return b;
     	}
-    	else if(i == 'e' || i == '4') {
+    	return backToNumber2(i);
+    }
+    
+    /**
+     * second method to go from Input to the array numbers
+     * @param i the char that gets converted
+     * @return b the converted char that is now an Integer
+     */
+    public int backToNumber2(char i) {
+    	int b = 0;
+    	if(i == 'e' || i == '4') {
     		b = 4;
     	}
     	else if(i == 'f' || i == '3') {
@@ -212,7 +234,6 @@ public class GuiCalcs {
     	else if(i == 'h' || i == '1') {
     		b = 7;
     	}
-    	
     	return b;
     }
       
@@ -223,7 +244,7 @@ public class GuiCalcs {
      * @param historie ListView of Labels of all moves
      */
     public void makeSaveGui(ListView<Label> historie){
-    	File file = new File("save.txt");
+    	File file = new File(saveTe);
     	
     	
     	try {
@@ -242,7 +263,7 @@ public class GuiCalcs {
     	
     	
     	try {
-			Files.write(Paths.get("save.txt"), test, StandardCharsets.UTF_8);
+			Files.write(Paths.get(saveTe), test, StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -256,18 +277,18 @@ public class GuiCalcs {
      * @param board Board the save file gets loaded on on
      */
     public void loadGuiSave(Board board) {
-    	File test = new File("save.txt");
+    	File test = new File(saveTe);
     	if(test.exists()) {
     		List<String> allLines = new ArrayList<String>();
     		List<String> justMoves = new ArrayList<String>();
     	
     		try {
-    			allLines = Files.readAllLines(Paths.get("save.txt"), StandardCharsets.UTF_8);
+    			allLines = Files.readAllLines(Paths.get(saveTe), StandardCharsets.UTF_8);
     		} catch (IOException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-    	
+    		
     		for(int i = 0; i < allLines.size() ; i++) {
     			justMoves.add(allLines.get(i));
     			if(allLines.get(i).equals("---")) {
