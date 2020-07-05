@@ -132,6 +132,31 @@ public class AI {
 	**/}
 	
 	}
+	public void findPossMoves(Board board, int turn ) {
+		List<Zug> possibleMoveList = new ArrayList<Zug>();
+	
+		convTurn=convertTurn(turn);
+		 
+		for (int i22=0;i22<8;i22++) {
+			for (int j22=0;j22<8;j22++) {
+				for (int x22=0;x22<8;x22++) {
+					for (int y22=0;y22<8;y22++) {
+						if(board.getField(i22, j22)!=null&&convTurn==board.getField(i22, j22).getColor()){
+							
+							checkPossMoves(board,Integer.toString(i22)+Integer.toString(j22)+Integer.toString(x22)+Integer.toString(y22),turn, possibleMoveList);
+						}
+					}
+				}
+			}
+		}
+		
+			possibleMoves = possibleMoveList;
+	
+	
+			
+	
+	}
+
 	
 
 	
@@ -386,6 +411,7 @@ public class AI {
 	}
 
 	public void lookAhead(Board board, int desiredDepth, int color) {
+		
 		this.color=color;
 		 bestMove= null;
 		this.desiredDepth=desiredDepth;

@@ -312,15 +312,21 @@ public class StartGame {
 		}, i, i);
 		
 		
-		
+		int isStart=1;
 		while (true) {
 			System.out.println(board.getCurrentTurn());
 		
 			if(board.getCurrentTurn()==color) {
-				
+				if (depth==1&&isStart==1) {
+					ki.findPossMoves(board, color);
+					ki.DoRndMove(board);
+				}
+				else {
 				ki.lookAhead(board,depth,color);
+				}
 				Zug.checkCheck(board);
 				board.initializeBoard();
+				isStart=isStart+1;
 				if(clock.active) {
 				System.out.println("white time left: " + clock.timeWhite + " | black time left: " + clock.timeBlack);
 				}
