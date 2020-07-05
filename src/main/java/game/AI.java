@@ -597,7 +597,7 @@ public class AI {
 	    			System.out.println(einsV);
 	    			System.out.println(zweiV);
 	    	System.out.println(einsV-zweiV);
-	       return calculateValueFor(board,1)-calculateValueFor(board,0);
+	       return (calculateValueFor(board,1)-calculateValueFor(board,0))*10;
 	    }
 	    int maxWert = alpha;
 	    for (Zug move: AImoves){
@@ -640,7 +640,7 @@ public class AI {
 		 PlayerMoves=findPossMoves2(board,0);
 	    if (tiefe == 0 || PlayerMoves.size()==0) {
 	    	System.out.println(calculateValueFor(board,1)-calculateValueFor(board,0));
-	    	return calculateValueFor(board,1)-calculateValueFor(board,0);
+	    	return (calculateValueFor(board,1)-calculateValueFor(board,0))*10;
 	    }
 	    int minWert = beta;
 	   board.setCurrentTurn(0);
