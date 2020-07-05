@@ -305,8 +305,8 @@ public class StartGame {
 			System.out.println(board.getCurrentTurn());
 		
 			if(board.getCurrentTurn()==color) {
-				//System.out.println(board.getField(4, 1).hasPossibleMove(board,4,1,Integer.toString(3)+Integer.toString(4)));
-				ki.lookAhead(board,5,color);
+				
+				ki.lookAhead(board,3,color);
 				Zug.checkCheck(board);
 				board.initializeBoard();
 				if(clock.active) {
@@ -397,63 +397,7 @@ public class StartGame {
 	        }
 	        
 	        
-	        System.out.println("type 1 if you want to play with a chess clock, 2 if not");
-	        Console clockInput = new Console();
-	        clockInput.open();
-	        while (!clockInput.input.equals ("1") && !clockInput.input.equals("2")) {
-	            System.out.println("You have to enter 1 or 2" );
-	            clockInput.open();
-	        }
-	        
-	        if(clockInput.input.equals("1")) {
-	        	clock.active = true;
-	        	System.out.println("first type in the amount of seconds for white");
-	        	Console white = new Console();
-	        	white.open();
-	        	int wh = 0;
-	        	try {
-	        		wh = Integer.parseInt(white.input);
-	        	}
-	        	catch(NumberFormatException e){
-	        		
-	        	}
-	        	while(wh <= 0){
-	        		System.out.println("first type in the amount of seconds for white");
-	        		white.open();
-	        		try {
-		        		wh = Integer.parseInt(white.input);
-		        	}
-		        	catch(NumberFormatException e){
-		        		
-		        	}
-	        	}
-	        	
-	        	clock.timeWhite = wh;
-	        	
-	        	System.out.println("now type in the amount of seconds for black");
-	        	Console black = new Console();
-	        	black.open();
-	        	int bl = 0;
-	        	try {
-	        		bl = Integer.parseInt(black.input);
-	        	}
-	        	catch(NumberFormatException e){
-	        		
-	        	}
-	        	while(bl <= 0){
-	        		System.out.println("now type in the amount of seconds for black");
-	        		black.open();
-	        		try {
-		        		bl = Integer.parseInt(black.input);
-		        	}
-		        	catch(NumberFormatException e){
-		        		
-		        	}
-	        	}
-	        	
-	        	clock.timeBlack = bl;
-	        }
-	        
+	        timeQuestion();
 	        
 	        System.out.println("type 1 for PlayerVsAi and 2 for PlayerVsPlayer");
 	        Console mode = new Console();
@@ -500,6 +444,68 @@ public class StartGame {
 			e.printStackTrace();
 		}
     	System.out.println("saved");
+	}
+	
+	/**
+	 * method to check if time is wanted
+	 */
+	public static void timeQuestion() {
+        System.out.println("type 1 if you want to play with a chess clock, 2 if not");
+        Console clockInput = new Console();
+        clockInput.open();
+        while (!clockInput.input.equals ("1") && !clockInput.input.equals("2")) {
+            System.out.println("You have to enter 1 or 2" );
+            clockInput.open();
+        }
+        
+        if(clockInput.input.equals("1")) {
+        	clock.active = true;
+        	System.out.println("first type in the amount of seconds for white");
+        	Console white = new Console();
+        	white.open();
+        	int wh = 0;
+        	try {
+        		wh = Integer.parseInt(white.input);
+        	}
+        	catch(NumberFormatException e){
+        		
+        	}
+        	while(wh <= 0){
+        		System.out.println("first type in the amount of seconds for white");
+        		white.open();
+        		try {
+	        		wh = Integer.parseInt(white.input);
+	        	}
+	        	catch(NumberFormatException e){
+	        		
+	        	}
+        	}
+        	
+        	clock.timeWhite = wh;
+        	
+        	System.out.println("now type in the amount of seconds for black");
+        	Console black = new Console();
+        	black.open();
+        	int bl = 0;
+        	try {
+        		bl = Integer.parseInt(black.input);
+        	}
+        	catch(NumberFormatException e){
+        		
+        	}
+        	while(bl <= 0){
+        		System.out.println("now type in the amount of seconds for black");
+        		black.open();
+        		try {
+	        		bl = Integer.parseInt(black.input);
+	        	}
+	        	catch(NumberFormatException e){
+	        		
+	        	}
+        	}
+        	
+        	clock.timeBlack = bl;
+        }
 	}
 
 }
