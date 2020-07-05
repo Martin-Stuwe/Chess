@@ -62,30 +62,31 @@ public class AICalcs {
 		* @return val the value based on the position
 		*/	 
 		 public static int positionEvalBK(String name, int x, int y, String color, int val) {
+			 int val2=val;
 			 switch(name) {
 		       case "Bishop":
 		        	 
 		    	   if(color=="w") {
-		        		 val += 330 + Bishop.getTable()[8*(7 - y) + x]; 
+		        		 val2 += 330 + Bishop.getTable()[8*(7 - y) + x]; 
 		        	}
 		        	if(color=="b") {
-		        		val -= 330 + Bishop.getTable()[8 + (8* y) - (1 +x)];
+		        		val2 -= 330 + Bishop.getTable()[8 + (8* y) - (1 +x)];
 		        	}
 		        	break;
 			 
 				 	case "Knight":
 		    	 
 			    	if(color=="w") {
-			    		val += 320 + figures.Knight.getTable()[8*(7 - y) + x];
+			    		val2 += 320 + figures.Knight.getTable()[8*(7 - y) + x];
 			    	}
 			    	if(color=="b") {
-			    		val -= 320 + figures.Knight.getTable()[8 + (8* y) - (1 +x)];
+			    		val2 -= 320 + figures.Knight.getTable()[8 + (8* y) - (1 +x)];
 			    	}
 		    	
 			    	break;
 			 }
-			 val = positionEvalQK(name,x,y,color,val);
-			 return val;
+			 val2 = positionEvalQK(name,x,y,color,val2);
+			 return val2;
 		 }
 			
 		 
