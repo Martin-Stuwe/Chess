@@ -212,6 +212,7 @@ public class GuiView {
      * @param primaryStage main stage
      */
     public void startGame(Stage primaryStage, boolean saveGame) {
+    	gc.setGameParameters();
         primaryStage.setTitle("Chess");
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         screenHeight =primaryScreenBounds.getHeight();
@@ -359,7 +360,7 @@ public class GuiView {
         two.setMinWidth(screenHeight/10);
         Label one = new Label("a");
         one.setMinWidth(screenHeight/10);
-        if(!gc.rotate || brett.getCurrentTurn()==0) {
+        if(!gc.gameParameters.get(0) || brett.getCurrentTurn()==0) {
         	bottomHbox.getChildren().add(one);
         	bottomHbox.getChildren().add(two);
         	bottomHbox.getChildren().add(three);
@@ -411,7 +412,7 @@ public class GuiView {
         two.setMinHeight(screenHeight/10);
         Label one = new Label("1");
         one.setMinHeight(screenHeight/10);
-        if(!gc.rotate || brett.getCurrentTurn()==0) {
+        if(!gc.gameParameters.get(0) || brett.getCurrentTurn()==0) {
         	leftVbox.getChildren().add(eight);
         	leftVbox.getChildren().add(seven);
         	leftVbox.getChildren().add(six);
@@ -506,7 +507,7 @@ public class GuiView {
                 Paint color ;
                 int rrow =row;
                 int rcol =col;
-            	if(gc.rotate && brett.getCurrentTurn()==1) {
+            	if(gc.gameParameters.get(0) && brett.getCurrentTurn()==1) {
             		rrow = (rrow-7)*-1;
             		rcol = (rcol-7)*-1;
             	}
