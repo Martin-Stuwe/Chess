@@ -174,47 +174,52 @@ public class GuiView {
         white.setSelected(true);
         RadioButton black = new RadioButton("black");
         black.setId("black");
-        HBox colorbox = new HBox(100, white, black);
+		HBox colorbox = new HBox(100, white, black);
         
-        RadioButton pla = new RadioButton("player vs player");
-        pla.setId("pla");
-        RadioButton ai = new RadioButton("player vs ai");
-        ai.setId("ai");
-        pla.setSelected(true);
-        TextField depth = new TextField();
-        depth.setId("depth");
-        depth.setPromptText("ai depth > 0");
-        HBox modebox = new HBox(100, pla, ai, depth);
+		startOptions2(primaryStage, primaryScreenBounds, colorbox, chobox);
         
-        
-        CheckBox enableTime = new CheckBox("enable time");
-        enableTime.setId("enable");
-        TextField whiteTime = new TextField();
-        whiteTime.setId("whTi");
-        whiteTime.setPromptText("white in s");
-        TextField blackTime = new TextField();
-        blackTime.setId("blTi");
-        blackTime.setPromptText("black in s");
-        HBox timebox = new HBox(100, enableTime, whiteTime, blackTime);
-        
-             
-        VBox option = new VBox();
-        option.setSpacing(primaryScreenBounds.getHeight() /20);
-        option.getChildren().add(colorbox);
-        option.getChildren().add(modebox);
-        option.getChildren().add(timebox);
-        option.getChildren().add(chobox);
-        option.setPadding(new Insets(primaryScreenBounds.getHeight() /4,primaryScreenBounds.getWidth() /4,primaryScreenBounds.getHeight() /4,primaryScreenBounds.getWidth() /4));
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(option);
-        primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
-        primaryStage.getScene().getStylesheets().add(sty);
-        primaryStage.setX(primaryScreenBounds.getMinX());
-        primaryStage.setY(primaryScreenBounds.getMinY());
-        primaryStage.show();
+
     }
-	
+	public void startOptions2(Stage primaryStage, Rectangle2D primaryScreenBounds, HBox colorbox, HBox chobox) {
+		
+		RadioButton pla = new RadioButton("player vs player");
+	    pla.setId("pla");
+	    RadioButton ai = new RadioButton("player vs ai");
+	    ai.setId("ai");
+	  	pla.setSelected(true);
+	  	TextField depth = new TextField();
+	  	depth.setId("depth");
+	  	depth.setPromptText("ai depth > 0");
+	  	HBox modebox = new HBox(100, pla, ai, depth);
+        
+        
+    CheckBox enableTime = new CheckBox("enable time");
+    enableTime.setId("enable");
+    TextField whiteTime = new TextField();
+    whiteTime.setId("whTi");
+    whiteTime.setPromptText("white in s");
+    TextField blackTime = new TextField();
+    blackTime.setId("blTi");
+    blackTime.setPromptText("black in s");
+    HBox timebox = new HBox(100, enableTime, whiteTime, blackTime);
+    
+         
+    VBox option = new VBox();
+    option.setSpacing(primaryScreenBounds.getHeight() /20);
+    option.getChildren().add(colorbox);
+    option.getChildren().add(modebox);
+    option.getChildren().add(timebox);
+    option.getChildren().add(chobox);
+    option.setPadding(new Insets(primaryScreenBounds.getHeight() /4,primaryScreenBounds.getWidth() /4,primaryScreenBounds.getHeight() /4,primaryScreenBounds.getWidth() /4));
+    
+    StackPane root = new StackPane();
+    root.getChildren().add(option);
+    primaryStage.setScene(new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight()));
+    primaryStage.getScene().getStylesheets().add(sty);
+    primaryStage.setX(primaryScreenBounds.getMinX());
+    primaryStage.setY(primaryScreenBounds.getMinY());
+    primaryStage.show();
+	}
 	   /**
      * stage for the main game
      * @param primaryStage main stage
