@@ -344,16 +344,18 @@ public class GuiController {
 		gv.brett = new Board();
 		gv.brett.setStart();
 		primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
-		     gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
+		    
 		     if(!aiTurn) {
+		    	 gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
 		     gv.drawBoard();
 		     }
 		     
 		});
 
 		primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
-			gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
+		
 			 if(!aiTurn) {
+					gv.setScreenHeight(Math.min(primaryStage.getWidth(),primaryStage.getHeight()));
 			     gv.drawBoard();
 			     }
 		});
