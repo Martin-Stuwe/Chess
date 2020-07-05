@@ -281,6 +281,10 @@ public class GuiView {
         
      return board;
     }
+    
+    /**
+     * Method for the second part of drawBoard() checks for the required conditions
+     */
     public void drawBoardCondition() {
 	    if(!gc.aiTurn && brett.movedList.size()>0&&!Zug.checkPossibleMoves(brett)) {
 	    	Stage window = new Stage();
