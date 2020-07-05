@@ -496,6 +496,7 @@ public class StartGame {
         	catch(NumberFormatException e){
         		e.printStackTrace();
         	}
+        	
         	while(bl <= 0){
         		System.out.println("now type in the amount of seconds for black");
         		black.open();
