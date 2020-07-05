@@ -36,36 +36,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.lang.Math;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GuiController {
 
-	/**
-	 * check if rotate checkbox is ticked
-	 */
-	boolean rotate = false;
 	
-	/**
-	 * check if showCheck checkbox is ticked
-	 */
-	boolean showCheck = true;
-	
-	/**
-	 * check if showMove checkbox is ticked
-	 */
-	boolean showMove = true;
-	
-	/**
-	 * check if touchMove checkboxis is ticked
-	 */
-	boolean touchMove = false;
-	
-	/**
-	 * check if figure has been clicked on
-	 */
-	boolean clicked = false;
-
 	/**
 	 *  calculator of the game
 	 */
@@ -85,15 +63,27 @@ public class GuiController {
 	
 	GuiView gv = new GuiView(this);
 	
+	/**
+	 * List of Parameters 0=rotate , 1=showCheck, 2=showMove, 3=touchMove, 4=clicked, 5=aiGame, 6=saveGame
+	 */
+	public List<Boolean>gameParameters = new ArrayList<Boolean>();
 	
-	
-	
+	  public void setGameParameters() {
+	    	gameParameters.add(false);
+	    	gameParameters.add(true);
+	    	gameParameters.add(true);
+	    	gameParameters.add(false);
+	    	gameParameters.add(false);
+	    	gameParameters.add(false);
+	    	gameParameters.add(false);
+	    	gameParameters.add(false);
+	    }
 	  /**
      * set-method for rotate
      * @param isSelected current state of the rotate checkbox
      */
     public void setRotate(boolean isSelected) {
-    	rotate = isSelected;
+    	gameParameters.set(0, isSelected);
     }
     
     /**
@@ -101,7 +91,7 @@ public class GuiController {
      * @param isSelected current state of the showCheck checkbox
      */
     public void setShowCheck(boolean isSelected) {
-    	showCheck = isSelected;
+    	gameParameters.set(1, isSelected);
     }
     
     /**
@@ -109,7 +99,7 @@ public class GuiController {
      * @param isSelected current state of the show checkbox
      */
     public void setShowMove(boolean isSelected) {
-    	showMove = isSelected;
+    	gameParameters.set(2, isSelected);
     }
     
     /**
@@ -117,7 +107,7 @@ public class GuiController {
      * @param isSelected current state of the rotate checkbox
      */
     public void setTouchMove(boolean isSelected) {
-    	touchMove = isSelected;
+    	gameParameters.set(3, isSelected);
     }
     
     /**
@@ -125,7 +115,7 @@ public class GuiController {
      * @param clicked true if something was clicked
      */
     public void setClicked(boolean click) {
-    	clicked = click;
+    	gameParameters.set(4, click);
     }
     
   /*  public  ListView<String> getHistorie(){
@@ -484,7 +474,7 @@ public class GuiController {
     	if(aiGame&&gv.brett.getCurrentTurn()==ki.getColor()) {
     		
     	}
-    	else if(!clicked && touchMove || !touchMove) {
+    	else if(!gameParameters.get(0) && gameParameters.get(3) || !gameParameters.get(3)) {
         	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -515,14 +505,14 @@ public class GuiController {
 					String to = ""+i+y;
 					int rrow =y;
 					int rcol =i;
-	            	if(rotate && brett.getCurrentTurn()==1) {
+	            	if(gameParameters.get(0) && brett.getCurrentTurn()==1) {
 	            		rrow = (rrow-7)*-1;
 	            		rcol = (rcol-7)*-1;
 	            	}
 					if(brett.getField(a, b) != null && brett.getField(a, b).hasPossibleMove(brett, a, b,"" +i+y)) {
 						Rectangle poss = new Rectangle(gv.screenHeight /10.1,gv.screenHeight /10.1);
 						
-						if(showMove) {
+						if(gameParameters.get(2)) {
 							poss.setStroke(Color.RED);
 							poss.setFill(Color.TRANSPARENT);
 						}
@@ -635,7 +625,7 @@ public class GuiController {
 				Platform.runLater(new Runnable() {
 	    		      @Override
 	    		      public void run() {
-				if(Zug.checkCheck(gv.brett) && showCheck) {
+				if(Zug.checkCheck(gv.brett) && gameParameters.get(1)) {
 		        	if(gv.brett.whiteCheck) {
 		        		gv.board.add(new Label ("  white is in check"), 8, 1);
 		        	}
