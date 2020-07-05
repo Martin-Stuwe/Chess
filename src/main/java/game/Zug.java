@@ -118,10 +118,19 @@ public class Zug {
 		} 
 	}
 	
+	/**
+	 * get-method for the current State of the board
+	 * @return boardState current State of the board as an Figures Array
+	 */
 	public Figures[][] getBoardState(){
-		return this.boardState;
+		return boardState;
 	}
 	
+	/**
+	 * method to check if there is check
+	 * @param board Board the game is on
+	 * @return true if there is check
+	 */
 	public static boolean checkCheck(Board board) {
 		board.whiteCheck=false;
 		board.blackCheck=false;
