@@ -33,7 +33,7 @@ public class Console {
 	public void open() {
 		Scanner userInput = new Scanner(System.in);
 		this.input = userInput.nextLine();
-		userInput.close();
+		//userInput.close();
 	}
 	/**
 	 * Method to read and react on user input
