@@ -420,36 +420,44 @@ public class StartGame {
 	        else {
 	            i = 0;
 	        }
+	        StartGamePartTwo(i);
 	        
-	        
-	        System.out.println("type 1 for starting a new game and 2 for loading a save game");
-	        Console save = new Console();
-	        save.open();
-	        while (!save.input.equals ("1") && !save.input.equals("2")) {
-	            System.out.println("You have to enter 1 or 2" );
-	            save.open();
-	        }
-	        if(save.input.equals ("2")) {
-	        	saveGame = true;
-	        }
-	        
-	        
-	        timeQuestion();
-	        
-	        System.out.println("type 1 for PlayerVsAi and 2 for PlayerVsPlayer");
-	        Console mode = new Console();
-	        mode.open();
-	        while (!mode.input.equals ("1") && !mode.input.equals("2")) {
-	            System.out.println("You have to enter 1 or 2" );
-	            mode.open();
-	        }
-	        if(mode.input.equals("1")) {
-	            PlayerVsAI(i);
-	        }
-	        else {
-	            PlayerVsPlayer();
-	        }
-	    } 
+	  
+	} 
+	
+	
+	/**
+	* Method with the further start game algorithm
+	*/
+	public static void StartGamePartTwo(int i) {
+    System.out.println("type 1 for starting a new game and 2 for loading a save game");
+    Console save = new Console();
+    save.open();
+    while (!save.input.equals ("1") && !save.input.equals("2")) {
+        System.out.println("You have to enter 1 or 2" );
+        save.open();
+    }
+    if(save.input.equals ("2")) {
+    	saveGame = true;
+    }
+    
+    
+    timeQuestion();
+    
+    System.out.println("type 1 for PlayerVsAi and 2 for PlayerVsPlayer");
+    Console mode = new Console();
+    mode.open();
+    while (!mode.input.equals ("1") && !mode.input.equals("2")) {
+        System.out.println("You have to enter 1 or 2" );
+        mode.open();
+    }
+    if(mode.input.equals("1")) {
+        PlayerVsAI(i);
+    }
+    else {
+        PlayerVsPlayer();
+    }
+	}
 	
 	/**
 	 * method to make a save in the console
