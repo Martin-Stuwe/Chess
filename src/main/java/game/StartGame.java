@@ -448,6 +448,10 @@ public class StartGame {
     		e.printStackTrace();
     	}
 	}
+	
+	/**
+	 * method to undo a move
+	 */
 	public static void undoMove(Board board) {
 		int n =1;
 		if(aiChosen) {
@@ -466,6 +470,10 @@ public class StartGame {
 		}
 	}
 	
+	
+	/**
+	 * method to redo a move
+	 */
 	public static void redoMove(Board board) {
 		int n =1;
 		if(aiChosen) {

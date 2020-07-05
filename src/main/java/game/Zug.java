@@ -123,7 +123,8 @@ public class Zug {
 	 * @return boardState current State of the board as an Figures Array
 	 */
 	public Figures[][] getBoardState(){
-		return boardState;
+		Figures[][] boardStateCopy=this.boardState.clone();
+		return boardStateCopy;
 	}
 	
 	/**
