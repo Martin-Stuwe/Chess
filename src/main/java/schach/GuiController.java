@@ -285,7 +285,7 @@ public class GuiController {
 	public void loadBoardState(int k) {
 		
 		Figures[][] figuren = gv.brett.movedList.get(k).getBoardState();
-		gv.brett.setBoard(figuren);
+		gv.brett.setBoard(figuren,gv.brett.movedList.get(k).getTurn());
 		int z = gv.historie.getItems().size()-1;
 		for (int i = z;i>k; i--) {
 			gv.historie.getItems().remove(i);

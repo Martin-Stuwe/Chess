@@ -187,7 +187,8 @@ public class Board {
 	 * method to set the board to a specific state
 	 * @param boardState Figures Array with all positions of all figures
 	 */
-	public void setBoard(Figures[][] boardState) {
+	public void setBoard(Figures[][] boardState, int turn) {
+		setCurrentTurn(turn);
 		for(int i =0; i<8;i++) {
 			for(int y =0; y<8;y++) {
 			

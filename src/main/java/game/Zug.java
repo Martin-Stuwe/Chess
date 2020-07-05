@@ -43,6 +43,7 @@ public class Zug {
 	
 	public Figures[][] boardState = new Figures[8][8];
 	
+	public int turn;
 	/**
 	 * constructor for a zug object
 	 * @param figure figure that has been moved
@@ -58,6 +59,12 @@ public class Zug {
 		this.to2 = Character.getNumericValue(to.charAt(1));	
 	}
 	
+	public void setTurn(int i) {
+		this.turn = i;
+	}
+	public int getTurn() {
+		return this.turn;
+	}
 	/**
 	 * get-method for the figure object
 	 * @return figure figure of the zug object
