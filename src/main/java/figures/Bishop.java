@@ -40,6 +40,15 @@ public class Bishop extends Figures {
 	 */
 	private boolean emptySpaces;
 	
+	protected static int [] bishopPrecedence = {
+            -20,-10,-10,-10,-10,-10,-10,-20,
+            -10,  0,  0,  0,  0,  0,  0,-10,
+            -10,  0,  5, 10, 10,  5,  0,-10,
+            -10,  5,  5, 10, 10,  5,  5,-10,
+            -10,  0, 10, 10, 10, 10,  0,-10,
+            -10, 10, 10, 10, 10, 10, 10,-10,
+            -10,  5,  0,  0,  0,  0,  5,-10,
+            -20,-10,-10,-10,-10,-10,-10,-20 };
 	
 	/**
 	 * the constructor creates a new bishop object and needs a x and a y axis position plus a color
@@ -92,6 +101,11 @@ public class Bishop extends Figures {
 	public String getColor() {
 		return color;
 	}
+	
+	public static int[] getTable() {
+		return bishopPrecedence;
+	}
+	
 	
 	/**
 	 * Checks if the current move is valid

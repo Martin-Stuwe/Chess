@@ -33,7 +33,17 @@ public class Knight extends Figures {
 	 * the color of the knight
 	 */
 	private String color;
-	
+    
+	// Placement Precedence for all Knights
+	protected static int [] knightTable = {
+      -50,-40,-30,-30,-30,-30,-40,-50,
+      -40,-20,  0,  0,  0,  0,-20,-40,
+      -30,  0, 10, 15, 15, 10,  0,-30,
+      -30,  5, 15, 20, 20, 15,  5,-30,
+      -30,  0, 15, 20, 20, 15,  0,-30,
+      -30,  5, 10, 15, 15, 10,  5,-30,
+      -40,-20,  0,  5,  5,  0,-20,-40,
+      -50,-40,-30,-30,-30,-30,-40,-50 };
 	/**
 	 * the constructor creates a new knight object and needs a x and a y axis position plus a color
 	 * @param pos1 x axis position of the knight
@@ -66,6 +76,10 @@ public class Knight extends Figures {
 			return boardVisual;
 		}
 			
+	}
+	
+	public static int[] getTable() {
+		return knightTable;
 	}
 	
 	/**

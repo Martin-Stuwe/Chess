@@ -41,6 +41,17 @@ public class Rook extends Figures {
 	
 	private boolean emptySpaces;
 	
+
+    protected static int [] rookTable = {
+          0,  0,  0,  0,  0,  0,  0,  0,
+          5, 10, 10, 10, 10, 10, 10,  5,
+         -5,  0,  0,  0,  0,  0,  0, -5,
+         -5,  0,  0,  0,  0,  0,  0, -5,
+         -5,  0,  0,  0,  0,  0,  0, -5,
+         -5,  0,  0,  0,  0,  0,  0, -5,
+         -5,  0,  0,  0,  0,  0,  0, -5,
+          0,  0,  0,  5,  5,  0,  0,  0 };
+	
 	/**
 	 * the constructor creates a new rook object and needs a x and a y axis position plus a color
 	 * @param pos1 x axis position of the rook
@@ -84,6 +95,10 @@ public class Rook extends Figures {
 			return boardVisual;
 		}
 			
+	}
+	
+	public static int[] getTable() {
+		return rookTable;
 	}
 	
 	/**

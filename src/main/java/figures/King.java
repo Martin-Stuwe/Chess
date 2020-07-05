@@ -50,6 +50,17 @@ public class King extends Figures {
 	 */
 	private boolean realMove;
 	
+	
+    protected static int [] kingTable = {
+        -30,-40,-40,-50,-50,-40,-40,-30,
+        -30,-40,-40,-50,-50,-40,-40,-30,
+        -30,-40,-40,-50,-50,-40,-40,-30,
+        -30,-40,-40,-50,-50,-40,-40,-30,
+        -20,-30,-30,-40,-40,-30,-30,-20,
+        -10,-20,-20,-20,-20,-20,-20,-10,
+         20, 20,  0,  0,  0,  0, 20, 20,
+         20, 30, 10,  0,  0, 10, 30, 20 };
+	
 	/**
 	 * the constructor creates a new king object and needs a x and a y axis position plus a color
 	 * @param pos1 x axis position of the king
@@ -85,6 +96,11 @@ public class King extends Figures {
 		
 	
 	}
+	
+	public static int[] getTable() {
+		return kingTable;
+	}
+	
 	
 	/**
 	 * get-method of hasMoved

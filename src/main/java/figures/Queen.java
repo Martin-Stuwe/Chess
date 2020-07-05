@@ -34,6 +34,17 @@ public class Queen extends Figures {
 	 */
 	private String color;
 	
+    
+  protected static int [] queenTable = {
+      -20,-10,-10, -5, -5,-10,-10,-20,
+      -10,  0,  0,  0,  0,  0,  0,-10,
+      -10,  0,  5,  5,  5,  5,  0,-10,
+       -5,  0,  5,  5,  5,  5,  0, -5,
+        0,  0,  5,  5,  5,  5,  0, -5,
+      -10,  5,  5,  5,  5,  5,  0,-10,
+      -10,  0,  5,  0,  0,  0,  0,-10,
+      -20,-10,-10, -5, -5,-10,-10,-20 };
+	
 	/**
 	 * the constructor creates a new queen object and needs a x and a y axis position plus a color
 	 * @param pos1 x axis position of the queen
@@ -66,6 +77,10 @@ public class Queen extends Figures {
 			return boardVisual;
 		}
 			
+	}
+	
+	public static int[] getTable() {
+		return queenTable;
 	}
 	
 	/**

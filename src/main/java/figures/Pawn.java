@@ -41,6 +41,17 @@ public class Pawn extends Figures {
 	 */
 	boolean realMove;
 	
+	 
+    protected static int [] pawnTable = {
+            0,  0,  0,  0,  0,  0,  0,  0,
+            50, 50, 50, 50, 50, 50, 50, 50,
+            10, 10, 20, 30, 30, 20, 10, 10,
+            5,  5, 10, 25, 25, 10,  5,  5,
+            0,  0,  0, 20, 20,  0,  0,  0,
+            5, -5,-10,  0,  0,-10, -5,  5,
+            5, 10, 10,-20,-20, 10, 10,  5,
+            0,  0,  0,  0,  0,  0,  0,  0 };
+	
 	/**
 	 * the constructor creates a new pawn object and needs a x and a y axis position plus a color
 	 * @param pos1 x axis position of the pawn
@@ -54,6 +65,9 @@ public class Pawn extends Figures {
 		this.type = 4;
 	}
 	
+	public static int[] getTable() {
+		return pawnTable;
+	}
 	/**
 	 * get-method of boardVisual
 	 * if color is "w" boardVisual is in capital letter
