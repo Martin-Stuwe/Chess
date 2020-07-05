@@ -493,7 +493,11 @@ public class GuiController {
                
 
                 if(!aiTurn&& undoneTurns.size()>0) {
-                	redoTurns(1);
+                	int n = 1;
+                	if(aiGame) {
+                		n=2;
+                	}
+                	redoTurns(n);
                 	gv.drawBoard();
                 }
                 
