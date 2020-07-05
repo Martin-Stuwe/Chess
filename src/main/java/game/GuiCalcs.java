@@ -23,10 +23,16 @@ import schach.GuiMain;
  * it2
  */
 public class GuiCalcs {
-	private GuiMain gMain;
+	
+	/**
+	 * check if GUI is active
+	 */
 	static boolean guiActive = false;
 	
-
+	/**
+	 * set-method for guiActive
+	 * @param set true if active
+	 */
 	public static void setGui(boolean set) {
 		guiActive = set;
 	}
@@ -175,6 +181,11 @@ public class GuiCalcs {
     	return b;
     }
     
+    /**
+     * method to go from Input to the array numbers
+     * @param i the char that gets converted
+     * @return b the converted char that is now an Integer
+     */
     public int backToNumber(char i) {
     	int b = 0;
     	if(i == 'a' || i == '8') {
@@ -207,7 +218,10 @@ public class GuiCalcs {
       
     
     
-    
+    /**
+     * method to make a save in the GUI
+     * @param historie ListView of Labels of all moves
+     */
     public void makeSaveGui(ListView<Label> historie){
     	File file = new File("save.txt");
     	
@@ -237,6 +251,10 @@ public class GuiCalcs {
     	
     }
     
+    /**
+     * method to load a save file in the GUI
+     * @param board Board the save file gets loaded on on
+     */
     public void loadGuiSave(Board board) {
     	File test = new File("save.txt");
     	if(test.exists()) {
@@ -271,16 +289,20 @@ public class GuiCalcs {
     	}
     }
  
-
-public Label convertInputToHistorie(int a, int b, String to) {
-	String output ="";
-	Label test = new Label();
-	int to1=Character.getNumericValue(to.charAt(0));
-	int to2=Character.getNumericValue(to.charAt(1));
-	output = numberToString(a) + numberToNumber(b) + "-" + numberToString(to1) + numberToNumber(to2);
-	test.setText(output);
-	return test;
-
-	
-}
+    /**
+     * method to convert input in the historie
+     * @param a x axis starting position
+     * @param b y axis starting position
+     * @param to x and y ending position as a String
+     * @return test converted move as a Label
+     */
+    public Label convertInputToHistorie(int a, int b, String to) {
+    	String output ="";
+    	Label test = new Label();
+    	int to1=Character.getNumericValue(to.charAt(0));
+    	int to2=Character.getNumericValue(to.charAt(1));
+    	output = numberToString(a) + numberToNumber(b) + "-" + numberToString(to1) + numberToNumber(to2);
+		test.setText(output);
+		return test;
+	}
 }
