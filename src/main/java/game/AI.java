@@ -283,7 +283,7 @@ public class AI {
 		possibleMoveList.removeAll(possibleMoveList);
 		possibleMoveList.addAll(moveListRec);
 		possibleMoveList.addAll(moveListNotRec);
-		possibleMoves=possibleMoveList;
+
 		return possibleMoveList;
 	}
 		
@@ -350,7 +350,7 @@ public class AI {
 		else {
 			board.setCurrentTurn(color);
 			this.recently=0;
-				board.getField(bestMove.from1, bestMove.from2).move(board, bestMove.from1,bestMove.from2, Integer.toString(bestMove.to1)+Integer.toString(bestMove.to2)); 
+			board.getField(bestMove.from1, bestMove.from2).move(board, bestMove.from1,bestMove.from2, Integer.toString(bestMove.to1)+Integer.toString(bestMove.to2)); 
 		}
 	}
 	
