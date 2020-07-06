@@ -96,8 +96,8 @@ public class AI {
 		int j1 = Integer.parseInt(String.valueOf(movePos.charAt(1)));
 		int x1 = Integer.parseInt(String.valueOf(movePos.charAt(2)));
 		int y1 = Integer.parseInt(String.valueOf(movePos.charAt(3)));
-
-		if (board.getField(i1, j1).hasPossibleMove(board,i1,j1,Integer.toString(x1)+Integer.toString(y1))) {
+		
+		if (board.getField(i1, j1)!=null&&board.getField(i1, j1).hasPossibleMove(board,i1,j1,Integer.toString(x1)+Integer.toString(y1))) {
 		
 			Zug zug = new Zug(board.getField(i1, j1),i1,j1,Integer.toString(x1)+Integer.toString(y1));
 			if(board.movedList.size()>1&&board.movedList.get(board.movedList.size()-2).getTo1()==i1&&board.movedList.get(board.movedList.size()-2).getTo2()==j1) {
