@@ -11,6 +11,7 @@ import java.io.InputStream;
 
 import java.io.ByteArrayInputStream;
 
+
 /**
 * Class for Console tests
 * @author Martin Stuwe 676421
