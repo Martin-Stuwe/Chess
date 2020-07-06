@@ -483,7 +483,7 @@ public class GuiController {
 		   
     	if(aiGame &&brett.getCurrentTurn()==ki.getColor()) {
     		aiTurn=true;
-            
+
     		ki.lookAhead(gv.brett,depth,ki.getColor());
           
            
@@ -624,19 +624,20 @@ public class GuiController {
 	public Label getImage(Board brett, int i, int y) {
     	Label image = gv.drawImage(brett, i, y);
     	if(!gameParameters.get(0) && gameParameters.get(3) || !gameParameters.get(3)) {
+    		
         	image.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                	
+                	if(!aiTurn) {
                 	 setClicked(true);
                 	 showPossibleMoves(brett,i,y);
-                 
+                	}
                 }
 
             	});
         	
         	}
-     
+    
     		return image;
         
 }
