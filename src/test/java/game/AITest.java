@@ -102,7 +102,7 @@ public class AITest {
 		assertEquals(5000, ki.calculateFigure(board.getField(4, 0), "b"), "King");
 	}
 	/**
-	* Test For Random moves
+	* Test For Random moves 
 	*/
 	@Test
 	public void testDoRndMove() {
