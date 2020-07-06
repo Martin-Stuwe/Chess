@@ -84,6 +84,9 @@
                 <configuration>
                     <excludes>
                         <exclude>schach/GuiMain*</exclude> 
+                        <exclude>schach/GuiView*</exclude> 
+                        <exclude>schach/GuiCalcs*</exclude> 
+                        <exclude>schach/GuiController*</exclude> 
                     </excludes>
                 </configuration>
                 <executions>
