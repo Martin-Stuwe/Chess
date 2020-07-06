@@ -142,7 +142,6 @@ public class Figures {
 		int pos1to=Character.getNumericValue(posTo.charAt(0));
 		int pos2to=Character.getNumericValue(posTo.charAt(1));
 		
-		System.out.println(posTo);
 		// saves starting position of figure
 		restoreFrom=board.positionen[pos1from][pos2from];
 		// saves ending position of figure
