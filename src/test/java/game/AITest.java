@@ -32,7 +32,7 @@ public class AITest {
 		ki.findPossMovesRnd(board, 1);
 		assertEquals(0, ki.possibleMoves.size(), "possMoves1");
 		board.setCurrentTurn(1);
-		ki.findPossMovesRnd(board, 1);;
+		ki.findPossMovesRnd(board, 1);
 		assertNotEquals(0, ki.possibleMoves.size(), "possMoves2");
 	}
 
@@ -138,7 +138,6 @@ public class AITest {
 	public void testmax() {
 		AI ki=new AI(1);
 		Board board= new Board();
-		Board board2= new Board();
 		board.setStart();
 		ki.max(board, 1, -500000, 500000);
 		assertEquals(ki.min(board, 1, -500000, 500000),0,"min Value");
