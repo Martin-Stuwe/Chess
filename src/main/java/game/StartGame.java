@@ -43,7 +43,14 @@ public class StartGame {
 	 */
 	static int depth = 3;
 	
+	/**
+	 * check if AI was chosen
+	 */
 	static boolean aiChosen=false;
+	
+	/**
+	 * list of turns that have been undone
+	 */
 	public static List<Zug>undoneTurns = new ArrayList<Zug>();
 	
 	/**
@@ -216,7 +223,7 @@ public class StartGame {
 				}
 			}
 			getAndMakeMove(board);
-			//board.setCurrentTurn(0);
+			
 		}
 	}
 		
