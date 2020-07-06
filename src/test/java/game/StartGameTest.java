@@ -136,10 +136,11 @@ public class StartGameTest {
 		String input = "200"
 				+"\n200"
 				+"\n200";
-		Console TC = new Console();	
+
 		InputStream in= new ByteArrayInputStream (input.getBytes());
 		System.setIn(in);
 		StartGame.timeQuestionPartTwo(200);
+		assertEquals(200,StartGame.clock.timeBlack,"tiem set");
 	}
 	/**
 	* Test For Undo and Redo
@@ -168,7 +169,7 @@ public class StartGameTest {
 		board2.getField(4, 1).move(board2, 4, 1, "43");
 		board2.getField(5, 6).move(board2, 5, 6, "54");
 		StartGame.makeSaveConsole(board2);
-		
+		assertEquals(null, board2.getField(5, 6));
 	}
 	
 

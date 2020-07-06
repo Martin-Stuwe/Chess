@@ -1,6 +1,8 @@
 package schach;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.Test;
 
 import game.Board;
@@ -28,7 +30,7 @@ public class ConsoleTest {
 		InputStream in= new ByteArrayInputStream ("Test\r\n".getBytes());
 		System.setIn(in);
 		TC.open();				
-		assertEquals("Test" , TC.input.toString(), "Input Erfolgreich");
+		assertEquals("Test",TC.input,"undo test 1");
 		} 
 	
 	/**
@@ -43,6 +45,7 @@ public class ConsoleTest {
 		System.setIn(in);
 		TC.open();
 		Console.checkUserInput(TC, board2);
+		assertEquals("test",TC.input,"input written");
 	}
 	
 	/**
