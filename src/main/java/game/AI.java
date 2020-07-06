@@ -35,12 +35,24 @@ public class AI {
 	 */
 	private int color;
 	
-
+	/**
+	 * integer of the depth
+	 */
 	private int desiredDepth;
 	
+	/**
+	 * Zug object to save the best move
+	 */
 	private Zug bestMove;
+	
+	/**
+	 * check if recently moved
+	 */
 	private int recently;
 	
+	/**
+	 * ArrayList of possible Moves
+	 */
 	public List<Zug> possibleMoves = new ArrayList<Zug>();
 	
 	/**
@@ -51,9 +63,18 @@ public class AI {
 		this.color = color;
 	}
 	
+	/**
+	 * set-method of the color
+	 * @param i color of the AI
+	 */
 	public void setColor(int i) {
-		this.color =i;
+		this.color = i;
 	}
+	
+	/**
+	 * get-method of the color
+	 * @return color color of the AI
+	 */
 	public int getColor() {
 		return color;
 	}
