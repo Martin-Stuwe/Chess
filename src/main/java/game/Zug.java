@@ -41,9 +41,15 @@ public class Zug {
 	 */
 	int to2;
 	
+	/**
+	 * array of the state of the board after a move
+	 */
 	public Figures[][] boardState = new Figures[8][8];
-	
+	/**
+	 * turn of the Zug object
+	 */
 	public int turn;
+	
 	/**
 	 * constructor for a zug object
 	 * @param figure figure that has been moved
@@ -59,9 +65,18 @@ public class Zug {
 		this.to2 = Character.getNumericValue(to.charAt(1));	
 	}
 	
+	/**
+	 * set-method for the turn
+	 * @param i turn of the Zug object
+	 */
 	public void setTurn(int i) {
 		this.turn = i;
 	}
+	
+	/**
+	 * get-method for the turn
+	 * @return current turn
+	 */
 	public int getTurn() {
 		return this.turn;
 	}
