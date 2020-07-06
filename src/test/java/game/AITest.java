@@ -56,9 +56,9 @@ public class AITest {
 		AI ki=new AI(1);
 		Board board= new Board();
 		board.setStart();
-		assertEquals(5040, ki.calculateValue(board), "Startvalue");
-		board.setNull(1, 1);
-		assertEquals(5039, ki.calculateValue(board), "remove Pawn -> value -1");
+		assertEquals(5400, ki.calculateValue(board), "Startvalue");
+		board.setNull(1, 6);
+		assertEquals(5390, ki.calculateValue(board), "remove Pawn -> value -1");
 
 	}
 	
@@ -70,8 +70,8 @@ public class AITest {
 		AI ki=new AI(1);
 		Board board= new Board();
 		board.setStart();
-		assertEquals(5040, ki.calculateValueFor(board,0), "Start value black");
-		assertEquals(5040, ki.calculateValueFor(board,1), "Start value white");
+		assertEquals(5400, ki.calculateValueFor(board,0), "Start value black");
+		assertEquals(5400, ki.calculateValueFor(board,1), "Start value white");
 
 	}
 	
@@ -83,10 +83,10 @@ public class AITest {
 		AI ki=new AI(1);
 		Board board= new Board();
 		board.setStart();
-		assertEquals(0, ki.calculateFigure(board.getField(1, 1), "b"), "Color");
-		assertEquals(1, ki.calculateFigure(board.getField(1, 1), "w"), "Pawn");
-		assertEquals(3, ki.calculateFigure(board.getField(2, 0), "w"), "Bishop");
-		assertEquals(3, ki.calculateFigure(board.getField(1, 0), "w"), "Knight");
+		assertEquals(10, ki.calculateFigure(board.getField(1, 1), "b"), "Pawn");
+		assertEquals(0, ki.calculateFigure(board.getField(1, 1), "w"), "Wrong Color");
+		assertEquals(30, ki.calculateFigure(board.getField(2, 0), "b"), "Bishop");
+		assertEquals(30, ki.calculateFigure(board.getField(1, 0), "b"), "Knight");
 
 	}
 	/**
@@ -97,9 +97,9 @@ public class AITest {
 		AI ki=new AI(1);
 		Board board= new Board();
 		board.setStart();
-		assertEquals(5, ki.calculateFigure(board.getField(0, 0), "w"), "Rook");
-		assertEquals(10, ki.calculateFigure(board.getField(3, 0), "w"), "Queen");
-		assertEquals(5000, ki.calculateFigure(board.getField(4, 0), "w"), "King");
+		assertEquals(50, ki.calculateFigure(board.getField(0, 0), "b"), "Rook");
+		assertEquals(100, ki.calculateFigure(board.getField(3, 0), "b"), "Queen");
+		assertEquals(5000, ki.calculateFigure(board.getField(4, 0), "b"), "King");
 	}
 	/**
 	* Test For Random moves
