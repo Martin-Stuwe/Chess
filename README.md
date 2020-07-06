@@ -10,6 +10,9 @@ This Projected is a Project hosted by Universität zu Lübeck (CS2301) and writt
 
 * Fin Niklas Tiedemann
 
+Zusatzfeatures:
+Starke KI (5), Schachuhr (2), Resizeable GUI (1), Speichern und Laden (2)
+
 You can start the game in two ways, either in the console or as a program.
 
 the game will normally start as a program:

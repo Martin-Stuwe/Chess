@@ -384,7 +384,7 @@ public class AI {
 			board.positionen[move.to1][move.to2]=board.getField(move.from1,move.from2);
 			board.positionen[move.from1][move.from2]=null;
 			move.getFigure().setPos(move.to1, move.to2);
-			board.initializeBoard();
+
 			int wert = min(board,depth-1,
 	                      maxWert, beta);
 			move.getFigure().setPos(move.from1, move.from2);
