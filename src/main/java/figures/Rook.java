@@ -39,6 +39,9 @@ public class Rook extends Figures {
 	 */
 	private boolean hasMoved;
 	
+	/**
+	 * check if there are emppty spaces
+	 */
 	private boolean emptySpaces;
 	
 	/**

@@ -34,7 +34,9 @@ public class Queen extends Figures {
 	 */
 	private String color;
 	
-    
+	/**
+	 * array to evaluate the queen position
+	 */ 
 	private static int [] queenTable = {
       -20,-10,-10, -5, -5,-10,-10,-20,
       -10,  0,  0,  0,  0,  0,  0,-10,
