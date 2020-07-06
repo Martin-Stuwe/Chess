@@ -258,7 +258,6 @@ public class AI {
 							
 							checkPossMoves(board2,Integer.toString(i)+Integer.toString(j)+Integer.toString(x)+Integer.toString(y),turn, possibleMoveList);
 						
-						
 						}
 					}
 				}

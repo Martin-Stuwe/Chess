@@ -117,6 +117,7 @@ public class AITest {
 		assertNotEquals(board.positionen,board2.positionen,"moved");
 	}
 	
+	
 	/**
 	* Test For min moves
 	*/
