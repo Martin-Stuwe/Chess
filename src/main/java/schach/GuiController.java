@@ -78,6 +78,11 @@ public class GuiController {
 	int depth;
 	
 	/**
+	 * timer 
+	 */
+	private static Timer t = new Timer();
+	
+	/**
 	 * list of undone Turns
 	 */
 	public List<Zug>undoneTurns = new ArrayList<Zug>();
@@ -597,6 +602,7 @@ public class GuiController {
             	gv.clock.timeWhite = 0;
             	gv.clock.timeBlack = 0;
                 gv.historie.getItems().clear();
+                t.cancel();
             	start(primaryStage);
                 
                 
@@ -761,7 +767,7 @@ public class GuiController {
 	 * method to start the Ai
 	 */
 	public void startAi() {
-		Timer t = new Timer();
+		t = new Timer();
 		long i = 500;
 		t.scheduleAtFixedRate(new TimerTask() {		
 			@Override
