@@ -126,7 +126,7 @@ public class AITest {
 		Board board= new Board();
 		board.setStart();
 		ki.min(board, 1, -500000, 500000);
-		assertEquals(ki.min(board, 1, -500000, 500000),5040,"min Value");
+		assertEquals(ki.min(board, 1, -500000, 500000),0,"min Value");
 	}
 	
 	
@@ -137,9 +137,10 @@ public class AITest {
 	public void testmax() {
 		AI ki=new AI(1);
 		Board board= new Board();
+		Board board2= new Board();
 		board.setStart();
 		ki.max(board, 1, -500000, 500000);
-		assertEquals(ki.min(board, 1, -500000, 500000),5040,"min Value");
+		assertEquals(ki.min(board, 1, -500000, 500000),0,"min Value");
 	}
 
 	
@@ -154,6 +155,8 @@ public class AITest {
 		Board board2= new Board();
 		board2.setStart();
 		ki.lookAhead(board, 1, 1);
+		assertNotEquals(board,board2,"moved figure");
+		ki.lookAhead(board2, 2, 1);
 		assertNotEquals(board,board2,"moved figure");
 	}
 

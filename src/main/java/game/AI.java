@@ -284,7 +284,7 @@ public class AI {
 		possibleMoveList.removeAll(possibleMoveList);
 		possibleMoveList.addAll(moveListRec);
 		possibleMoveList.addAll(moveListNotRec);
-		
+		possibleMoves=possibleMoveList;
 		return possibleMoveList;
 	}
 		
