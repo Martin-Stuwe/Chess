@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.ByteArrayInputStream;
 
 import org.junit.jupiter.api.Test;
-
 import figures.Pawn;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,24 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 * it1
 */
 public class StartGameTest {
-/*	@Test
-	public void testStarGameCommand() {
-		StartGame StartGame = new StartGame();
-		Board board2 = new Board();
-		InputStream in= new ByteArrayInputStream ("exit\r\n".getBytes());
-		System.setIn(in);
-		StartGame.StartGameCommand(); 
 
-	}
-	@Test
-	public void testPlayerVSPlayer() {
-		StartGame StartGame = new StartGame();
-		Board board2 = new Board();
-		InputStream in= new ByteArrayInputStream ("exit\r\n".getBytes());
-		System.setIn(in);
-		StartGame.PlayerVsPlayer();
-
-	}*/
 	/**
 	* Test For getAndMakeMove
 	*/
@@ -110,7 +92,7 @@ public class StartGameTest {
 	/**
 	* Test For Player vs Player
 	*/
-	@Test
+	//@Test
 	public void testPlayerVsPlayer() {
 
 		Console TC = new Console();	
@@ -121,7 +103,7 @@ public class StartGameTest {
 	/**
 	* Test For Player Vs AI
 	*/
-	@Test
+	//@Test
 	public void testPlayerVsAI() {
 
 		InputStream in= new ByteArrayInputStream ("white\n exit\n".getBytes());
@@ -131,7 +113,7 @@ public class StartGameTest {
 	/**
 	* Test For Timer
 	*/
-	@Test
+	//@Test
 	public void testTimeQuestion() {
 		Board board2 = new Board();
 		board2.setStart();
@@ -143,6 +125,7 @@ public class StartGameTest {
 		System.setIn(in);
 		StartGame.timeQuestion();
 	}
+	
 	/**
 	* Test For Timer2
 	*/
@@ -191,7 +174,7 @@ public class StartGameTest {
 	/**
 	* Test For Startgame
 	*/
-	@Test
+	// @Test 
 	public void testStartGameCommand() {
 		InputStream in= new ByteArrayInputStream ("white\r\n exit\r\n".getBytes());
 		System.setIn(in);
@@ -200,7 +183,7 @@ public class StartGameTest {
 	/**
 	* Test For Startgame2
 	*/
-	@Test
+	//@Test
 	public void testStartGameCommand2() {
 		InputStream in= new ByteArrayInputStream ("1".getBytes());
 		System.setIn(in);
