@@ -92,28 +92,28 @@ public class StartGameTest {
 	/**
 	* Test For Player vs Player
 	*/
-	//@Test
+	/*@Test
 	public void testPlayerVsPlayer() {
 
 		Console TC = new Console();	
 		InputStream in= new ByteArrayInputStream ("white\r\n exit\r\n".getBytes());
 		System.setIn(in);
 		StartGame.PlayerVsPlayer();
-	}
+	}*/
 	/**
 	* Test For Player Vs AI
 	*/
-	//@Test
+	/*@Test
 	public void testPlayerVsAI() {
 
 		InputStream in= new ByteArrayInputStream ("white\n exit\n".getBytes());
 		System.setIn(in);
 		StartGame.PlayerVsAI(0);
-	}
+	}*/
 	/**
 	* Test For Timer
 	*/
-	//@Test
+	/*@Test
 	public void testTimeQuestion() {
 		Board board2 = new Board();
 		board2.setStart();
@@ -124,7 +124,7 @@ public class StartGameTest {
 		InputStream in= new ByteArrayInputStream (input.getBytes());
 		System.setIn(in);
 		StartGame.timeQuestion();
-	}
+	}*/
 	
 	/**
 	* Test For Timer2
@@ -171,10 +171,8 @@ public class StartGameTest {
 		
 	}
 	
-	/**
-	* Test For Startgame
-	*/
-	// @Test 
+
+	/* @Test 
 	public void testStartGameCommand() {
 		InputStream in= new ByteArrayInputStream ("white\r\n exit\r\n".getBytes());
 		System.setIn(in);
@@ -183,10 +181,10 @@ public class StartGameTest {
 	/**
 	* Test For Startgame2
 	*/
-	//@Test
+	/*@Test
 	public void testStartGameCommand2() {
 		InputStream in= new ByteArrayInputStream ("1".getBytes());
 		System.setIn(in);
 		StartGame.StartGamePartTwo(0);
-	}
+	}*/
 }
